@@ -1,0 +1,16 @@
+{
+  "name": "learning-buddy",
+  "private": true,
+  "scripts": {
+    "api:types": "python scripts/export_openapi.py && openapi-typescript frontend/types/openapi.json -o frontend/types/api.d.ts",
+    "build:api-client": "tsc --target ES2022 --module ES2022 --moduleResolution Bundler --lib ES2022,DOM --strict --skipLibCheck --outDir frontend/static/js frontend/src/api.ts && node scripts/finalize_api_client.mjs",
+    "types:check": "npm run api:types && tsc --noEmit && npm run build:api-client",
+    "test:e2e:personas": "playwright test e2e/persona-smoke.spec.ts e2e/product-flows.spec.ts e2e/new-student.spec.ts",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "openapi-typescript": "^7.9.0",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,64 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: learning-buddy-app:latest
+    container_name: buddy_app
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT_HOST:-8000}:8000"
+    environment:
+      - APP_ENV=production
+      - INSTITUTE_PROFILE=iit_bhilai
+      - DATABASE_URL=sqlite:////app/data/buddy_bhilai.db
+      - LLM_MODEL=${LLM_MODEL:-gemini/gemini-3.5-flash-lite}
+      - LLM_API_KEY=${LLM_API_KEY:-}
+      - LLM_API_BASE=${LLM_API_BASE:-}
+      - EMBEDDING_MODEL=${EMBEDDING_MODEL:-}
+      - OFFLINE_MODE=${OFFLINE_MODE:-false}
+      - ADMIN_API_TOKEN=${ADMIN_API_TOKEN:-adm_secret_token_15}
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  db:
+    image: postgres:16-alpine
+    container_name: buddy_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: buddy_user
+      POSTGRES_PASSWORD: buddy_pass
+      POSTGRES_DB: buddy_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U buddy_user -d buddy_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer:4-standalone
+    container_name: buddy_adminer
+    restart: unless-stopped
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

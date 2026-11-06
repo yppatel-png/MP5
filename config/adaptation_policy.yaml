@@ -1,0 +1,57 @@
+# ==============================================================================
+# Adobe Personalised Learning Buddy - Dynamic Adaptation Policy Configuration
+# ==============================================================================
+# Defines threshold-based triggers, remediation strategies, load-shedding ratios,
+# and student override trade-off calculations.
+
+adaptation_policy:
+  version: "1.0.0"
+  rules:
+    - id: "RULE_ACCELERATE"
+      name: "Fast-Track / Acceleration"
+      action: "ACCELERATE"
+      condition: "bkt_probability >= 0.85 and score >= 0.85"
+      description: "When mastery exceeds 85%, skip introductory prerequisite content and advance to higher-level electives or compress timeline."
+      parameters:
+        mastery_threshold: 0.85
+        score_threshold: 0.85
+        credit_boost_max: 4.0
+
+    - id: "RULE_REMEDIATE"
+      name: "Prerequisite Remediation & Deferral"
+      action: "REMEDIATE"
+      condition: "bkt_probability < 0.45 or score < 0.40"
+      description: "When performance drops below 40%, insert foundational prerequisite modules/resources, reduce semester load or defer advanced course."
+      parameters:
+        struggling_threshold: 0.40
+        bkt_threshold: 0.45
+        max_remedial_modules: 2
+        defer_advanced_courses: true
+
+    - id: "RULE_SPACED_REVIEW"
+      name: "Spaced Repetition Review"
+      action: "REVIEW_SPACED"
+      condition: "consecutive_misses >= 3"
+      description: "When a student misses items repeatedly on a specific topic, schedule spaced-repetition review exercises."
+      parameters:
+        consecutive_misses_trigger: 3
+        review_interval_days: 3
+
+    - id: "RULE_BEHAVIOURAL_DRIFT"
+      name: "Behavioural Drift / Workload Shedding"
+      action: "LOAD_SHED"
+      condition: "actual_weekly_hours / target_weekly_hours < 0.60"
+      description: "When weekly engaged hours drop below 60% of target, reduce elective workload, reprioritise core essentials, and notify student honestly."
+      parameters:
+        drift_ratio_threshold: 0.60
+        max_credit_reduction: 4.0
+
+    - id: "RULE_STUDENT_OVERRIDE"
+      name: "Student Course Rejection / Preference Override"
+      action: "OVERRIDE_RESOLVE"
+      condition: "student_override_requested == True"
+      description: "Re-solve multi-semester plan respecting exclusion constraint and compute trade-offs (skills lost, workload delta, graduation impact)."
+      parameters:
+        require_valid_alternative: true
+        recompute_skill_gap_coverage: true
+

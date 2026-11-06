@@ -1,0 +1,273 @@
+[
+  {
+    "skill_id": "skill_prog_fundamentals",
+    "name": "Programming Fundamentals",
+    "domain": "Computer Science",
+    "description": "Procedural logic, variable scopes, iteration, recursion, pointers, and memory addressing.",
+    "parent_skill_id": null,
+    "source": "ACM/IEEE CS Curricula 2023, Programming Fundamentals (P-F)",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_oop",
+    "name": "Object-Oriented Design",
+    "domain": "Computer Science",
+    "description": "Classes, encapsulation, inheritance, polymorphism, design patterns, and modularity.",
+    "parent_skill_id": "skill_prog_fundamentals",
+    "source": "ACM/IEEE CS Curricula 2023, Software Development Fundamentals (SDF)",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_dsa_linear",
+    "name": "Linear Data Structures",
+    "domain": "Computer Science",
+    "description": "Arrays, dynamic arrays, singly/doubly linked lists, stacks, queues, and deques.",
+    "parent_skill_id": "skill_prog_fundamentals",
+    "source": "ACM/IEEE CS Curricula 2023, Algorithms & Complexity (AL-Basic)",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_dsa_trees",
+    "name": "Trees, Heaps and Graphs",
+    "domain": "Computer Science",
+    "description": "Binary search trees, balanced trees (AVL, Red-Black), binary heaps, priority queues, and graph representations.",
+    "parent_skill_id": "skill_dsa_linear",
+    "source": "ACM/IEEE CS Curricula 2023, Algorithms & Complexity (AL-Advanced)",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_algo_design",
+    "name": "Algorithm Design & Complexity",
+    "domain": "Computer Science",
+    "description": "Asymptotic analysis (Big-O), divide-and-conquer, greedy algorithms, dynamic programming, and network flow.",
+    "parent_skill_id": "skill_dsa_trees",
+    "source": "ACM/IEEE CS Curricula 2023, Algorithms & Complexity (AL-Design)",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_discrete_math",
+    "name": "Discrete Mathematics & Logic",
+    "domain": "Mathematics",
+    "description": "Propositional logic, predicate calculus, set theory, combinatorics, relations, and proof techniques.",
+    "parent_skill_id": null,
+    "source": "ACM/IEEE CS Curricula 2023, Discrete Structures (DS)",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_linear_algebra",
+    "name": "Linear Algebra",
+    "domain": "Mathematics",
+    "description": "Matrix operations, determinants, vector spaces, eigenvalues, eigenvectors, and singular value decomposition (SVD).",
+    "parent_skill_id": null,
+    "source": "IIT Delhi MTL101 Syllabus, Maths Dept",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_calculus",
+    "name": "Multivariable Calculus",
+    "domain": "Mathematics",
+    "description": "Limits, derivatives, Taylor expansion, partial differentiation, multiple integration, and gradient vector fields.",
+    "parent_skill_id": null,
+    "source": "IIT Delhi MTL100 Syllabus, Maths Dept",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_probability",
+    "name": "Probability & Stochastic Processes",
+    "domain": "Mathematics",
+    "description": "Random variables, probability distributions, expectation, Central Limit Theorem, and Markov chains.",
+    "parent_skill_id": "skill_calculus",
+    "source": "IIT Delhi MTL106 Syllabus, Maths Dept",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_db_relational",
+    "name": "Relational Databases & SQL",
+    "domain": "Computer Science",
+    "description": "Entity-relationship modeling, relational algebra, SQL DDL/DML, joins, subqueries, and normalization (1NF-BCNF).",
+    "parent_skill_id": "skill_dsa_linear",
+    "source": "ACM/IEEE CS Curricula 2023, Information Management (IM-Data)",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_db_internals",
+    "name": "Database Internals & Transactions",
+    "domain": "Computer Science",
+    "description": "B+ tree indexing, query execution engines, ACID transaction management, two-phase locking, and crash recovery.",
+    "parent_skill_id": "skill_db_relational",
+    "source": "ACM/IEEE CS Curricula 2023, Information Management (IM-Architecture)",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_os_concurrency",
+    "name": "OS Concurrency & Threads",
+    "domain": "Computer Science",
+    "description": "Processes, kernel threads, race conditions, synchronization primitives (mutex, semaphores), and deadlock avoidance.",
+    "parent_skill_id": "skill_prog_fundamentals",
+    "source": "ACM/IEEE CS Curricula 2023, Operating Systems (OS-Concurrency)",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_os_memory",
+    "name": "Virtual Memory & File Systems",
+    "domain": "Computer Science",
+    "description": "Page tables, TLB, demand paging, page replacement algorithms, file inodes, and storage I/O subsystems.",
+    "parent_skill_id": "skill_os_concurrency",
+    "source": "ACM/IEEE CS Curricula 2023, Operating Systems (OS-Memory)",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_comp_arch",
+    "name": "Computer Architecture & RISC-V",
+    "domain": "Computer Science",
+    "description": "Instruction set architectures, CPU pipelining, data forwarding, branch prediction, and multi-level cache hierarchies.",
+    "parent_skill_id": "skill_prog_fundamentals",
+    "source": "ACM/IEEE CS Curricula 2023, Systems Fundamentals (SF-Arch)",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_ml_supervised",
+    "name": "Supervised Machine Learning",
+    "domain": "Machine Learning",
+    "description": "Linear and logistic regression, Support Vector Machines (SVM), decision trees, gradient boosting, and regularization.",
+    "parent_skill_id": "skill_linear_algebra",
+    "source": "IIT Delhi COL774 Syllabus / Stanford CS229",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_ml_unsupervised",
+    "name": "Unsupervised Learning & Clustering",
+    "domain": "Machine Learning",
+    "description": "K-means clustering, Gaussian Mixture Models (GMM), Expectation-Maximization, and Principal Component Analysis (PCA).",
+    "parent_skill_id": "skill_ml_supervised",
+    "source": "IIT Delhi COL774 Syllabus / Stanford CS229",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_deep_learning",
+    "name": "Deep Learning & Neural Networks",
+    "domain": "Machine Learning",
+    "description": "Multilayer perceptrons, backpropagation calculus, convolution, attention mechanisms, and deep representation learning.",
+    "parent_skill_id": "skill_ml_supervised",
+    "source": "IIT Delhi COL774 Syllabus / Deep Learning Book (Goodfellow)",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_distributed_sys",
+    "name": "Parallel & Distributed Systems",
+    "domain": "Computer Science",
+    "description": "Shared-memory multi-threading (OpenMP), message passing (MPI), GPU kernel programming (CUDA), and distributed consensus.",
+    "parent_skill_id": "skill_os_concurrency",
+    "source": "IIT Delhi COL380 Syllabus, CSE Dept",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_sw_engineering",
+    "name": "Software Engineering & CI/CD",
+    "domain": "Software Engineering",
+    "description": "Git branching, unit and integration testing, continuous integration pipelines, RESTful APIs, and system architecture.",
+    "parent_skill_id": "skill_oop",
+    "source": "IIT Delhi COP290 Syllabus, CSE Dept",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_transport_phenom",
+    "name": "Fluid Flow & Transport Phenomena",
+    "domain": "Chemical Engineering",
+    "description": "Navier-Stokes equations, boundary layer theory, shell momentum balance, and laminar vs. turbulent flow dynamics.",
+    "parent_skill_id": "skill_calculus",
+    "source": "Bird, Stewart, Lightfoot Transport Phenomena / IIT Delhi CLL110",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_chem_thermo",
+    "name": "Chemical Engineering Thermodynamics",
+    "domain": "Chemical Engineering",
+    "description": "Equations of state, fugacity coefficients, activity coefficient models, and multicomponent vapor-liquid equilibria.",
+    "parent_skill_id": "skill_calculus",
+    "source": "Smith, Van Ness Chemical Thermodynamics / IIT Delhi CLL121",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_reaction_eng",
+    "name": "Reaction Engineering & Kinetics",
+    "domain": "Chemical Engineering",
+    "description": "Reaction rate kinetics, ideal batch, CSTR, and PFR design, thermal stability, and porous catalyst effectiveness factors.",
+    "parent_skill_id": "skill_chem_thermo",
+    "source": "Fogler Elements of Chemical Reaction Engineering / IIT Delhi CLL122",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_heat_transfer",
+    "name": "Heat Transfer & Exchanger Design",
+    "domain": "Chemical Engineering",
+    "description": "Conduction, convection heat transfer coefficients, thermal radiation, and industrial shell-and-tube exchanger rating.",
+    "parent_skill_id": "skill_transport_phenom",
+    "source": "Incropera Heat and Mass Transfer / IIT Delhi CLL251",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_mass_transfer",
+    "name": "Mass Transfer & Separation Operations",
+    "domain": "Chemical Engineering",
+    "description": "Molecular diffusion, interphase mass transfer, McCabe-Thiele distillation column design, and gas absorption columns.",
+    "parent_skill_id": "skill_transport_phenom",
+    "source": "Treybal Mass-Transfer Operations / IIT Delhi CLL252",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_process_control",
+    "name": "Process Dynamics & Feedback Control",
+    "domain": "Chemical Engineering",
+    "description": "Laplace transfer functions, first and second-order process responses, PID feedback controller tuning, and stability criteria.",
+    "parent_skill_id": "skill_linear_algebra",
+    "source": "Seborg Process Dynamics and Control / IIT Delhi CLL261",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_venture_creation",
+    "name": "Venture Creation & Product Discovery",
+    "domain": "Entrepreneurship",
+    "description": "Lean startup validation, customer discovery interviews, business model generation, and product-market fit metrics.",
+    "parent_skill_id": null,
+    "source": "IIT Delhi MSL705 / Stanford Technology Ventures Program",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_venture_finance",
+    "name": "Venture Valuation & Financial Modeling",
+    "domain": "Entrepreneurship",
+    "description": "Cap tables, term sheets, discounted cash flows (DCF), cost of capital, and venture capital financing rounds.",
+    "parent_skill_id": "skill_venture_creation",
+    "source": "IIT Delhi MSL708 / Harvard Business School Venture Capital",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_social_structures",
+    "name": "Indian Social Structures & Polity",
+    "domain": "Humanities",
+    "description": "Indian constitutional frameworks, caste and agrarian dynamics, federalism, secularism, and public administration.",
+    "parent_skill_id": null,
+    "source": "IIT Delhi HUL261 / UPSC Civil Services Syllabus GS Paper 1 & 2",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_environmental_policy",
+    "name": "Environmental Governance & Ecology",
+    "domain": "Humanities",
+    "description": "Ecological sustainability, global climate agreements, natural resource governance, and environmental jurisprudence.",
+    "parent_skill_id": null,
+    "source": "IIT Delhi HUL275 / UPSC Civil Services Syllabus GS Paper 3",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "skill_id": "skill_cognitive_psych",
+    "name": "Cognitive Psychology & Decision Making",
+    "domain": "Humanities",
+    "description": "Human memory architecture, heuristic biases, cognitive load theory, and behavioral decision analysis.",
+    "parent_skill_id": null,
+    "source": "IIT Delhi HUL211 / Kahneman Thinking Fast and Slow",
+    "last_verified": "2024-07-15"
+  }
+]
+

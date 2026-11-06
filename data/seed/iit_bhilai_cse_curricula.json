@@ -1,0 +1,261 @@
+{
+  "source": {
+    "title": "IIT Bhilai Courses of Study, October 2026",
+    "applicable_from": "2023 batch onwards",
+    "file": "data/raw/courses of study.pdf",
+    "pages": [9, 21, 22, 42, 136],
+    "source_register": "data/raw/SOURCES.md",
+    "code_variants": [
+      {
+        "programme_id": "iit_bhilai_btech_cse_2023",
+        "codes": ["SL302", "CSL302"],
+        "note": "The BTech PC list on page 21 prints SL302; the semester sequence on page 22 and CSE course catalogue on page 84 print CSL302."
+      }
+    ],
+    "limitations": [
+      "The source specifies named core courses and semester slots, but does not identify selectable CSE program-elective or open-elective offerings.",
+      "The source prints the Compiler Design code as SL302 on page 21 and CSL302 on page 22; the semester sequence spelling is preserved below and the discrepancy is not resolved.",
+      "The source lists CSE PhD as an offering, but does not provide a PhD curriculum in the cited course-of-study document."
+    ]
+  },
+  "catalogue_courses": [
+    {"code": "CSL100", "title": "Introduction to Programming", "credits": 4.5, "ltp": [2, 1, 3], "page": 83, "programme_table_status": "BTech IC"},
+    {"code": "CSL201", "title": "Discrete Mathematics", "credits": 4, "ltp": [3, 1, 0], "page": 83, "programme_table_status": "BTech PC"},
+    {"code": "CSL202", "title": "Data Structures", "credits": 4, "ltp": [2, 1, 2], "page": 83, "programme_table_status": "BTech PC"},
+    {"code": "CSP203", "title": "Software Tools & Technologies Lab", "credits": 3, "ltp": [1, 0, 4], "page": 83, "programme_table_status": "BTech PC"},
+    {"code": "CSL251", "title": "Computer Organization & Architecture", "credits": 4, "ltp": [3, 0, 2], "page": 83, "programme_table_status": "BTech PC"},
+    {"code": "CSL252", "title": "Design and Analysis of Algorithms", "credits": 4, "ltp": [3, 1, 0], "page": 84, "programme_table_status": "BTech PC"},
+    {"code": "CSL253", "title": "Theory of Computation", "credits": 4, "ltp": [3, 1, 0], "page": 84, "programme_table_status": "BTech PC"},
+    {"code": "CSL301", "title": "Operating Systems", "credits": 4, "ltp": [3, 0, 2], "page": 84, "programme_table_status": "BTech PC"},
+    {"code": "CSL302", "title": "Compiler Design", "credits": 4, "ltp": [3, 0, 2], "page": 84, "programme_table_status": "BTech PC", "note": "The BTech PC list on page 21 appears to print the code as SL302; the semester sequence on page 22 and catalogue print CSL302."},
+    {"code": "CSL303", "title": "Database Management Systems", "credits": 4, "ltp": [3, 0, 2], "page": 85, "programme_table_status": "BTech PC"},
+    {"code": "CSL304", "title": "Artificial Intelligence", "credits": 4, "ltp": [3, 0, 2], "page": 85, "programme_table_status": "BTech PC"},
+    {"code": "CSL351", "title": "Computer Networks", "credits": 4, "ltp": [3, 0, 2], "page": 85, "programme_table_status": "BTech PC"},
+    {"code": "CSP352", "title": "AI-Augmented Software Development", "credits": 3, "ltp": [1, 0, 4], "page": 86, "programme_table_status": "BTech PC"},
+    {"code": "CSP402", "title": "Nand to Tetris", "credits": 2, "ltp": [0, 0, 4], "page": 86, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSQ401", "title": "BTech Project-I", "credits": 3, "ltp": [0, 0, 6], "page": 87, "programme_table_status": "BTech PC"},
+    {"code": "CSQ402", "title": "BTech Project-II", "credits": 3, "ltp": [0, 0, 6], "page": 87, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL502", "title": "Foundation of Computer Science", "credits": 3, "ltp": [3, 0, 0], "page": 87, "programme_table_status": "MTech PC"},
+    {"code": "CSL503", "title": "Computer Systems Engineering", "credits": 3, "ltp": [2, 0, 2], "page": 88, "programme_table_status": "MTech PC"},
+    {"code": "CSL504", "title": "Graph Theory and Applications", "credits": 3, "ltp": [3, 0, 0], "page": 88, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL505", "title": "Cryptography", "credits": 3, "ltp": [3, 0, 0], "page": 88, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL510", "title": "Approximation Algorithms", "credits": 3, "ltp": [3, 0, 0], "page": 88, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL511", "title": "Introduction to Formal Verification and its Applications", "credits": 3, "ltp": [3, 0, 0], "page": 89, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL512", "title": "Parallel Algorithms", "credits": 3, "ltp": [3, 0, 0], "page": 89, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL515", "title": "Randomized Algorithms", "credits": 3, "ltp": [3, 0, 0], "page": 89, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL516", "title": "Parallelization of Programs", "credits": 3, "ltp": [3, 0, 0], "page": 89, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL517", "title": "Software Defined Networking", "credits": 3, "ltp": [3, 0, 0], "page": 90, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL518", "title": "Fundamentals of Distributed Algorithms", "credits": 3, "ltp": [3, 0, 0], "page": 90, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL519", "title": "High Performance Computer Architecture", "credits": 3, "ltp": [3, 0, 0], "page": 90, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL559", "title": "Computer Systems Design", "credits": 4, "ltp": [3, 0, 2], "page": 90, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL601", "title": "Network Science", "credits": 3, "ltp": [2, 1, 0], "page": 91, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL602", "title": "Lightweight Cryptography", "credits": 3, "ltp": [3, 0, 0], "page": 91, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL603", "title": "Blockchain Technologies", "credits": 3, "ltp": [3, 0, 0], "page": 91, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL604", "title": "Mobile and Wireless Networks", "credits": 3, "ltp": [3, 0, 0], "page": 91, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL605", "title": "Computer Networks and Cyber Security", "credits": 3, "ltp": [2, 0, 2], "page": 92, "programme_table_status": "MTech PC"},
+    {"code": "CSL606", "title": "Advance Data Structure and Algorithms", "credits": 3, "ltp": [3, 0, 0], "page": 92, "programme_table_status": "MTech PC"},
+    {"code": "CSL607", "title": "Adversarial Machine Learning: Security and Privacy of ML", "credits": 3, "ltp": [3, 0, 0], "page": 92, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL608", "title": "Advanced Graph Algorithms", "credits": 3, "ltp": [3, 0, 0], "page": 93, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL609", "title": "CAD for VLSI", "credits": 3, "ltp": [3, 0, 0], "page": 93, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL610", "title": "Lower Bounds and Impossibilities", "credits": 3, "ltp": [3, 0, 0], "page": 93, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL612", "title": "Introduction to Computational Complexity", "credits": 3, "ltp": [3, 0, 0], "page": 94, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL613", "title": "Social Network Analysis", "credits": 3, "ltp": [3, 0, 0], "page": 94, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL614", "title": "Quantum Symmetric-Key Cryptanalysis", "credits": 3, "ltp": [3, 0, 0], "page": 94, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL616", "title": "Parameterized Algorithms", "credits": 3, "ltp": [3, 0, 0], "page": 94, "programme_table_status": "Catalogue only; elective eligibility not specified"},
+    {"code": "CSL622", "title": "Quantum Computing for Computer Scientists", "credits": 3, "ltp": [2, 0, 2], "page": 95, "programme_table_status": "Catalogue only; elective eligibility not specified"}
+  ],
+  "programmes": [
+    {
+      "id": "iit_bhilai_btech_cse_2023",
+      "institution": "Indian Institute of Technology Bhilai",
+      "department": "Computer Science and Engineering",
+      "degree": "BTech",
+      "name": "BTech in Computer Science and Engineering",
+      "applicable_from": "2023 batch onwards",
+      "status": "curriculum_available",
+      "minimum_credits": 144,
+      "additional_non_graded_core_units": 12,
+      "credit_categories": {
+        "IC": 40.5,
+        "PL": 4,
+        "PC": 52,
+        "PE": 22.5,
+        "OE": 15,
+        "LA": 10
+      },
+      "non_graded_core": [
+        {
+          "code": "NCN100",
+          "title": "Practices for Comprehensive wellbeing",
+          "credit_value": null,
+          "units": null,
+          "semester": 1,
+          "note": "Listed as NC; the source does not state a credit or unit value for this course row."
+        },
+        {
+          "code": "LAN103",
+          "title": "Professional Ethics",
+          "credit_value": null,
+          "units": null,
+          "semester": 2,
+          "note": "Listed in the semester sequence without an L-T-P-C value and absent from the named IC list."
+        }
+      ],
+      "semesters": [
+        {
+          "semester": 1,
+          "stated_credits": 18,
+          "courses": [
+            {"code": "CSL100", "title": "Introduction to programming", "credits": 4.5, "category": "IC"},
+            {"code": "CYP102 or PHP102", "title": "Chemistry lab or Physics lab", "credits": 1.5, "category": "IC", "choice": true},
+            {"code": "MAL100", "title": "Mathematics-I", "credits": 4, "category": "IC"},
+            {"code": "CYL100", "title": "Applied Chemistry", "credits": 3, "category": "IC"},
+            {"code": "PHL101", "title": "Physics for Engineers", "credits": 4, "category": "IC"},
+            {"code": "CYL101", "title": "Environmental Science", "credits": 1, "category": "IC"},
+            {"code": "NCN100", "title": "Practices for Comprehensive wellbeing", "credits": null, "category": "NC"}
+          ]
+        },
+        {
+          "semester": 2,
+          "stated_credits": 19.5,
+          "courses": [
+            {"code": "MEP102", "title": "Digital fabrication", "credits": 3, "category": "IC"},
+            {"code": "EEL101", "title": "Basic Electrical Engineering", "credits": 4, "category": "IC"},
+            {"code": "PHP102 or CYP102", "title": "Physics lab or Chemistry lab", "credits": 1.5, "category": "IC", "choice": true},
+            {"code": "MAL101", "title": "Mathematics-II", "credits": 4, "category": "IC"},
+            {"code": "ECL101", "title": "Basic Electronics Engineering", "credits": 4, "category": "IC"},
+            {"code": "BML101", "title": "Biology for Engineers", "credits": 3, "category": "IC"},
+            {"code": "LAN103", "title": "Professional Ethics", "credits": null, "category": null}
+          ]
+        },
+        {
+          "semester": 3,
+          "stated_credits": 19,
+          "courses": [
+            {"code": "MAL403", "title": "Probability and Statistics", "credits": 4, "category": "PL"},
+            {"code": "CSL201", "title": "Discrete Mathematics", "credits": 4, "category": "PC"},
+            {"code": "CSL202", "title": "Data Structures", "credits": 4, "category": "PC"},
+            {"code": "CSP203", "title": "Software Tool & Technologies Lab", "credits": 3, "category": "PC"},
+            {"code": "LAL100", "title": "Introduction to Communication Skills", "credits": 2, "category": "IC"},
+            {"code": "LA Courses", "title": "Liberal Arts course slot", "credits": 2, "category": "LA", "placeholder": true}
+          ]
+        },
+        {
+          "semester": 4,
+          "stated_credits": 17,
+          "courses": [
+            {"code": "CSL251", "title": "Computer Organization and Architecture", "credits": 4, "category": "PC"},
+            {"code": "CSL252", "title": "Design and Analysis of Algorithms", "credits": 4, "category": "PC"},
+            {"code": "CSL253", "title": "Theory of Computation", "credits": 4, "category": "PC"},
+            {"code": "LAL101", "title": "Introduction to Finance", "credits": 1, "category": "IC"},
+            {"code": "LA Courses", "title": "Liberal Arts course slot", "credits": 4, "category": "LA", "placeholder": true}
+          ]
+        },
+        {
+          "semester": 5,
+          "stated_credits": 18,
+          "courses": [
+            {"code": "CSL301", "title": "Operating Systems", "credits": 4, "category": "PC"},
+            {"code": "CSL302", "title": "Compiler Design", "credits": 4, "category": "PC", "note": "The page 21 core-course list instead prints this code as SL302."},
+            {"code": "CSL303", "title": "Database Management Systems", "credits": 4, "category": "PC"},
+            {"code": "CSL304", "title": "Artificial Intelligence", "credits": 4, "category": "PC"},
+            {"code": "LA Courses", "title": "Liberal Arts course slot", "credits": 2, "category": "LA", "placeholder": true}
+          ]
+        },
+        {
+          "semester": 6,
+          "stated_credits": 18,
+          "courses": [
+            {"code": "CSL351", "title": "Computer Networks", "credits": 4, "category": "PC"},
+            {"code": "CSLXXX PE", "title": "Program elective slot", "credits": 3, "category": "PE", "placeholder": true},
+            {"code": "OE", "title": "Open elective slot", "credits": 3, "category": "OE", "placeholder": true},
+            {"code": "UGQ301", "title": "Interdisciplinary Undergraduate Project", "credits": 3, "category": "PC"},
+            {"code": "LA Courses", "title": "Liberal Arts course slot", "credits": 2, "category": "LA", "placeholder": true},
+            {"code": "CSP352", "title": "AI-Augmented Software Development", "credits": 3, "category": "PC"}
+          ]
+        },
+        {
+          "semester": 7,
+          "stated_credits": 17.5,
+          "courses": [
+            {"code": "CSQ401", "title": "BTech Project-I", "credits": 3, "category": "PC", "note": "Students interning in semester VII must complete this project in semester VIII."},
+            {"code": "CSLXXX PE", "title": "Program elective slot", "credits": 8.5, "category": "PE", "placeholder": true},
+            {"code": "OE", "title": "Open elective slot", "credits": 6, "category": "OE", "placeholder": true}
+          ]
+        },
+        {
+          "semester": 8,
+          "stated_credits": 17,
+          "courses": [
+            {"code": "CSLXXX PE", "title": "Program elective slot", "credits": 11, "category": "PE", "placeholder": true},
+            {"code": "OE", "title": "Open elective slot", "credits": 6, "category": "OE", "placeholder": true}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "iit_bhilai_mtech_cse_2023",
+      "institution": "Indian Institute of Technology Bhilai",
+      "department": "Computer Science and Engineering",
+      "degree": "MTech",
+      "name": "MTech in Computer Science and Engineering",
+      "applicable_from": "2023 batch onwards",
+      "status": "curriculum_available",
+      "minimum_credits": 54,
+      "credit_categories": {
+        "PC": 12,
+        "PE": 9,
+        "PE/OE": 3,
+        "Thesis/OE/PE": 6,
+        "Thesis": 24
+      },
+      "semesters": [
+        {
+          "semester": 1,
+          "stated_credits": 12,
+          "courses": [
+            {"code": "CSL502", "title": "Foundation of Computer Science", "credits": 3, "category": "PC"},
+            {"code": "CSL503", "title": "Computer Systems Engineering", "credits": 3, "category": "PC"},
+            {"code": "CSL606", "title": "Advance Data Structures and Algorithms", "credits": 3, "category": "PC", "note": "The semester table prints singular 'Advance Data Structure'; the core list prints plural 'Data Structures'."},
+            {"code": "CSL605", "title": "Computer Networks and Cyber Security", "credits": 3, "category": "PC"}
+          ]
+        },
+        {
+          "semester": 2,
+          "stated_credits": 12,
+          "courses": [
+            {"code": "CSLXXX PE", "title": "Program elective slot", "credits": 9, "category": "PE", "placeholder": true},
+            {"code": "CSXXXX PE/OE", "title": "Program or open elective slot", "credits": 3, "category": "PE/OE", "placeholder": true}
+          ]
+        },
+        {
+          "semester": 3,
+          "stated_credits": 15,
+          "courses": [
+            {"code": "PE/OE/Thesis", "title": "Program elective, open elective, or thesis slot", "credits": 6, "category": "Thesis/OE/PE", "placeholder": true},
+            {"code": "CST799", "title": "Thesis", "credits": 9, "category": "Thesis"}
+          ]
+        },
+        {
+          "semester": 4,
+          "stated_credits": 15,
+          "courses": [
+            {"code": "CST799", "title": "Thesis", "credits": 15, "category": "Thesis"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "iit_bhilai_phd_cse",
+      "institution": "Indian Institute of Technology Bhilai",
+      "department": "Computer Science and Engineering",
+      "degree": "PhD",
+      "name": "PhD in Computer Science and Engineering",
+      "status": "programme_listed_curriculum_unavailable",
+      "minimum_credits": null,
+      "credit_categories": {},
+      "semesters": [],
+      "note": "CSE PhD is listed as an offering by IIT Bhilai, but no PhD curriculum was present in the supplied course-of-study source."
+    }
+  ]
+}

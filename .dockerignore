@@ -1,0 +1,38 @@
+# Version control
+.git
+.gitignore
+
+# Environment files with potential local secrets
+.env
+.env.local
+
+# Python bytecode & caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+data/*.db
+data/*.sqlite
+
+# Large evaluation PDF attachments (read locally only)
+*.pdf
+
+# Evaluation runs and temporary reports
+reports/
+reports/qa/screens/
+
+# Node / JS
+node_modules/
+.npm/
+
+# OS specific
+.DS_Store
+Thumbs.db
+

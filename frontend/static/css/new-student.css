@@ -1,0 +1,292 @@
+.bhilai-open-button {
+  margin-left: var(--space-8);
+}
+
+.bhilai-onboarding-dialog {
+  width: min(1120px, calc(100vw - 32px));
+  max-width: none;
+  max-height: min(92vh, 960px);
+  overflow: auto;
+  padding: var(--space-24);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  color: var(--ink);
+  background: var(--surface);
+}
+
+.bhilai-onboarding-dialog::backdrop {
+  background: var(--overlay);
+}
+
+.bhilai-dialog-header,
+.bhilai-workspace-header,
+.bhilai-workspace-actions {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-16);
+}
+
+.bhilai-dialog-header {
+  margin-bottom: var(--space-24);
+}
+
+.bhilai-dialog-header h1,
+.bhilai-workspace-header h2 {
+  margin: 0;
+  color: var(--ink);
+}
+
+.bhilai-profile-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-16);
+}
+
+.bhilai-profile-form > label,
+.bhilai-profile-form fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  min-width: 0;
+}
+
+.bhilai-profile-form small,
+.bhilai-course-option small,
+.bhilai-catalogue-card small {
+  display: block;
+  color: var(--ink-2);
+}
+
+.bhilai-wide {
+  grid-column: 1 / -1;
+}
+
+.bhilai-profile-form fieldset {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-16);
+}
+
+.bhilai-profile-form legend {
+  padding: 0 var(--space-8);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.bhilai-course-list,
+.bhilai-catalogue-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-8);
+  max-height: 280px;
+  overflow: auto;
+}
+
+.bhilai-course-option,
+.bhilai-catalogue-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-8);
+  min-width: 0;
+  padding: var(--space-12);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+
+.bhilai-course-option input {
+  margin-top: 3px;
+}
+
+.bhilai-course-option strong,
+.bhilai-catalogue-card strong {
+  display: block;
+  color: var(--ink);
+}
+
+.bhilai-catalogue-card {
+  flex-direction: column;
+}
+
+.bhilai-source-warning,
+.bhilai-privacy-note {
+  margin: var(--space-16) 0;
+  padding: var(--space-12);
+  border: 1px solid var(--warn-border);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  background: var(--warn-soft);
+}
+
+.bhilai-source-details {
+  margin-top: var(--space-16);
+  padding: var(--space-12);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.bhilai-workspace-header {
+  margin-bottom: var(--space-16);
+}
+
+.bhilai-workspace-header p {
+  margin: var(--space-4) 0 0;
+  color: var(--ink-2);
+}
+
+.bhilai-workspace-actions {
+  flex-shrink: 0;
+}
+
+.bhilai-tabs {
+  display: flex;
+  gap: var(--space-8);
+  margin: var(--space-16) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.bhilai-tabs button {
+  padding: var(--space-8) var(--space-12);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: var(--ink-2);
+  background: transparent;
+  cursor: pointer;
+}
+
+.bhilai-tabs button[aria-selected="true"] {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.bhilai-semester {
+  margin: var(--space-8) 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+
+.bhilai-semester summary {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-8);
+  padding: var(--space-12);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.bhilai-semester summary span,
+.bhilai-semester li > span:nth-child(2) {
+  color: var(--ink-2);
+}
+
+.bhilai-semester ul {
+  display: grid;
+  gap: var(--space-8);
+  margin: 0;
+  padding: 0 var(--space-12) var(--space-12);
+  list-style: none;
+}
+
+.bhilai-semester li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-4) var(--space-12);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--border);
+}
+
+.bhilai-semester li small {
+  grid-column: 1 / -1;
+  color: var(--ink-2);
+}
+
+.bhilai-semester li.is-completed > span:first-child {
+  color: var(--ink-2);
+  text-decoration: line-through;
+}
+
+.bhilai-privacy-note {
+  border-color: var(--border);
+  background: var(--surface-2);
+}
+
+.bhilai-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-8);
+  margin-bottom: var(--space-12);
+}
+
+.bhilai-chat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  max-height: 320px;
+  overflow: auto;
+  padding: var(--space-12);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.bhilai-chat-message {
+  max-width: 88%;
+  margin: 0;
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-sm);
+  white-space: pre-wrap;
+}
+
+.bhilai-chat-message.user {
+  align-self: flex-end;
+  background: var(--accent-soft);
+}
+
+.bhilai-chat-message.assistant {
+  align-self: flex-start;
+  background: var(--surface-2);
+}
+
+.bhilai-chat-mode {
+  color: var(--ink-2);
+}
+
+.bhilai-chat-form {
+  display: grid;
+  gap: var(--space-8);
+  margin-top: var(--space-12);
+}
+
+.bhilai-chat-form button {
+  justify-self: start;
+}
+
+#bhilai-profile-status.is-error,
+#bhilai-chat-status.is-error {
+  color: var(--danger);
+}
+
+@media (max-width: 720px) {
+  .bhilai-onboarding-dialog {
+    width: calc(100vw - 16px);
+    max-height: 96vh;
+    padding: var(--space-16);
+  }
+
+  .bhilai-profile-form,
+  .bhilai-course-list,
+  .bhilai-catalogue-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bhilai-dialog-header,
+  .bhilai-workspace-header {
+    flex-direction: column;
+  }
+
+  .bhilai-workspace-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

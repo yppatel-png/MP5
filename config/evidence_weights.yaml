@@ -1,0 +1,40 @@
+# ==============================================================
+# Evidence Reliability Weights Configuration
+# Higher weights represent higher confidence in student mastery
+# ==============================================================
+
+evidence_weights:
+  # Official course grade or formal proctored diagnostic assessment
+  grade: 1.0
+  assessed_diagnostic: 1.0
+  
+  # Hands-on timed milestone, mock exam, or technical interview project
+  timed_project: 0.9
+  mock_exam: 0.9
+  
+  # Interactive module quiz, code submission, or practice exercise
+  quiz: 0.7
+  exercise: 0.7
+  
+  # Inferred capability derived from passing an accredited institute course
+  inferred_course: 0.5
+  
+  # Self-reported interest or student-claimed proficiency (unverified)
+  self_declared: 0.2
+
+bkt_parameters:
+  # Initial probability of knowing the skill before evidence
+  p_init_default: 0.1
+  # Probability of transitioning from unlearned to learned state
+  p_transit_default: 0.2
+  # Probability of slipping (making a mistake despite knowing the concept)
+  p_slip_default: 0.1
+  # Probability of guessing correctly without knowing the concept
+  p_guess_default: 0.2
+  # Mastery threshold probability
+  mastery_threshold: 0.85
+  # Minimum independent items required to confirm mastery
+  min_items_required: 3
+  # Minimum sessions required
+  min_sessions_required: 2
+

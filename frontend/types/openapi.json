@@ -1,0 +1,4759 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Adobe Personalised Learning Buddy API",
+    "description": "Intelligent, constraint-respecting academic learning buddy and curriculum planner for Inter IIT Tech Meet 15.0.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "Health Check",
+        "operationId": "health_check_api_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/courses": {
+      "get": {
+        "tags": [
+          "Knowledge Base"
+        ],
+        "summary": "List Courses",
+        "description": "Lists courses with optional filtering.",
+        "operationId": "list_courses_api_courses_get",
+        "parameters": [
+          {
+            "name": "department",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Department"
+            }
+          },
+          {
+            "name": "course_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Course Type"
+            }
+          },
+          {
+            "name": "semester_offered",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Semester Offered"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  },
+                  "title": "Response List Courses Api Courses Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/courses/{code}": {
+      "get": {
+        "tags": [
+          "Knowledge Base"
+        ],
+        "summary": "Get Course Detail",
+        "description": "Retrieves full course detail including prerequisites, modules, and taught skills.",
+        "operationId": "get_course_detail_api_courses__code__get",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Code"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Course Detail Api Courses  Code  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/skills": {
+      "get": {
+        "tags": [
+          "Knowledge Base"
+        ],
+        "summary": "List Skills",
+        "description": "Returns all verified skill nodes.",
+        "operationId": "list_skills_api_skills_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "type": "array",
+                  "title": "Response List Skills Api Skills Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/rules": {
+      "get": {
+        "tags": [
+          "Knowledge Base"
+        ],
+        "summary": "List Academic Rules",
+        "description": "Returns all active academic policy rules.",
+        "operationId": "list_academic_rules_api_rules_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "type": "array",
+                  "title": "Response List Academic Rules Api Rules Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/goals": {
+      "get": {
+        "tags": [
+          "Knowledge Base"
+        ],
+        "summary": "List Goal Templates",
+        "description": "Returns predefined goal templates for career and post-graduation pathways.",
+        "operationId": "list_goal_templates_api_goals_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "type": "array",
+                  "title": "Response List Goal Templates Api Goals Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/programmes": {
+      "get": {
+        "tags": [
+          "Knowledge Base"
+        ],
+        "summary": "List Programmes",
+        "description": "Returns degree structures and credit requirement rules.",
+        "operationId": "list_programmes_api_programmes_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "type": "array",
+                  "title": "Response List Programmes Api Programmes Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/students": {
+      "get": {
+        "tags": [
+          "Student Management & Diagnostic"
+        ],
+        "summary": "List Students",
+        "description": "Lists available student personas for the frontend selector.",
+        "operationId": "list_students_api_students_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/StudentListEntry"
+                  },
+                  "type": "array",
+                  "title": "Response List Students Api Students Get"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Student Management & Diagnostic"
+        ],
+        "summary": "Create Or Update Student",
+        "description": "Creates or updates a student profile.",
+        "operationId": "create_or_update_student_api_students_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentProfile"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Create Or Update Student Api Students Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/students/profile/{student_id}": {
+      "get": {
+        "tags": [
+          "Student Management & Diagnostic"
+        ],
+        "summary": "Get Student Profile Only",
+        "description": "Direct profile endpoint for frontend dashboard.",
+        "operationId": "get_student_profile_only_api_students_profile__student_id__get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentProfile"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/students/{student_id}/summary": {
+      "get": {
+        "tags": [
+          "Student Management & Diagnostic"
+        ],
+        "summary": "Get Student Summary",
+        "description": "Returns the canonical summary for a student, using their latest saved plan when present.",
+        "operationId": "get_student_summary_api_students__student_id__summary_get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentSummary"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/students/skills/{student_id}": {
+      "get": {
+        "tags": [
+          "Student Management & Diagnostic"
+        ],
+        "summary": "Get Student Skills Only",
+        "description": "Direct skill matrix endpoint for frontend radar and progress tracking.",
+        "operationId": "get_student_skills_only_api_students_skills__student_id__get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SkillEstimate"
+                  },
+                  "title": "Response Get Student Skills Only Api Students Skills  Student Id  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/students/{student_id}": {
+      "get": {
+        "tags": [
+          "Student Management & Diagnostic"
+        ],
+        "summary": "Get Student",
+        "description": "Retrieves student profile and current BKT skill mastery estimates.",
+        "operationId": "get_student_api_students__student_id__get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Student Api Students  Student Id  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/students/{student_id}/diagnostic/next": {
+      "get": {
+        "tags": [
+          "Student Management & Diagnostic"
+        ],
+        "summary": "Get Next Diagnostic Question",
+        "description": "Returns the next optimal information-gain question for the adaptive diagnostic.\nComma-separated 'answered' query param tracks questions completed in current session.",
+        "operationId": "get_next_diagnostic_question_api_students__student_id__diagnostic_next_get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          },
+          {
+            "name": "answered",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Answered"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Next Diagnostic Question Api Students  Student Id  Diagnostic Next Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/students/{student_id}/diagnostic/submit": {
+      "post": {
+        "tags": [
+          "Student Management & Diagnostic"
+        ],
+        "summary": "Submit Diagnostic Answer",
+        "description": "Evaluates student answer, logs evidence event, and recalibrates BKT mastery.",
+        "operationId": "submit_diagnostic_answer_api_students__student_id__diagnostic_submit_post",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnswerSubmission"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Submit Diagnostic Answer Api Students  Student Id  Diagnostic Submit Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/students/{student_id}/gaps": {
+      "get": {
+        "tags": [
+          "Student Management & Diagnostic"
+        ],
+        "summary": "Get Student Gaps",
+        "description": "Computes quantified skill gaps, strengths, readiness percentage,\nand flags interest-evidence conflicts via GapAlerts.",
+        "operationId": "get_student_gaps_api_students__student_id__gaps_get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Student Gaps Api Students  Student Id  Gaps Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/students/{student_id}/evidence": {
+      "get": {
+        "tags": [
+          "Student Management & Diagnostic"
+        ],
+        "summary": "Get Student Evidence Trail",
+        "description": "Returns chronological audit trail of all evidence events.",
+        "operationId": "get_student_evidence_trail_api_students__student_id__evidence_get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          },
+          {
+            "name": "skill_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Skill Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  },
+                  "title": "Response Get Student Evidence Trail Api Students  Student Id  Evidence Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/plans/generate": {
+      "post": {
+        "tags": [
+          "Curriculum Planning & Verification"
+        ],
+        "summary": "Generate Student Plan",
+        "description": "Generates a provably valid multi-semester course plan, validates it via RuleRegistry,\ngenerates a sealed cryptographic PlanCertificate, creates a versioned snapshot,\nand returns a factual explanation.",
+        "operationId": "generate_student_plan_api_plans_generate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanGenerateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Generate Student Plan Api Plans Generate Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/plans/{student_id}": {
+      "get": {
+        "tags": [
+          "Curriculum Planning & Verification"
+        ],
+        "summary": "Get Active Plan",
+        "description": "Retrieves the latest saved plan version and certificate for a student.",
+        "operationId": "get_active_plan_api_plans__student_id__get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivePlanResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/plans/{student_id}/certificate": {
+      "get": {
+        "tags": [
+          "Curriculum Planning & Verification"
+        ],
+        "summary": "Get Plan Certificate",
+        "description": "Returns the cryptographic PlanCertificate for the student's active plan.",
+        "operationId": "get_plan_certificate_api_plans__student_id__certificate_get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Plan Certificate Api Plans  Student Id  Certificate Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/plans/{student_id}/certificate/verify": {
+      "post": {
+        "tags": [
+          "Curriculum Planning & Verification"
+        ],
+        "summary": "Verify Plan Certificate",
+        "description": "Re-evaluates all 16 academic rules from scratch against the stored plan,\nchecks cryptographic canonical hash match, and returns tamper detection results.",
+        "operationId": "verify_plan_certificate_api_plans__student_id__certificate_verify_post",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/CertificateVerifyRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Req"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Verify Plan Certificate Api Plans  Student Id  Certificate Verify Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/plans/{student_id}/certificate.pdf": {
+      "get": {
+        "tags": [
+          "Curriculum Planning & Verification"
+        ],
+        "summary": "Export Plan Certificate Pdf",
+        "description": "Exports a clean, official one-page printable PDF certificate\nwith ordinance citations, verification seal, and rule audit table.",
+        "operationId": "export_plan_certificate_pdf_api_plans__student_id__certificate_pdf_get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/plans/{student_id}/history": {
+      "get": {
+        "tags": [
+          "Curriculum Planning & Verification"
+        ],
+        "summary": "Get Plan History",
+        "description": "Returns chronological versions and diffs for auditability.",
+        "operationId": "get_plan_history_api_plans__student_id__history_get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  },
+                  "title": "Response Get Plan History Api Plans  Student Id  History Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/plans/infeasible": {
+      "post": {
+        "tags": [
+          "Curriculum Planning & Verification"
+        ],
+        "summary": "Infeasible Request",
+        "description": "Demonstrates how the planner handles mathematically or regulatorily infeasible requests.",
+        "operationId": "infeasible_request_api_plans_infeasible_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InfeasibleRequestModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Infeasible Request Api Plans Infeasible Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/practice/exercises": {
+      "get": {
+        "tags": [
+          "Learn, Practise & Mastery"
+        ],
+        "summary": "List Exercises",
+        "description": "Lists practice exercises with optional filters.",
+        "operationId": "list_exercises_api_practice_exercises_get",
+        "parameters": [
+          {
+            "name": "skill_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Skill Id"
+            }
+          },
+          {
+            "name": "module_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Module Id"
+            }
+          },
+          {
+            "name": "exercise_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Exercise Type"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExerciseListItem"
+                  },
+                  "title": "Response List Exercises Api Practice Exercises Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/practice/exercises/{exercise_id}": {
+      "get": {
+        "tags": [
+          "Learn, Practise & Mastery"
+        ],
+        "summary": "Get Exercise Detail",
+        "description": "Retrieves exercise prompt and metadata (without leaking answer).",
+        "operationId": "get_exercise_detail_api_practice_exercises__exercise_id__get",
+        "parameters": [
+          {
+            "name": "exercise_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Exercise Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Exercise Detail Api Practice Exercises  Exercise Id  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/practice/run": {
+      "post": {
+        "tags": [
+          "Learn, Practise & Mastery"
+        ],
+        "summary": "Submit Exercise",
+        "description": "Evaluates exercise submission via deterministic or sandboxed execution,\nlogs attempt in DB, and recalibrates student BKT skill mastery.",
+        "operationId": "submit_exercise_api_practice_run_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExerciseSubmissionModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Submit Exercise Api Practice Run Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/practice/submit": {
+      "post": {
+        "tags": [
+          "Learn, Practise & Mastery"
+        ],
+        "summary": "Submit Exercise",
+        "description": "Evaluates exercise submission via deterministic or sandboxed execution,\nlogs attempt in DB, and recalibrates student BKT skill mastery.",
+        "operationId": "submit_exercise_api_practice_submit_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExerciseSubmissionModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Submit Exercise Api Practice Submit Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/practice/generate": {
+      "post": {
+        "tags": [
+          "Learn, Practise & Mastery"
+        ],
+        "summary": "Generate Practice Question",
+        "description": "Generates a newly validated question grounded in module syllabus text.",
+        "operationId": "generate_practice_question_api_practice_generate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuestionGenerationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Generate Practice Question Api Practice Generate Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/practice/mastery/{student_id}": {
+      "get": {
+        "tags": [
+          "Learn, Practise & Mastery"
+        ],
+        "summary": "Get Student Mastery Report",
+        "description": "Returns comprehensive mastery breakdown, explicitly distinguishing\n'Completed Course' from 'Demonstrated Proficiency', with 'What's Missing' checklist.",
+        "operationId": "get_student_mastery_report_api_practice_mastery__student_id__get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          },
+          {
+            "name": "goal_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Goal Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Student Mastery Report Api Practice Mastery  Student Id  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/adapt/scenarios": {
+      "get": {
+        "tags": [
+          "Dynamic Adaptation & Simulation"
+        ],
+        "summary": "List Simulation Scenarios",
+        "description": "Returns the catalog of one-click scripted demo scenarios for evaluators.",
+        "operationId": "list_simulation_scenarios_api_adapt_scenarios_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response List Simulation Scenarios Api Adapt Scenarios Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/adapt/simulate": {
+      "post": {
+        "tags": [
+          "Dynamic Adaptation & Simulation"
+        ],
+        "summary": "Simulate Scenario",
+        "description": "Executes a scripted simulation scenario, injects synthetic activity,\nevaluates policy, and returns before/after plan diffs and explanations.",
+        "operationId": "simulate_scenario_api_adapt_simulate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SimulateScenarioRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Simulate Scenario Api Adapt Simulate Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/adapt/override": {
+      "post": {
+        "tags": [
+          "Dynamic Adaptation & Simulation"
+        ],
+        "summary": "Submit Course Override",
+        "description": "Handles a student course rejection override.\nRe-solves the multi-semester plan with the exclusion constraint and details trade-offs.",
+        "operationId": "submit_course_override_api_adapt_override_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourseOverrideRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Submit Course Override Api Adapt Override Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/adapt/evaluate": {
+      "post": {
+        "tags": [
+          "Dynamic Adaptation & Simulation"
+        ],
+        "summary": "Evaluate Adaptation Signals",
+        "description": "Evaluates raw student performance/behavioral signals against active adaptation rules\nand returns recommended policy actions.",
+        "operationId": "evaluate_adaptation_signals_api_adapt_evaluate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignalEvaluationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Evaluate Adaptation Signals Api Adapt Evaluate Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/adapt/history/{student_id}": {
+      "get": {
+        "tags": [
+          "Dynamic Adaptation & Simulation"
+        ],
+        "summary": "Get Adaptation Audit Log",
+        "description": "Returns historical adaptation decisions and audit trail for a student.",
+        "operationId": "get_adaptation_audit_log_api_adapt_history__student_id__get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Adaptation Audit Log Api Adapt History  Student Id  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/buddy/chat": {
+      "post": {
+        "tags": [
+          "Conversational Buddy & Explainability"
+        ],
+        "summary": "Send Chat Message",
+        "description": "Handles student multi-turn conversational interaction.\nExecutes safety checks, intent routing, dynamic domain tools, and grounded answer synthesis.",
+        "operationId": "send_chat_message_api_buddy_chat_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/buddy/memory/{student_id}": {
+      "get": {
+        "tags": [
+          "Conversational Buddy & Explainability"
+        ],
+        "summary": "Get Student Memory",
+        "description": "Returns 'What I remember about you' persistent profile facts\nand recent working context dialogue history.",
+        "operationId": "get_student_memory_api_buddy_memory__student_id__get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Student Memory Api Buddy Memory  Student Id  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/buddy/clear-memory/{student_id}": {
+      "post": {
+        "tags": [
+          "Conversational Buddy & Explainability"
+        ],
+        "summary": "Clear Student Memory",
+        "description": "Clears conversational history for the student.",
+        "operationId": "clear_student_memory_api_buddy_clear_memory__student_id__post",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Clear Student Memory Api Buddy Clear Memory  Student Id  Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/grade": {
+      "post": {
+        "tags": [
+          "Administrative Console & Re-processing"
+        ],
+        "summary": "Edit Student Grade",
+        "description": "Edits a student's grade, recomputes CGPA, recalculates BKT skill mastery,\nand automatically re-synthesizes the active multi-semester plan.",
+        "operationId": "edit_student_grade_api_admin_grade_post",
+        "parameters": [
+          {
+            "name": "X-Admin-Token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Admin-Token"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditGradeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Edit Student Grade Api Admin Grade Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/course": {
+      "post": {
+        "tags": [
+          "Administrative Console & Re-processing"
+        ],
+        "summary": "Edit Course",
+        "description": "Edits course parameters (credits, semester offering, workload), updates DB,\nre-indexes in-memory planner/validator caches, and triggers plan recomputation.",
+        "operationId": "edit_course_api_admin_course_post",
+        "parameters": [
+          {
+            "name": "X-Admin-Token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Admin-Token"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditCourseRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Edit Course Api Admin Course Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/prerequisite": {
+      "post": {
+        "tags": [
+          "Administrative Console & Re-processing"
+        ],
+        "summary": "Edit Prerequisite",
+        "description": "Adds or removes a prerequisite relationship and immediately re-syncs\nin-memory DAG graphs across planner, validator, and rule registry.",
+        "operationId": "edit_prerequisite_api_admin_prerequisite_post",
+        "parameters": [
+          {
+            "name": "X-Admin-Token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Admin-Token"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditPrerequisiteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Edit Prerequisite Api Admin Prerequisite Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/rule": {
+      "post": {
+        "tags": [
+          "Administrative Console & Re-processing"
+        ],
+        "summary": "Edit Academic Rule",
+        "description": "Modifies an academic ordinance rule parameter in the DB and synchronizes rule registry.",
+        "operationId": "edit_academic_rule_api_admin_rule_post",
+        "parameters": [
+          {
+            "name": "X-Admin-Token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Admin-Token"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Edit Academic Rule Api Admin Rule Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/constraint": {
+      "post": {
+        "tags": [
+          "Administrative Console & Re-processing"
+        ],
+        "summary": "Edit Student Constraint",
+        "description": "Updates student constraints and immediately re-synthesizes a compliant plan.",
+        "operationId": "edit_student_constraint_api_admin_constraint_post",
+        "parameters": [
+          {
+            "name": "X-Admin-Token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Admin-Token"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditConstraintRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Edit Student Constraint Api Admin Constraint Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/reset": {
+      "post": {
+        "tags": [
+          "Administrative Console & Re-processing"
+        ],
+        "summary": "Admin Reset Database",
+        "description": "Restores the database to clean seed state idempotently.",
+        "operationId": "admin_reset_database_api_admin_reset_post",
+        "parameters": [
+          {
+            "name": "X-Admin-Token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Admin-Token"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Admin Reset Database Api Admin Reset Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/curricula": {
+      "get": {
+        "tags": [
+          "Programmes and curriculum"
+        ],
+        "summary": "List Programmes",
+        "operationId": "list_programmes_api_curricula_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgrammeCatalog"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/curricula/{programme_id}": {
+      "get": {
+        "tags": [
+          "Programmes and curriculum"
+        ],
+        "summary": "Get Programme",
+        "operationId": "get_programme_api_curricula__programme_id__get",
+        "parameters": [
+          {
+            "name": "programme_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Programme Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurriculumProgramme"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/onboarding/profiles": {
+      "post": {
+        "tags": [
+          "Student onboarding"
+        ],
+        "summary": "Create Onboarding Profile",
+        "operationId": "create_onboarding_profile_api_onboarding_profiles_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OnboardingProfileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OnboardingProfileResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/onboarding/profiles/{student_id}": {
+      "get": {
+        "tags": [
+          "Student onboarding"
+        ],
+        "summary": "Read Onboarding Profile",
+        "operationId": "read_onboarding_profile_api_onboarding_profiles__student_id__get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OnboardingProfileResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Student onboarding"
+        ],
+        "summary": "Update Onboarding Profile Route",
+        "operationId": "update_onboarding_profile_route_api_onboarding_profiles__student_id__put",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OnboardingProfileRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OnboardingProfileResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/onboarding/assistant": {
+      "post": {
+        "tags": [
+          "Student onboarding"
+        ],
+        "summary": "Ask Onboarding Assistant",
+        "operationId": "ask_onboarding_assistant_api_onboarding_assistant_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OnboardingAssistantRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OnboardingAssistantResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/seed-consistency": {
+      "get": {
+        "summary": "Get Seed Consistency Report",
+        "operationId": "get_seed_consistency_report_api_admin_seed_consistency_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SeedConsistencyReport"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/index.html": {
+      "get": {
+        "summary": "Root",
+        "operationId": "root_index_html_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Root",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/styleguide": {
+      "get": {
+        "summary": "Styleguide",
+        "description": "Hidden design system styleguide route for visual verification.",
+        "operationId": "styleguide_styleguide_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActivePlanResponse": {
+        "properties": {
+          "student_id": {
+            "type": "string",
+            "title": "Student Id"
+          },
+          "version_number": {
+            "type": "integer",
+            "title": "Version Number"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/CurriculumPlan"
+          },
+          "validation_report": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Validation Report"
+          },
+          "certificate": {
+            "$ref": "#/components/schemas/PlanCertificate"
+          },
+          "diff": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Diff"
+          },
+          "student_summary": {
+            "$ref": "#/components/schemas/StudentSummary"
+          },
+          "explanation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explanation"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "student_id",
+          "version_number",
+          "plan",
+          "validation_report",
+          "certificate",
+          "diff",
+          "student_summary"
+        ],
+        "title": "ActivePlanResponse"
+      },
+      "AnswerSubmission": {
+        "properties": {
+          "exercise_id": {
+            "type": "string",
+            "title": "Exercise Id"
+          },
+          "selected_option": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected Option"
+          },
+          "text_answer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text Answer"
+          }
+        },
+        "type": "object",
+        "required": [
+          "exercise_id"
+        ],
+        "title": "AnswerSubmission"
+      },
+      "CatalogueCourse": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "credits": {
+            "type": "number",
+            "title": "Credits"
+          },
+          "ltp": {
+            "prefixItems": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 3,
+            "title": "Ltp"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "programme_table_status": {
+            "type": "string",
+            "title": "Programme Table Status"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "title",
+          "credits",
+          "ltp",
+          "page",
+          "programme_table_status"
+        ],
+        "title": "CatalogueCourse"
+      },
+      "CatalogueSource": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "applicable_from": {
+            "type": "string",
+            "title": "Applicable From"
+          },
+          "file": {
+            "type": "string",
+            "title": "File"
+          },
+          "pages": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Pages"
+          },
+          "source_register": {
+            "type": "string",
+            "title": "Source Register"
+          },
+          "code_variants": {
+            "items": {
+              "$ref": "#/components/schemas/CourseCodeVariant"
+            },
+            "type": "array",
+            "title": "Code Variants"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "applicable_from",
+          "file",
+          "pages",
+          "source_register",
+          "limitations"
+        ],
+        "title": "CatalogueSource"
+      },
+      "CertificateSummary": {
+        "properties": {
+          "total_rules": {
+            "type": "integer",
+            "title": "Total Rules"
+          },
+          "passed": {
+            "type": "integer",
+            "title": "Passed"
+          },
+          "warned": {
+            "type": "integer",
+            "title": "Warned"
+          },
+          "failed": {
+            "type": "integer",
+            "title": "Failed"
+          },
+          "tightest_margin": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TightestMargin"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "total_rules",
+          "passed",
+          "warned",
+          "failed"
+        ],
+        "title": "CertificateSummary"
+      },
+      "CertificateVerifyRequest": {
+        "properties": {
+          "expected_hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Hash"
+          }
+        },
+        "type": "object",
+        "title": "CertificateVerifyRequest"
+      },
+      "ChatRequest": {
+        "properties": {
+          "student_id": {
+            "type": "string",
+            "title": "Student Id",
+            "default": "S1024"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "title": "ChatRequest"
+      },
+      "ChatResponse": {
+        "properties": {
+          "reply": {
+            "type": "string",
+            "title": "Reply"
+          },
+          "intent": {
+            "type": "string",
+            "title": "Intent"
+          },
+          "tools_used": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Tools Used"
+          },
+          "turn_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Turn Id"
+          },
+          "facts_used": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Facts Used"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "fallback_used": {
+            "type": "boolean",
+            "title": "Fallback Used",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "reply",
+          "intent",
+          "tools_used"
+        ],
+        "title": "ChatResponse"
+      },
+      "ChatTurn": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "user",
+              "assistant"
+            ],
+            "title": "Role"
+          },
+          "content": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Content"
+          }
+        },
+        "type": "object",
+        "required": [
+          "role",
+          "content"
+        ],
+        "title": "ChatTurn"
+      },
+      "CompletedCourse": {
+        "properties": {
+          "course_code": {
+            "type": "string",
+            "title": "Course Code"
+          },
+          "grade": {
+            "type": "string",
+            "title": "Grade"
+          },
+          "semester_completed": {
+            "type": "integer",
+            "title": "Semester Completed",
+            "default": 1
+          }
+        },
+        "type": "object",
+        "required": [
+          "course_code",
+          "grade"
+        ],
+        "title": "CompletedCourse"
+      },
+      "CourseCodeVariant": {
+        "properties": {
+          "programme_id": {
+            "type": "string",
+            "title": "Programme Id"
+          },
+          "codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Codes"
+          },
+          "note": {
+            "type": "string",
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "programme_id",
+          "codes",
+          "note"
+        ],
+        "title": "CourseCodeVariant"
+      },
+      "CourseOverrideRequest": {
+        "properties": {
+          "student_id": {
+            "type": "string",
+            "title": "Student Id",
+            "default": "S1024"
+          },
+          "rejected_course": {
+            "type": "string",
+            "title": "Rejected Course",
+            "default": "COL362"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason",
+            "default": "Student preference"
+          }
+        },
+        "type": "object",
+        "title": "CourseOverrideRequest"
+      },
+      "CurriculumCourse": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "credits": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Credits"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category"
+          },
+          "choice": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Choice"
+          },
+          "placeholder": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Placeholder"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "title"
+        ],
+        "title": "CurriculumCourse"
+      },
+      "CurriculumPlan": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "student_id": {
+            "type": "string",
+            "title": "Student Id"
+          },
+          "goal_id": {
+            "type": "string",
+            "title": "Goal Id"
+          },
+          "solver_engine": {
+            "type": "string",
+            "title": "Solver Engine"
+          },
+          "total_credits_planned": {
+            "type": "number",
+            "title": "Total Credits Planned"
+          },
+          "semesters_planned_count": {
+            "type": "integer",
+            "title": "Semesters Planned Count"
+          },
+          "skills_covered": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Skills Covered"
+          },
+          "semesters": {
+            "items": {
+              "$ref": "#/components/schemas/PlannedSemester"
+            },
+            "type": "array",
+            "title": "Semesters"
+          },
+          "credit_cap": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Credit Cap"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "status",
+          "student_id",
+          "goal_id",
+          "solver_engine",
+          "total_credits_planned",
+          "semesters_planned_count",
+          "skills_covered",
+          "semesters"
+        ],
+        "title": "CurriculumPlan"
+      },
+      "CurriculumProgramme": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "institution": {
+            "type": "string",
+            "title": "Institution"
+          },
+          "department": {
+            "type": "string",
+            "title": "Department"
+          },
+          "degree": {
+            "type": "string",
+            "title": "Degree"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "applicable_from": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Applicable From"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "minimum_credits": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minimum Credits"
+          },
+          "additional_non_graded_core_units": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Additional Non Graded Core Units"
+          },
+          "credit_categories": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Credit Categories"
+          },
+          "non_graded_core": {
+            "items": {
+              "$ref": "#/components/schemas/CurriculumCourse"
+            },
+            "type": "array",
+            "title": "Non Graded Core"
+          },
+          "semesters": {
+            "items": {
+              "$ref": "#/components/schemas/CurriculumSemester"
+            },
+            "type": "array",
+            "title": "Semesters"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "institution",
+          "department",
+          "degree",
+          "name",
+          "status",
+          "credit_categories"
+        ],
+        "title": "CurriculumProgramme"
+      },
+      "CurriculumSemester": {
+        "properties": {
+          "semester": {
+            "type": "integer",
+            "title": "Semester"
+          },
+          "stated_credits": {
+            "type": "number",
+            "title": "Stated Credits"
+          },
+          "courses": {
+            "items": {
+              "$ref": "#/components/schemas/CurriculumCourse"
+            },
+            "type": "array",
+            "title": "Courses"
+          }
+        },
+        "type": "object",
+        "required": [
+          "semester",
+          "stated_credits",
+          "courses"
+        ],
+        "title": "CurriculumSemester"
+      },
+      "EditConstraintRequest": {
+        "properties": {
+          "student_id": {
+            "type": "string",
+            "title": "Student Id"
+          },
+          "constraints": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Constraints"
+          }
+        },
+        "type": "object",
+        "required": [
+          "student_id",
+          "constraints"
+        ],
+        "title": "EditConstraintRequest"
+      },
+      "EditCourseRequest": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "credits": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Credits"
+          },
+          "semester_offered": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Semester Offered"
+          },
+          "workload_hours_per_week": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Workload Hours Per Week"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code"
+        ],
+        "title": "EditCourseRequest"
+      },
+      "EditGradeRequest": {
+        "properties": {
+          "student_id": {
+            "type": "string",
+            "title": "Student Id"
+          },
+          "course_code": {
+            "type": "string",
+            "title": "Course Code"
+          },
+          "new_grade": {
+            "type": "string",
+            "title": "New Grade"
+          },
+          "credits": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Credits"
+          }
+        },
+        "type": "object",
+        "required": [
+          "student_id",
+          "course_code",
+          "new_grade"
+        ],
+        "title": "EditGradeRequest"
+      },
+      "EditPrerequisiteRequest": {
+        "properties": {
+          "course_code": {
+            "type": "string",
+            "title": "Course Code"
+          },
+          "requires_code": {
+            "type": "string",
+            "title": "Requires Code"
+          },
+          "action": {
+            "type": "string",
+            "title": "Action",
+            "default": "add"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "default": "hard"
+          }
+        },
+        "type": "object",
+        "required": [
+          "course_code",
+          "requires_code"
+        ],
+        "title": "EditPrerequisiteRequest"
+      },
+      "EditRuleRequest": {
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "title": "Rule Id"
+          },
+          "parameters": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Parameters"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rule_id",
+          "parameters"
+        ],
+        "title": "EditRuleRequest"
+      },
+      "ExerciseListItem": {
+        "properties": {
+          "exercise_id": {
+            "type": "string",
+            "title": "Exercise Id"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "prompt": {
+            "type": "string",
+            "title": "Prompt"
+          },
+          "difficulty": {
+            "type": "integer",
+            "title": "Difficulty"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "skill_id": {
+            "type": "string",
+            "title": "Skill Id"
+          },
+          "starter_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starter Code"
+          },
+          "options": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Options"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "exercise_id",
+          "prompt",
+          "difficulty",
+          "type",
+          "skill_id"
+        ],
+        "title": "ExerciseListItem"
+      },
+      "ExerciseSubmissionModel": {
+        "properties": {
+          "student_id": {
+            "type": "string",
+            "title": "Student Id"
+          },
+          "exercise_id": {
+            "type": "string",
+            "title": "Exercise Id"
+          },
+          "selected_option": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected Option"
+          },
+          "code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 20000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Code"
+          },
+          "submitted_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 20000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Submitted Code"
+          },
+          "text_answer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text Answer"
+          },
+          "repo_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Repo Url"
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary"
+          },
+          "time_spent_seconds": {
+            "type": "integer",
+            "title": "Time Spent Seconds",
+            "default": 60
+          },
+          "hints_used": {
+            "type": "integer",
+            "title": "Hints Used",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": [
+          "student_id",
+          "exercise_id"
+        ],
+        "title": "ExerciseSubmissionModel"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthDatabaseStatus": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "title": "HealthDatabaseStatus"
+      },
+      "HealthLLMStatus": {
+        "properties": {
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "key_configured": {
+            "type": "boolean",
+            "title": "Key Configured"
+          },
+          "is_live": {
+            "type": "boolean",
+            "title": "Is Live"
+          },
+          "offline_mode": {
+            "type": "boolean",
+            "title": "Offline Mode"
+          }
+        },
+        "type": "object",
+        "required": [
+          "model",
+          "key_configured",
+          "is_live",
+          "offline_mode"
+        ],
+        "title": "HealthLLMStatus"
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "service": {
+            "type": "string",
+            "title": "Service"
+          },
+          "app_env": {
+            "type": "string",
+            "title": "App Env"
+          },
+          "llm": {
+            "$ref": "#/components/schemas/HealthLLMStatus"
+          },
+          "database": {
+            "$ref": "#/components/schemas/HealthDatabaseStatus"
+          },
+          "institute_profile": {
+            "type": "string",
+            "title": "Institute Profile"
+          },
+          "telemetry": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Telemetry"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "service",
+          "app_env",
+          "llm",
+          "database",
+          "institute_profile",
+          "telemetry"
+        ],
+        "title": "HealthResponse"
+      },
+      "InfeasibleRequestModel": {
+        "properties": {
+          "student_id": {
+            "type": "string",
+            "title": "Student Id"
+          },
+          "requested_credits": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Requested Credits"
+          },
+          "desired_course_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Desired Course Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "student_id"
+        ],
+        "title": "InfeasibleRequestModel"
+      },
+      "OnboardingAssistantRequest": {
+        "properties": {
+          "profile_id": {
+            "type": "string",
+            "maxLength": 32,
+            "minLength": 1,
+            "title": "Profile Id"
+          },
+          "question": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Question"
+          },
+          "share_with_gemini": {
+            "type": "boolean",
+            "title": "Share With Gemini",
+            "default": false
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/ChatTurn"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "History"
+          }
+        },
+        "type": "object",
+        "required": [
+          "profile_id",
+          "question"
+        ],
+        "title": "OnboardingAssistantRequest"
+      },
+      "OnboardingAssistantResponse": {
+        "properties": {
+          "reply": {
+            "type": "string",
+            "title": "Reply"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "local",
+              "offline",
+              "gemini"
+            ],
+            "title": "Mode"
+          },
+          "privacy_note": {
+            "type": "string",
+            "title": "Privacy Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "reply",
+          "mode",
+          "privacy_note"
+        ],
+        "title": "OnboardingAssistantResponse"
+      },
+      "OnboardingProfileRequest": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "programme_id": {
+            "type": "string",
+            "title": "Programme Id"
+          },
+          "current_semester": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Current Semester"
+          },
+          "cgpa": {
+            "type": "number",
+            "maximum": 10.0,
+            "minimum": 0.0,
+            "title": "Cgpa"
+          },
+          "available_hours_per_week": {
+            "type": "number",
+            "maximum": 80.0,
+            "minimum": 0.0,
+            "title": "Available Hours Per Week"
+          },
+          "goal": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Goal"
+          },
+          "interests": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Interests"
+          },
+          "completed_course_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 80,
+            "title": "Completed Course Codes"
+          },
+          "shortlisted_course_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 40,
+            "title": "Shortlisted Course Codes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "programme_id",
+          "current_semester",
+          "cgpa",
+          "available_hours_per_week",
+          "goal"
+        ],
+        "title": "OnboardingProfileRequest"
+      },
+      "OnboardingProfileResponse": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "programme_id": {
+            "type": "string",
+            "title": "Programme Id"
+          },
+          "current_semester": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Current Semester"
+          },
+          "cgpa": {
+            "type": "number",
+            "maximum": 10.0,
+            "minimum": 0.0,
+            "title": "Cgpa"
+          },
+          "available_hours_per_week": {
+            "type": "number",
+            "maximum": 80.0,
+            "minimum": 0.0,
+            "title": "Available Hours Per Week"
+          },
+          "goal": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Goal"
+          },
+          "interests": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Interests"
+          },
+          "completed_course_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 80,
+            "title": "Completed Course Codes"
+          },
+          "shortlisted_course_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 40,
+            "title": "Shortlisted Course Codes"
+          },
+          "student_id": {
+            "type": "string",
+            "title": "Student Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "programme_id",
+          "current_semester",
+          "cgpa",
+          "available_hours_per_week",
+          "goal",
+          "student_id"
+        ],
+        "title": "OnboardingProfileResponse"
+      },
+      "PlanCertificate": {
+        "properties": {
+          "plan_version_id": {
+            "type": "string",
+            "title": "Plan Version Id"
+          },
+          "student_id": {
+            "type": "string",
+            "title": "Student Id"
+          },
+          "generated_at": {
+            "type": "string",
+            "title": "Generated At"
+          },
+          "kb_version": {
+            "type": "string",
+            "title": "Kb Version"
+          },
+          "rule_set_version": {
+            "type": "string",
+            "title": "Rule Set Version"
+          },
+          "input_hash": {
+            "type": "string",
+            "title": "Input Hash"
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/RuleResult"
+            },
+            "type": "array",
+            "title": "Results"
+          },
+          "is_valid": {
+            "type": "boolean",
+            "title": "Is Valid"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/CertificateSummary"
+          },
+          "certificate_hash": {
+            "type": "string",
+            "title": "Certificate Hash",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "plan_version_id",
+          "student_id",
+          "generated_at",
+          "kb_version",
+          "rule_set_version",
+          "input_hash",
+          "results",
+          "is_valid",
+          "summary"
+        ],
+        "title": "PlanCertificate"
+      },
+      "PlanGenerateRequest": {
+        "properties": {
+          "student_id": {
+            "type": "string",
+            "title": "Student Id"
+          },
+          "credit_cap_override": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Credit Cap Override"
+          },
+          "goal_override": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Goal Override"
+          },
+          "reason_for_change": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason For Change",
+            "default": "Routine schedule generation"
+          }
+        },
+        "type": "object",
+        "required": [
+          "student_id"
+        ],
+        "title": "PlanGenerateRequest"
+      },
+      "PlannedCourse": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "credits": {
+            "type": "number",
+            "title": "Credits"
+          },
+          "course_type": {
+            "type": "string",
+            "title": "Course Type"
+          },
+          "workload_hours_per_week": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Workload Hours Per Week"
+          },
+          "skills_targeted": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Skills Targeted"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "code",
+          "title",
+          "credits",
+          "course_type"
+        ],
+        "title": "PlannedCourse"
+      },
+      "PlannedSemester": {
+        "properties": {
+          "semester_number": {
+            "type": "integer",
+            "title": "Semester Number"
+          },
+          "total_credits": {
+            "type": "number",
+            "title": "Total Credits"
+          },
+          "courses": {
+            "items": {
+              "$ref": "#/components/schemas/PlannedCourse"
+            },
+            "type": "array",
+            "title": "Courses"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "semester_number",
+          "total_credits",
+          "courses"
+        ],
+        "title": "PlannedSemester"
+      },
+      "ProgrammeCatalog": {
+        "properties": {
+          "source": {
+            "$ref": "#/components/schemas/CatalogueSource"
+          },
+          "catalogue_courses": {
+            "items": {
+              "$ref": "#/components/schemas/CatalogueCourse"
+            },
+            "type": "array",
+            "title": "Catalogue Courses"
+          },
+          "programmes": {
+            "items": {
+              "$ref": "#/components/schemas/CurriculumProgramme"
+            },
+            "type": "array",
+            "title": "Programmes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source",
+          "catalogue_courses",
+          "programmes"
+        ],
+        "title": "ProgrammeCatalog"
+      },
+      "QuestionGenerationRequest": {
+        "properties": {
+          "module_id": {
+            "type": "string",
+            "title": "Module Id"
+          },
+          "skill_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Skill Id"
+          },
+          "difficulty": {
+            "type": "integer",
+            "title": "Difficulty",
+            "default": 3
+          }
+        },
+        "type": "object",
+        "required": [
+          "module_id"
+        ],
+        "title": "QuestionGenerationRequest"
+      },
+      "RuleCategory": {
+        "type": "string",
+        "enum": [
+          "credits",
+          "prerequisites",
+          "offering",
+          "eligibility",
+          "preference",
+          "time",
+          "redundancy",
+          "existence",
+          "backlog"
+        ],
+        "title": "RuleCategory"
+      },
+      "RuleResult": {
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "title": "Rule Id"
+          },
+          "rule_title": {
+            "type": "string",
+            "title": "Rule Title"
+          },
+          "category": {
+            "$ref": "#/components/schemas/RuleCategory"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/RuleScope"
+          },
+          "scope_ref": {
+            "type": "string",
+            "title": "Scope Ref",
+            "default": "plan"
+          },
+          "status": {
+            "$ref": "#/components/schemas/RuleStatus"
+          },
+          "observed": {
+            "title": "Observed"
+          },
+          "limit": {
+            "title": "Limit"
+          },
+          "margin": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Margin"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "clause_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Clause Id"
+          },
+          "section_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Section Title"
+          },
+          "source_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rule_id",
+          "rule_title",
+          "category",
+          "scope",
+          "status",
+          "observed",
+          "limit",
+          "message"
+        ],
+        "title": "RuleResult"
+      },
+      "RuleScope": {
+        "type": "string",
+        "enum": [
+          "plan",
+          "semester",
+          "course"
+        ],
+        "title": "RuleScope"
+      },
+      "RuleStatus": {
+        "type": "string",
+        "enum": [
+          "pass",
+          "fail",
+          "warn",
+          "not_applicable"
+        ],
+        "title": "RuleStatus"
+      },
+      "SeedConsistencyFailure": {
+        "properties": {
+          "student_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Student Id"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "student_id",
+          "message"
+        ],
+        "title": "SeedConsistencyFailure"
+      },
+      "SeedConsistencyReport": {
+        "properties": {
+          "checked": {
+            "type": "integer",
+            "title": "Checked"
+          },
+          "failures": {
+            "items": {
+              "$ref": "#/components/schemas/SeedConsistencyFailure"
+            },
+            "type": "array",
+            "title": "Failures"
+          },
+          "healthy": {
+            "type": "boolean",
+            "title": "Healthy"
+          }
+        },
+        "type": "object",
+        "required": [
+          "checked",
+          "failures",
+          "healthy"
+        ],
+        "title": "SeedConsistencyReport"
+      },
+      "SignalEvaluationRequest": {
+        "properties": {
+          "student_id": {
+            "type": "string",
+            "title": "Student Id",
+            "default": "S1024"
+          },
+          "signals": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Signals"
+          }
+        },
+        "type": "object",
+        "required": [
+          "signals"
+        ],
+        "title": "SignalEvaluationRequest"
+      },
+      "SimulateScenarioRequest": {
+        "properties": {
+          "scenario_id": {
+            "type": "string",
+            "title": "Scenario Id"
+          },
+          "student_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Student Id",
+            "default": "S1024"
+          },
+          "params": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Params"
+          }
+        },
+        "type": "object",
+        "required": [
+          "scenario_id"
+        ],
+        "title": "SimulateScenarioRequest"
+      },
+      "SkillEstimate": {
+        "properties": {
+          "skill_id": {
+            "type": "string",
+            "title": "Skill Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "domain": {
+            "type": "string",
+            "title": "Domain"
+          },
+          "p_mastery": {
+            "type": "number",
+            "title": "P Mastery"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence"
+          },
+          "mastered": {
+            "type": "boolean",
+            "title": "Mastered"
+          },
+          "evidence_count": {
+            "type": "integer",
+            "title": "Evidence Count"
+          },
+          "evidence_trail": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Trail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "skill_id",
+          "name",
+          "domain",
+          "p_mastery",
+          "confidence",
+          "mastered",
+          "evidence_count",
+          "evidence_trail"
+        ],
+        "title": "SkillEstimate"
+      },
+      "StudentListEntry": {
+        "properties": {
+          "student_id": {
+            "type": "string",
+            "title": "Student Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "programme": {
+            "type": "string",
+            "title": "Programme"
+          },
+          "goal_id": {
+            "type": "string",
+            "title": "Goal Id"
+          },
+          "target_role": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Role"
+          }
+        },
+        "type": "object",
+        "required": [
+          "student_id",
+          "name",
+          "programme",
+          "goal_id"
+        ],
+        "title": "StudentListEntry"
+      },
+      "StudentProfile": {
+        "properties": {
+          "student_id": {
+            "type": "string",
+            "title": "Student Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "programme": {
+            "type": "string",
+            "title": "Programme"
+          },
+          "year": {
+            "type": "integer",
+            "title": "Year",
+            "default": 2
+          },
+          "current_semester": {
+            "type": "integer",
+            "title": "Current Semester",
+            "default": 4
+          },
+          "cgpa": {
+            "type": "number",
+            "maximum": 10.0,
+            "minimum": 0.0,
+            "title": "Cgpa",
+            "default": 8.0
+          },
+          "goal_id": {
+            "type": "string",
+            "title": "Goal Id",
+            "default": "goal_software"
+          },
+          "target_role": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Role"
+          },
+          "available_hours_per_week": {
+            "type": "number",
+            "maximum": 80.0,
+            "minimum": 0.0,
+            "title": "Available Hours Per Week",
+            "default": 10.0
+          },
+          "remaining_elective_slots": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Remaining Elective Slots",
+            "default": 4
+          },
+          "completed_courses": {
+            "items": {
+              "$ref": "#/components/schemas/CompletedCourse"
+            },
+            "type": "array",
+            "title": "Completed Courses"
+          },
+          "interests": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Interests"
+          },
+          "constraints": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Constraints"
+          },
+          "preferences": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Preferences"
+          }
+        },
+        "type": "object",
+        "required": [
+          "student_id",
+          "name",
+          "programme"
+        ],
+        "title": "StudentProfile"
+      },
+      "StudentSummary": {
+        "properties": {
+          "student_id": {
+            "type": "string",
+            "title": "Student Id"
+          },
+          "programme_code": {
+            "type": "string",
+            "title": "Programme Code"
+          },
+          "programme_name": {
+            "type": "string",
+            "title": "Programme Name"
+          },
+          "goal_name": {
+            "type": "string",
+            "title": "Goal Name"
+          },
+          "year": {
+            "type": "integer",
+            "title": "Year"
+          },
+          "semester_index": {
+            "type": "integer",
+            "title": "Semester Index"
+          },
+          "cgpa": {
+            "type": "number",
+            "title": "Cgpa"
+          },
+          "weekly_hours_available": {
+            "type": "number",
+            "title": "Weekly Hours Available"
+          },
+          "weekly_hours_studied": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Weekly Hours Studied"
+          },
+          "credit_cap": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Credit Cap"
+          },
+          "planned_credits": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Planned Credits"
+          },
+          "credit_headroom": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Credit Headroom"
+          },
+          "adherence_percentage": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Adherence Percentage"
+          },
+          "assessed_items_count": {
+            "type": "integer",
+            "title": "Assessed Items Count"
+          },
+          "min_assessed_items": {
+            "type": "integer",
+            "title": "Min Assessed Items"
+          },
+          "readiness_percentage": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Readiness Percentage"
+          },
+          "priority_gap_count": {
+            "type": "integer",
+            "title": "Priority Gap Count"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "insufficient_evidence",
+              "on_track",
+              "needs_attention",
+              "behind"
+            ],
+            "title": "Status"
+          },
+          "status_message": {
+            "type": "string",
+            "title": "Status Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "student_id",
+          "programme_code",
+          "programme_name",
+          "goal_name",
+          "year",
+          "semester_index",
+          "cgpa",
+          "weekly_hours_available",
+          "weekly_hours_studied",
+          "credit_cap",
+          "planned_credits",
+          "credit_headroom",
+          "adherence_percentage",
+          "assessed_items_count",
+          "min_assessed_items",
+          "readiness_percentage",
+          "priority_gap_count",
+          "status",
+          "status_message"
+        ],
+        "title": "StudentSummary"
+      },
+      "TightestMargin": {
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "title": "Rule Id"
+          },
+          "rule_title": {
+            "type": "string",
+            "title": "Rule Title"
+          },
+          "margin": {
+            "type": "number",
+            "title": "Margin"
+          },
+          "scope_ref": {
+            "type": "string",
+            "title": "Scope Ref"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rule_id",
+          "rule_title",
+          "margin",
+          "scope_ref",
+          "message"
+        ],
+        "title": "TightestMargin"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

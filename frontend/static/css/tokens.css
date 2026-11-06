@@ -1,0 +1,227 @@
+/* ==============================================================================
+   DESIGN SYSTEM TOKENS - QUIET ACADEMIC INSTRUMENT
+   Visual Direction: Calm, Editorial, Trustworthy.
+   Zero External Dependencies & 100% Offline Compliant.
+   ============================================================================== */
+
+:root {
+  color-scheme: light;
+  --bg: #FAF9F7;
+  --surface: #FFFFFF;
+  --surface-2: #F3F1ED;
+  --border: #E6E2DA;
+  --border-strong: #8A8478;
+  --ink: #1B1A17;
+  --ink-2: #55524B;
+  --ink-3: #706C62;
+  --accent: #C8341E;
+  --accent-soft: #FBEAE6;
+  --accent-ink: #FFFFFF;
+  --success: #2E784B;
+  --success-soft: #EAF4EE;
+  --success-border: #C8E1D1;
+  --warn: #99600F;
+  --warn-soft: #FBF4E8;
+  --warn-border: #E9D5B4;
+  --danger: #B42318;
+  --danger-soft: #FCEEEC;
+  --danger-border: #E7C3BF;
+  --info: #2B5C8A;
+  --info-soft: #EBF2F8;
+  --info-border: #C8D9E8;
+  --overlay: rgba(27, 26, 23, 0.35);
+  --shadow-slider: 0 1px 3px rgba(0, 0, 0, 0.15);
+  --shadow-segmented: 0 1px 2px rgba(27, 26, 23, 0.05);
+  --shadow-kbd: 0 1px 0 rgba(0, 0, 0, 0.1);
+
+  /* ----------------------------------------------------------------------------
+     TYPOGRAPHY STACKS
+     ---------------------------------------------------------------------------- */
+  --font-serif: 'Source Serif 4', 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Geist', 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* ----------------------------------------------------------------------------
+     SPACING SCALE (Strict 4px base: 4, 8, 12, 16, 24, 32, 48, 64)
+     ---------------------------------------------------------------------------- */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+
+  /* ----------------------------------------------------------------------------
+     RADIUS SCALE (Strict: 6px controls/tags, 10px panels/dialogs, circles for avatars only)
+     ---------------------------------------------------------------------------- */
+  --radius-sm: 6px;            /* Controls, tags, buttons, chips */
+  --radius-panel: 10px;        /* Panels, cards, dialogs, drawers */
+  --radius-full: 999px;        /* Avatars only */
+
+  /* ----------------------------------------------------------------------------
+     ELEVATION (Flatter panels with 1px hairline border. Elevation for popovers/dialogs only)
+     ---------------------------------------------------------------------------- */
+  --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.10), 0 1px 2px rgba(0, 0, 0, 0.06);
+
+  /* ----------------------------------------------------------------------------
+     MOTION (Restrained transitions: 120-180ms hover/focus, 220-280ms panels)
+     ---------------------------------------------------------------------------- */
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-hover: 140ms;
+  --duration-panel: 240ms;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121110;
+  --surface: #1A1917;
+  --surface-2: #242220;
+  --border: #2E2B28;
+  --border-strong: #8F8A7F;
+  --ink: #F2EFE9;
+  --ink-2: #BDB8AD;
+  --ink-3: #8F8A7F;
+
+  --accent: #E5533B;
+  --accent-ink: #121110;
+  --accent-soft: #281714;
+
+  --success: #58B97D;
+  --success-soft: #1B2E22;
+  --success-border: #315940;
+  --warn: #DDA143;
+  --warn-soft: #332612;
+  --warn-border: #684E28;
+  --danger: #F0705F;
+  --danger-soft: #381714;
+  --danger-border: #6A332D;
+  --info: #6FA3D6;
+  --info-soft: #182A3A;
+  --info-border: #34516C;
+  --overlay: rgba(0, 0, 0, 0.55);
+  --shadow-slider: 0 1px 3px rgba(0, 0, 0, 0.45);
+  --shadow-segmented: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-kbd: 0 1px 0 rgba(0, 0, 0, 0.4);
+  --shadow-soft: 0 8px 28px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+/* ==============================================================================
+   GLOBAL CSS RESET & ACCESSIBILITY BASELINE
+   ============================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--ink);
+  line-height: 1.57;
+  font-feature-settings: "tnum" 1, "cv11" 1;
+  min-height: 100vh;
+  display: flex;
+}
+
+/* ----------------------------------------------------------------------------
+   TYPOGRAPHIC SCALE (Strictly 7 sizes: 12/16, 13/20, 14/22, 16/24, 20/28, 28/36, 40/44)
+   ---------------------------------------------------------------------------- */
+.text-meta {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--ink-3);
+  font-weight: 400;
+}
+
+.text-dense {
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-2);
+  font-weight: 400;
+}
+
+.text-body {
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.text-lead {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.text-section {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.text-title {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  line-height: 36px;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.text-metric {
+  font-family: var(--font-serif);
+  font-size: 40px;
+  line-height: 44px;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  font-feature-settings: "tnum" 1;
+}
+
+.text-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1;
+}
+
+.overline {
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+/* Prose constraint (Max 68 characters per line) */
+.prose-readable {
+  max-width: 68ch;
+}
+
+/* Focus Visible Requirement */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

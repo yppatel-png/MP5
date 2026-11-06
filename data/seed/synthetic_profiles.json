@@ -1,0 +1,6559 @@
+[
+  {
+    "student_id": "S2001",
+    "name": "Aryan Agarwal",
+    "programme": "CS1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 8.01,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.86,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.67,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2002",
+    "name": "Diya Kumar",
+    "programme": "CH1",
+    "year": 4,
+    "current_semester": 8,
+    "cgpa": 7.9,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 16.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.76,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.46,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 16.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2003",
+    "name": "Ishaan Singh",
+    "programme": "CS1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 8.03,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.79,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.66,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2004",
+    "name": "Aryan Chopra",
+    "programme": "CH1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 8.37,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.69,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.57,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2005",
+    "name": "Riya Gupta",
+    "programme": "CS1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 6.66,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 16.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.61,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.36,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 16.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2006",
+    "name": "Ishaan Mehta",
+    "programme": "CH1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.45,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.72,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.85,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2007",
+    "name": "Dev Patel",
+    "programme": "CS1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 7.44,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "C-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [
+      "machine learning",
+      "deep learning"
+    ],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.61,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.53,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2008",
+    "name": "Pooja Malhotra",
+    "programme": "CH1",
+    "year": 4,
+    "current_semester": 8,
+    "cgpa": 7.88,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.79,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.73,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2009",
+    "name": "Pooja Malhotra",
+    "programme": "CS1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 8.83,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.82,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.7,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2010",
+    "name": "Riya Iyer",
+    "programme": "CH1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 9.15,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.74,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.48,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0,
+      "overload_requested": true
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2011",
+    "name": "Pooja Patel",
+    "programme": "CS1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.67,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.76,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.72,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2012",
+    "name": "Rahul Chopra",
+    "programme": "CH1",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 8.36,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 16.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.57,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.66,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 16.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2013",
+    "name": "Aryan Malhotra",
+    "programme": "CS1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 8.61,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 14.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.93,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.95,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 14.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2014",
+    "name": "Siddharth Jain",
+    "programme": "CH1",
+    "year": 4,
+    "current_semester": 8,
+    "cgpa": 7.56,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "C-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [
+      "machine learning",
+      "deep learning"
+    ],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.85,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.86,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2015",
+    "name": "Siddharth Agarwal",
+    "programme": "CS1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 6.45,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "D",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.77,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.67,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2016",
+    "name": "Ananya Chopra",
+    "programme": "CH1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 8.56,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.93,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.88,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2017",
+    "name": "Dev Malhotra",
+    "programme": "CS1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 9.68,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.92,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.69,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2018",
+    "name": "Riya Singh",
+    "programme": "CH1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 8.66,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.8,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.94,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2019",
+    "name": "Utkarsh Kumar",
+    "programme": "CS1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.93,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.76,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.73,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2020",
+    "name": "Kabir Verma",
+    "programme": "CH1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 9.15,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 16.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.78,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.85,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 16.0,
+      "overload_requested": true
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2021",
+    "name": "Diya Gupta",
+    "programme": "CS1",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 7.53,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "C-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [
+      "machine learning",
+      "deep learning"
+    ],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.83,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.88,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2022",
+    "name": "Ishaan Kapoor",
+    "programme": "CH1",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 8.45,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.89,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.9,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2023",
+    "name": "Riya Gupta",
+    "programme": "CS1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 9.68,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.92,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.72,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2024",
+    "name": "Aditi Jain",
+    "programme": "CH1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 8.48,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 14.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.98,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.63,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 14.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2025",
+    "name": "Rahul Verma",
+    "programme": "CS1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.43,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 16.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.98,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.64,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 16.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2026",
+    "name": "Rohan Jain",
+    "programme": "CH1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.74,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.65,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.55,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2027",
+    "name": "Pooja Gupta",
+    "programme": "CS1",
+    "year": 4,
+    "current_semester": 8,
+    "cgpa": 7.81,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.77,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.57,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2028",
+    "name": "Kabir Kapoor",
+    "programme": "CH1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 7.19,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "C-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [
+      "machine learning",
+      "deep learning"
+    ],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.6,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.76,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2029",
+    "name": "Riya Nair",
+    "programme": "CS1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 6.2,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.71,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.35,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2030",
+    "name": "Pranav Chopra",
+    "programme": "CH1",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 9.15,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "D",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.66,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.75,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0,
+      "overload_requested": true
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2031",
+    "name": "Varun Agarwal",
+    "programme": "CS1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 8.32,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.81,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.79,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2032",
+    "name": "Bhavya Malhotra",
+    "programme": "CH1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 8.24,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.75,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.45,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2033",
+    "name": "Rohan Malhotra",
+    "programme": "CS1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.06,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.57,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.57,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2034",
+    "name": "Dev Singh",
+    "programme": "CH1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 8.34,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 16.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.98,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.95,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 16.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2035",
+    "name": "Bhavya Bansal",
+    "programme": "CS1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 7.8,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "C-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [
+      "machine learning",
+      "deep learning"
+    ],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.79,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.76,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2036",
+    "name": "Aryan Patel",
+    "programme": "CH1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 7.69,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 16.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.83,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.62,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 16.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2037",
+    "name": "Dev Sharma",
+    "programme": "CS1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.94,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 14.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.7,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.67,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 14.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2038",
+    "name": "Pooja Bansal",
+    "programme": "CH1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 9.31,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "A-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.82,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.95,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2039",
+    "name": "Ishaan Agarwal",
+    "programme": "CS1",
+    "year": 4,
+    "current_semester": 8,
+    "cgpa": 7.51,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.8,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.54,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2040",
+    "name": "Tanvi Nair",
+    "programme": "CH1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 9.15,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.62,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.56,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0,
+      "overload_requested": true
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2041",
+    "name": "Aryan Sharma",
+    "programme": "CS1",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 6.2,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.73,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.6,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2042",
+    "name": "Rahul Agarwal",
+    "programme": "CH1",
+    "year": 4,
+    "current_semester": 8,
+    "cgpa": 7.71,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "C-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [
+      "machine learning",
+      "deep learning"
+    ],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.9,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.77,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2043",
+    "name": "Varun Nair",
+    "programme": "CS1",
+    "year": 4,
+    "current_semester": 8,
+    "cgpa": 7.88,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.71,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.58,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2044",
+    "name": "Bhavya Kapoor",
+    "programme": "CH1",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 9.03,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "A-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.75,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.95,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2045",
+    "name": "Meera Kapoor",
+    "programme": "CS1",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 6.45,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "D",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.74,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.72,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2046",
+    "name": "Dev Chopra",
+    "programme": "CH1",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 6.2,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.59,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.43,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2047",
+    "name": "Bhavya Agarwal",
+    "programme": "CS1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 9.03,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.89,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.62,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2048",
+    "name": "Pooja Verma",
+    "programme": "CH1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 8.54,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.98,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.57,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2049",
+    "name": "Rahul Kumar",
+    "programme": "CS1",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 8.54,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "C-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [
+      "machine learning",
+      "deep learning"
+    ],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.88,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.87,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2050",
+    "name": "Tanvi Nair",
+    "programme": "CH1",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 9.15,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 16.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.98,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.61,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 16.0,
+      "overload_requested": true
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2051",
+    "name": "Riya Malhotra",
+    "programme": "CS1",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 8.09,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.69,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.49,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2052",
+    "name": "Kabir Nair",
+    "programme": "CH1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 8.44,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.86,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.95,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2053",
+    "name": "Diya Chopra",
+    "programme": "CS1",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 7.59,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.86,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.73,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2054",
+    "name": "Aarav Reddy",
+    "programme": "CH1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 7.35,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.74,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.34,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2055",
+    "name": "Tanvi Kumar",
+    "programme": "CS1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 7.88,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 14.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.9,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.56,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 14.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2056",
+    "name": "Dev Singh",
+    "programme": "CH1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 6.83,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 14.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "C-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [
+      "machine learning",
+      "deep learning"
+    ],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.77,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.66,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 14.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2057",
+    "name": "Dev Bansal",
+    "programme": "CS1",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 7.61,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.86,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.6,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2058",
+    "name": "Kabir Chopra",
+    "programme": "CH1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 9.8,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 16.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "A-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.98,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.88,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 16.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2059",
+    "name": "Ananya Bansal",
+    "programme": "CS1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 8.05,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.82,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.86,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2060",
+    "name": "Diya Singh",
+    "programme": "CH1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 9.15,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "D",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.68,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.54,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0,
+      "overload_requested": true
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2061",
+    "name": "Aryan Jain",
+    "programme": "CS1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 6.48,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 16.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "C",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.54,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.36,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 16.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2062",
+    "name": "Utkarsh Kumar",
+    "programme": "CH1",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 8.72,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 16.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.91,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.59,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 16.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2063",
+    "name": "Pranav Sharma",
+    "programme": "CS1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 8.98,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "C-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [
+      "machine learning",
+      "deep learning"
+    ],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.96,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.83,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2064",
+    "name": "Riya Iyer",
+    "programme": "CH1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 7.68,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 16.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.6,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.44,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 16.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2065",
+    "name": "Riya Sharma",
+    "programme": "CS1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 7.75,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.84,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.76,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2066",
+    "name": "Utkarsh Reddy",
+    "programme": "CH1",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 7.62,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 14.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.79,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.76,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 14.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2067",
+    "name": "Neha Malhotra",
+    "programme": "CS1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 7.15,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 10.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.67,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.62,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 10.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2068",
+    "name": "Ishaan Verma",
+    "programme": "CH1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 8.76,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 14.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.94,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.83,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 14.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2069",
+    "name": "Ishaan Mehta",
+    "programme": "CS1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 7.09,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 14.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.73,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.51,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 14.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2070",
+    "name": "Kabir Kumar",
+    "programme": "CH1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 9.15,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "C-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [
+      "machine learning",
+      "deep learning"
+    ],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.86,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.4,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0,
+      "overload_requested": true
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2071",
+    "name": "Dev Kapoor",
+    "programme": "CS1",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 7.83,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 16.0,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.91,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.95,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 6.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 16.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2072",
+    "name": "Ishaan Patel",
+    "programme": "CH1",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 7.83,
+    "goal_id": "goal_software",
+    "target_role": "Software",
+    "available_hours_per_week": 8.0,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.74,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.95,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 8.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 8.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2073",
+    "name": "Meera Iyer",
+    "programme": "CS1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 8.09,
+    "goal_id": "goal_research",
+    "target_role": "Research",
+    "available_hours_per_week": 12.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.82,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.57,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 12.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2074",
+    "name": "Kabir Verma",
+    "programme": "CH1",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 8.09,
+    "goal_id": "goal_upsc",
+    "target_role": "Upsc",
+    "available_hours_per_week": 14.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "B-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL110",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL121",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL122",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "CLL251",
+        "grade": "B-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.93,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.8,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 14.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  },
+  {
+    "student_id": "S2075",
+    "name": "Bhavya Iyer",
+    "programme": "CS1",
+    "year": 4,
+    "current_semester": 7,
+    "cgpa": 6.45,
+    "goal_id": "goal_startup",
+    "target_role": "Startup",
+    "available_hours_per_week": 16.0,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "COL100",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL100",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "PYL100",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "MTL101",
+        "grade": "A",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ELL100",
+        "grade": "B+",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL106",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL215",
+        "grade": "B",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL226",
+        "grade": "A-",
+        "semester_completed": 1
+      },
+      {
+        "course_code": "COL216",
+        "grade": "D",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "diagnostic_evidence": [
+      {
+        "skill_id": "skill_prog_fundamentals",
+        "value": 0.89,
+        "source_type": "assessed_diagnostic"
+      },
+      {
+        "skill_id": "skill_dsa_trees",
+        "value": 0.54,
+        "source_type": "assessed_diagnostic"
+      }
+    ],
+    "constraints": {
+      "credit_headroom_next_semester": 4.0,
+      "no_co_taking_courses": [
+        [
+          "COL351",
+          "COL352"
+        ]
+      ],
+      "max_weekly_hours": 16.0
+    },
+    "preferences": {
+      "format": [
+        "short videos",
+        "hands-on coding problems"
+      ]
+    }
+  }
+]

@@ -1,0 +1,17 @@
+# Pinned production lockfile for reproducible, hermetic Docker builds
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+pydantic-settings==2.7.0
+sqlalchemy==2.0.36
+litellm==1.56.0
+ortools==9.11.4210
+rank-bm25==0.2.2
+numpy==1.26.4
+pandas==2.2.3
+pyyaml==6.0.2
+python-dotenv==1.0.1
+httpx==0.28.1
+pytest==8.3.4
+psycopg2-binary==2.9.10
+

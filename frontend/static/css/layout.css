@@ -1,0 +1,331 @@
+/* ==============================================================================
+   BASE LAYOUT SHELL - SECTION 5 SPECIFICATION
+   Left sidebar (240px), 56px Contextual Top Bar, 32px Demo Bar,
+   360px Push Buddy Panel, High-Density 12-Column Grid Viewport
+   ============================================================================== */
+
+.app-shell {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg);
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+/* ----------------------------------------------------------------------------
+   1. DEMO BAR (32px strip, visible in demo mode only)
+   ---------------------------------------------------------------------------- */
+.demo-bar {
+  height: 32px;
+  background-color: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  padding: 0 var(--space-24);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--ink-2);
+  flex-shrink: 0;
+  z-index: 95;
+}
+
+.demo-bar-left, .demo-bar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.demo-persona-select {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 11px;
+  color: var(--ink);
+  outline: none;
+}
+
+/* ----------------------------------------------------------------------------
+   2. LEFT SIDEBAR NAVIGATION (240px Default)
+   ---------------------------------------------------------------------------- */
+.app-sidebar {
+  width: 240px;
+  background-color: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: width var(--duration-panel) var(--ease-standard);
+}
+
+.app-sidebar.is-collapsed {
+  width: 64px;
+}
+
+.sidebar-header {
+  height: 56px;
+  padding: 0 var(--space-16);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.sidebar-brand-mark {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background-color: var(--accent);
+  color: var(--accent-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-12) var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: 6px var(--space-8);
+  border-radius: var(--radius-sm);
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--duration-hover) var(--ease-standard);
+  border: 1px solid transparent;
+}
+.nav-item:hover {
+  background-color: var(--surface-2);
+  color: var(--ink);
+}
+.nav-item.is-active {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+.nav-item.is-active .nav-item-icon {
+  color: var(--accent);
+}
+
+.nav-item-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--ink-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-item-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-footer {
+  padding: var(--space-12) var(--space-8);
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ----------------------------------------------------------------------------
+   3. MAIN CONTENT CONTAINER & TOP BAR (56px)
+   ---------------------------------------------------------------------------- */
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.app-topbar {
+  height: 56px;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 var(--space-24);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.goal-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color var(--duration-hover) var(--ease-standard);
+}
+.goal-chip:hover {
+  border-color: var(--border-strong);
+}
+
+/* ----------------------------------------------------------------------------
+   4. CONTENT VIEWPORT (Centered max 1200px)
+   ---------------------------------------------------------------------------- */
+.app-content {
+  flex: 1;
+  padding: var(--space-32);
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ----------------------------------------------------------------------------
+   5. RIGHT-HAND BUDDY PANEL (360px Push Layout on Desktop)
+   ---------------------------------------------------------------------------- */
+.buddy-panel {
+  width: 0;
+  background-color: var(--surface);
+  border-left: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
+  overflow: hidden;
+  transition: width var(--duration-panel) var(--ease-standard),
+              border-color var(--duration-panel) var(--ease-standard);
+  z-index: 85;
+}
+
+.buddy-panel.is-open {
+  width: 360px;
+  border-left-color: var(--border);
+}
+
+.buddy-panel-header {
+  height: 56px;
+  padding: 0 var(--space-16);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.buddy-messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.buddy-input-row {
+  padding: var(--space-12) var(--space-16);
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: var(--space-8);
+  background-color: var(--surface);
+}
+
+/* ----------------------------------------------------------------------------
+   6. RESPONSIVENESS (1440, 1024, 768, 390 px)
+   ---------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .app-sidebar {
+    width: 64px;
+  }
+  .app-sidebar .sidebar-brand span:not(.sidebar-brand-mark),
+  .app-sidebar .nav-item-label,
+  .app-sidebar .sidebar-badge {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-shell {
+    flex-direction: column;
+  }
+  .app-sidebar {
+    display: none;
+  }
+  .app-content {
+    padding: var(--space-16);
+  }
+  .buddy-panel {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: 100vw !important;
+    transform: translateX(100%);
+    transition: transform var(--duration-panel) var(--ease-standard);
+    z-index: 999;
+  }
+  .buddy-panel.is-open {
+    transform: translateX(0);
+  }
+}

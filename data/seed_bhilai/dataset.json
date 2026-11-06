@@ -1,0 +1,21 @@
+{
+  "profile": "iit_bhilai",
+  "institution": "Indian Institute of Technology Bhilai",
+  "programme": "BTech in Computer Science and Engineering",
+  "source": "IIT Bhilai Courses of Study, October 2026; applicable from the 2023 batch onwards",
+  "source_file": "data/raw/courses of study.pdf",
+  "source_pages": [9, 21, 22, 42, 83, 87],
+  "limitations": [
+    "The main catalogue contains only named BTech CSE courses from the source-backed curriculum schedule, not every institute-wide course.",
+    "Prerequisites, elective eligibility, semester credit caps, course offerings, workload estimates, and course-to-skill mappings are not established by the supplied source.",
+    "The source prints SL302 in the BTech PC list and CSL302 in the semester sequence and course catalogue; CSL302 is preserved from the latter, with the discrepancy documented.",
+    "The source states 144 graded credits plus 12 non-graded core units; it does not provide credit values for those non-graded units."
+  ],
+  "unsupported_features": [
+    "Automated degree-audit or graduation eligibility decisions",
+    "Credit-cap and overload validation",
+    "Prerequisite and co-requisite validation",
+    "Elective eligibility and course-offering validation",
+    "Evidence-backed course-skill alignment"
+  ]
+}

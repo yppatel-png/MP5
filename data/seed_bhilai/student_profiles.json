@@ -1,0 +1,50 @@
+[
+  {
+    "student_id": "BH-DEMO-001",
+    "name": "Aarav Demo (Sample)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 1,
+    "cgpa": 0.0,
+    "goal_id": "goal_bhilai_cse",
+    "target_role": "BTech CSE student",
+    "available_hours_per_week": 10,
+    "remaining_elective_slots": null,
+    "completed_courses": [],
+    "constraints": {},
+    "preferences": {},
+    "diagnostic_evidence": []
+  },
+  {
+    "student_id": "BH-DEMO-002",
+    "name": "Diya Demo (Sample)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 1,
+    "cgpa": 0.0,
+    "goal_id": "goal_bhilai_cse",
+    "target_role": "BTech CSE student",
+    "available_hours_per_week": 10,
+    "remaining_elective_slots": null,
+    "completed_courses": [],
+    "constraints": {},
+    "preferences": {},
+    "diagnostic_evidence": []
+  },
+  {
+    "student_id": "BH-DEMO-003",
+    "name": "Kabir Demo (Sample)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 1,
+    "cgpa": 0.0,
+    "goal_id": "goal_bhilai_cse",
+    "target_role": "BTech CSE student",
+    "available_hours_per_week": 10,
+    "remaining_elective_slots": null,
+    "completed_courses": [],
+    "constraints": {},
+    "preferences": {},
+    "diagnostic_evidence": []
+  }
+]

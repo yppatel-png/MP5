@@ -1,0 +1,1368 @@
+# IIT Bhilai Migration Audit
+
+Generated from the workspace text files; scanned 115 text files. PDF binaries are not line-scannable and are noted separately.
+
+## Institute names and legacy identifiers
+
+315 matching lines. Paths are relative to the repository root; line numbers refer to the scanned version.
+
+- `backend/buddy/memory.py:83` ? `CH1` ? prog_name = "Chemical Engineering" if profile.programme == "CH1" else "Computer Science and Engineering"
+- `backend/buddy/safety.py:59` ? `IIT Delhi` ? If a code is not in the official IIT Delhi catalogue, strips or flags it.
+- `backend/buddy/safety.py:82` ? `IIT Delhi` ? "I am your IIT Delhi Personalised Learning Buddy. "
+- `backend/planner/candidate.py:34` ? `CH1` ? programme_code: str = "CH1",
+- `backend/planner/explainer.py:112` ? `IIT Delhi` ? {"role": "system", "content": "You are an empathetic, precise academic advisor at IIT Delhi explaining a personalized semester course roadmap."},
+- `backend/planner/infeasible.py:36` ? `IIT Delhi` ? "ordinance_clause": "IIT Delhi UG Ordinance Section 4.2",
+- `backend/planner/infeasible.py:99` ? `IIT Delhi` ? "ordinance_clause": "IIT Delhi UG Ordinance Section 5.1",
+- `backend/planner/validator.py:182` ? `CH1` ? is_chemical = (student_profile.get("programme") == "CH1")
+- `backend/practice/generator.py:89` ? `IIT Delhi` ? f"You are an academic exam creator for IIT Delhi. "
+- `backend/practice/mastery.py:38` ? `CH1` ? profile = StudentProfile(student_id=student_id, name="Student", programme="CH1")
+- `backend/rules/certificate.py:15` ? `IITD` ? RULE_SET_VERSION = "2024.1-IITD-ACAD"
+- `backend/rules/credit_rules.py:19` ? `iitd` ? source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-4.2.1"
+- `backend/rules/credit_rules.py:69` ? `iitd` ? source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-4.2.2"
+- `backend/rules/credit_rules.py:115` ? `iitd` ? source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-3.1.0"
+- `backend/rules/eligibility_rules.py:17` ? `iitd` ? source_url = "https://home.iitd.ac.in/academic-rules/minor-guidelines-2023"
+- `backend/rules/eligibility_rules.py:105` ? `iitd` ? source_url = "https://home.iitd.ac.in/academic-rules/nptel-transfer-policy"
+- `backend/rules/integrity_rules.py:16` ? `iitd` ? source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-1.1.0"
+- `backend/rules/pdf_builder.py:53` ? `DELHI` ? # Title: "INDIAN INSTITUTE OF TECHNOLOGY DELHI"
+- `backend/rules/prerequisite_rules.py:19` ? `iitd` ? source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-5.1.0"
+- `backend/rules/prerequisite_rules.py:99` ? `iitd` ? source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-5.2.0"
+- `backend/rules/prerequisite_rules.py:155` ? `iitd` ? source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-5.1.0"
+- `backend/rules/prerequisite_rules.py:208` ? `iitd` ? source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-5.3.0"
+- `backend/rules/workload_rules.py:20` ? `iitd` ? source_url = "https://cse.iitd.ac.in/curriculum/undergraduate-advising-notes"
+- `backend/rules/workload_rules.py:67` ? `iitd` ? source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-8.1.0"
+- `backend/rules/workload_rules.py:114` ? `iitd` ? source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-4.4.0"
+- `backend/student/diagnostic.py:60` ? `CH1` ? profile = StudentProfile(student_id=student_id, name="Student", programme="CH1")
+- `backend/student/model.py:21` ? `CH1` ? programme: str # e.g. "CH1", "CS1"
+- `data/DATA_QUALITY.md:4` ? `Delhi, IIT Delhi` ? **Target Institute:** Indian Institute of Technology Delhi (IIT Delhi)
+- `data/DATA_QUALITY.md:5` ? `CH1` ? **Programmes Covered:** B.Tech Computer Science and Engineering (`CS1`) & B.Tech Chemical Engineering (`CH1`) with CS Minor
+- `data/DATA_QUALITY.md:36` ? `IIT Delhi` ? All course metadata, syllabi, and credit regulations are derived from official public IIT Delhi documents:
+- `data/DATA_QUALITY.md:38` ? `IIT Delhi` ? 1. **IIT Delhi Courses of Study (Undergraduate 2023–2024)**
+- `data/DATA_QUALITY.md:39` ? `IIT Delhi` ? * Source: Academic Senate, IIT Delhi. Official course codes, lecture-tutorial-practical (L-T-P) hours, credit values, prerequisites, and syllabus outlines.
+- `data/DATA_QUALITY.md:40` ? `IIT Delhi` ? 2. **IIT Delhi Ordinances & Degree Regulations (Sections 4.2, 4.3, 5.1)**
+- `data/seed/academic_rules.json:12` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/ordinance-section-4.2.1",
+- `data/seed/academic_rules.json:25` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/ordinance-section-4.2.2",
+- `data/seed/academic_rules.json:39` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/ordinance-section-4.3.0",
+- `data/seed/academic_rules.json:52` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/ordinance-section-3.1.0",
+- `data/seed/academic_rules.json:66` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/ordinance-section-5.1.0",
+- `data/seed/academic_rules.json:79` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/ordinance-section-5.2.0",
+- `data/seed/academic_rules.json:100` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/minor-guidelines-2023",
+- `data/seed/academic_rules.json:114` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/nptel-transfer-policy",
+- `data/seed/academic_rules.json:131` ? `iitd` ? "source_url": "https://cse.iitd.ac.in/curriculum/undergraduate-advising-notes",
+- `data/seed/academic_rules.json:143` ? `IIT Delhi` ? "source_text": "Every course scheduled in an official curriculum plan must correspond to a verified, active course offering in the IIT Delhi Courses of Study catalogue.",
+- `data/seed/academic_rules.json:144` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/ordinance-section-1.1.0",
+- `data/seed/academic_rules.json:157` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/ordinance-section-4.4.0",
+- `data/seed/academic_rules.json:170` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/ordinance-section-8.1.0",
+- `data/seed/academic_rules.json:183` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/ordinance-section-5.3.0",
+- `data/seed/courses.json:14` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, CSE Dept, p. 112",
+- `data/seed/courses.json:29` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Maths Dept, p. 180",
+- `data/seed/courses.json:44` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Maths Dept, p. 181",
+- `data/seed/courses.json:59` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Physics Dept, p. 204",
+- `data/seed/courses.json:74` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, EE Dept, p. 142",
+- `data/seed/courses.json:89` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, CSE Dept, p. 113",
+- `data/seed/courses.json:104` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, CSE Dept, p. 114",
+- `data/seed/courses.json:119` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, CSE Dept, p. 115",
+- `data/seed/courses.json:134` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, CSE Dept, p. 116",
+- `data/seed/courses.json:149` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, CSE Dept, p. 117",
+- `data/seed/courses.json:164` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, CSE Dept, p. 118",
+- `data/seed/courses.json:179` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, CSE Dept, p. 119",
+- `data/seed/courses.json:194` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, CSE Dept, p. 120",
+- `data/seed/courses.json:209` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, CSE Dept, p. 122",
+- `data/seed/courses.json:224` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, CSE Dept, p. 128",
+- `data/seed/courses.json:239` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, CSE Dept, p. 127",
+- `data/seed/courses.json:254` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, CSE Dept, p. 126",
+- `data/seed/courses.json:269` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, CSE Dept, p. 124",
+- `data/seed/courses.json:284` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, CSE Dept, p. 125",
+- `data/seed/courses.json:299` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Maths Dept, p. 183",
+- `data/seed/courses.json:314` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Dept, p. 95",
+- `data/seed/courses.json:329` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Dept, p. 96",
+- `data/seed/courses.json:344` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Dept, p. 97",
+- `data/seed/courses.json:359` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Dept, p. 98",
+- `data/seed/courses.json:374` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Dept, p. 99",
+- `data/seed/courses.json:389` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Dept, p. 100",
+- `data/seed/courses.json:404` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Dept, p. 101",
+- `data/seed/courses.json:419` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Dept, p. 103",
+- `data/seed/courses.json:434` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, HSS Dept, p. 165",
+- `data/seed/courses.json:449` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, HSS Dept, p. 168",
+- `data/seed/courses.json:464` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, HSS Dept, p. 170",
+- `data/seed/courses.json:479` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, DMS, p. 192",
+- `data/seed/courses.json:494` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, DMS, p. 194",
+- `data/seed/goal_templates.json:186` ? `IIT Delhi` ? "criteria": "Launch functional MVP; pitch to institute incubator (e.g. FITT IIT Delhi)."
+- `data/seed/modules.json:13` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL100"
+- `data/seed/modules.json:26` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL100"
+- `data/seed/modules.json:39` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL100"
+- `data/seed/modules.json:52` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL100"
+- `data/seed/modules.json:65` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL100"
+- `data/seed/modules.json:77` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL100"
+- `data/seed/modules.json:89` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL100"
+- `data/seed/modules.json:101` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL100"
+- `data/seed/modules.json:113` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL101"
+- `data/seed/modules.json:125` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL101"
+- `data/seed/modules.json:137` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL101"
+- `data/seed/modules.json:149` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Physics, PYL100"
+- `data/seed/modules.json:161` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Physics, PYL100"
+- `data/seed/modules.json:173` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Physics, PYL100"
+- `data/seed/modules.json:185` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Physics, PYL100"
+- `data/seed/modules.json:197` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Electrical Engineering, ELL100"
+- `data/seed/modules.json:209` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Electrical Engineering, ELL100"
+- `data/seed/modules.json:221` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Electrical Engineering, ELL100"
+- `data/seed/modules.json:233` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Electrical Engineering, ELL100"
+- `data/seed/modules.json:247` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL106"
+- `data/seed/modules.json:261` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL106"
+- `data/seed/modules.json:275` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL106"
+- `data/seed/modules.json:289` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL106"
+- `data/seed/modules.json:303` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL106"
+- `data/seed/modules.json:316` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL215"
+- `data/seed/modules.json:329` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL215"
+- `data/seed/modules.json:342` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL215"
+- `data/seed/modules.json:354` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL216"
+- `data/seed/modules.json:366` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL216"
+- `data/seed/modules.json:378` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL216"
+- `data/seed/modules.json:391` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL226"
+- `data/seed/modules.json:404` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL226"
+- `data/seed/modules.json:417` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL226"
+- `data/seed/modules.json:430` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL331"
+- `data/seed/modules.json:443` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL331"
+- `data/seed/modules.json:456` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL331"
+- `data/seed/modules.json:469` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL331"
+- `data/seed/modules.json:481` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL351"
+- `data/seed/modules.json:493` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL351"
+- `data/seed/modules.json:505` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL351"
+- `data/seed/modules.json:517` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL351"
+- `data/seed/modules.json:529` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL352"
+- `data/seed/modules.json:541` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL352"
+- `data/seed/modules.json:553` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL352"
+- `data/seed/modules.json:566` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL362"
+- `data/seed/modules.json:579` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL362"
+- `data/seed/modules.json:592` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL362"
+- `data/seed/modules.json:605` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL362"
+- `data/seed/modules.json:617` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL380"
+- `data/seed/modules.json:629` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL380"
+- `data/seed/modules.json:641` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL380"
+- `data/seed/modules.json:655` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL774"
+- `data/seed/modules.json:669` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL774"
+- `data/seed/modules.json:683` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL774"
+- `data/seed/modules.json:697` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL774"
+- `data/seed/modules.json:710` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL770"
+- `data/seed/modules.json:723` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL770"
+- `data/seed/modules.json:736` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL770"
+- `data/seed/modules.json:748` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL765"
+- `data/seed/modules.json:760` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL765"
+- `data/seed/modules.json:772` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL765"
+- `data/seed/modules.json:785` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COP290"
+- `data/seed/modules.json:798` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COP290"
+- `data/seed/modules.json:811` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COP290"
+- `data/seed/modules.json:823` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COD300"
+- `data/seed/modules.json:835` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COD300"
+- `data/seed/modules.json:847` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL106"
+- `data/seed/modules.json:859` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL106"
+- `data/seed/modules.json:871` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL106"
+- `data/seed/modules.json:883` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL110"
+- `data/seed/modules.json:895` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL110"
+- `data/seed/modules.json:907` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL110"
+- `data/seed/modules.json:919` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL121"
+- `data/seed/modules.json:931` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL121"
+- `data/seed/modules.json:943` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL121"
+- `data/seed/modules.json:955` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL122"
+- `data/seed/modules.json:967` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL122"
+- `data/seed/modules.json:979` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL122"
+- `data/seed/modules.json:991` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL222"
+- `data/seed/modules.json:1003` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL222"
+- `data/seed/modules.json:1015` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL251"
+- `data/seed/modules.json:1027` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL251"
+- `data/seed/modules.json:1039` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL251"
+- `data/seed/modules.json:1051` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL252"
+- `data/seed/modules.json:1063` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL252"
+- `data/seed/modules.json:1075` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL252"
+- `data/seed/modules.json:1087` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL261"
+- `data/seed/modules.json:1099` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL261"
+- `data/seed/modules.json:1111` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLL261"
+- `data/seed/modules.json:1125` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLD411"
+- `data/seed/modules.json:1139` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Chemical Engineering, CLD411"
+- `data/seed/modules.json:1151` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Humanities and Social Sciences, HUL211"
+- `data/seed/modules.json:1163` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Humanities and Social Sciences, HUL211"
+- `data/seed/modules.json:1175` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Humanities and Social Sciences, HUL261"
+- `data/seed/modules.json:1187` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Humanities and Social Sciences, HUL261"
+- `data/seed/modules.json:1199` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Humanities and Social Sciences, HUL275"
+- `data/seed/modules.json:1211` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Humanities and Social Sciences, HUL275"
+- `data/seed/modules.json:1223` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Management Studies, MSL705"
+- `data/seed/modules.json:1235` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Management Studies, MSL705"
+- `data/seed/modules.json:1247` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Management Studies, MSL708"
+- `data/seed/modules.json:1259` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, Management Studies, MSL708"
+- `data/seed/prerequisites.json:6` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 113"
+- `data/seed/prerequisites.json:12` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 114"
+- `data/seed/prerequisites.json:18` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 115"
+- `data/seed/prerequisites.json:24` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 116"
+- `data/seed/prerequisites.json:30` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 117"
+- `data/seed/prerequisites.json:36` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 117"
+- `data/seed/prerequisites.json:42` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 118"
+- `data/seed/prerequisites.json:48` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 119"
+- `data/seed/prerequisites.json:54` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 120"
+- `data/seed/prerequisites.json:60` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 122"
+- `data/seed/prerequisites.json:66` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 128"
+- `data/seed/prerequisites.json:72` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 128"
+- `data/seed/prerequisites.json:78` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 128"
+- `data/seed/prerequisites.json:84` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 127"
+- `data/seed/prerequisites.json:90` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 126"
+- `data/seed/prerequisites.json:96` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 124"
+- `data/seed/prerequisites.json:102` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 125"
+- `data/seed/prerequisites.json:108` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 183"
+- `data/seed/prerequisites.json:114` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 95"
+- `data/seed/prerequisites.json:120` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 97"
+- `data/seed/prerequisites.json:126` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 98"
+- `data/seed/prerequisites.json:132` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 99"
+- `data/seed/prerequisites.json:138` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 100"
+- `data/seed/prerequisites.json:144` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 101"
+- `data/seed/prerequisites.json:150` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 103"
+- `data/seed/prerequisites.json:156` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study 2023-24, p. 103"
+- `data/seed/programmes.json:17` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study UG 2023-24, Page 42",
+- `data/seed/programmes.json:21` ? `CH1` ? "code": "CH1",
+- `data/seed/programmes.json:37` ? `IIT Delhi` ? "source": "IIT Delhi Courses of Study UG 2023-24, Page 38 & Minor Degree Regulations",
+- `data/seed/skills.json:62` ? `IIT Delhi` ? "source": "IIT Delhi MTL101 Syllabus, Maths Dept",
+- `data/seed/skills.json:71` ? `IIT Delhi` ? "source": "IIT Delhi MTL100 Syllabus, Maths Dept",
+- `data/seed/skills.json:80` ? `IIT Delhi` ? "source": "IIT Delhi MTL106 Syllabus, Maths Dept",
+- `data/seed/skills.json:134` ? `IIT Delhi` ? "source": "IIT Delhi COL774 Syllabus / Stanford CS229",
+- `data/seed/skills.json:143` ? `IIT Delhi` ? "source": "IIT Delhi COL774 Syllabus / Stanford CS229",
+- `data/seed/skills.json:152` ? `IIT Delhi` ? "source": "IIT Delhi COL774 Syllabus / Deep Learning Book (Goodfellow)",
+- `data/seed/skills.json:161` ? `IIT Delhi` ? "source": "IIT Delhi COL380 Syllabus, CSE Dept",
+- `data/seed/skills.json:170` ? `IIT Delhi` ? "source": "IIT Delhi COP290 Syllabus, CSE Dept",
+- `data/seed/skills.json:179` ? `IIT Delhi` ? "source": "Bird, Stewart, Lightfoot Transport Phenomena / IIT Delhi CLL110",
+- `data/seed/skills.json:188` ? `IIT Delhi` ? "source": "Smith, Van Ness Chemical Thermodynamics / IIT Delhi CLL121",
+- `data/seed/skills.json:197` ? `IIT Delhi` ? "source": "Fogler Elements of Chemical Reaction Engineering / IIT Delhi CLL122",
+- `data/seed/skills.json:206` ? `IIT Delhi` ? "source": "Incropera Heat and Mass Transfer / IIT Delhi CLL251",
+- `data/seed/skills.json:215` ? `IIT Delhi` ? "source": "Treybal Mass-Transfer Operations / IIT Delhi CLL252",
+- `data/seed/skills.json:224` ? `IIT Delhi` ? "source": "Seborg Process Dynamics and Control / IIT Delhi CLL261",
+- `data/seed/skills.json:233` ? `IIT Delhi` ? "source": "IIT Delhi MSL705 / Stanford Technology Ventures Program",
+- `data/seed/skills.json:242` ? `IIT Delhi` ? "source": "IIT Delhi MSL708 / Harvard Business School Venture Capital",
+- `data/seed/skills.json:251` ? `IIT Delhi` ? "source": "IIT Delhi HUL261 / UPSC Civil Services Syllabus GS Paper 1 & 2",
+- `data/seed/skills.json:260` ? `IIT Delhi` ? "source": "IIT Delhi HUL275 / UPSC Civil Services Syllabus GS Paper 3",
+- `data/seed/skills.json:269` ? `IIT Delhi` ? "source": "IIT Delhi HUL211 / Kahneman Thinking Fast and Slow",
+- `data/seed/student_profiles.json:5` ? `CH1` ? "programme": "CH1",
+- `data/seed/student_profiles.json:82` ? `CH1` ? "programme": "CH1",
+- `data/seed/student_profiles.json:139` ? `IIT Delhi` ? "incubator": "FITT IIT Delhi"
+- `data/seed/synthetic_profiles.json:93` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:269` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:445` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:624` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:800` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:977` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:1153` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:1332` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:1508` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:1684` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:1854` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:2020` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:2196` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:2372` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:2551` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:2718` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:2894` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:3073` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:3249` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:3425` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:3602` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:3781` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:3957` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:4133` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:4302` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:4469` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:4645` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:4821` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:5000` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:5176` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:5353` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:5522` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:5698` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:5874` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:6050` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:6220` ? `CH1` ? "programme": "CH1",
+- `data/seed/synthetic_profiles.json:6386` ? `CH1` ? "programme": "CH1",
+- `docs/DECISIONS.md:11` ? `Delhi, IIT Delhi` ? * **Decision:** Selected **Indian Institute of Technology Delhi (IIT Delhi)** as the primary reference institute.
+- `docs/DECISIONS.md:12` ? `IIT Delhi` ? * **Rationale:** IIT Delhi has publicly available, comprehensive course catalogues, explicit degree regulations (Courses of Study / Information Brochure), well-defined credit li...
+- `docs/DECISIONS.md:18` ? `CH1` ? 2. **B.Tech Chemical Engineering (CH1)** with an optional Minor in Computer Science and Engineering.
+- `docs/DECISIONS.md:44` ? `IIT Delhi` ? * **Decision:** Decoupled academic constraint validation into a modular `RuleRegistry` (`backend/rules/`) with 16 accredited rules, where every rule explicitly maps to an accred...
+- `docs/DECISIONS.md:49` ? `IITD` ? * **Decision:** Every academic plan version receives a sealed `PlanCertificate` containing an input hash, KB version hash, rule-set version (`2024.1-IITD-ACAD`), margins, and a ...
+- `docs/FUTURE_WORK.md:10` ? `IIT Delhi` ? * **Description:** Support dynamic multi-institute academic rule namespaces beyond IIT Delhi (e.g., IIT Bombay, IIT Madras).
+- `docs/PERSONAS.md:2` ? `IIT Delhi` ? Comprehensive profiles mapping diverse academic goals, survey insights, constraints, and learning trajectories across IIT Delhi.
+- `docs/PERSONAS.md:10` ? `CH1` ? | **Persona** | **Aryan Sharma (S1024)**, B.Tech Chemical Engineering (`CH1`), Year 3, Semester 5. Current CGPA: 7.8. |
+- `docs/PERSONAS.md:38` ? `CH1` ? | **Persona** | **Rohan Verma (S1026)**, B.Tech Chemical Engineering (`CH1`), Year 3, Semester 5. Current CGPA: 8.1. |
+- `docs/PERSONAS.md:66` ? `CH1` ? | **Persona** | **Siddharth Roy (S1028)**, B.Tech Chemical Engineering (`CH1`), Year 2, Semester 3. Current CGPA: 6.4. |
+- `docs/PERSONAS.md:84` ? `IITD` ? | **Success Metrics** | GRE / TOEFL prep time protected; GPA sustained above 3.8/4.0 equivalent ($> 8.8$ IITD). |
+- `docs/SUCCESS_METRICS.md:2` ? `IIT Delhi` ? Quantitative benchmarks and measurement methodology for the Adobe Personalised Learning Buddy pilot at IIT Delhi.
+- `docs/SURVEY.md:2` ? `IIT Delhi` ? **Target Population:** Undergraduate students across engineering disciplines at IIT Delhi (B.Tech Years 1–4).
+- `docs/TRADEOFFS.md:8` ? `IIT Delhi` ? Every engineering student at IIT Delhi navigates four competing forces:
+- `docs/UI_AUDIT_V2.md:42` ? `IIT Delhi` ? | **11** | **Implementation Details Leaked to Students** | `frontend/index.html`: lines 127, 145–148, 150, 205, 272 | **P1** | Internal engineering terms ("LiteLLM Online", "BKT...
+- `frontend/index.html:6` ? `IIT Delhi` ? <title>Learning Buddy | IIT Delhi</title>
+- `frontend/index.html:428` ? `IIT Delhi` ? Hello! I am your IIT Delhi learning companion. I monitor your degree requirements, prerequisite lineages, and skill estimates. How can I help today?
+- `README.md:1` ? `IIT Delhi` ? # Adobe Personalised Learning Buddy | IIT Delhi
+- `README.md:3` ? `IIT Delhi` ? > An intelligent, constraint-respecting academic learning buddy and curriculum planner for students of IIT Delhi.
+- `README.md:129` ? `IIT Delhi` ? - **[0:00 - 0:30] The Academic Dilemma & Architecture**: Introduce the problem of prerequisite blindspots and semester clashes at IIT Delhi. Show the clean, dark-mode dashboard ...
+- `reports/eval.md:3` ? `Delhi, IIT Delhi` ? **Target Institute:** Indian Institute of Technology Delhi (IIT Delhi)
+- `reports/eval.md:4` ? `CH1` ? **Evaluation Scope:** 50 Synthetic & Hero Student Profiles across CS1 & CH1
+- `scripts/build_seed_data.py:225` ? `IIT Delhi` ? "source": f"IIT Delhi Courses of Study 2023-24, {c['department']}, {code}"
+- `scripts/build_seed_data.py:816` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/ordinance-section-4.2"
+- `scripts/build_seed_data.py:824` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/ordinance-section-4.3"
+- `scripts/build_seed_data.py:837` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/minor-guidelines-2023"
+- `scripts/build_seed_data.py:845` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/ordinance-section-5.1"
+- `scripts/build_seed_data.py:853` ? `iitd` ? "source_url": "https://home.iitd.ac.in/academic-rules/nptel-transfer-policy"
+- `scripts/build_seed_data.py:861` ? `iitd` ? "source_url": "https://cse.iitd.ac.in/curriculum/undergraduate-advising-notes"
+- `scripts/build_seed_data.py:941` ? `IIT Delhi` ? { "name": "MVP Launch & Incubation Cell Linkage", "semester_offset": 2, "criteria": "Launch functional MVP; pitch to institute incubator (e.g. FITT IIT Delhi)." },
+- `scripts/evaluate.py:317` ? `Delhi, IIT Delhi` ? **Target Institute:** Indian Institute of Technology Delhi (IIT Delhi)
+- `scripts/evaluate.py:318` ? `CH1` ? **Evaluation Scope:** 50 Synthetic & Hero Student Profiles across CS1 & CH1
+- `scripts/generate_profiles.py:22` ? `CH1` ? PROGRAMMES = ["CS1", "CH1"]
+- `scripts/generate_profiles.py:47` ? `CH1` ? prog = "CH1" if i % 2 == 0 else "CS1"
+- `scripts/qa/outbound_audit.py:47` ? `iitd` ? "home.iitd.ac.in",
+- `scripts/qa/outbound_audit.py:48` ? `iitd` ? "cse.iitd.ac.in",
+- `scripts/validate_kb.py:190` ? `Delhi, IIT Delhi` ? **Target Institute:** Indian Institute of Technology Delhi (IIT Delhi)
+- `scripts/validate_kb.py:191` ? `CH1` ? **Programmes Covered:** B.Tech Computer Science and Engineering (`CS1`) & B.Tech Chemical Engineering (`CH1`) with CS Minor
+- `scripts/validate_kb.py:222` ? `IIT Delhi` ? All course metadata, syllabi, and credit regulations are derived from official public IIT Delhi documents:
+- `scripts/validate_kb.py:224` ? `IIT Delhi` ? 1. **IIT Delhi Courses of Study (Undergraduate 2023–2024)**
+- `scripts/validate_kb.py:225` ? `IIT Delhi` ? * Source: Academic Senate, IIT Delhi. Official course codes, lecture-tutorial-practical (L-T-P) hours, credit values, prerequisites, and syllabus outlines.
+- `scripts/validate_kb.py:226` ? `IIT Delhi` ? 2. **IIT Delhi Ordinances & Degree Regulations (Sections 4.2, 4.3, 5.1)**
+- `tests/test_knowledge_base.py:84` ? `CH1` ? self.assertIn("CH1", prog_codes)
+- `tests/test_practice_mastery.py:125` ? `CH1` ? programme="CH1",
+- `tests/test_student_diagnostic.py:51` ? `CH1` ? self.assertEqual(s1024.programme, "CH1")
+
+## IIT Delhi-style course codes
+
+1027 matching lines. Prefix matches are listed exactly as found; each record includes all matches on that line.
+
+- `backend/adapt/simulator.py:37` ? `COL362` ? "name": "Student Rejects Course (Excludes COL362)",
+- `backend/adapt/simulator.py:39` ? `COL362` ? "description": "Student overrides buddy recommendation by rejecting COL362 (Database Systems). Planner re-solves with exclusion constraint, finds a valid alternative, and quanti...
+- `backend/adapt/simulator.py:55` ? `COL106` ? "description": "Fast-forwards time by simulating Semester 6 completion with Grade A in COL106. Recalculates Bayesian mastery and advances remaining curriculum to Semesters 7 & 8.",
+- `backend/adapt/simulator.py:158` ? `COL106` ? # 3. Fast-track prerequisite: Student tests out of introductory DSA (COL106 credit-by-assessment)
+- `backend/adapt/simulator.py:160` ? `COL106` ? if not any(c.course_code == "COL106" for c in new_completed):
+- `backend/adapt/simulator.py:161` ? `COL106` ? new_completed.append(CompletedCourse(course_code="COL106", grade="A", semester_completed=profile.current_semester))
+- `backend/adapt/simulator.py:192` ? `COL351` ? f"your prerequisite requirement has been expedited. Advanced Algorithm Design (COL351) and "
+- `backend/adapt/simulator.py:193` ? `COL362` ? f"Database Systems (COL362) have been pulled forward to fast-track your Software Engineering readiness."
+- `backend/adapt/simulator.py:304` ? `COL362` ? def run_course_override(self, student_id: str = "S1024", rejected_course: str = "COL362") -> Dict[str, Any]:
+- `backend/adapt/simulator.py:305` ? `COL362` ? """Simulates student rejecting a course (e.g., COL362 Database Systems)."""
+- `backend/adapt/simulator.py:435` ? `COL106` ? # Simulate Semester 6 completion: add COL106 with Grade 'A'
+- `backend/adapt/simulator.py:437` ? `COL106` ? if not any(c.course_code == "COL106" for c in new_completed):
+- `backend/adapt/simulator.py:438` ? `COL106` ? new_completed.append(CompletedCourse(course_code="COL106", grade="A", semester_completed=6))
+- `backend/adapt/simulator.py:481` ? `COL106` ? reason_for_change="Fast-forwarded to Semester 7: COL106 completed with Grade A"
+- `backend/adapt/simulator.py:485` ? `COL106` ? f"Fast-forwarded to Semester 7! With COL106 completed with Grade A, your DSA proficiency is verified. "
+- `backend/adapt/simulator.py:486` ? `COL351` ? f"You are now ready to tackle COL351 (Algorithm Design) and systems electives in your final year."
+- `backend/adapt/simulator.py:515` ? `COL362` ? rejected = p.get("rejected_course", "COL362")
+- `backend/api/adapt.py:24` ? `COL362` ? rejected_course: str = "COL362"
+- `backend/buddy/router.py:98` ? `COL106` ? target_code = match.group(1) if match else "COL106"
+- `backend/buddy/router.py:137` ? `COL362` ? rejected_code = match.group(1) if match else "COL362"
+- `backend/buddy/safety.py:22` ? `COL100, COL106, COL215, COL226, COL331, COL351, COL352, COL362, COL770` ? return {"COL100", "COL106", "COL215", "COL226", "COL331", "COL351", "COL352", "COL362", "COL770", "COP290"}
+- `backend/buddy/safety.py:58` ? `COL999` ? Detects any course codes in output text (e.g. COL999, ABC123).
+- `backend/planner/solver.py:89` ? `COL351, COL352` ? all_no_co_pairs = [["COL351", "COL352"]]
+- `backend/planner/validator.py:207` ? `COL351, COL352` ? restricted_pairs = [["COL351", "COL352"]]
+- `backend/rules/base.py:38` ? `COL351` ? scope_ref: str = "plan" # e.g. "semester:5" or "course:COL351"
+- `backend/rules/workload_rules.py:23` ? `COL351, COL352` ? pair = ["COL351", "COL352"]
+- `backend/student/conflict.py:45` ? `COL774` ? "description": "Insert foundational Linear Algebra & Probability practice modules before taking COL774.",
+- `backend/student/conflict.py:59` ? `COL774` ? "description": "Retain Machine Learning in next semester's schedule, acknowledging a high risk of grade penalty in COL774.",
+- `backend/student/conflict.py:81` ? `COL106` ? "action": "Prioritize COL106 & Active Practice",
+- `backend/student/conflict.py:82` ? `COL106` ? "description": "Dedicate upcoming elective headroom to COL106 and 50 hands-on algorithmic practice exercises.",
+- `data/DATA_QUALITY.md:30` ? `ELL100, HUL275, HUL211, HUL261, COL100, MTL101, MTL100, COL106, COL215, MTL106` ? `ELL100, MSL708, CLL121, HUL275, MSL705, HUL211, HUL261, PYL100, COL100, MTL101, MTL100, CLL122, COL106, COL215, MTL106... and 18 more.`
+- `data/seed/academic_rules.json:93` ? `COL106` ? "COL106",
+- `data/seed/academic_rules.json:94` ? `COL215` ? "COL215",
+- `data/seed/academic_rules.json:95` ? `COL331` ? "COL331",
+- `data/seed/academic_rules.json:96` ? `COL362` ? "COL362"
+- `data/seed/academic_rules.json:99` ? `COL106, COL215, COL331, COL362` ? "source_text": "To earn a Minor Area in CSE, a non-CS student must possess a CGPA >= 7.50, complete 20 credits in COL courses including COL106, COL215, COL331, and COL362.",
+- `data/seed/academic_rules.json:125` ? `COL351` ? "COL351",
+- `data/seed/academic_rules.json:126` ? `COL352` ? "COL352"
+- `data/seed/academic_rules.json:130` ? `COL351, COL352` ? "source_text": "Students are strongly advised not to register for COL351 (Design of Algorithms) and COL352 (Automata & Computation) in the same semester due to intense mathemati...
+- `data/seed/course_skills.json:2` ? `COL100` ? { "course_code": "COL100", "skill_id": "skill_prog_fundamentals", "depth": "intro", "weight": 1.0 },
+- `data/seed/course_skills.json:3` ? `COL100` ? { "course_code": "COL100", "skill_id": "skill_oop", "depth": "intro", "weight": 0.8 },
+- `data/seed/course_skills.json:4` ? `MTL100` ? { "course_code": "MTL100", "skill_id": "skill_calculus", "depth": "intermediate", "weight": 1.0 },
+- `data/seed/course_skills.json:5` ? `MTL101` ? { "course_code": "MTL101", "skill_id": "skill_linear_algebra", "depth": "intermediate", "weight": 1.0 },
+- `data/seed/course_skills.json:7` ? `ELL100` ? { "course_code": "ELL100", "skill_id": "skill_linear_algebra", "depth": "intro", "weight": 0.5 },
+- `data/seed/course_skills.json:8` ? `COL106` ? { "course_code": "COL106", "skill_id": "skill_dsa_linear", "depth": "intermediate", "weight": 1.0 },
+- `data/seed/course_skills.json:9` ? `COL106` ? { "course_code": "COL106", "skill_id": "skill_dsa_trees", "depth": "intermediate", "weight": 1.0 },
+- `data/seed/course_skills.json:10` ? `COL106` ? { "course_code": "COL106", "skill_id": "skill_algo_design", "depth": "intro", "weight": 0.8 },
+- `data/seed/course_skills.json:11` ? `COL215` ? { "course_code": "COL215", "skill_id": "skill_comp_arch", "depth": "intro", "weight": 0.8 },
+- `data/seed/course_skills.json:12` ? `COL215` ? { "course_code": "COL215", "skill_id": "skill_discrete_math", "depth": "intermediate", "weight": 0.7 },
+- `data/seed/course_skills.json:13` ? `COL216` ? { "course_code": "COL216", "skill_id": "skill_comp_arch", "depth": "advanced", "weight": 1.0 },
+- `data/seed/course_skills.json:14` ? `COL226` ? { "course_code": "COL226", "skill_id": "skill_prog_fundamentals", "depth": "advanced", "weight": 0.9 },
+- `data/seed/course_skills.json:15` ? `COL226` ? { "course_code": "COL226", "skill_id": "skill_discrete_math", "depth": "advanced", "weight": 0.8 },
+- `data/seed/course_skills.json:16` ? `COL331` ? { "course_code": "COL331", "skill_id": "skill_os_concurrency", "depth": "advanced", "weight": 1.0 },
+- `data/seed/course_skills.json:17` ? `COL331` ? { "course_code": "COL331", "skill_id": "skill_os_memory", "depth": "advanced", "weight": 1.0 },
+- `data/seed/course_skills.json:18` ? `COL351` ? { "course_code": "COL351", "skill_id": "skill_algo_design", "depth": "advanced", "weight": 1.0 },
+- `data/seed/course_skills.json:19` ? `COL352` ? { "course_code": "COL352", "skill_id": "skill_discrete_math", "depth": "advanced", "weight": 1.0 },
+- `data/seed/course_skills.json:20` ? `COL362` ? { "course_code": "COL362", "skill_id": "skill_db_relational", "depth": "intermediate", "weight": 1.0 },
+- `data/seed/course_skills.json:21` ? `COL362` ? { "course_code": "COL362", "skill_id": "skill_db_internals", "depth": "intermediate", "weight": 1.0 },
+- `data/seed/course_skills.json:22` ? `COL380` ? { "course_code": "COL380", "skill_id": "skill_distributed_sys", "depth": "advanced", "weight": 1.0 },
+- `data/seed/course_skills.json:23` ? `COL774` ? { "course_code": "COL774", "skill_id": "skill_ml_supervised", "depth": "advanced", "weight": 1.0 },
+- `data/seed/course_skills.json:24` ? `COL774` ? { "course_code": "COL774", "skill_id": "skill_ml_unsupervised", "depth": "advanced", "weight": 0.9 },
+- `data/seed/course_skills.json:25` ? `COL774` ? { "course_code": "COL774", "skill_id": "skill_deep_learning", "depth": "intermediate", "weight": 0.8 },
+- `data/seed/course_skills.json:26` ? `COL770` ? { "course_code": "COL770", "skill_id": "skill_ml_supervised", "depth": "advanced", "weight": 0.8 },
+- `data/seed/course_skills.json:27` ? `COL770` ? { "course_code": "COL770", "skill_id": "skill_algo_design", "depth": "advanced", "weight": 0.7 },
+- `data/seed/course_skills.json:28` ? `COL765` ? { "course_code": "COL765", "skill_id": "skill_discrete_math", "depth": "advanced", "weight": 0.9 },
+- `data/seed/course_skills.json:32` ? `MTL106` ? { "course_code": "MTL106", "skill_id": "skill_probability", "depth": "intermediate", "weight": 1.0 },
+- `data/seed/course_skills.json:43` ? `HUL211` ? { "course_code": "HUL211", "skill_id": "skill_cognitive_psych", "depth": "intro", "weight": 1.0 },
+- `data/seed/course_skills.json:44` ? `HUL261` ? { "course_code": "HUL261", "skill_id": "skill_social_structures", "depth": "intro", "weight": 1.0 },
+- `data/seed/course_skills.json:45` ? `HUL275` ? { "course_code": "HUL275", "skill_id": "skill_environmental_policy", "depth": "intro", "weight": 1.0 },
+- `data/seed/courses.json:3` ? `COL100` ? "code": "COL100",
+- `data/seed/courses.json:18` ? `MTL100` ? "code": "MTL100",
+- `data/seed/courses.json:33` ? `MTL101` ? "code": "MTL101",
+- `data/seed/courses.json:63` ? `ELL100` ? "code": "ELL100",
+- `data/seed/courses.json:78` ? `COL106` ? "code": "COL106",
+- `data/seed/courses.json:93` ? `COL215` ? "code": "COL215",
+- `data/seed/courses.json:108` ? `COL216` ? "code": "COL216",
+- `data/seed/courses.json:123` ? `COL226` ? "code": "COL226",
+- `data/seed/courses.json:138` ? `COL331` ? "code": "COL331",
+- `data/seed/courses.json:153` ? `COL351` ? "code": "COL351",
+- `data/seed/courses.json:168` ? `COL352` ? "code": "COL352",
+- `data/seed/courses.json:183` ? `COL362` ? "code": "COL362",
+- `data/seed/courses.json:198` ? `COL380` ? "code": "COL380",
+- `data/seed/courses.json:213` ? `COL774` ? "code": "COL774",
+- `data/seed/courses.json:228` ? `COL770` ? "code": "COL770",
+- `data/seed/courses.json:243` ? `COL765` ? "code": "COL765",
+- `data/seed/courses.json:288` ? `MTL106` ? "code": "MTL106",
+- `data/seed/courses.json:423` ? `HUL211` ? "code": "HUL211",
+- `data/seed/courses.json:438` ? `HUL261` ? "code": "HUL261",
+- `data/seed/courses.json:453` ? `HUL275` ? "code": "HUL275",
+- `data/seed/modules.json:4` ? `COL100` ? "course_code": "COL100",
+- `data/seed/modules.json:13` ? `COL100` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL100"
+- `data/seed/modules.json:17` ? `COL100` ? "course_code": "COL100",
+- `data/seed/modules.json:26` ? `COL100` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL100"
+- `data/seed/modules.json:30` ? `COL100` ? "course_code": "COL100",
+- `data/seed/modules.json:39` ? `COL100` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL100"
+- `data/seed/modules.json:43` ? `COL100` ? "course_code": "COL100",
+- `data/seed/modules.json:52` ? `COL100` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL100"
+- `data/seed/modules.json:56` ? `COL100` ? "course_code": "COL100",
+- `data/seed/modules.json:65` ? `COL100` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL100"
+- `data/seed/modules.json:69` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/modules.json:77` ? `MTL100` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL100"
+- `data/seed/modules.json:81` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/modules.json:89` ? `MTL100` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL100"
+- `data/seed/modules.json:93` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/modules.json:101` ? `MTL100` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL100"
+- `data/seed/modules.json:105` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/modules.json:113` ? `MTL101` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL101"
+- `data/seed/modules.json:117` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/modules.json:125` ? `MTL101` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL101"
+- `data/seed/modules.json:129` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/modules.json:137` ? `MTL101` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL101"
+- `data/seed/modules.json:189` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/modules.json:197` ? `ELL100` ? "source": "IIT Delhi Courses of Study 2023-24, Electrical Engineering, ELL100"
+- `data/seed/modules.json:201` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/modules.json:209` ? `ELL100` ? "source": "IIT Delhi Courses of Study 2023-24, Electrical Engineering, ELL100"
+- `data/seed/modules.json:213` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/modules.json:221` ? `ELL100` ? "source": "IIT Delhi Courses of Study 2023-24, Electrical Engineering, ELL100"
+- `data/seed/modules.json:225` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/modules.json:233` ? `ELL100` ? "source": "IIT Delhi Courses of Study 2023-24, Electrical Engineering, ELL100"
+- `data/seed/modules.json:237` ? `COL106` ? "course_code": "COL106",
+- `data/seed/modules.json:247` ? `COL106` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL106"
+- `data/seed/modules.json:251` ? `COL106` ? "course_code": "COL106",
+- `data/seed/modules.json:261` ? `COL106` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL106"
+- `data/seed/modules.json:265` ? `COL106` ? "course_code": "COL106",
+- `data/seed/modules.json:275` ? `COL106` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL106"
+- `data/seed/modules.json:279` ? `COL106` ? "course_code": "COL106",
+- `data/seed/modules.json:289` ? `COL106` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL106"
+- `data/seed/modules.json:293` ? `COL106` ? "course_code": "COL106",
+- `data/seed/modules.json:303` ? `COL106` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL106"
+- `data/seed/modules.json:307` ? `COL215` ? "course_code": "COL215",
+- `data/seed/modules.json:316` ? `COL215` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL215"
+- `data/seed/modules.json:320` ? `COL215` ? "course_code": "COL215",
+- `data/seed/modules.json:329` ? `COL215` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL215"
+- `data/seed/modules.json:333` ? `COL215` ? "course_code": "COL215",
+- `data/seed/modules.json:342` ? `COL215` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL215"
+- `data/seed/modules.json:346` ? `COL216` ? "course_code": "COL216",
+- `data/seed/modules.json:354` ? `COL216` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL216"
+- `data/seed/modules.json:358` ? `COL216` ? "course_code": "COL216",
+- `data/seed/modules.json:366` ? `COL216` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL216"
+- `data/seed/modules.json:370` ? `COL216` ? "course_code": "COL216",
+- `data/seed/modules.json:378` ? `COL216` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL216"
+- `data/seed/modules.json:382` ? `COL226` ? "course_code": "COL226",
+- `data/seed/modules.json:391` ? `COL226` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL226"
+- `data/seed/modules.json:395` ? `COL226` ? "course_code": "COL226",
+- `data/seed/modules.json:404` ? `COL226` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL226"
+- `data/seed/modules.json:408` ? `COL226` ? "course_code": "COL226",
+- `data/seed/modules.json:417` ? `COL226` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL226"
+- `data/seed/modules.json:421` ? `COL331` ? "course_code": "COL331",
+- `data/seed/modules.json:430` ? `COL331` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL331"
+- `data/seed/modules.json:434` ? `COL331` ? "course_code": "COL331",
+- `data/seed/modules.json:443` ? `COL331` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL331"
+- `data/seed/modules.json:447` ? `COL331` ? "course_code": "COL331",
+- `data/seed/modules.json:456` ? `COL331` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL331"
+- `data/seed/modules.json:460` ? `COL331` ? "course_code": "COL331",
+- `data/seed/modules.json:469` ? `COL331` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL331"
+- `data/seed/modules.json:473` ? `COL351` ? "course_code": "COL351",
+- `data/seed/modules.json:481` ? `COL351` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL351"
+- `data/seed/modules.json:485` ? `COL351` ? "course_code": "COL351",
+- `data/seed/modules.json:493` ? `COL351` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL351"
+- `data/seed/modules.json:497` ? `COL351` ? "course_code": "COL351",
+- `data/seed/modules.json:505` ? `COL351` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL351"
+- `data/seed/modules.json:509` ? `COL351` ? "course_code": "COL351",
+- `data/seed/modules.json:517` ? `COL351` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL351"
+- `data/seed/modules.json:521` ? `COL352` ? "course_code": "COL352",
+- `data/seed/modules.json:529` ? `COL352` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL352"
+- `data/seed/modules.json:533` ? `COL352` ? "course_code": "COL352",
+- `data/seed/modules.json:541` ? `COL352` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL352"
+- `data/seed/modules.json:545` ? `COL352` ? "course_code": "COL352",
+- `data/seed/modules.json:553` ? `COL352` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL352"
+- `data/seed/modules.json:557` ? `COL362` ? "course_code": "COL362",
+- `data/seed/modules.json:566` ? `COL362` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL362"
+- `data/seed/modules.json:570` ? `COL362` ? "course_code": "COL362",
+- `data/seed/modules.json:579` ? `COL362` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL362"
+- `data/seed/modules.json:583` ? `COL362` ? "course_code": "COL362",
+- `data/seed/modules.json:592` ? `COL362` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL362"
+- `data/seed/modules.json:596` ? `COL362` ? "course_code": "COL362",
+- `data/seed/modules.json:605` ? `COL362` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL362"
+- `data/seed/modules.json:609` ? `COL380` ? "course_code": "COL380",
+- `data/seed/modules.json:617` ? `COL380` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL380"
+- `data/seed/modules.json:621` ? `COL380` ? "course_code": "COL380",
+- `data/seed/modules.json:629` ? `COL380` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL380"
+- `data/seed/modules.json:633` ? `COL380` ? "course_code": "COL380",
+- `data/seed/modules.json:641` ? `COL380` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL380"
+- `data/seed/modules.json:645` ? `COL774` ? "course_code": "COL774",
+- `data/seed/modules.json:655` ? `COL774` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL774"
+- `data/seed/modules.json:659` ? `COL774` ? "course_code": "COL774",
+- `data/seed/modules.json:669` ? `COL774` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL774"
+- `data/seed/modules.json:673` ? `COL774` ? "course_code": "COL774",
+- `data/seed/modules.json:683` ? `COL774` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL774"
+- `data/seed/modules.json:687` ? `COL774` ? "course_code": "COL774",
+- `data/seed/modules.json:697` ? `COL774` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL774"
+- `data/seed/modules.json:701` ? `COL770` ? "course_code": "COL770",
+- `data/seed/modules.json:710` ? `COL770` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL770"
+- `data/seed/modules.json:714` ? `COL770` ? "course_code": "COL770",
+- `data/seed/modules.json:723` ? `COL770` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL770"
+- `data/seed/modules.json:727` ? `COL770` ? "course_code": "COL770",
+- `data/seed/modules.json:736` ? `COL770` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL770"
+- `data/seed/modules.json:740` ? `COL765` ? "course_code": "COL765",
+- `data/seed/modules.json:748` ? `COL765` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL765"
+- `data/seed/modules.json:752` ? `COL765` ? "course_code": "COL765",
+- `data/seed/modules.json:760` ? `COL765` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL765"
+- `data/seed/modules.json:764` ? `COL765` ? "course_code": "COL765",
+- `data/seed/modules.json:772` ? `COL765` ? "source": "IIT Delhi Courses of Study 2023-24, Computer Science and Engineering, COL765"
+- `data/seed/modules.json:839` ? `MTL106` ? "course_code": "MTL106",
+- `data/seed/modules.json:847` ? `MTL106` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL106"
+- `data/seed/modules.json:851` ? `MTL106` ? "course_code": "MTL106",
+- `data/seed/modules.json:859` ? `MTL106` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL106"
+- `data/seed/modules.json:863` ? `MTL106` ? "course_code": "MTL106",
+- `data/seed/modules.json:871` ? `MTL106` ? "source": "IIT Delhi Courses of Study 2023-24, Mathematics, MTL106"
+- `data/seed/modules.json:1143` ? `HUL211` ? "course_code": "HUL211",
+- `data/seed/modules.json:1151` ? `HUL211` ? "source": "IIT Delhi Courses of Study 2023-24, Humanities and Social Sciences, HUL211"
+- `data/seed/modules.json:1155` ? `HUL211` ? "course_code": "HUL211",
+- `data/seed/modules.json:1163` ? `HUL211` ? "source": "IIT Delhi Courses of Study 2023-24, Humanities and Social Sciences, HUL211"
+- `data/seed/modules.json:1167` ? `HUL261` ? "course_code": "HUL261",
+- `data/seed/modules.json:1175` ? `HUL261` ? "source": "IIT Delhi Courses of Study 2023-24, Humanities and Social Sciences, HUL261"
+- `data/seed/modules.json:1179` ? `HUL261` ? "course_code": "HUL261",
+- `data/seed/modules.json:1187` ? `HUL261` ? "source": "IIT Delhi Courses of Study 2023-24, Humanities and Social Sciences, HUL261"
+- `data/seed/modules.json:1191` ? `HUL275` ? "course_code": "HUL275",
+- `data/seed/modules.json:1199` ? `HUL275` ? "source": "IIT Delhi Courses of Study 2023-24, Humanities and Social Sciences, HUL275"
+- `data/seed/modules.json:1203` ? `HUL275` ? "course_code": "HUL275",
+- `data/seed/modules.json:1211` ? `HUL275` ? "source": "IIT Delhi Courses of Study 2023-24, Humanities and Social Sciences, HUL275"
+- `data/seed/prerequisites.json:3` ? `COL106` ? "course_code": "COL106",
+- `data/seed/prerequisites.json:4` ? `COL100` ? "requires_code": "COL100",
+- `data/seed/prerequisites.json:9` ? `COL215` ? "course_code": "COL215",
+- `data/seed/prerequisites.json:10` ? `COL100` ? "requires_code": "COL100",
+- `data/seed/prerequisites.json:15` ? `COL216` ? "course_code": "COL216",
+- `data/seed/prerequisites.json:16` ? `COL215` ? "requires_code": "COL215",
+- `data/seed/prerequisites.json:21` ? `COL226` ? "course_code": "COL226",
+- `data/seed/prerequisites.json:22` ? `COL106` ? "requires_code": "COL106",
+- `data/seed/prerequisites.json:27` ? `COL331` ? "course_code": "COL331",
+- `data/seed/prerequisites.json:28` ? `COL106` ? "requires_code": "COL106",
+- `data/seed/prerequisites.json:33` ? `COL331` ? "course_code": "COL331",
+- `data/seed/prerequisites.json:34` ? `COL216` ? "requires_code": "COL216",
+- `data/seed/prerequisites.json:39` ? `COL351` ? "course_code": "COL351",
+- `data/seed/prerequisites.json:40` ? `COL106` ? "requires_code": "COL106",
+- `data/seed/prerequisites.json:45` ? `COL352` ? "course_code": "COL352",
+- `data/seed/prerequisites.json:46` ? `COL106` ? "requires_code": "COL106",
+- `data/seed/prerequisites.json:51` ? `COL362` ? "course_code": "COL362",
+- `data/seed/prerequisites.json:52` ? `COL106` ? "requires_code": "COL106",
+- `data/seed/prerequisites.json:57` ? `COL380` ? "course_code": "COL380",
+- `data/seed/prerequisites.json:58` ? `COL331` ? "requires_code": "COL331",
+- `data/seed/prerequisites.json:63` ? `COL774` ? "course_code": "COL774",
+- `data/seed/prerequisites.json:64` ? `COL106` ? "requires_code": "COL106",
+- `data/seed/prerequisites.json:69` ? `COL774` ? "course_code": "COL774",
+- `data/seed/prerequisites.json:70` ? `MTL101` ? "requires_code": "MTL101",
+- `data/seed/prerequisites.json:75` ? `COL774` ? "course_code": "COL774",
+- `data/seed/prerequisites.json:76` ? `MTL106` ? "requires_code": "MTL106",
+- `data/seed/prerequisites.json:81` ? `COL770` ? "course_code": "COL770",
+- `data/seed/prerequisites.json:82` ? `COL106` ? "requires_code": "COL106",
+- `data/seed/prerequisites.json:87` ? `COL765` ? "course_code": "COL765",
+- `data/seed/prerequisites.json:88` ? `COL106` ? "requires_code": "COL106",
+- `data/seed/prerequisites.json:94` ? `COL106` ? "requires_code": "COL106",
+- `data/seed/prerequisites.json:100` ? `COL331` ? "requires_code": "COL331",
+- `data/seed/prerequisites.json:105` ? `MTL106` ? "course_code": "MTL106",
+- `data/seed/prerequisites.json:106` ? `MTL100` ? "requires_code": "MTL100",
+- `data/seed/prerequisites.json:112` ? `MTL100` ? "requires_code": "MTL100",
+- `data/seed/skills.json:62` ? `MTL101` ? "source": "IIT Delhi MTL101 Syllabus, Maths Dept",
+- `data/seed/skills.json:71` ? `MTL100` ? "source": "IIT Delhi MTL100 Syllabus, Maths Dept",
+- `data/seed/skills.json:80` ? `MTL106` ? "source": "IIT Delhi MTL106 Syllabus, Maths Dept",
+- `data/seed/skills.json:134` ? `COL774` ? "source": "IIT Delhi COL774 Syllabus / Stanford CS229",
+- `data/seed/skills.json:143` ? `COL774` ? "source": "IIT Delhi COL774 Syllabus / Stanford CS229",
+- `data/seed/skills.json:152` ? `COL774` ? "source": "IIT Delhi COL774 Syllabus / Deep Learning Book (Goodfellow)",
+- `data/seed/skills.json:161` ? `COL380` ? "source": "IIT Delhi COL380 Syllabus, CSE Dept",
+- `data/seed/skills.json:251` ? `HUL261` ? "source": "IIT Delhi HUL261 / UPSC Civil Services Syllabus GS Paper 1 & 2",
+- `data/seed/skills.json:260` ? `HUL275` ? "source": "IIT Delhi HUL275 / UPSC Civil Services Syllabus GS Paper 3",
+- `data/seed/skills.json:269` ? `HUL211` ? "source": "IIT Delhi HUL211 / Kahneman Thinking Fast and Slow",
+- `data/seed/student_profiles.json:14` ? `COL100` ? { "course_code": "COL100", "grade": "B", "semester_completed": 1 },
+- `data/seed/student_profiles.json:15` ? `MTL100` ? { "course_code": "MTL100", "grade": "A-", "semester_completed": 1 },
+- `data/seed/student_profiles.json:16` ? `MTL101` ? { "course_code": "MTL101", "grade": "B", "semester_completed": 2 },
+- `data/seed/student_profiles.json:17` ? `MTL106` ? { "course_code": "MTL106", "grade": "B-", "semester_completed": 3 },
+- `data/seed/student_profiles.json:19` ? `ELL100` ? { "course_code": "ELL100", "grade": "B", "semester_completed": 2 },
+- `data/seed/student_profiles.json:36` ? `COL351, COL352` ? "no_co_taking_courses": [["COL351", "COL352"]],
+- `data/seed/student_profiles.json:56` ? `COL100` ? { "course_code": "COL100", "grade": "A", "semester_completed": 1 },
+- `data/seed/student_profiles.json:57` ? `MTL100` ? { "course_code": "MTL100", "grade": "A", "semester_completed": 1 },
+- `data/seed/student_profiles.json:58` ? `MTL101` ? { "course_code": "MTL101", "grade": "A", "semester_completed": 2 },
+- `data/seed/student_profiles.json:59` ? `COL106` ? { "course_code": "COL106", "grade": "A", "semester_completed": 2 },
+- `data/seed/student_profiles.json:60` ? `COL215` ? { "course_code": "COL215", "grade": "A-", "semester_completed": 3 },
+- `data/seed/student_profiles.json:61` ? `COL216` ? { "course_code": "COL216", "grade": "A", "semester_completed": 4 },
+- `data/seed/student_profiles.json:62` ? `COL331` ? { "course_code": "COL331", "grade": "A-", "semester_completed": 4 }
+- `data/seed/student_profiles.json:91` ? `COL100` ? { "course_code": "COL100", "grade": "B-", "semester_completed": 1 },
+- `data/seed/student_profiles.json:92` ? `MTL100` ? { "course_code": "MTL100", "grade": "B", "semester_completed": 1 },
+- `data/seed/student_profiles.json:93` ? `MTL101` ? { "course_code": "MTL101", "grade": "C", "semester_completed": 2 },
+- `data/seed/student_profiles.json:95` ? `ELL100` ? { "course_code": "ELL100", "grade": "C+", "semester_completed": 2 }
+- `data/seed/student_profiles.json:123` ? `COL100` ? { "course_code": "COL100", "grade": "A", "semester_completed": 1 },
+- `data/seed/student_profiles.json:124` ? `MTL100` ? { "course_code": "MTL100", "grade": "B+", "semester_completed": 1 },
+- `data/seed/student_profiles.json:125` ? `COL106` ? { "course_code": "COL106", "grade": "A-", "semester_completed": 2 },
+- `data/seed/synthetic_profiles.json:15` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:20` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:30` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:35` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:40` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:45` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:50` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:55` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:77` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:78` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:103` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:108` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:118` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:123` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:165` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:166` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:191` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:196` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:206` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:211` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:216` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:221` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:226` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:231` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:253` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:254` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:279` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:284` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:294` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:299` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:341` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:342` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:367` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:372` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:382` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:387` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:392` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:397` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:402` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:407` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:429` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:430` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:455` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:460` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:470` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:475` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:517` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:518` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:543` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:548` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:558` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:563` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:568` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:573` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:578` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:583` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:608` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:609` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:634` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:639` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:649` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:654` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:696` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:697` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:722` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:727` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:737` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:742` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:747` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:752` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:757` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:762` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:784` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:785` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:810` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:815` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:825` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:830` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:872` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:873` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:899` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:904` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:914` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:919` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:924` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:929` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:934` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:939` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:961` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:962` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:987` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:992` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:1002` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:1007` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:1049` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:1050` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:1075` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:1080` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:1090` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:1095` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:1100` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:1105` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:1110` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:1115` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:1137` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:1138` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:1163` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:1168` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:1178` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:1183` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:1228` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:1229` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:1254` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:1259` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:1269` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:1274` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:1279` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:1284` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:1289` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:1294` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:1316` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:1317` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:1342` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:1347` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:1357` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:1362` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:1404` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:1405` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:1430` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:1435` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:1445` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:1450` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:1455` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:1460` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:1465` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:1470` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:1492` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:1493` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:1518` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:1523` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:1533` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:1538` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:1580` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:1581` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:1606` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:1611` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:1621` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:1626` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:1631` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:1636` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:1641` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:1646` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:1668` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:1669` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:1694` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:1699` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:1709` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:1714` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:1756` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:1757` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:1783` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:1788` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:1798` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:1803` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:1808` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:1813` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:1838` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:1839` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:1864` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:1869` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:1879` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:1884` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:1916` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:1917` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:1942` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:1947` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:1957` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:1962` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:1967` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:1972` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:1977` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:1982` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:2004` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:2005` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:2030` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:2035` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:2045` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:2050` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:2092` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:2093` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:2118` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:2123` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:2133` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:2138` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:2143` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:2148` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:2153` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:2158` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:2180` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:2181` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:2206` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:2211` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:2221` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:2226` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:2268` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:2269` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:2294` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:2299` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:2309` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:2314` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:2319` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:2324` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:2329` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:2334` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:2356` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:2357` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:2382` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:2387` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:2397` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:2402` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:2447` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:2448` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:2473` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:2478` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:2488` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:2493` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:2498` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:2503` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:2508` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:2513` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:2535` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:2536` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:2561` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:2566` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:2576` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:2581` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:2613` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:2614` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:2640` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:2645` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:2655` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:2660` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:2665` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:2670` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:2675` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:2680` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:2702` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:2703` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:2728` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:2733` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:2743` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:2748` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:2790` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:2791` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:2816` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:2821` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:2831` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:2836` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:2841` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:2846` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:2851` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:2856` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:2878` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:2879` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:2904` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:2909` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:2919` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:2924` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:2966` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:2967` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:2992` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:2997` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:3007` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:3012` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:3017` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:3022` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:3027` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:3032` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:3057` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:3058` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:3083` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:3088` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:3098` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:3103` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:3145` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:3146` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:3171` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:3176` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:3186` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:3191` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:3196` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:3201` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:3206` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:3211` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:3233` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:3234` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:3259` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:3264` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:3274` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:3279` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:3321` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:3322` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:3347` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:3352` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:3362` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:3367` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:3372` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:3377` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:3382` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:3387` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:3409` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:3410` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:3435` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:3440` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:3450` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:3455` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:3497` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:3498` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:3524` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:3529` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:3539` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:3544` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:3549` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:3554` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:3559` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:3564` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:3586` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:3587` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:3612` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:3617` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:3627` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:3632` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:3677` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:3678` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:3703` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:3708` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:3718` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:3723` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:3728` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:3733` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:3738` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:3743` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:3765` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:3766` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:3791` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:3796` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:3806` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:3811` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:3853` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:3854` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:3879` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:3884` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:3894` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:3899` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:3904` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:3909` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:3914` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:3919` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:3941` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:3942` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:3967` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:3972` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:3982` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:3987` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:4029` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:4030` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:4055` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:4060` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:4070` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:4075` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:4080` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:4085` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:4090` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:4095` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:4117` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:4118` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:4143` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:4148` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:4158` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:4163` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:4205` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:4206` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:4231` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:4236` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:4246` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:4251` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:4256` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:4261` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:4286` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:4287` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:4312` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:4317` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:4327` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:4332` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:4374` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:4375` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:4401` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:4406` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:4416` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:4421` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:4426` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:4431` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:4453` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:4454` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:4479` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:4484` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:4494` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:4499` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:4541` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:4542` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:4567` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:4572` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:4582` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:4587` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:4592` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:4597` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:4602` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:4607` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:4629` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:4630` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:4655` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:4660` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:4670` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:4675` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:4717` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:4718` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:4743` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:4748` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:4758` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:4763` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:4768` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:4773` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:4778` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:4783` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:4805` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:4806` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:4831` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:4836` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:4846` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:4851` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:4896` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:4897` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:4922` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:4927` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:4937` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:4942` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:4947` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:4952` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:4957` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:4962` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:4984` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:4985` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:5010` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:5015` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:5025` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:5030` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:5072` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:5073` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:5098` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:5103` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:5113` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:5118` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:5123` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:5128` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:5133` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:5138` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:5160` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:5161` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:5186` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:5191` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:5201` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:5206` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:5248` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:5249` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:5275` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:5280` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:5290` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:5295` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:5300` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:5305` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:5310` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:5315` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:5337` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:5338` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:5363` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:5368` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:5378` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:5383` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:5415` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:5416` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:5441` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:5446` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:5456` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:5461` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:5466` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:5471` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:5476` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:5481` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:5506` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:5507` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:5532` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:5537` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:5547` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:5552` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:5594` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:5595` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:5620` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:5625` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:5635` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:5640` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:5645` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:5650` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:5655` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:5660` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:5682` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:5683` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:5708` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:5713` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:5723` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:5728` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:5770` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:5771` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:5796` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:5801` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:5811` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:5816` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:5821` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:5826` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:5831` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:5836` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:5858` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:5859` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:5884` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:5889` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:5899` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:5904` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:5946` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:5947` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:5972` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:5977` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:5987` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:5992` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:5997` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:6002` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:6007` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:6012` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:6034` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:6035` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:6060` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:6065` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:6075` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:6080` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:6125` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:6126` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:6152` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:6157` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:6167` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:6172` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:6177` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:6182` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:6204` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:6205` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:6230` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:6235` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:6245` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:6250` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:6282` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:6283` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:6308` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:6313` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:6323` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:6328` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:6333` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:6338` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:6343` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:6348` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:6370` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:6371` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:6396` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:6401` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:6411` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:6416` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:6458` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:6459` ? `COL352` ? "COL352"
+- `data/seed/synthetic_profiles.json:6484` ? `COL100` ? "course_code": "COL100",
+- `data/seed/synthetic_profiles.json:6489` ? `MTL100` ? "course_code": "MTL100",
+- `data/seed/synthetic_profiles.json:6499` ? `MTL101` ? "course_code": "MTL101",
+- `data/seed/synthetic_profiles.json:6504` ? `ELL100` ? "course_code": "ELL100",
+- `data/seed/synthetic_profiles.json:6509` ? `COL106` ? "course_code": "COL106",
+- `data/seed/synthetic_profiles.json:6514` ? `COL215` ? "course_code": "COL215",
+- `data/seed/synthetic_profiles.json:6519` ? `COL226` ? "course_code": "COL226",
+- `data/seed/synthetic_profiles.json:6524` ? `COL216` ? "course_code": "COL216",
+- `data/seed/synthetic_profiles.json:6546` ? `COL351` ? "COL351",
+- `data/seed/synthetic_profiles.json:6547` ? `COL352` ? "COL352"
+- `docs/ARCHITECTURE.md:97` ? `COL106, ELL100` ? Every LLM response is post-processed via an interceptor that scans for course code tokens (e.g., `COL106`, `ELL100`). Any course code not present in the database course catalogu...
+- `docs/BUGS.md:62` ? `COL106` ? * **Reproduction**: Call `edit_student_grade(EditGradeRequest(student_id="S1024", course_code="COL106", new_grade="A"))`. Raised `AttributeError: 'CompletedCourse' object has no...
+- `docs/COPY_GLOSSARY.md:12` ? `COL351, COL352` ? | **Mutex / Incompatibility / Conflict** | **Courses you asked to keep apart** | Calm, non-alarmist phrasing. Avoid computer science synchronization jargon. | "You asked to keep...
+- `docs/EVALUATION_PROCESS.md:49` ? `COL351, COL352` ? - Mutually exclusive courses (e.g., `COL351` Analysis & Design of Algorithms and `COL352` Introduction to Automata) cannot be taken concurrently in the same semester.
+- `docs/PERSONALISATION_STRATEGY.md:30` ? `MTL101` ? - **Context**: A student self-declares high passion for "Machine Learning" (interest prior = 0.8), but earned a Grade D in prerequisite Linear Algebra (`MTL101`).
+- `docs/PERSONALISATION_STRATEGY.md:33` ? `COL770` ? 2. The system **never immediately schedules** advanced machine learning (`COL770`), as doing so violates prerequisite readiness and risks a failing grade.
+- `docs/PERSONALISATION_STRATEGY.md:38` ? `COL106` ? - **Context**: Student passed `COL106` (Data Structures) with Grade B- two semesters ago, but scored 25% on the diagnostic tree traversal drill.
+- `docs/PERSONAS.md:16` ? `COL106, COL351` ? | **Key Trade-off** | Heavy algorithmic coursework (`COL106` $\rightarrow$ `COL351`) increases weekly workload by ~3.5 hrs/week vs. general open electives. |
+- `docs/PERSONAS.md:43` ? `HUL261, ELL405` ? | **Evaluation Process** | Constraint-guided elective selection favoring high-yield, predictable humanities & interdisciplinary electives (e.g. `HUL261`, `ELL405`). |
+- `docs/PERSONAS.md:82` ? `COL770` ? | **Learning Objective** | Complete advanced machine learning and algorithm design coursework (`COL770`) while preserving high GPA for US top-10 admissions. |
+- `docs/SURVEY.md:51` ? `COL106` ? > *"I am in Chemical Engineering and want to crack software placements. But every senior tells me different courses. Some say take COL106, others say self-study LeetCode. I ende...
+- `docs/TRADEOFFS.md:27` ? `COL351, COL362` ? - **The Dilemma**: Non-CS students targeting software roles frequently want to take advanced electives (`COL351` Algorithm Design, `COL362` Database Systems). However, high-diff...
+- `docs/TRADEOFFS.md:30` ? `COL106` ? - When baseline skill gaps are wide (e.g. DSA mastery $< 40\%$), the planner schedules foundational prerequisites (`COL106`) first and reserves advanced courses for later semest...
+- `docs/TRADEOFFS.md:44` ? `COL100, COL106, COL351` ? - Even when accelerated, mandatory DAG dependencies (`COL100` $\rightarrow$ `COL106` $\rightarrow$ `COL351`) are preserved chronologically across distinct semesters.
+- `docs/UI_AUDIT_V2.md:53` ? `HUL275, COL106, HUL275` ? | **16** | **Goal & Content Contradiction (P0)** | `frontend/index.html`: lines 234–250<br>`frontend/static/js/app.js`: lines 170–174 | **P0** | When student is Rohan Verma (S10...
+- `docs/UI_AUDIT_V2.md:56` ? `COL100, COL106, COL351, COL362` ? | **19** | **Irrelevant Prerequisite DAG Path Displayed** | `frontend/index.html`: line 277 | **P1** | Hardcoded `COL100 -> COL106 -> COL351 / COL362` displayed for UPSC and Res...
+- `frontend/index.html:171` ? `HUL275` ? Foundation Reading: Environmental and Social Governance (HUL275)
+- `frontend/index.html:180` ? `HUL275` ? <a href="#" onclick="openWhyDrawer('HUL275', 'Environment, Development and Society', 4)" style="font-size:12px; color:var(--info); text-decoration:none;">
+- `frontend/index.html:225` ? `HUL275, HUL281` ? <span class="definition-value" id="rule-mutex-text">HUL275 & HUL281 separated</span>
+- `frontend/index.html:248` ? `HUL275` ? <a href="#" onclick="sendPresetChat('Why HUL275 was recommended?')" style="color:var(--info); text-decoration:none;">
+- `frontend/static/js/app.js:261` ? `COL106` ? statusSentence.innerText = 'On track for Semester 5. Priority area: Trees and graph algorithms for COL106.';
+- `frontend/static/js/app.js:302` ? `HUL275` ? actionTitle.innerText = 'Foundation Reading: Environmental and Social Governance (HUL275)';
+- `frontend/static/js/app.js:307` ? `COL106` ? actionTitle.innerText = 'Algorithms & Linear Structures: COL106 Foundation';
+- `frontend/static/js/app.js:308` ? `COL106` ? actionDesc.innerText = 'Your diagnostic assessment identified an immediate priority gap in Tree traversals and recursion needed for COL106.';
+- `frontend/static/js/app.js:317` ? `COL351` ? actionTitle.innerText = 'Advanced Algorithmic Complexity: COL351 Prerequisites';
+- `frontend/static/js/app.js:350` ? `HUL275, HUL281` ? mutexEl.innerText = 'HUL275 & HUL281 separated across semesters';
+- `frontend/static/js/app.js:352` ? `COL351, COL352` ? mutexEl.innerText = 'COL351 & COL352 cannot clash';
+- `frontend/static/js/app.js:356` ? `COL351, COL380` ? mutexEl.innerText = 'COL351 & COL380 scheduled in alternate terms';
+- `frontend/static/js/app.js:365` ? `HUL275, HUL281` ? buddyInsightEl.innerText = '\u201CI have structured your Semester 4 through 8 roadmap to center Humanities and Social Science electives (HUL275, HUL281) while keeping your core ...
+- `frontend/static/js/app.js:410` ? `COL351` ? { text: 'Review NP-completeness reductions in COL351 outline', tag: 'Reading', time: '40m', done: false },
+- `frontend/styleguide.html:179` ? `HUL275` ? <div class="text-dense">Semester 4: HUL275 Environment, Development and Society (4.0 credits) &bull; Even semester offering</div>
+- `frontend/styleguide.html:267` ? `COL106` ? <input type="text" class="input" placeholder="Search course code (e.g. COL106)...">
+- `frontend/styleguide.html:281` ? `COL100` ? <span class="combobox-tag">COL100 <span class="combobox-tag-remove">&times;</span></span>
+- `frontend/styleguide.html:282` ? `COL106` ? <span class="combobox-tag">COL106 <span class="combobox-tag-remove">&times;</span></span>
+- `frontend/styleguide.html:353` ? `HUL275, HUL281` ? <span class="definition-value">HUL275 and HUL281 separated across semesters</span>
+- `frontend/styleguide.html:399` ? `HUL275` ? <td><span class="text-mono" style="font-weight:500;">HUL275</span></td>
+- `frontend/styleguide.html:407` ? `HUL281` ? <td><span class="text-mono" style="font-weight:500;">HUL281</span></td>
+- `README.md:36` ? `COL351, COL352` ? 6. Mutually exclusive "no-co-taking" pairs (e.g. `COL351` & `COL352`).
+- `README.md:92` ? `COL100` ? - **Background**: Year 3, Current CGPA 7.8, Completed: Intro to Programming (`COL100`), Maths I–III, ChE Core.
+- `README.md:96` ? `COL106` ? - Semester 6: `COL106` (Data Structures & Algorithms, 4 cr)
+- `README.md:97` ? `COL351` ? - Semester 7: `COL351` (Analysis & Design of Algorithms, 4 cr)
+- `README.md:98` ? `COL362, COL770` ? - Semester 8: `COL362` (Database Systems, 4 cr) + `COP290` (Design Practices, 3 cr) + `COL770` (Advanced ML, 4 cr)
+- `README.md:119` ? `COL351, COL362` ? | **Strong DSA Quiz** | Student scores 95% on tree traversals | `ACCELERATE` | Prerequisite hurdle satisfied early; `COL351` & `COL362` pulled forward. |
+- `README.md:120` ? `COL351` ? | **Weak DSA Quiz** | Student scores 25% on tree traversals | `REMEDIATE` | 2 remedial drills inserted into Sem 6; `COL351` deferred to Sem 7/8; credits capped at 18.0. |
+- `README.md:121` ? `COL362, COL362` ? | **Reject Course** | Student excludes `COL362` | `OVERRIDE_RESOLVE` | Planner re-solves without `COL362`; displays trade-off analysis (skills lost vs. workload saved). |
+- `README.md:130` ? `COL106, COL351, COL362, COL106` ? - **[0:30 - 1:15] Multi-Semester Timeline & "Why this?" Drawers**: Switch to the **Curriculum Plan** tab. Show the multi-semester columns (`COL106` $\rightarrow$ `COL351` $\righ...
+- `README.md:132` ? `COL362` ? - **[1:55 - 2:30] Live Adaptation & Simulation**: Open **Simulation & Admin**. Trigger the **Weak Quiz (25%)** scenario: show the instant before/after plan diff where remedial d...
+- `README.md:133` ? `COL106` ? - **[2:30 - 3:00] Grounded Conversational Buddy**: Open the slide-out **Buddy Drawer**. Ask *"Why was COL106 recommended?"* and *"Show me my skill gaps"*. Inject a prompt inject...
+- `reports/eval.md:32` ? `COL351, COL352` ? - **Rule 6: No-Co-Taking Mutex**: Mutually exclusive course pairs (e.g., COL351 and COL352) never scheduled concurrently.
+- `reports/eval.md:41` ? `COL351, COL362` ? - **Strong Quiz Scenario**: Injected 95% score on Data Structures. The Bayesian Knowledge Tracing engine updated mastery from 0.32 to 0.93. Triggered `RULE_ACCELERATE`, satisfie...
+- `reports/eval.md:58` ? `COL999` ? - **Hallucination Interceptor**: Regex-driven course code filter catches and strips invented course codes (e.g., `COL999`, `FAKE301`).
+- `scripts/build_seed_data.py:37` ? `COL100` ? "COL100": [
+- `scripts/build_seed_data.py:44` ? `COL106` ? "COL106": [
+- `scripts/build_seed_data.py:51` ? `COL215` ? "COL215": [
+- `scripts/build_seed_data.py:56` ? `COL216` ? "COL216": [
+- `scripts/build_seed_data.py:61` ? `COL226` ? "COL226": [
+- `scripts/build_seed_data.py:66` ? `COL331` ? "COL331": [
+- `scripts/build_seed_data.py:72` ? `COL351` ? "COL351": [
+- `scripts/build_seed_data.py:78` ? `COL352` ? "COL352": [
+- `scripts/build_seed_data.py:83` ? `COL362` ? "COL362": [
+- `scripts/build_seed_data.py:89` ? `COL380` ? "COL380": [
+- `scripts/build_seed_data.py:94` ? `COL774` ? "COL774": [
+- `scripts/build_seed_data.py:100` ? `COL770` ? "COL770": [
+- `scripts/build_seed_data.py:105` ? `COL765` ? "COL765": [
+- `scripts/build_seed_data.py:119` ? `MTL100` ? "MTL100": [
+- `scripts/build_seed_data.py:124` ? `MTL101` ? "MTL101": [
+- `scripts/build_seed_data.py:129` ? `MTL106` ? "MTL106": [
+- `scripts/build_seed_data.py:140` ? `ELL100` ? "ELL100": [
+- `scripts/build_seed_data.py:184` ? `HUL211` ? "HUL211": [
+- `scripts/build_seed_data.py:188` ? `HUL261` ? "HUL261": [
+- `scripts/build_seed_data.py:192` ? `HUL275` ? "HUL275": [
+- `scripts/build_seed_data.py:834` ? `COL106, COL215, COL331, COL362` ? "mandatory_courses": ["COL106", "COL215", "COL331", "COL362"]
+- `scripts/build_seed_data.py:836` ? `COL106, COL215, COL331, COL362` ? "source_text": "To earn a Minor in CSE, a non-CS student must have CGPA >= 7.5, complete 20 credits in COL courses including COL106, COL215, COL331, and COL362.",
+- `scripts/build_seed_data.py:859` ? `COL351, COL352` ? "parameters": { "course_pair": ["COL351", "COL352"], "reason": "Severe theoretical workload overlap" },
+- `scripts/build_seed_data.py:860` ? `COL351, COL352` ? "source_text": "Students are strongly advised not to register for COL351 (Design of Algorithms) and COL352 (Automata & Computation) in the same semester due to intense mathemati...
+- `scripts/evaluate.py:206` ? `COL106, COL999` ? fake_text = "Take COL106 then COL999 and FAKE301 next semester."
+- `scripts/evaluate.py:208` ? `COL999` ? intercepted = ("COL999" not in sanitized) and ("[Unverified Course Code Intercepted]" in sanitized)
+- `scripts/evaluate.py:244` ? `COL774` ? tampered_plan["semesters"][0]["courses"][0]["code"] = "COL774"
+- `scripts/evaluate.py:346` ? `COL351, COL352` ? - **Rule 6: No-Co-Taking Mutex**: Mutually exclusive course pairs (e.g., COL351 and COL352) never scheduled concurrently.
+- `scripts/evaluate.py:355` ? `COL351, COL362` ? - **Strong Quiz Scenario**: Injected 95% score on Data Structures. The Bayesian Knowledge Tracing engine updated mastery from 0.32 to 0.93. Triggered `RULE_ACCELERATE`, satisfie...
+- `scripts/evaluate.py:372` ? `COL999` ? - **Hallucination Interceptor**: Regex-driven course code filter catches and strips invented course codes (e.g., `COL999`, `FAKE301`).
+- `scripts/generate_profiles.py:26` ? `COL100, MTL100` ? ("COL100", "A"), ("MTL100", "A-"), ("PYL100", "B"),
+- `scripts/generate_profiles.py:27` ? `MTL101, ELL100, COL106` ? ("MTL101", "A"), ("ELL100", "B+"), ("COL106", "A-"),
+- `scripts/generate_profiles.py:28` ? `COL215, COL226, COL216` ? ("COL215", "B"), ("COL226", "A-"), ("COL216", "B+")
+- `scripts/generate_profiles.py:32` ? `COL100, MTL100` ? ("COL100", "B"), ("MTL100", "B+"), ("PYL100", "B"),
+- `scripts/generate_profiles.py:33` ? `MTL101, ELL100` ? ("MTL101", "B-"), ("ELL100", "B"), ("CLL110", "B"),
+- `scripts/generate_profiles.py:86` ? `COL351, COL352` ? "no_co_taking_courses": [["COL351", "COL352"]],
+- `scripts/generate_profiles.py:98` ? `MTL101` ? # Find MTL101 and downgrade
+- `scripts/generate_profiles.py:100` ? `MTL101` ? if c["course_code"] == "MTL101":
+- `tests/test_adaptation.py:58` ? `COL362` ? actions = adaptation_policy_engine.evaluate_signals("S1024", {"student_override": {"rejected_course": "COL362"}})
+- `tests/test_adaptation.py:86` ? `COL362` ? res = adaptation_simulator.run_course_override("S1024", rejected_course="COL362")
+- `tests/test_adaptation.py:91` ? `COL362` ? # Verify COL362 is absent from all scheduled semesters
+- `tests/test_adaptation.py:93` ? `COL362` ? self.assertNotIn("COL362", scheduled_codes)
+- `tests/test_adaptation.py:97` ? `COL362` ? self.assertEqual(tradeoffs["rejected_course"], "COL362")
+- `tests/test_adaptation.py:98` ? `COL362` ? self.assertIn("COL362", tradeoffs["removed_courses"])
+- `tests/test_adaptation.py:128` ? `COL362` ? ovr_res = submit_course_override(CourseOverrideRequest(student_id="S1024", rejected_course="COL362"))
+- `tests/test_buddy.py:30` ? `COL106` ? self.assertEqual(buddy_router.classify_intent("Why was COL106 recommended?"), "EXPLAIN_COURSE")
+- `tests/test_buddy.py:34` ? `COL362` ? self.assertEqual(buddy_router.classify_intent("I don't want to take COL362"), "OVERRIDE_COURSE")
+- `tests/test_buddy.py:52` ? `COL106, COL999` ? test_text = "You should enroll in COL106 and take fake course COL999 or FAKE101 next term."
+- `tests/test_buddy.py:54` ? `COL106` ? self.assertIn("COL106", sanitized)
+- `tests/test_buddy.py:55` ? `COL999` ? self.assertNotIn("COL999", sanitized)
+- `tests/test_buddy.py:66` ? `COL106` ? t2 = buddy_router.handle_message("S1024", "Why was COL106 recommended for me?")
+- `tests/test_buddy.py:68` ? `COL106` ? self.assertIn("COL106", t2["reply"])
+- `tests/test_knowledge_base.py:37` ? `COL106` ? """Verifies deep course details for COL106 (Data Structures)."""
+- `tests/test_knowledge_base.py:38` ? `COL106` ? detail = get_course_detail("COL106")
+- `tests/test_knowledge_base.py:39` ? `COL106` ? self.assertEqual(detail["code"], "COL106")
+- `tests/test_knowledge_base.py:45` ? `COL100` ? self.assertIn("COL100", prereqs)
+- `tests/test_llm_wrapper.py:27` ? `COL106` ? {"semester": 3, "code": "COL106", "title": "Data Structures & Algorithms", "credits": 4, "skills_targeted": ["Data Structures", "Algorithms"]},
+- `tests/test_llm_wrapper.py:28` ? `ELL100` ? {"semester": 3, "code": "ELL100", "title": "Intro to Electrical Eng", "credits": 4, "skills_targeted": []}
+- `tests/test_llm_wrapper.py:36` ? `COL106` ? self.assertIn("COL106", res["content"])
+- `tests/test_llm_wrapper.py:51` ? `COL106, COL215, MTL106` ? valid_courses = ["COL106", "COL215", "MTL106"]
+- `tests/test_llm_wrapper.py:52` ? `COL106` ? test_text = "You should take COL106 and FAK999 for machine learning."
+- `tests/test_llm_wrapper.py:54` ? `COL106` ? self.assertIn("COL106", verified)
+- `tests/test_phase1_audit.py:128` ? `COL106` ? course_code="COL106",
+- `tests/test_phase1_audit.py:137` ? `col106, COL106` ? col106 = next(c for c in prof.completed_courses if c.course_code == "COL106")
+- `tests/test_phase1_audit.py:138` ? `col106` ? self.assertEqual(col106.grade, "A")
+- `tests/test_phase1_audit.py:144` ? `COL106` ? code="COL106",
+- `tests/test_phase1_audit.py:150` ? `COL106` ? self.assertEqual(multi_semester_planner.courses["COL106"]["credits"], 5.0)
+- `tests/test_phase1_audit.py:151` ? `COL106` ? self.assertEqual(rule_registry.courses_db["COL106"]["credits"], 5.0)
+- `tests/test_phase1_audit.py:155` ? `COL380` ? course_code="COL380",
+- `tests/test_phase1_audit.py:156` ? `COL106` ? requires_code="COL106",
+- `tests/test_phase1_audit.py:162` ? `COL106, COL380` ? self.assertIn("COL106", multi_semester_planner.prereq_map["COL380"])
+- `tests/test_phase1_audit.py:163` ? `COL106, COL380` ? self.assertIn("COL106", rule_registry.prereq_map["COL380"])
+- `tests/test_planner.py:35` ? `COL106` ? self.assertIn("COL106", scheduled_courses)
+- `tests/test_planner.py:68` ? `COL331, COL106, COL216` ? # Desired COL331 requires COL106 and COL216
+- `tests/test_planner.py:69` ? `COL331` ? infeasible_res = test_infeasible_request(InfeasibleRequestModel(student_id="S1024", desired_course_code="COL331"))
+- `tests/test_planner.py:72` ? `COL106` ? self.assertIn("COL106", infeasible_res["missing_prerequisites"])
+- `tests/test_practice_mastery.py:120` ? `COL100` ? # Create student who completed COL100 (Grade B) but has ZERO active test attempts
+- `tests/test_practice_mastery.py:128` ? `COL100` ? completed_courses=[CompletedCourse(course_code="COL100", grade="B", semester_completed=1)]
+- `tests/test_rules_certificate.py:85` ? `COL106` ? # Remove COL106 from completed courses
+- `tests/test_rules_certificate.py:87` ? `COL106` ? c for c in prof_dict["completed_courses"] if c["course_code"] != "COL106"
+- `tests/test_rules_certificate.py:89` ? `COL351, COL106` ? # Invert: put dependent course COL351 in Semester 6, and prerequisite COL106 later in Semester 7
+- `tests/test_rules_certificate.py:90` ? `COL351` ? corrupted["semesters"][0]["courses"] = [{"code": "COL351", "credits": 4.0}]
+- `tests/test_rules_certificate.py:91` ? `COL106` ? corrupted["semesters"][1]["courses"] = [{"code": "COL106", "credits": 4.0}]
+- `tests/test_rules_certificate.py:97` ? `COL351` ? self.assertIn("COL351", prereq_res.message)
+- `tests/test_rules_certificate.py:98` ? `COL106, COL351` ? self.assertIn("Chain: COL106 -> COL351", prereq_res.message)
+- `tests/test_rules_certificate.py:103` ? `COL351` ? # COL351 is Autumn-only (Odd semesters). Force it into Semester 6 or 8 (Even).
+- `tests/test_rules_certificate.py:106` ? `COL351` ? "code": "COL351",
+- `tests/test_rules_certificate.py:116` ? `COL351` ? self.assertIn("COL351", parity_res.message)
+- `tests/test_rules_certificate.py:124` ? `COL765` ? {"code": "COL765", "credits": 4.0},
+- `tests/test_rules_certificate.py:125` ? `COL774` ? {"code": "COL774", "credits": 4.0},
+- `tests/test_rules_certificate.py:126` ? `COL780` ? {"code": "COL780", "credits": 4.0},
+- `tests/test_rules_certificate.py:136` ? `COL351, COL352` ? """Mutation test: placing COL351 and COL352 together fails no-co-taking rule."""
+- `tests/test_rules_certificate.py:139` ? `COL351` ? first_sem["courses"].append({"code": "COL351", "credits": 4.0})
+- `tests/test_rules_certificate.py:140` ? `COL352` ? first_sem["courses"].append({"code": "COL352", "credits": 4.0})
+- `tests/test_rules_certificate.py:146` ? `COL351, COL352` ? self.assertIn("COL351 and COL352", co_res.message)
+- `tests/test_rules_certificate.py:177` ? `COL774` ? tampered_plan["semesters"][0]["courses"][0]["code"] = "COL774"
+
+## Binary/document limitation
+
+- `data/raw/courses of study.pdf` is a PDF and was inspected separately; its extracted title identifies it as IIT Bhilai ?Courses of Study? (October 2026). Binary PDF contents are not represented as source-code line hits.
+
+## Source verification and current decision
+
+- The user selected BTech Computer Science and Engineering (CSE) to replace the existing Chemical Engineering persona/programme and supplied `https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs`.
+- The official URL returned HTTP 200 with `application/pdf`; its 2,402,620-byte response is byte-identical to `data/raw/courses of study.pdf` (SHA-256 `a2e622db6ad7ec54067c29577934641901b21f6c916e9b11603ba97c16501f9d`).
+- The PDF identifies itself as the October 2026 Courses of Study applicable from the 2023 batch onwards. Pages 21–22 list CSE category credit requirements and semester sequencing; page 9 defines programme-elective, open-elective, and liberal-arts categories; page 136 begins Liberal Arts course descriptions.
+- The PDF does not identify a maximum credit load per semester, and it does not enumerate which cross-discipline course offerings are eligible for the CSE open-elective bouquet. The application currently enforces legacy 22/24-credit caps and uses IIT Delhi course catalogues/rules.
+- The user selected a bounded migration that leaves the cap and OE eligibility unavailable, then chose to wait until course equivalencies are verified. Existing synthetic profiles contain IIT Delhi course codes, grades, and diagnostic evidence; the PDF does not establish IIT Bhilai equivalencies for those records.
+- No programme, course, prerequisite, elective, or rule seed data has been changed. Do not count or relabel IIT Delhi academic records as IIT Bhilai CSE credit. Migration remains paused pending an official or user-approved equivalency mapping.

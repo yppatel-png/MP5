@@ -1,0 +1,28 @@
+[
+  {
+    "code": "BH-CSE-BTECH",
+    "name": "B.Tech in Computer Science and Engineering",
+    "department": "Computer Science and Engineering",
+    "total_credits": 144,
+    "semesters": 8,
+    "core_credits": 52,
+    "elective_credits": 22.5,
+    "open_credits": 15,
+    "structure": {
+      "credit_categories": {
+        "IC": 40.5,
+        "PL": 4,
+        "PC": 52,
+        "PE": 22.5,
+        "OE": 15,
+        "LA": 10
+      },
+      "additional_non_graded_core_units": 12,
+      "semester_credit_limits": "not specified in the supplied source",
+      "elective_offerings_and_eligibility": "not specified in the supplied source",
+      "curriculum_source": "IIT Bhilai Courses of Study, October 2026, pages 21-22"
+    },
+    "source": "IIT Bhilai Courses of Study, October 2026, BTech CSE curriculum, pages 21-22",
+    "last_verified": "Source-backed curriculum snapshot"
+  }
+]

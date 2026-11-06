@@ -1,0 +1,27 @@
+Source: https://www.iitbhilai.ac.in/index.php?pid=nav_academic
+Accessed: 2026-11-06
+
+IIT Bhilai currently offers BTech, MTech, MSc and PhD programs in the following disciplines:
+
+- Bioscience and Biomedical Engineering: PhD
+- Bioengineering: MTech
+- Biomedical Devices: MTech
+- Chemistry: MSc, PhD
+- Computer Science and Engineering: BTech, MTech, PhD
+- Data Science and Artificial Intelligence: BTech, MTech, PhD
+- Electric Vehicle Technology: MTech
+- Electrical Engineering: BTech, PhD
+- Power Systems and Power Electronics: MTech
+- Control and Instrumentation: MTech
+- Electronics and Communication Engineering: BTech, MTech, PhD
+- Communication and Signal Processing: MTech
+- Microelectronics and VLSI: MTech
+- Liberal Arts: PhD
+- Materials Science and Metallurgical Engineering: BTech, MTech, PhD
+- Mathematics: PhD
+- Mathematics and Computing: MSc
+- Mechanical Engineering: BTech, PhD
+- Design and Manufacturing: MTech
+- Thermal and Fluids Engineering: MTech
+- Mechatronics Engineering: BTech, MTech, PhD
+- Physics: MSc, PhD

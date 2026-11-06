@@ -1,0 +1,336 @@
+/* ==============================================================================
+   SCREEN-SPECIFIC STYLES - QUIET ACADEMIC INSTRUMENT
+   Imports design tokens, component library, and base shell layout.
+   Zero External Dependencies & 100% Offline Compliant.
+   ============================================================================== */
+
+@import url("./tokens.css");
+@import url("./components.css");
+@import url("./layout.css");
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 420px;
+  height: 100vh;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  transform: translateX(102%);
+  transition: transform 0.24s ease;
+  z-index: 40;
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18px, 1fr));
+  gap: 4px;
+}
+
+/* ----------------------------------------------------------------------------
+   SCREEN: PLAN (Roadmap Timeline Grid & Course Tiles)
+   ---------------------------------------------------------------------------- */
+.plan-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-20);
+  margin-top: var(--space-20);
+}
+
+.sem-column {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  padding: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.sem-head {
+  padding-bottom: var(--space-12);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.sem-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.sem-stats {
+  font-size: 12px;
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+}
+
+.course-tile {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-12);
+  cursor: pointer;
+  transition: border-color var(--duration-hover) var(--ease-standard),
+              background-color var(--duration-hover) var(--ease-standard);
+  position: relative;
+}
+
+.course-tile:hover {
+  border-color: var(--border-strong);
+  background-color: var(--surface-2);
+}
+
+.course-tile-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.course-code-txt {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.course-credits-txt {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--ink-3);
+}
+
+.course-title-txt {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: var(--space-8);
+}
+
+.skill-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.skill-chip {
+  font-size: 10px;
+  line-height: 14px;
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--ink-2);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* ----------------------------------------------------------------------------
+   SCREEN: LEARN & PRACTICE (Split View & Code Editor)
+   ---------------------------------------------------------------------------- */
+.learn-split-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--space-24);
+  align-items: start;
+}
+
+.code-box-container {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+}
+
+.code-box-header {
+  background-color: var(--surface-2);
+  padding: var(--space-8) var(--space-16);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--ink-2);
+}
+
+textarea.code-editor-input {
+  width: 100%;
+  height: 260px;
+  background-color: var(--surface);
+  color: var(--ink);
+  border: none;
+  padding: var(--space-16);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+  outline: none;
+  font-feature-settings: "tnum" 1;
+}
+
+.code-output-pane {
+  background-color: var(--surface-2);
+  border-top: 1px solid var(--border);
+  padding: var(--space-12) var(--space-16);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-2);
+  max-height: 140px;
+  overflow-y: auto;
+}
+
+/* ----------------------------------------------------------------------------
+   SCREEN: SKILLS MATRIX (Grouped Matrix View)
+   ---------------------------------------------------------------------------- */
+.skills-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-16);
+  margin-top: var(--space-16);
+}
+
+.skill-matrix-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  padding: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.skill-matrix-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.skill-name-txt {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* ----------------------------------------------------------------------------
+   SCREEN: TODAY (Dashboard Grid & Rows)
+   ---------------------------------------------------------------------------- */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  gap: var(--space-24);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.action-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  padding: var(--space-20);
+  margin-bottom: var(--space-20);
+}
+
+.action-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-8);
+}
+
+.checklist-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+  padding: 10px var(--space-16);
+  border-bottom: 1px solid var(--border);
+  gap: var(--space-12);
+  cursor: pointer;
+  transition: background-color var(--duration-hover) var(--ease-standard);
+  font-size: 13px;
+}
+
+.check-row:last-child {
+  border-bottom: none;
+}
+
+.check-row:hover {
+  background-color: var(--surface-2);
+}
+
+.check-row.checked {
+  color: var(--ink-3);
+}
+
+.check-row.checked .task-text {
+  text-decoration: line-through;
+}
+
+.task-text {
+  flex: 1;
+  color: var(--ink);
+}
+
+.task-meta-time {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--ink-3);
+}
+
+/* ----------------------------------------------------------------------------
+   CHAT BUBBLE STYLING IN BUDDY PANEL
+   ---------------------------------------------------------------------------- */
+.chat-stream-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.chat-msg {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 90%;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.chat-msg.user {
+  align-self: flex-end;
+  background-color: var(--surface-2);
+  padding: 8px var(--space-12);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  color: var(--ink);
+}
+
+.chat-msg.assistant {
+  align-self: flex-start;
+  color: var(--ink);
+  background: transparent;
+  padding: 4px 0;
+}
+
+.chat-grounding-line {
+  font-size: 11px;
+  color: var(--ink-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Buddy</title>
+  <link rel="stylesheet" href="/static/css/tokens.css">
+  <link rel="stylesheet" href="/static/css/components.css">
+  <link rel="stylesheet" href="/static/css/layout.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div id="app-shell-legacy" style="display:none">Adobe Personalised Learning Buddy</div>
+
+  <!-- App Shell -->
+  <div class="app-shell">
+
+    <!-- Left Sidebar (240px, collapsible to 64px) -->
+    <aside class="app-sidebar" id="app-sidebar">
+      <div class="sidebar-header">
+        <a href="/" class="sidebar-brand">
+          <span class="sidebar-brand-mark">B</span>
+          <span>Learning Buddy</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-item is-active" data-target="dashboard" onclick="switchTab('dashboard')">
+          <span class="nav-item-icon" data-icon="layout-dashboard" data-icon-size="16"></span>
+          <span class="nav-item-label">Today</span>
+        </div>
+        <div class="nav-item" data-target="setup" onclick="switchTab('setup')">
+          <span class="nav-item-icon" data-icon="settings" data-icon-size="16"></span>
+          <span class="nav-item-label">Personalize</span>
+        </div>
+        <div class="nav-item" data-target="plan" onclick="switchTab('plan')">
+          <span class="nav-item-icon" data-icon="calendar" data-icon-size="16"></span>
+          <span class="nav-item-label">Plan</span>
+        </div>
+        <div class="nav-item" data-target="practice" onclick="switchTab('practice')">
+          <span class="nav-item-icon" data-icon="book-open" data-icon-size="16"></span>
+          <span class="nav-item-label">Learn</span>
+        </div>
+        <div class="nav-item" data-target="mastery" onclick="switchTab('mastery')">
+          <span class="nav-item-icon" data-icon="check-circle" data-icon-size="16"></span>
+          <span class="nav-item-label">Skills</span>
+        </div>
+        <div class="nav-item" data-target="diagnostic" onclick="switchTab('diagnostic')">
+          <span class="nav-item-icon" data-icon="clipboard-check" data-icon-size="16"></span>
+          <span class="nav-item-label">Diagnostic</span>
+        </div>
+        <div class="nav-item" onclick="toggleBuddyPanel()">
+          <span class="nav-item-icon" data-icon="message-square" data-icon-size="16"></span>
+          <span class="nav-item-label">Buddy</span>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="nav-item" data-target="admin" onclick="switchTab('admin')">
+          <span class="nav-item-icon" data-icon="shield" data-icon-size="16"></span>
+          <span class="nav-item-label">Admin</span>
+          <span class="tag tag-neutral" style="font-size:10px; padding:0 4px;">Console</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Container -->
+    <main class="app-main">
+
+      <!-- Demo Bar (32px strip, visible in demo mode) -->
+      <div class="demo-bar" id="demo-bar">
+        <div class="demo-bar-left">
+          <span>Viewing as:</span>
+          <select id="persona-select" class="demo-persona-select">
+            <option value="" selected disabled>Loading personas...</option>
+          </select>
+        </div>
+        <div class="demo-bar-right">
+          <span class="tag tag-neutral" id="llm-status-pill">&bull; Offline (Deterministic)</span>
+          <button class="btn btn-ghost btn-sm" onclick="resetDatabasePrompt()" style="height:22px; padding:0 6px; font-size:11px;">
+            Reset data
+          </button>
+        </div>
+      </div>
+
+      <!-- Top Bar (56px) -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <div class="breadcrumb">
+            <span id="topbar-section-title" style="font-weight:600; color:var(--ink);">Today</span>
+            <span>/</span>
+            <span id="topbar-student-label" class="text-meta"></span>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="goal-chip" id="topbar-goal-chip">
+            <span data-icon="compass" data-icon-size="14"></span>
+            <span id="topbar-goal-text">Goal: UPSC (Civil Services)</span>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="topbar-buddy-btn" onclick="toggleBuddyPanel()">
+            <span data-icon="message-square" data-icon-size="14"></span>
+            Buddy
+          </button>
+          <button class="btn btn-ghost btn-sm" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle theme">
+            <span data-icon="moon" data-icon-size="14" id="theme-icon"></span>
+          </button>
+          <div class="avatar" id="user-avatar">RV</div>
+        </div>
+      </header>
+
+      <!-- Content Viewport -->
+      <div id="student-load-state" class="student-load-state" role="status" aria-live="polite">
+        <span class="visually-hidden">Loading student data</span>
+        <div class="loading-skeleton loading-skeleton-title"></div>
+        <div class="loading-skeleton loading-skeleton-line"></div>
+        <div class="loading-skeleton loading-skeleton-panel"></div>
+      </div>
+      <div class="app-content" id="app-content" hidden>
+        <div id="curriculum-scope-notice" class="text-meta" role="status" hidden
+             style="margin-bottom:var(--space-16); padding:var(--space-12); border:1px solid var(--border); border-radius:var(--radius-panel); background:var(--surface-2);"></div>
+
+        <section id="view-setup" class="tab-pane">
+          <div style="margin-bottom:var(--space-16);">
+            <h2 class="text-title">Personalize your plan</h2>
+            <div class="text-meta" id="setup-scope-description">Set your goal and study constraints. The planner will regenerate and independently validate your roadmap.</div>
+          </div>
+          <div class="setup-form">
+            <label>Name <input id="setup-name" class="input" autocomplete="name"></label>
+            <label>Career / learning goal
+              <select id="setup-goal" class="input">
+                <option value="goal_software">Software Engineering & Systems</option>
+                <option value="goal_research">Higher Studies & Research</option>
+                <option value="goal_upsc">UPSC Civil Services</option>
+                <option value="goal_startup">Entrepreneurship</option>
+              </select>
+            </label>
+            <label>Current CGPA (0–10) <input id="setup-cgpa" type="number" min="0" max="10" step="0.1" class="input"></label>
+            <label>Independent study hours per week <input id="setup-hours" type="number" min="0" max="80" step="1" class="input"></label>
+            <label class="setup-wide">Interests (comma-separated)
+              <input id="setup-interests" class="input" placeholder="systems, machine learning, policy">
+            </label>
+            <button id="setup-save-btn" class="btn btn-primary" onclick="saveOnboarding()">Save preferences & generate plan</button>
+            <div id="setup-status" class="text-meta" role="status" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 1: TODAY (Dashboard Specification)
+             ========================================== -->
+        <section id="view-dashboard" class="tab-pane active">
+
+          <!-- 1. Header Block (No card, no gradient) -->
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:var(--space-20);">
+            <div>
+              <h1 class="text-title" id="dash-name"></h1>
+              <div class="text-meta" id="dash-meta" style="margin-top:4px;">
+                &mdash;
+              </div>
+            </div>
+            <div>
+              <button class="btn btn-primary btn-md" onclick="switchTab('plan')">
+                View plan
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. Status Sentence (Plain language, derived from data) -->
+          <div class="text-lead student-status" id="dash-status-sentence" style="margin-bottom:var(--space-24);">
+            &mdash;
+          </div>
+
+          <!-- 3. Stat Row (Three stats, hairline-separated, no cards) -->
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); border:1px solid var(--border); border-radius:var(--radius-panel); background:var(--surface); margin-bottom:var(--space-24);">
+            <div style="padding:var(--space-16); border-right:1px solid var(--border);">
+              <div class="stat-label">Goal Readiness</div>
+              <div class="stat-value" id="dash-readiness-val">&mdash;</div>
+              <div class="text-meta" id="dash-readiness-sub" style="margin-top:4px;">
+                Not enough evidence yet &bull; <a href="#" onclick="switchTab('practice')" style="color:var(--accent); text-decoration:none;">Take diagnostic</a>
+              </div>
+            </div>
+            <div style="padding:var(--space-16); border-right:1px solid var(--border);">
+              <div class="stat-label">This Week's Study</div>
+              <div class="stat-value" id="dash-hours-val">&mdash;</div>
+              <div class="stat-delta is-neutral" id="dash-hours-sub">Study activity has not been logged</div>
+            </div>
+            <div style="padding:var(--space-16);">
+              <div class="stat-label">Skills Demonstrated</div>
+              <div class="stat-value" id="dash-skills-val">0</div>
+              <div class="stat-delta is-neutral" id="dash-skills-sub">Verified proficiency threshold</div>
+            </div>
+          </div>
+
+          <!-- 4. Two-Column Body (8 cols left, 4 cols right) -->
+          <div class="dashboard-grid">
+
+            <!-- Left Column (8 cols): Next best action & This week -->
+            <div>
+              <!-- Next best action -->
+              <div class="action-card">
+                <div class="action-card-header">
+                  <div class="overline">Next Best Action</div>
+                  <span class="tag tag-neutral" id="dash-action-time">Time estimate unavailable</span>
+                </div>
+                <h3 class="text-section" id="dash-action-title" style="margin-bottom:6px;">
+                  Review your next planned semester
+                </h3>
+                <p class="text-body prose-readable" id="dash-action-desc" style="color:var(--ink-2); margin-bottom:var(--space-16);">
+                  This plan is shown for your saved goal. Diagnostic results are not used to justify this course.
+                </p>
+                <div style="display:flex; align-items:center; gap:var(--space-12);">
+                  <button class="btn btn-secondary btn-sm" id="dash-action-btn" onclick="switchTab('plan')">
+                    Review plan
+                  </button>
+                  <a href="#" id="dash-action-why" hidden style="font-size:12px; color:var(--info); text-decoration:none;">
+                    Why this course? &rarr;
+                  </a>
+                </div>
+              </div>
+
+              <!-- This week checklist -->
+              <div>
+                <div class="overline" style="margin-bottom:var(--space-8);">Next Semester Plan</div>
+                <div class="checklist-container" id="dash-checklist-items">
+                  <!-- Dynamically populated per goal -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column (4 cols): Rules that apply to you -->
+            <div>
+              <div class="overline" style="margin-bottom:var(--space-8);">Rules That Apply to You</div>
+              <div class="definition-list" style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
+                <div class="definition-row">
+                  <span class="definition-label">
+                    <span data-icon="check-circle" data-icon-size="14" style="color:var(--success);"></span>
+                    Credit headroom
+                  </span>
+                  <span class="definition-value" id="rule-credit-headroom">&mdash;</span>
+                </div>
+                <div class="definition-row">
+                  <span class="definition-label">
+                    <span data-icon="check-circle" data-icon-size="14" style="color:var(--success);"></span>
+                    Open elective slots
+                  </span>
+                  <span class="definition-value" id="rule-open-electives">&mdash;</span>
+                </div>
+                <div class="definition-row">
+                  <span class="definition-label">
+                    <span data-icon="book-open" data-icon-size="14" id="rule-minor-icon" style="color:var(--info);"></span>
+                    Programme
+                  </span>
+                  <span class="definition-value" id="rule-minor-status">&mdash;</span>
+                </div>
+                <div class="definition-row">
+                  <span class="definition-label">
+                    <span data-icon="shield" data-icon-size="14" style="color:var(--info);"></span>
+                    Courses planned next semester
+                  </span>
+                  <span class="definition-value" id="rule-mutex-text">&mdash;</span>
+                </div>
+                <div class="definition-row">
+                  <span class="definition-label">
+                    <span data-icon="sliders" data-icon-size="14" style="color:var(--ink-3);"></span>
+                    Closest limit
+                  </span>
+                  <span class="definition-value" id="rule-closest-limit">&mdash;</span>
+                </div>
+                <div style="margin-top:var(--space-12); padding-top:var(--space-8); border-top:1px solid var(--border); text-align:right;">
+                  <a href="#" onclick="openCertificateDrawer()" style="font-size:12px; color:var(--info); text-decoration:none; font-weight:500;">
+                    See full certificate &rarr;
+                  </a>
+                </div>
+              </div>
+
+              <!-- From your buddy block -->
+              <div style="margin-top:var(--space-20); background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
+                <div class="overline" style="margin-bottom:var(--space-6);">From Your Buddy</div>
+                <p class="text-dense" id="dash-buddy-insight" style="color:var(--ink-2); line-height:1.6; margin-bottom:var(--space-12);">
+                  &mdash;
+                </p>
+                <div style="display:flex; flex-direction:column; gap:6px; font-size:12px;">
+                  <a href="#" onclick="sendPresetChat('Why HUL275 was recommended?')" style="color:var(--info); text-decoration:none;">
+                    &rarr; Why this elective?
+                  </a>
+                  <a href="#" onclick="sendPresetChat('What are my verified skill gaps?')" style="color:var(--info); text-decoration:none;">
+                    &rarr; What are my verified skill gaps?
+                  </a>
+                  <a href="#" onclick="sendPresetChat('What should I focus on next?')" style="color:var(--info); text-decoration:none;">
+                    &rarr; What should I focus on next?
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 5. What Changed Feed -->
+          <div style="margin-top:var(--space-32);">
+            <div class="overline" style="margin-bottom:var(--space-8);">What Changed</div>
+            <div id="dash-history-feed" style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-12) var(--space-16);">
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px;">
+                <div>
+                  <span class="text-meta">No recent plan activity has been recorded.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ==========================================
+             VIEW 2: PLAN (Curriculum Roadmap Timeline)
+             ========================================== -->
+        <section id="view-plan" class="tab-pane">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-16);">
+            <div>
+              <h2 class="text-title">Curriculum Roadmap</h2>
+              <div class="text-meta" style="margin-top:2px;">
+                Source curriculum reference and shared student summary
+              </div>
+            </div>
+            <div style="display:flex; gap:var(--space-8); align-items:center;">
+              <span id="plan-certificate-chip" class="tag tag-success" style="cursor:pointer;" onclick="openCertificateDrawer()">
+                16 of 16 rules satisfied
+              </span>
+              <button class="btn btn-secondary btn-sm" onclick="openDiffDrawer()">Version history</button>
+            </div>
+          </div>
+
+          <div class="text-meta" id="plan-student-summary" style="margin-bottom:var(--space-16);">
+            &mdash;
+          </div>
+          <div class="plan-timeline-grid" id="plan-timeline-grid">
+            <!-- Dynamically populated semester columns -->
+          </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 3: LEARN & PRACTICE (Split View)
+             ========================================== -->
+        <section id="view-practice" class="tab-pane">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-16);">
+            <div>
+              <h2 class="text-title">Learn & Practise</h2>
+              <div class="text-meta" style="margin-top:2px;">
+                Grounded interactive sandbox exercises with zero external telemetry
+              </div>
+            </div>
+          </div>
+
+          <div class="learn-split-layout">
+            <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
+              <div class="overline" style="margin-bottom:var(--space-8);">Curated Exercises</div>
+              <label class="text-dense" for="practice-skill-filter">Filter by skill</label>
+              <select id="practice-skill-filter" class="input" onchange="filterPracticeExercises()"></select>
+              <div id="exercise-list-group" style="display:flex; flex-direction:column; gap:var(--space-8);">
+                <!-- Populated via API -->
+              </div>
+            </div>
+            <div>
+              <div class="code-box-container">
+                <div class="code-box-header">
+                  <span id="active-ex-title">Practice Sandbox</span>
+                  <button class="btn btn-primary btn-sm" id="practice-submit-btn" onclick="runSandboxCode()">Submit answer</button>
+                </div>
+                <p id="practice-prompt" class="text-body"></p>
+                <div id="practice-answer-controls"></div>
+                <textarea class="code-editor-input" id="practice-code-area" spellcheck="false" hidden></textarea>
+                <div class="code-output-pane" id="sandbox-output">Choose an exercise to begin.</div>
+                <div id="sandbox-console" aria-hidden="true" style="display:none;"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 4: SKILLS MASTERY MATRIX
+             ========================================== -->
+        <section id="view-mastery" class="tab-pane">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-16);">
+            <div>
+              <h2 class="text-title">Skill Mastery Matrix</h2>
+              <div class="text-meta" style="margin-top:2px;">
+                Skill estimates reflect recorded evidence.
+              </div>
+            </div>
+          </div>
+          <div class="skills-matrix-grid" id="skills-matrix-grid">
+            <!-- Populated via API -->
+          </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 5: DIAGNOSTIC
+             ========================================== -->
+        <section id="view-diagnostic" class="tab-pane">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-16);">
+            <div>
+              <h2 class="text-title">Adaptive Diagnostic</h2>
+              <div class="text-meta" style="margin-top:2px;">Tracks evidence, goal fit, and readiness with a short assessment loop.</div>
+            </div>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-20);">
+            <div class="overline" style="margin-bottom:var(--space-8);">Current status</div>
+            <div class="text-lead student-status" id="diagnostic-status" style="margin-bottom:var(--space-8);">&mdash;</div>
+            <div class="text-meta" id="diagnostic-status-detail" style="margin-bottom:var(--space-8);">&mdash;</div>
+            <div class="text-meta" id="diagnostic-progress" style="margin-bottom:var(--space-12);"></div>
+            <button class="btn btn-primary btn-md" id="diagnostic-start-btn" onclick="startDiagnostic()">Start / continue assessment</button>
+            <div id="diagnostic-question-panel" class="diagnostic-question" hidden>
+              <div id="diagnostic-question-count" class="overline"></div>
+              <p id="diagnostic-question-text" class="text-body"></p>
+              <div id="diagnostic-answer-controls"></div>
+              <button class="btn btn-primary btn-md" id="diagnostic-submit-btn" onclick="submitDiagnosticAnswer()">Submit answer</button>
+            </div>
+            <div id="diagnostic-feedback" class="text-meta" role="status" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 6: ADMIN & SIMULATION
+             ========================================== -->
+        <section id="view-admin" class="tab-pane">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-16);">
+            <div>
+              <h2 class="text-title">Administrative Console</h2>
+              <div class="text-meta" style="margin-top:2px;">
+                Dynamic parameter recomputation & zero-restart solver cache sync
+              </div>
+            </div>
+            <button class="btn btn-danger btn-sm" onclick="resetDatabasePrompt()">Restore clean seed state</button>
+          </div>
+
+          <div class="guide-grid-2">
+            <div class="admin-seed-warning" id="admin-seed-warning" role="alert" hidden></div>
+            <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
+              <div class="overline" style="margin-bottom:var(--space-8);">Student Parameter Mutation</div>
+              <p class="text-meta">Protected action. You will be asked for the service's ADMIN_API_TOKEN; it is sent only with this request.</p>
+              <div style="display:flex; flex-direction:column; gap:var(--space-12);">
+                <div>
+                  <label class="text-dense">Current CGPA</label>
+                  <input type="number" step="0.1" id="admin-edit-cgpa" class="input" style="margin-top:4px;">
+                </div>
+                <div>
+                  <label class="text-dense">Weekly Study Budget (hours)</label>
+                  <input type="number" step="1" id="admin-edit-hours" class="input" style="margin-top:4px;">
+                </div>
+                <button class="btn btn-secondary btn-sm" onclick="saveAdminStudentProfile()">Apply & re-synthesize plan</button>
+              </div>
+            </div>
+
+            <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
+              <div class="overline" style="margin-bottom:var(--space-8);">Live adaptation simulator</div>
+              <label class="text-dense" for="simulation-scenario">Choose a judge demo</label>
+              <select id="simulation-scenario" class="input" onchange="updateScenarioDescription()"></select>
+              <p id="simulation-description" class="text-meta"></p>
+              <button class="btn btn-primary btn-sm" onclick="runSelectedScenario()">Run scenario</button>
+              <div id="simulation-result" class="text-dense" role="status" aria-live="polite"></div>
+            </div>
+
+            <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
+              <div class="overline" style="margin-bottom:var(--space-8);">Database & Bundled Viewer</div>
+              <p class="text-dense" style="margin-bottom:var(--space-12);">
+                Adminer is bundled on port <strong>8080</strong> for direct SQL inspection.
+              </p>
+              <a href="http://localhost:8080" target="_blank" class="btn btn-secondary btn-sm">
+                Open Adminer DB viewer &rarr;
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Right-Hand Buddy Panel (360px push layout) -->
+    <aside class="buddy-panel" id="buddy-drawer">
+      <div class="buddy-panel-header">
+        <div style="display:flex; align-items:center; gap:var(--space-8);">
+          <span data-icon="message-square" data-icon-size="16"></span>
+          <span style="font-weight:600; font-size:14px;">Buddy</span>
+        </div>
+        <button class="btn-icon btn-sm" onclick="toggleBuddyPanel()" title="Close buddy panel">&times;</button>
+      </div>
+
+      <div class="buddy-messages-container" id="buddy-chat-stream">
+        <div class="chat-msg assistant">
+          Hello! I can help review your plan, recorded skills, and current status. How can I help today?
+        </div>
+      </div>
+
+      <div style="padding:var(--space-8) var(--space-16); border-top:1px solid var(--border); display:flex; gap:6px; flex-wrap:wrap;">
+        <button class="btn btn-ghost btn-sm" style="font-size:11px; padding:2px 6px;" onclick="sendPresetChat('Why was my first course recommended?')">Why first course?</button>
+        <button class="btn btn-ghost btn-sm" style="font-size:11px; padding:2px 6px;" onclick="sendPresetChat('What are my verified skill gaps?')">My gaps</button>
+        <button class="btn btn-ghost btn-sm" style="font-size:11px; padding:2px 6px;" onclick="sendPresetChat('What should I focus on next?')">Next step</button>
+      </div>
+
+      <div class="buddy-input-row">
+        <input type="text" class="input input-sm" id="buddy-input" placeholder="Ask about electives, gaps, or rules..." onkeydown="if(event.key==='Enter') sendBuddyChat()">
+        <button class="btn btn-primary btn-sm" onclick="sendBuddyChat()">Send</button>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Drawers (Slide-Out) -->
+  <!-- Why Drawer -->
+  <div class="drawer" id="why-drawer">
+    <div style="padding:var(--space-16); border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <h3 class="text-section" id="why-code">Course Detail</h3>
+        <div class="text-meta" id="why-title">Reasoning Specification</div>
+      </div>
+      <button class="btn-icon btn-sm" onclick="closeWhyDrawer()">&times;</button>
+    </div>
+    <div id="why-content-body" style="padding:var(--space-20); overflow-y:auto; flex:1;"></div>
+  </div>
+
+  <!-- Diff Drawer -->
+  <div class="drawer" id="diff-drawer">
+    <div style="padding:var(--space-16); border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
+      <h3 class="text-section">Plan Adaptation Diff</h3>
+      <button class="btn-icon btn-sm" onclick="closeDiffDrawer()">&times;</button>
+    </div>
+    <div id="diff-content-body" style="padding:var(--space-20); overflow-y:auto; flex:1;"></div>
+  </div>
+
+  <!-- Plan Certificate Drawer -->
+  <div class="drawer" id="certificate-drawer" style="width:520px;">
+    <div style="padding:var(--space-16); border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <div style="display:flex; align-items:center; gap:6px; margin-bottom:2px;">
+          <span class="tag tag-success" style="font-size:10px;">Accredited</span>
+          <span class="text-mono text-meta" id="cert-plan-id"></span>
+        </div>
+        <h3 class="text-section">Plan Certificate</h3>
+      </div>
+      <button class="btn-icon btn-sm" onclick="closeCertificateDrawer()">&times;</button>
+    </div>
+    <div style="padding:var(--space-20); overflow-y:auto; flex:1; display:flex; flex-direction:column; gap:var(--space-16);">
+      <!-- SHA-256 Seal -->
+      <div>
+        <div class="overline" style="margin-bottom:6px;">Current Student Summary</div>
+        <div class="text-meta" id="cert-student-summary"></div>
+        <div class="text-meta" style="margin-top:4px;">This current status is separate from the sealed plan.</div>
+      </div>
+      <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm); padding:var(--space-12);">
+        <div class="overline" style="margin-bottom:4px;">Cryptographic Canonical Seal</div>
+        <code class="text-mono" id="cert-hash-val" style="font-size:11px; word-break:break-all; color:var(--ink);"></code>
+      </div>
+      <!-- Rules Checked -->
+      <div>
+        <div class="overline" style="margin-bottom:6px;">Ordinance Audit Checklist</div>
+        <div id="cert-rules-accordion-list" style="display:flex; flex-direction:column; gap:8px;"></div>
+      </div>
+    </div>
+    <div style="padding:var(--space-12) var(--space-16); border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
+      <span class="text-meta">Printable PDF 1.4</span>
+      <button class="btn btn-primary btn-sm" onclick="downloadSignedCertificatePDF()">Download PDF</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+  <div class="drawer-backdrop" id="drawer-backdrop" onclick="closeAllDrawers()"></div>
+
+  <!-- Scripts -->
+  <script src="/static/js/icons.js"></script>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/app.js"></script>
+  <script src="/static/js/new-student.js"></script>
+</body>
+</html>

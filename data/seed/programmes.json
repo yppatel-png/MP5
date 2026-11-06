@@ -1,0 +1,41 @@
+[
+  {
+    "code": "CS1",
+    "name": "B.Tech in Computer Science and Engineering",
+    "department": "Computer Science and Engineering",
+    "total_credits": 152,
+    "semesters": 8,
+    "core_credits": 100,
+    "elective_credits": 32,
+    "open_credits": 20,
+    "structure": {
+      "min_credits_per_semester": 14,
+      "max_credits_per_semester": 22,
+      "overload_max_credits": 24,
+      "min_cgpa_for_overload": 8.5
+    },
+    "source": "IIT Delhi Courses of Study UG 2023-24, Page 42",
+    "last_verified": "2024-07-15"
+  },
+  {
+    "code": "CH1",
+    "name": "B.Tech in Chemical Engineering",
+    "department": "Chemical Engineering",
+    "total_credits": 150,
+    "semesters": 8,
+    "core_credits": 98,
+    "elective_credits": 32,
+    "open_credits": 20,
+    "structure": {
+      "min_credits_per_semester": 14,
+      "max_credits_per_semester": 22,
+      "overload_max_credits": 24,
+      "min_cgpa_for_overload": 8.5,
+      "minor_in_cse_credits_required": 20,
+      "minor_in_cse_min_cgpa": 7.5
+    },
+    "source": "IIT Delhi Courses of Study UG 2023-24, Page 38 & Minor Degree Regulations",
+    "last_verified": "2024-07-15"
+  }
+]
+

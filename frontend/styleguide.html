@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design System Styleguide | Adobe Personalised Learning Buddy</title>
+  <link rel="stylesheet" href="/static/css/tokens.css">
+  <link rel="stylesheet" href="/static/css/components.css">
+  <link rel="stylesheet" href="/static/css/layout.css">
+  <style>
+    .styleguide-viewport {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: var(--space-48) var(--space-32);
+    }
+    .guide-section {
+      margin-bottom: var(--space-48);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: var(--space-32);
+    }
+    .guide-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-24);
+    }
+    .guide-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-20);
+    }
+    .guide-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-16);
+    }
+    .swatch {
+      height: 64px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      padding: var(--space-8);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .swatch-title {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      font-weight: 500;
+    }
+    .component-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-12);
+      flex-wrap: wrap;
+      margin-top: var(--space-12);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell">
+    <main class="app-main">
+      <!-- Top Bar with Theme Toggle -->
+      <div class="app-topbar">
+        <div class="topbar-left">
+          <div class="breadcrumb">
+            <a href="/">Learning Buddy</a>
+            <span>/</span>
+            <span style="color:var(--ink); font-weight:500;">Design System Styleguide</span>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <button class="btn btn-secondary btn-sm" id="theme-toggle-btn" onclick="toggleTheme()">
+            <span data-icon="moon" data-icon-size="14" id="theme-icon"></span>
+            <span id="theme-text">Dark mode</span>
+          </button>
+          <a href="/" class="btn btn-ghost btn-sm">
+            <span data-icon="arrow-left" data-icon-size="14"></span>
+            Back to app
+          </a>
+        </div>
+      </div>
+
+      <div class="styleguide-viewport">
+        <!-- Header -->
+        <div class="view-header">
+          <div class="overline">Foundations & Component Catalog</div>
+          <h1 class="view-title">Design Tokens & Component System</h1>
+          <p class="view-subtitle prose-readable">
+            Quiet academic instrument design standard (Linear & Stripe Dashboard caliber). Built with zero external dependencies, zero purple gradients, zero emojis, one primary accent, and strict typographic hierarchy.
+          </p>
+        </div>
+
+        <!-- 1. Color Tokens -->
+        <section class="guide-section">
+          <div class="overline">Section 3 &bull; Color Tokens</div>
+          <h2 class="text-section" style="margin-top:4px; margin-bottom:16px;">Semantic Palette & Restrained Fills</h2>
+          <div class="guide-grid-4">
+            <div>
+              <div class="swatch" style="background-color: var(--bg);">
+                <span class="swatch-title" style="color:var(--ink);">--bg</span>
+              </div>
+              <div class="text-meta" style="margin-top:4px;">App Canvas</div>
+            </div>
+            <div>
+              <div class="swatch" style="background-color: var(--surface);">
+                <span class="swatch-title" style="color:var(--ink);">--surface</span>
+              </div>
+              <div class="text-meta" style="margin-top:4px;">Panels & Tables</div>
+            </div>
+            <div>
+              <div class="swatch" style="background-color: var(--surface-2);">
+                <span class="swatch-title" style="color:var(--ink);">--surface-2</span>
+              </div>
+              <div class="text-meta" style="margin-top:4px;">Subtle Fills & Hover</div>
+            </div>
+            <div>
+              <div class="swatch" style="background-color: var(--border);">
+                <span class="swatch-title" style="color:var(--ink);">--border</span>
+              </div>
+              <div class="text-meta" style="margin-top:4px;">1px Hairlines</div>
+            </div>
+            <div>
+              <div class="swatch" style="background-color: var(--accent); color: var(--accent-ink);">
+                <span class="swatch-title">--accent</span>
+              </div>
+              <div class="text-meta" style="margin-top:4px;">Single Primary Action</div>
+            </div>
+            <div>
+              <div class="swatch" style="background-color: var(--success); color: var(--accent-ink);">
+                <span class="swatch-title">--success</span>
+              </div>
+              <div class="text-meta" style="margin-top:4px;">Mastered / Passed</div>
+            </div>
+            <div>
+              <div class="swatch" style="background-color: var(--warn); color: var(--accent-ink);">
+                <span class="swatch-title">--warn</span>
+              </div>
+              <div class="text-meta" style="margin-top:4px;">At-Risk / Caution</div>
+            </div>
+            <div>
+              <div class="swatch" style="background-color: var(--danger); color: var(--accent-ink);">
+                <span class="swatch-title">--danger</span>
+              </div>
+              <div class="text-meta" style="margin-top:4px;">Rule Violation / Error</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Typography Scale -->
+        <section class="guide-section">
+          <div class="overline">Section 3 &bull; Typography Scale</div>
+          <h2 class="text-section" style="margin-top:4px; margin-bottom:16px;">Scale (px / line-height) & Font Hierarchy</h2>
+          <div style="display:flex; flex-direction:column; gap:var(--space-16);">
+            <div>
+              <div class="text-meta" style="margin-bottom:2px;">Metric 40/44 (Serif 600 + Tabular Numerals)</div>
+              <div class="text-metric">94.8% <span style="font-size:24px; color:var(--ink-3);">Demonstrated proficiency</span></div>
+            </div>
+            <div>
+              <div class="text-meta" style="margin-bottom:2px;">Page Title 28/36 (Serif 600)</div>
+              <div class="text-title">Rohan Verma</div>
+            </div>
+            <div>
+              <div class="text-meta" style="margin-bottom:2px;">Section Title 20/28 (Serif 600)</div>
+              <div class="text-section">Rules that apply to you</div>
+            </div>
+            <div>
+              <div class="text-meta" style="margin-bottom:2px;">Emphasis 16/24 (Sans 500)</div>
+              <div class="text-lead">Indian polity is below the level your goal needs. We added two readings and a practice set to this week.</div>
+            </div>
+            <div>
+              <div class="text-meta" style="margin-bottom:2px;">Body 14/22 (Sans 400 &bull; Max 68ch reading length)</div>
+              <div class="text-body prose-readable">
+                Students must achieve sustained performance (&ge; 85%) across multiple diagnostic sessions to establish demonstrated operational proficiency rather than mere transcript completion.
+              </div>
+            </div>
+            <div>
+              <div class="text-meta" style="margin-bottom:2px;">Dense UI 13/20 (Sans 400 / 500)</div>
+              <div class="text-dense">Semester 4: HUL275 Environment, Development and Society (4.0 credits) &bull; Even semester offering</div>
+            </div>
+            <div>
+              <div class="text-meta" style="margin-bottom:2px;">Meta 12/16 (Sans 400 &bull; High Contrast WCAG AA)</div>
+              <div class="text-meta">Year 2 &bull; Semester 3 &bull; CGPA 7.3 &bull; 12 h/week budget</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Buttons & Controls -->
+        <section class="guide-section">
+          <div class="overline">Section 4 &bull; Buttons & Interactive States</div>
+          <h2 class="text-section" style="margin-top:4px; margin-bottom:16px;">Action Controls (Sentence Case Verbs)</h2>
+          <div style="display:flex; flex-direction:column; gap:var(--space-16);">
+            <div>
+              <div class="text-meta">Medium Buttons (34px height)</div>
+              <div class="component-row">
+                <button class="btn btn-primary btn-md">
+                  <span data-icon="play" data-icon-size="14"></span>
+                  View plan
+                </button>
+                <button class="btn btn-secondary btn-md">
+                  <span data-icon="rotate-ccw" data-icon-size="14"></span>
+                  Reset database
+                </button>
+                <button class="btn btn-ghost btn-md">
+                  <span data-icon="help-circle" data-icon-size="14"></span>
+                  Why this?
+                </button>
+                <button class="btn btn-danger btn-md">
+                  <span data-icon="alert-triangle" data-icon-size="14"></span>
+                  Reject course
+                </button>
+                <button class="btn btn-primary btn-md" disabled>
+                  Disabled action
+                </button>
+              </div>
+            </div>
+            <div>
+              <div class="text-meta">Small Buttons (28px height) & Icon Buttons</div>
+              <div class="component-row">
+                <button class="btn btn-primary btn-sm">Save changes</button>
+                <button class="btn btn-secondary btn-sm">Inspect</button>
+                <button class="btn btn-ghost btn-sm">Cancel</button>
+                <button class="btn-icon btn-sm" title="Search"><span data-icon="search" data-icon-size="14"></span></button>
+                <button class="btn-icon btn-sm" title="Command menu"><span data-icon="command" data-icon-size="14"></span></button>
+                <button class="btn-icon btn-sm" title="Help"><span data-icon="help-circle" data-icon-size="14"></span></button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Tags & Badges (Sentence Case, 6px Radius, Semantic Only) -->
+        <section class="guide-section">
+          <div class="overline">Section 4 &bull; Tags & Status Chips</div>
+          <h2 class="text-section" style="margin-top:4px; margin-bottom:16px;">Restrained Tags (No Glow, Sentence Case)</h2>
+          <div class="component-row" style="margin-bottom:var(--space-16);">
+            <span class="tag tag-neutral">Reading</span>
+            <span class="tag tag-neutral">Practice</span>
+            <span class="tag tag-neutral">Course</span>
+            <span class="tag tag-success">
+              <span data-icon="check-circle" data-icon-size="12"></span>
+              Demonstrated
+            </span>
+            <span class="tag tag-warn">
+              <span data-icon="alert-triangle" data-icon-size="12"></span>
+              Needs attention
+            </span>
+            <span class="tag tag-danger">
+              <span data-icon="alert-circle" data-icon-size="12"></span>
+              Ineligible
+            </span>
+          </div>
+          <div class="component-row">
+            <span class="badge badge-neutral">Core elective</span>
+            <span class="badge badge-success">9 of 9 rules satisfied</span>
+            <span class="badge badge-warn">Tightest margin: +2 cr</span>
+            <span class="badge badge-danger">Prerequisite missing</span>
+          </div>
+        </section>
+
+        <!-- 5. Form Controls & Inputs -->
+        <section class="guide-section">
+          <div class="overline">Section 4 &bull; Form Controls</div>
+          <h2 class="text-section" style="margin-top:4px; margin-bottom:16px;">Inputs, Combobox, Radios & Toggles</h2>
+          <div class="guide-grid-2">
+            <div>
+              <label class="text-dense" style="display:block; margin-bottom:4px; font-weight:500;">Text input</label>
+              <input type="text" class="input" placeholder="Search course code (e.g. COL106)...">
+            </div>
+            <div>
+              <label class="text-dense" style="display:block; margin-bottom:4px; font-weight:500;">Select dropdown</label>
+              <select class="select">
+                <option>Viewing as: Rohan Verma (Chemical &rarr; UPSC)</option>
+                <option>Viewing as: Aryan Sharma (Chemical &rarr; Software)</option>
+                <option>Viewing as: Priya Nair (CSE Accelerated Research)</option>
+              </select>
+            </div>
+            <div style="grid-column: span 2;">
+              <label class="text-dense" style="display:block; margin-bottom:4px; font-weight:500;">Searchable combobox with course chips</label>
+              <div class="combobox-wrap">
+                <div class="combobox-input-row">
+                  <span class="combobox-tag">COL100 <span class="combobox-tag-remove">&times;</span></span>
+                  <span class="combobox-tag">COL106 <span class="combobox-tag-remove">&times;</span></span>
+                  <input type="text" class="combobox-raw-input" placeholder="Add verified course...">
+                </div>
+              </div>
+            </div>
+            <div>
+              <label class="text-dense" style="display:block; margin-bottom:8px; font-weight:500;">Checkboxes & Radios</label>
+              <div style="display:flex; gap:var(--space-16);">
+                <label class="checkbox-row">
+                  <input type="checkbox" checked style="display:none;">
+                  <span class="checkbox-custom"></span>
+                  Active check
+                </label>
+                <label class="radio-row">
+                  <input type="radio" name="opt" checked style="display:none;">
+                  <span class="radio-custom"></span>
+                  Safe variant
+                </label>
+                <label class="radio-row">
+                  <input type="radio" name="opt" style="display:none;">
+                  <span class="radio-custom"></span>
+                  Balanced
+                </label>
+              </div>
+            </div>
+            <div>
+              <label class="text-dense" style="display:block; margin-bottom:8px; font-weight:500;">Switch & Range Slider</label>
+              <div style="display:flex; align-items:center; gap:var(--space-16);">
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="switch-slider"></span>
+                </label>
+                <div style="flex:1;">
+                  <input type="range" class="slider" min="14" max="24" value="22">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. DefinitionList & Rules Presentation -->
+        <section class="guide-section">
+          <div class="overline">Section 4 &bull; DefinitionList Component</div>
+          <h2 class="text-section" style="margin-top:4px; margin-bottom:16px;">Hairline Definition List for Rules & Facts</h2>
+          <div class="definition-list" style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
+            <div class="definition-row">
+              <span class="definition-label">
+                <span data-icon="check-circle" data-icon-size="14" style="color:var(--success);"></span>
+                Credit headroom next semester (Sem 4)
+              </span>
+              <span class="definition-value">4.0 credits remaining (18 of 22 planned)</span>
+            </div>
+            <div class="definition-row">
+              <span class="definition-label">
+                <span data-icon="check-circle" data-icon-size="14" style="color:var(--success);"></span>
+                Open elective slots remaining
+              </span>
+              <span class="definition-value">3 slots (12 credits)</span>
+            </div>
+            <div class="definition-row">
+              <span class="definition-label">
+                <span data-icon="alert-circle" data-icon-size="14" style="color:var(--warn);"></span>
+                CSE minor eligibility
+              </span>
+              <span class="definition-value">Cut-off &ge; 7.5; current CGPA 7.3</span>
+            </div>
+            <div class="definition-row">
+              <span class="definition-label">
+                <span data-icon="shield-check" data-icon-size="14" style="color:var(--info);"></span>
+                Courses you asked to keep apart
+              </span>
+              <span class="definition-value">HUL275 and HUL281 separated across semesters</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. Stat Blocks & Data Visualizations -->
+        <section class="guide-section">
+          <div class="overline">Section 4 &bull; Stat Group & Progress</div>
+          <h2 class="text-section" style="margin-top:4px; margin-bottom:16px;">Quantitative Statistics & Low-Evidence State</h2>
+          <div class="guide-grid-3">
+            <div class="stat-card">
+              <div class="stat-label">Goal Readiness</div>
+              <div class="stat-value">&mdash;</div>
+              <div class="text-meta" style="margin-top:4px;">Not enough evidence yet &bull; <a href="#" style="color:var(--accent); text-decoration:none;">Take diagnostic</a></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">This Week's Study</div>
+              <div class="stat-value">&mdash;</div>
+              <div class="stat-delta is-neutral">Study activity has not been logged</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Skills Demonstrated</div>
+              <div class="stat-value">0</div>
+              <div class="stat-delta is-neutral">Verified proficiency threshold</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. Table & Row Dividers -->
+        <section class="guide-section">
+          <div class="overline">Section 4 &bull; Data Table</div>
+          <h2 class="text-section" style="margin-top:4px; margin-bottom:16px;">Curriculum & Ordinance Audit Table</h2>
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Course Code</th>
+                  <th>Title</th>
+                  <th>Credits</th>
+                  <th>Semester</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="text-mono" style="font-weight:500;">HUL275</span></td>
+                  <td>Environment, Development and Society</td>
+                  <td>4.0</td>
+                  <td>Semester 4</td>
+                  <td><span class="tag tag-success">Satisfied</span></td>
+                  <td><button class="btn btn-ghost btn-sm">Inspect</button></td>
+                </tr>
+                <tr>
+                  <td><span class="text-mono" style="font-weight:500;">HUL281</span></td>
+                  <td>Technology and Governance</td>
+                  <td>4.0</td>
+                  <td>Semester 5</td>
+                  <td><span class="tag tag-neutral">Scheduled</span></td>
+                  <td><button class="btn btn-ghost btn-sm">Inspect</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 9. Callouts, Empty State & Skeletons -->
+        <section class="guide-section">
+          <div class="overline">Section 4 &bull; Empty & Degraded States</div>
+          <h2 class="text-section" style="margin-top:4px; margin-bottom:16px;">Callouts, Skeletons & Clean Empty State</h2>
+          <div style="display:flex; flex-direction:column; gap:var(--space-16);">
+            <div class="callout callout-info">
+              <span data-icon="info" data-icon-size="16"></span>
+              <div>
+                <strong>Ordinance Notice:</strong> All multi-semester plans pass 16 deterministic institute rules verified independently of the model generation layer.
+              </div>
+            </div>
+            <div class="empty-state" style="border:1px dashed var(--border); border-radius:var(--radius-panel); background:var(--surface);">
+              <span data-icon="calendar" data-icon-size="28" class="empty-state-icon"></span>
+              <div class="empty-state-title">No plan adaptation events yet</div>
+              <div class="empty-state-desc">Your degree schedule is currently aligned with your baseline diagnostic assessment.</div>
+              <button class="btn btn-secondary btn-sm" style="margin-top:4px;">Take mid-semester check</button>
+            </div>
+            <div>
+              <div class="text-meta" style="margin-bottom:6px;">Skeleton loading state (calm neutral shimmer)</div>
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                <div class="skeleton" style="height:16px; width:45%;"></div>
+                <div class="skeleton" style="height:14px; width:75%;"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="/static/js/icons.js"></script>
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      document.getElementById('theme-text').innerText = isDark ? 'Dark mode' : 'Light mode';
+      document.getElementById('theme-icon').setAttribute('data-icon', isDark ? 'moon' : 'sun');
+      if (window.initIcons) window.initIcons();
+    }
+
+    // Initialize saved theme or system preference
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlTheme = urlParams.get('theme');
+      const savedTheme = urlTheme || localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        if (savedTheme === 'dark') {
+          document.getElementById('theme-text').innerText = 'Light mode';
+          document.getElementById('theme-icon').setAttribute('data-icon', 'sun');
+        }
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.getElementById('theme-text').innerText = 'Light mode';
+        document.getElementById('theme-icon').setAttribute('data-icon', 'sun');
+      }
+      if (window.initIcons) window.initIcons();
+    });
+  </script>
+</body>
+</html>

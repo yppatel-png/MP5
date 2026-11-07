@@ -104,34 +104,29 @@ async function request(path, init = {}, externalSignal) {
     }
 }
 function formatStudentSummary(summary) {
-    const readiness = summary.readiness_percentage === null
-        ? 'Not available'
-        : `${summary.readiness_percentage}%`;
-    const adherence = summary.adherence_percentage === null
-        ? 'Not available'
-        : `${summary.adherence_percentage}%`;
-    const studied = summary.weekly_hours_studied === null
-        ? 'Not available'
-        : `${summary.weekly_hours_studied} h`;
-    const planned = summary.planned_credits === null
-        ? 'Not available'
-        : `${summary.planned_credits} / ${summary.credit_cap} credits planned`;
-    const headroom = summary.credit_headroom === null
-        ? 'Not available'
-        : `${summary.credit_headroom} credits headroom`;
-    return [
+    const parts = [
         summary.programme_name,
-        `Goal ${summary.goal_name}`,
+        `Goal: ${summary.goal_name}`,
         `Year ${summary.year}, Semester ${summary.semester_index}`,
         `CGPA ${summary.cgpa}`,
         `${summary.weekly_hours_available} h/week available`,
-        `${studied} studied`,
-        `${adherence} adherence`,
-        `Readiness ${readiness}`,
-        planned,
-        headroom,
-        summary.status_message,
-    ].join(' · ');
+    ];
+    if (summary.weekly_hours_studied !== null && summary.weekly_hours_studied !== undefined) {
+        parts.push(`${summary.weekly_hours_studied} h studied`);
+    }
+    if (summary.adherence_percentage !== null && summary.adherence_percentage !== undefined) {
+        parts.push(`${summary.adherence_percentage}% pace`);
+    }
+    if (summary.readiness_percentage !== null && summary.readiness_percentage !== undefined) {
+        parts.push(`${summary.readiness_percentage}% readiness`);
+    }
+    if (summary.planned_credits !== null && summary.planned_credits !== undefined && summary.credit_cap) {
+        parts.push(`${summary.planned_credits} / ${summary.credit_cap} credits planned`);
+    }
+    if (summary.status_message) {
+        parts.push(summary.status_message);
+    }
+    return parts.join(' · ');
 }
 const client = {
     request,

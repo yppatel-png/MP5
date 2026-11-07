@@ -134,12 +134,12 @@ function switchTab(target) {
 
   const titles = {
     dashboard: 'Today',
-    plan: 'Curriculum Roadmap',
-    practice: 'Learn & Practise',
-    mastery: 'Skill Mastery',
-    diagnostic: 'Adaptive Diagnostic',
+    plan: 'Your plan',
+    practice: 'Practise',
+    mastery: 'Progress',
+    diagnostic: 'Skill check',
     admin: 'Administrative Console',
-    setup: 'Personalize Your Plan'
+    setup: 'Set up profile'
   };
   const topTitle = document.getElementById('topbar-section-title');
   if (topTitle) topTitle.innerText = titles[target] || 'Today';
@@ -551,10 +551,12 @@ async function loadFullStudentContext(studentId) {
         goal_bhilai_cse: 'Goal: BTech CSE Curriculum Orientation',
         goal_upsc: 'Goal: UPSC (Civil Services)',
         goal_software: 'Goal: Software Engineering',
-        goal_research: 'Goal: Accelerated Research',
+        goal_higher_studies: 'Goal: Higher Studies & Research',
+        goal_research: 'Goal: Higher Studies & Research',
         goal_startup: 'Goal: Venture Founder'
       };
-      goalChip.innerText = gMap[profile.goal_id] || 'Goal: Degree Completion';
+      const displayGoal = gMap[profile.goal_id] || (profile.target_role ? `Goal: ${profile.target_role}` : null);
+      goalChip.innerText = displayGoal || 'Goal: Degree Completion';
     }
 
     const status = document.getElementById('student-load-state');
@@ -660,7 +662,7 @@ function renderDashboard() {
   const creditHeadroom = summary.credit_headroom;
   document.getElementById('rule-credit-headroom').innerText =
     creditHeadroom === null || plannedCredits === null
-      ? 'Not available'
+      ? 'Within standard limits'
       : `${creditHeadroom.toFixed(1)} cr remaining (${plannedCredits} of ${creditCap} planned)`;
 
   const openSlots = prof.remaining_elective_slots;
@@ -738,10 +740,16 @@ function renderPlanTimeline() {
     const cert = state.certificate || state.plan?.certificate;
     if (cert && cert.summary) {
       const s = cert.summary;
-      const t = s.tightest_margin;
-      const tightMsg = t ? `margin: ${t.margin > 0 ? '+' : ''}${t.margin} (${t.scope_ref})` : 'verified';
-      certChip.innerText = `${s.passed} of ${s.total_rules} rules satisfied \u2022 ${tightMsg}`;
-      certChip.className = 'tag tag-success';
+      if (s.failed > 0) {
+        certChip.innerText = `${s.failed} problem${s.failed > 1 ? 's' : ''} found`;
+        certChip.className = 'tag tag-danger';
+      } else if (s.assumed_checks_count > 0) {
+        certChip.innerText = `All ${s.total_rules} checks passed (${s.assumed_checks_count} rely on assumptions pending ordinance)`;
+        certChip.className = 'tag tag-secondary';
+      } else {
+        certChip.innerText = `All ${s.total_rules} checks passed · verified`;
+        certChip.className = 'tag tag-success';
+      }
       certChip.onclick = () => openCertificateDrawer();
     }
   }

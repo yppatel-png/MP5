@@ -4,7 +4,7 @@ Reports system status, LiteLLM connectivity, offline mode flag, and performance 
 """
 
 from fastapi import APIRouter
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 from pydantic import BaseModel
 from backend.config import settings
 from backend.db.seed_profile import get_institute_profile
@@ -13,7 +13,7 @@ from backend.llm.client import llm_client, call_logger
 router = APIRouter(tags=["Health"])
 
 class HealthLLMStatus(BaseModel):
-    model: str
+    model: Optional[str] = None
     key_configured: bool
     is_live: bool
     offline_mode: bool

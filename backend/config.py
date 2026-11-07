@@ -37,23 +37,35 @@ if (
 ):
     _configured_database_url = None
 
+import secrets
+
+_raw_llm_model = os.getenv("LLM_MODEL", "").strip() or None
+_raw_llm_key = os.getenv("LLM_API_KEY", "").strip() or None
+_offline_env = os.getenv("OFFLINE_MODE", "").lower() in ("true", "1", "yes")
+_effective_offline = _offline_env or (_raw_llm_model is None) or (_raw_llm_key is None)
+
+_raw_admin_token = os.getenv("ADMIN_API_TOKEN", "").strip() or None
+if not _raw_admin_token:
+    _raw_admin_token = secrets.token_urlsafe(32)
+    print(f"[SECURITY] Generated ephemeral ADMIN_API_TOKEN: {_raw_admin_token}")
+
 class Settings(BaseModel):
     APP_ENV: str = os.getenv("APP_ENV", "development")
     APP_HOST: str = os.getenv("APP_HOST", "0.0.0.0")
     APP_PORT: int = int(os.getenv("APP_PORT", "8000"))
     LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
     
-    # LLM Settings (via LiteLLM)
-    LLM_MODEL: str = os.getenv("LLM_MODEL", "gemini/gemini-3.5-flash-lite")
-    LLM_API_KEY: Optional[str] = os.getenv("LLM_API_KEY")
+    # LLM Settings (via LiteLLM) - no hardcoded defaults
+    LLM_MODEL: Optional[str] = _raw_llm_model
+    LLM_API_KEY: Optional[str] = _raw_llm_key
     LLM_API_BASE: Optional[str] = os.getenv("LLM_API_BASE")
     EMBEDDING_MODEL: Optional[str] = os.getenv("EMBEDDING_MODEL")
     
-    # Offline toggle: when true, forces deterministic fallback with no network calls
-    OFFLINE_MODE: bool = os.getenv("OFFLINE_MODE", "false").lower() in ("true", "1", "yes")
+    # Offline toggle: when true or when LLM_MODEL or LLM_API_KEY is unset, run in offline mode
+    OFFLINE_MODE: bool = _effective_offline
 
-    # Admin Security Token
-    ADMIN_API_TOKEN: str = os.getenv("ADMIN_API_TOKEN", "adm_secret_token_15")
+    # Admin Security Token - generated randomly if unset
+    ADMIN_API_TOKEN: str = _raw_admin_token
 
     # Feature Flags (defaulting to True for competitive completeness)
     FEATURE_CERTIFICATE: bool = os.getenv("FEATURE_CERTIFICATE", "true").lower() in ("true", "1", "yes")

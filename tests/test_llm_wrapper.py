@@ -58,6 +58,31 @@ class TestLLMWrapper(unittest.TestCase):
         self.assertIn("CSL202", verified)
         self.assertIn("FAK999 (Note: Unverified course code)", verified)
 
+    def test_security_unset_model_and_token(self):
+        import os
+        import importlib
+        import backend.config
+        old_model = os.environ.get("LLM_MODEL")
+        old_token = os.environ.get("ADMIN_API_TOKEN")
+        try:
+            os.environ["LLM_MODEL"] = ""
+            os.environ["ADMIN_API_TOKEN"] = ""
+            importlib.reload(backend.config)
+            cfg = backend.config.settings
+            self.assertTrue(cfg.OFFLINE_MODE)
+            self.assertIsNone(cfg.LLM_MODEL)
+            self.assertTrue(len(cfg.ADMIN_API_TOKEN) >= 32)
+        finally:
+            if old_model is not None:
+                os.environ["LLM_MODEL"] = old_model
+            else:
+                os.environ.pop("LLM_MODEL", None)
+            if old_token is not None:
+                os.environ["ADMIN_API_TOKEN"] = old_token
+            else:
+                os.environ.pop("ADMIN_API_TOKEN", None)
+            importlib.reload(backend.config)
+
     def test_telemetry_logging(self):
         summary = call_logger.get_summary()
         self.assertIn("total_calls", summary)

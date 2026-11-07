@@ -85,3 +85,12 @@
 - Repaired the product-flow smoke test to await the health response JSON before selecting the profile-specific flow. Its Bhilai assertions now check the actual reference-only certificate copy and empty learning/mastery states.
 - Isolated the evaluation benchmark to the legacy profile and a temporary SQLite database. This preserves the legacy-only benchmark data requirements without seeding the user's active Bhilai database.
 - Validation: `python scripts/run_tests.py` passed (79 legacy and 3 Bhilai tests); `python scripts/run_smoke.py` passed (10 Bhilai API/onboarding tests, 4 legacy API tests, 20 + 17 subtests, and all 3 Playwright tests); `python scripts/verify.py` passed all 8 verification stages, including OpenAPI types, audits, smoke, and evaluation. Design lint and frontend syntax check passed.
+
+## Review Fix 0: Security & Model/Token Decoupling
+- Removed default values for `LLM_MODEL` and `ADMIN_API_TOKEN` from `backend/config.py` and `docker-compose.yml`.
+- Implemented automatic offline fallback (`OFFLINE_MODE = True`) when either `LLM_MODEL` or `LLM_API_KEY` is unset or empty.
+- Implemented ephemeral random token generation (`secrets.token_urlsafe(32)`) at startup when `ADMIN_API_TOKEN` is unset, printing it once to standard output.
+- Ensured demo defaults reside strictly in `.env.example`.
+- Enhanced `scripts/qa/secrets_scan.py` with repo-wide grep verification for hardcoded model names (`gemini/*`, `gpt-*`, `claude-*`, `llama-*`) and known tokens (`adm_secret_token_*`), removing any `config.py` exemption.
+- Added automated unit test `test_security_unset_model_and_token` in `tests/test_llm_wrapper.py`.
+- Validation: `python scripts/qa/secrets_scan.py` passed cleanly; `python -m pytest tests/test_llm_wrapper.py` passed (6/6).

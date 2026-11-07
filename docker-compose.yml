@@ -12,12 +12,12 @@ services:
       - APP_ENV=production
       - INSTITUTE_PROFILE=iit_bhilai
       - DATABASE_URL=sqlite:////app/data/buddy_bhilai.db
-      - LLM_MODEL=${LLM_MODEL:-gemini/gemini-3.5-flash-lite}
+      - LLM_MODEL=${LLM_MODEL:-}
       - LLM_API_KEY=${LLM_API_KEY:-}
       - LLM_API_BASE=${LLM_API_BASE:-}
       - EMBEDDING_MODEL=${EMBEDDING_MODEL:-}
-      - OFFLINE_MODE=${OFFLINE_MODE:-false}
-      - ADMIN_API_TOKEN=${ADMIN_API_TOKEN:-adm_secret_token_15}
+      - OFFLINE_MODE=${OFFLINE_MODE:-}
+      - ADMIN_API_TOKEN=${ADMIN_API_TOKEN:-}
     volumes:
       - ./data:/app/data
     depends_on:

@@ -77,11 +77,11 @@ class LiteLLMClient:
         self.model = settings.LLM_MODEL
         self.api_key = settings.LLM_API_KEY
         self.api_base = settings.LLM_API_BASE
-        self.offline = settings.OFFLINE_MODE or not self.api_key or not LITELLM_AVAILABLE
+        self.offline = settings.OFFLINE_MODE or not self.api_key or not self.model or not LITELLM_AVAILABLE
         
     def is_live(self) -> bool:
         """Returns True if the client is armed with an active model key."""
-        return not self.offline and LITELLM_AVAILABLE and bool(self.api_key)
+        return not self.offline and LITELLM_AVAILABLE and bool(self.api_key) and bool(self.model)
 
     def generate(
         self,
@@ -99,7 +99,7 @@ class LiteLLMClient:
         Checks cache -> tries litellm -> retries on error -> fails over to deterministic fallback.
         """
         start_time = time.time()
-        cache_key = llm_cache.compute_key(self.model, messages, temperature=temperature, max_tokens=max_tokens)
+        cache_key = llm_cache.compute_key(self.model or "offline", messages, temperature=temperature, max_tokens=max_tokens)
         
         # 1. Cache Check
         cached_res = llm_cache.get(cache_key)

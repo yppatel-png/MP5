@@ -28,9 +28,15 @@ KEY_PATTERNS = [
 
 # Patterns for hard-coded model identifiers inside code
 MODEL_PATTERNS = [
-    (re.compile(r'["\']gpt-4[a-z0-9\-]*["\']', re.IGNORECASE), "Hard-coded GPT-4 reference"),
-    (re.compile(r'["\']claude-[a-z0-9\-]+["\']', re.IGNORECASE), "Hard-coded Claude reference"),
-    (re.compile(r'["\']llama-[a-z0-9\-]+["\']', re.IGNORECASE), "Hard-coded Llama reference"),
+    (re.compile(r'["\']gemini[/-][a-z0-9\.\-]+["\']', re.IGNORECASE), "Hard-coded Gemini model reference"),
+    (re.compile(r'["\']gpt-[a-z0-9\-]+["\']', re.IGNORECASE), "Hard-coded GPT model reference"),
+    (re.compile(r'["\']claude-[a-z0-9\-]+["\']', re.IGNORECASE), "Hard-coded Claude model reference"),
+    (re.compile(r'["\']llama-[a-z0-9\-]+["\']', re.IGNORECASE), "Hard-coded Llama model reference"),
+]
+
+# Patterns for known demo/default tokens
+KNOWN_TOKEN_PATTERNS = [
+    (re.compile(r"adm_secret_token_[a-zA-Z0-9_\-]+", re.IGNORECASE), "Hard-coded known admin token"),
 ]
 
 # Patterns for unrouted LLM calls bypassing LiteLLM
@@ -70,16 +76,21 @@ def scan_file_for_secrets(file_path: Path) -> list:
                 continue
             violations.append(f"[SECRET LEAK] {rel_path}: {desc} detected (value: {m[:6]}...)")
 
-    # 2. Scan for hard-coded models in code files
-    if file_path.suffix in {".py", ".js"} and file_path.name not in EXCLUDE_FILES:
-        # Allow default in config.py
-        if file_path.name != "config.py":
-            for pattern, desc in MODEL_PATTERNS:
-                matches = pattern.findall(content)
-                for m in matches:
-                    violations.append(f"[HARDCODED MODEL] {rel_path}: {desc} ({m})")
+    # 2. Scan for hard-coded models in code and config files
+    if file_path.suffix in {".py", ".js", ".ts", ".yml", ".yaml"} and file_path.name not in EXCLUDE_FILES:
+        for pattern, desc in MODEL_PATTERNS:
+            matches = pattern.findall(content)
+            for m in matches:
+                violations.append(f"[HARDCODED MODEL] {rel_path}: {desc} ({m})")
 
-    # 3. Scan for unrouted calls in backend
+    # 3. Scan for known demo tokens in code, configs, and compose files
+    if file_path.name not in EXCLUDE_FILES:
+        for pattern, desc in KNOWN_TOKEN_PATTERNS:
+            matches = pattern.findall(content)
+            for m in matches:
+                violations.append(f"[KNOWN TOKEN] {rel_path}: {desc} ({m})")
+
+    # 4. Scan for unrouted calls in backend
     if "backend" in file_path.parts and file_path.suffix == ".py":
         for pattern, desc in UNROUTED_CALL_PATTERNS:
             matches = pattern.findall(content)

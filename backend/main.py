@@ -62,8 +62,8 @@ def validate_llm_configuration() -> None:
     if not any(model.startswith(p) for p in KNOWN_PREFIXES):
         msg = (
             f"[CONFIG ERROR] Invalid LLM_MODEL identifier: '{model}'. "
-            f"LiteLLM requires a valid provider prefix (e.g. 'gemini/gemini-3.5-flash-lite', "
-            f"'openai/gpt-4o-mini', 'anthropic/claude-3-5-sonnet-20241022', 'ollama/llama3'). "
+            f"LiteLLM requires a valid provider prefix (e.g. 'gemini/<model>', "
+            f"'openai/<model>', 'anthropic/<model>', 'ollama/<model>'). "
             f"Please update LLM_MODEL in .env or environment variables."
         )
         logger.error(msg)

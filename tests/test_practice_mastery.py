@@ -12,6 +12,7 @@ from backend.practice.runner import exercise_runner
 from backend.practice.generator import question_generator
 from backend.practice.mastery import mastery_engine
 from backend.api.practice import submit_exercise, get_student_mastery_report, ExerciseSubmissionModel
+from backend.config import settings
 
 class TestPracticeAndMastery(unittest.TestCase):
     @classmethod
@@ -44,58 +45,104 @@ class TestPracticeAndMastery(unittest.TestCase):
         self.assertEqual(res_wrong["score"], 0.0)
         self.assertFalse(res_wrong["is_correct"])
 
-    def test_code_sandbox_execution(self):
-        """Tests sandboxed Python code execution with unit test cases."""
-        # Ensure a code exercise is present for sandbox testing
-        code_ex = {
-            "exercise_id": "test_code_palindrome",
-            "type": "code",
-            "difficulty": 2,
-            "skill_id": "programming_fundamentals",
-            "prompt": "Write a function is_palindrome(s: str) -> bool",
-            "answer_key": {
-                "test_cases": [
-                    {"input": "'racecar'", "expected": True},
-                    {"input": "'hello'", "expected": False}
-                ]
+    def test_code_sandbox_disabled_in_safe_mode(self):
+        """Verifies that when safe mode is active, code submission returns an advisory."""
+        import os
+        import backend.config
+        prev = getattr(backend.config.settings, "DISABLE_CODE_EXERCISES", True)
+        prev_env = os.environ.get("DISABLE_CODE_EXERCISES")
+        try:
+            backend.config.settings.DISABLE_CODE_EXERCISES = True
+            os.environ["DISABLE_CODE_EXERCISES"] = "true"
+            code_ex = {
+                "exercise_id": "test_code_safe_mode",
+                "type": "code",
+                "difficulty": 2,
+                "skill_id": "programming_fundamentals",
+                "prompt": "Write a function square(x: int) -> int",
+                "answer_key": {"test_cases": [{"input": "4", "expected": 16}]}
             }
-        }
-        exercise_runner.exercises[code_ex["exercise_id"]] = code_ex
-        ex_id = code_ex["exercise_id"]
+            exercise_runner.exercises[code_ex["exercise_id"]] = code_ex
+            res = exercise_runner.evaluate_submission(
+                student_id="BH-SW-001",
+                exercise_id="test_code_safe_mode",
+                submission={"code": "def square(x):\n    return x*x"}
+            )
+            self.assertEqual(res["score"], 0.0)
+            self.assertFalse(res["is_correct"])
+            self.assertIn("disabled in safe mode", res["feedback"])
+        finally:
+            backend.config.settings.DISABLE_CODE_EXERCISES = prev
+            if prev_env is not None:
+                os.environ["DISABLE_CODE_EXERCISES"] = prev_env
+            else:
+                os.environ.pop("DISABLE_CODE_EXERCISES", None)
 
-        # Valid palindrome solution
-        valid_code = """
+    def test_code_sandbox_execution(self):
+        """Tests sandboxed Python code execution with unit test cases when safe mode is toggled off."""
+        import os
+        import backend.config
+        prev = getattr(backend.config.settings, "DISABLE_CODE_EXERCISES", True)
+        prev_env = os.environ.get("DISABLE_CODE_EXERCISES")
+        try:
+            backend.config.settings.DISABLE_CODE_EXERCISES = False
+            os.environ["DISABLE_CODE_EXERCISES"] = "false"
+            # Ensure a code exercise is present for sandbox testing
+            code_ex = {
+                "exercise_id": "test_code_palindrome",
+                "type": "code",
+                "difficulty": 2,
+                "skill_id": "programming_fundamentals",
+                "prompt": "Write a function is_palindrome(s: str) -> bool",
+                "answer_key": {
+                    "test_cases": [
+                        {"input": "'racecar'", "expected": True},
+                        {"input": "'hello'", "expected": False}
+                    ]
+                }
+            }
+            exercise_runner.exercises[code_ex["exercise_id"]] = code_ex
+            ex_id = code_ex["exercise_id"]
+
+            # Valid palindrome solution
+            valid_code = """
 def is_palindrome(s: str) -> bool:
     cleaned = [c.lower() for c in s if c.isalnum()]
     return cleaned == cleaned[::-1]
 """
-        res_pass = exercise_runner.evaluate_submission(
-            student_id="BH-SW-001",
-            exercise_id=ex_id,
-            submission={"code": valid_code}
-        )
-        self.assertEqual(res_pass["score"], 1.0)
-        self.assertTrue(res_pass["is_correct"])
+            res_pass = exercise_runner.evaluate_submission(
+                student_id="BH-SW-001",
+                exercise_id=ex_id,
+                submission={"code": valid_code}
+            )
+            self.assertEqual(res_pass["score"], 1.0, f"res_pass details: {res_pass}")
+            self.assertTrue(res_pass["is_correct"])
 
-        # Security check: forbidden constructs
-        malicious_code = "import os\nos.system('dir')"
-        res_security = exercise_runner.evaluate_submission(
-            student_id="BH-SW-001",
-            exercise_id=ex_id,
-            submission={"code": malicious_code}
-        )
-        self.assertEqual(res_security["score"], 0.0)
-        self.assertFalse(res_security["is_correct"])
-        self.assertIn("Security restriction", res_security["feedback"])
+            # Security check: forbidden constructs
+            malicious_code = "import os\nos.system('dir')"
+            res_security = exercise_runner.evaluate_submission(
+                student_id="BH-SW-001",
+                exercise_id=ex_id,
+                submission={"code": malicious_code}
+            )
+            self.assertEqual(res_security["score"], 0.0)
+            self.assertFalse(res_security["is_correct"])
+            self.assertIn("Security restriction", res_security["feedback"])
 
-        start = time.monotonic()
-        timeout_result = exercise_runner.evaluate_submission(
-            student_id="BH-SW-001",
-            exercise_id=ex_id,
-            submission={"code": "while True:\n    pass"},
-        )
-        self.assertEqual(timeout_result["score"], 0.0)
-        self.assertLess(time.monotonic() - start, 8.0)
+            start = time.monotonic()
+            timeout_result = exercise_runner.evaluate_submission(
+                student_id="BH-SW-001",
+                exercise_id=ex_id,
+                submission={"code": "while True:\n    pass"},
+            )
+            self.assertEqual(timeout_result["score"], 0.0)
+            self.assertLess(time.monotonic() - start, 8.0)
+        finally:
+            backend.config.settings.DISABLE_CODE_EXERCISES = prev
+            if prev_env is not None:
+                os.environ["DISABLE_CODE_EXERCISES"] = prev_env
+            else:
+                os.environ.pop("DISABLE_CODE_EXERCISES", None)
 
     def test_question_generator_validation_rules(self):
         """Tests that the question generator validator rejects invalid/hallucinated questions."""

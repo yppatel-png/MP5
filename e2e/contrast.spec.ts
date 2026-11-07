@@ -8,7 +8,15 @@ const screens = [
   { name: 'Skills', show: async (page: Page) => page.locator('.nav-item[data-target="mastery"]').click() },
   { name: 'Learn', show: async (page: Page) => page.locator('.nav-item[data-target="practice"]').click() },
   { name: 'Buddy panel', show: async (page: Page) => page.locator('#topbar-buddy-btn').click() },
-  { name: 'Onboarding', show: async (page: Page) => page.locator('#view-onboarding').waitFor({ state: 'visible' }) },
+  { name: 'Onboarding', show: async (page: Page) => {
+    const btn = page.locator('.bhilai-open-button');
+    if (await btn.count()) {
+      await btn.click();
+      await page.locator('#bhilai-onboarding-dialog').waitFor({ state: 'visible' });
+    } else {
+      await page.locator('.nav-item[data-target="setup"]').click();
+    }
+  } },
   { name: 'Diagnostic', show: async (page: Page) => page.evaluate(() => {
     (window as Window & { switchTab: (tab: string) => void }).switchTab('diagnostic');
   }) },

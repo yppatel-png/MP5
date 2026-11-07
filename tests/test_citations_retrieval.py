@@ -76,3 +76,4 @@ def test_embedding_model_wiring_and_hybrid_retrieval():
     assert len(sem_results) > 0
     assert "source_page" in sem_results[0]
     assert "semantic_score" in sem_results[0]
+

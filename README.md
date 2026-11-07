@@ -47,9 +47,9 @@ To maintain uncompromising academic integrity while delivering a complete learni
 
 ---
 
-## Sandbox Security & Code Execution Architecture
+## Code Execution & Restricted Environment Architecture
 
-Python practice exercises are evaluated through a multi-tier hardened security boundary:
+Python practice exercises are evaluated through restricted execution (AST-filtered, not a full security boundary):
 - **AST Static Analysis (`backend/practice/code_worker.py`)**: Before code is executed, an abstract syntax tree visitor (`SecurityVisitor`) strictly blocks:
   - Unauthorized module imports (`os`, `sys`, `subprocess`, `socket`, `pathlib`, `shutil`, `urllib`, `requests`, `ctypes`, etc.).
   - Unsafe built-in calls (`open`, `eval`, `exec`, `compile`, `globals`, `locals`, `getattr`, `breakpoint`).
@@ -57,7 +57,7 @@ Python practice exercises are evaluated through a multi-tier hardened security b
 - **Subprocess Isolation**: Code executes in a dedicated child worker process (`python -m backend.practice.code_worker`) decoupled from the web application server, with all sensitive environment variables scrubbed from the worker's environment.
 - **Resource Limits & Timeouts**: Hardened with an absolute 7.0-second process timeout, 512 MB virtual memory ceiling (`RLIMIT_AS`), and a 2-second CPU ceiling (`RLIMIT_CPU`).
 - **Restricted Built-in Scope**: Code runs in a clean scope limited to pure mathematical and algorithmic primitives (e.g. `range`, `len`, `int`, `min`, `max`, `sum`, `abs`, `sorted`).
-- **Demo Toggle**: Code execution can be completely disabled for demo environments by setting `DISABLE_CODE_EXERCISES=true` in `.env`. When active, code submission endpoints return an informative advisory guiding the student to conceptual MCQs and rubric-graded exercises.
+- **Safe Mode Default (`DISABLE_CODE_EXERCISES`)**: In `backend/config.py`, `DISABLE_CODE_EXERCISES` defaults to `true` (safe mode). When enabled, code exercise submissions return an informative advisory directing students to conceptual MCQs, trace-the-output, and rubric-based exercises. Setting `DISABLE_CODE_EXERCISES=false` in `.env` enables restricted execution (AST-filtered, not a full security boundary).
 
 ---
 
@@ -77,7 +77,7 @@ All LLM calls route through **LiteLLM**, completely decoupling the application f
 - **Zero Hardcoded Secrets or Model Defaults**: `LLM_MODEL` and `ADMIN_API_TOKEN` defaults have been eliminated from application code and compose files.
 - **Offline Mode**: If `LLM_MODEL` or `LLM_API_KEY` is unset, the system runs in offline mode using deterministic, grounded rule templates.
 - **Ephemeral Admin Token**: If `ADMIN_API_TOKEN` is unset in the environment, a cryptographically secure random token is generated at startup and logged once.
-- **Code Execution Sandbox**: Python code exercises run with strict execution timeouts (7.0s), restricted builtins, and forbidden AST inspection blocking dangerous OS/file/network access.
+- **Restricted Code Execution**: Python code exercises run with strict execution timeouts (7.0s), restricted builtins, and forbidden AST inspection blocking dangerous OS/file/network access (restricted execution, not a full security boundary). Safe mode (`DISABLE_CODE_EXERCISES=true`) is active by default.
 
 ---
 

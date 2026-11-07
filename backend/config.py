@@ -73,6 +73,7 @@ class Settings(BaseModel):
     FEATURE_VARIANTS: bool = os.getenv("FEATURE_VARIANTS", "true").lower() in ("true", "1", "yes")
     FEATURE_RETENTION: bool = os.getenv("FEATURE_RETENTION", "true").lower() in ("true", "1", "yes")
     FEATURE_REALITY_CHECK: bool = os.getenv("FEATURE_REALITY_CHECK", "true").lower() in ("true", "1", "yes")
+    DISABLE_CODE_EXERCISES: bool = os.getenv("DISABLE_CODE_EXERCISES", "true").lower() in ("true", "1", "yes")
     
     # Database URL: defaults to SQLite for local development
     DATABASE_URL: str = _configured_database_url or (

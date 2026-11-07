@@ -149,6 +149,15 @@
   color: var(--accent);
 }
 
+:root[data-theme="dark"] .nav-item.is-active {
+  background-color: var(--surface-2);
+  color: var(--ink);
+  border-left: 2px solid var(--accent);
+}
+:root[data-theme="dark"] .nav-item.is-active .nav-item-icon {
+  color: var(--accent);
+}
+
 .nav-item-icon {
   width: 16px;
   height: 16px;

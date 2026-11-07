@@ -8,6 +8,13 @@
   <link rel="stylesheet" href="/static/css/components.css">
   <link rel="stylesheet" href="/static/css/layout.css">
   <link rel="stylesheet" href="/static/css/style.css">
+  <script>
+    (function() {
+      const p = new URLSearchParams(window.location.search);
+      const t = p.get('theme') || localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   <div id="app-shell-legacy" style="display:none">Adobe Personalised Learning Buddy</div>
@@ -265,11 +272,16 @@
                   </span>
                   <span class="definition-value" id="rule-closest-limit">&mdash;</span>
                 </div>
-                <div style="margin-top:var(--space-12); padding-top:var(--space-8); border-top:1px solid var(--border); text-align:right;">
-                  <a href="#" onclick="openCertificateDrawer()" style="font-size:12px; color:var(--info); text-decoration:none; font-weight:500;">
-                    See full certificate &rarr;
-                  </a>
-                </div>
+                <details style="margin-top:var(--space-12); padding-top:var(--space-8); border-top:1px solid var(--border);">
+                  <summary style="font-size:12px; color:var(--ink-2); cursor:pointer; font-weight:500; user-select:none;">
+                    Advanced &bull; Certificate &amp; Verification
+                  </summary>
+                  <div style="margin-top:var(--space-8); text-align:right;">
+                    <a href="#" onclick="openCertificateDrawer()" style="font-size:12px; color:var(--info); text-decoration:none; font-weight:500;">
+                      Inspect verified rules &amp; PDF export &rarr;
+                    </a>
+                  </div>
+                </details>
               </div>
 
               <!-- From your buddy block -->
@@ -324,6 +336,18 @@
                 16 of 16 rules satisfied
               </span>
               <button class="btn btn-secondary btn-sm" onclick="openDiffDrawer()">Version history</button>
+              <details style="position:relative; display:inline-block;">
+                <summary class="btn btn-secondary btn-sm" style="list-style:none; cursor:pointer;">
+                  Advanced &#9662;
+                </summary>
+                <div style="position:absolute; right:0; top:calc(100% + 4px); background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); box-shadow:0 4px 12px rgba(0,0,0,0.1); padding:var(--space-8); z-index:50; min-width:240px; display:flex; flex-direction:column; gap:var(--space-6);">
+                  <div style="font-size:11px; color:var(--ink-3); text-transform:uppercase; font-weight:600; padding:2px 8px;">Audit &amp; Export</div>
+                  <a href="#" onclick="openCertificateDrawer()" style="font-size:12px; padding:var(--space-6) var(--space-8); color:var(--ink-1); text-decoration:none; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">
+                    <span>Plan Certificate (PDF)</span>
+                    <span class="tag tag-secondary" style="font-size:10px;">Export</span>
+                  </a>
+                </div>
+              </details>
             </div>
           </div>
 
@@ -529,10 +553,11 @@
     <div style="padding:var(--space-16); border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
       <div>
         <div style="display:flex; align-items:center; gap:6px; margin-bottom:2px;">
+          <span class="tag tag-secondary" style="font-size:10px;">Advanced</span>
           <span class="tag tag-success" style="font-size:10px;">Accredited</span>
           <span class="text-mono text-meta" id="cert-plan-id"></span>
         </div>
-        <h3 class="text-section">Plan Certificate</h3>
+        <h3 class="text-section">Advanced &bull; Plan Certificate</h3>
       </div>
       <button class="btn-icon btn-sm" onclick="closeCertificateDrawer()">&times;</button>
     </div>
@@ -555,7 +580,7 @@
       </div>
     </div>
     <div style="padding:var(--space-12) var(--space-16); border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
-      <span class="text-meta">Printable PDF 1.4</span>
+      <span class="text-meta">Advanced Export &bull; Printable PDF 1.4</span>
       <button class="btn btn-primary btn-sm" onclick="downloadSignedCertificatePDF()">Download PDF</button>
     </div>
   </div>

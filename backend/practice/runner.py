@@ -9,6 +9,7 @@ Supports:
 
 import json
 import logging
+import os
 import subprocess
 import sys
 from typing import Dict, Any, List, Optional
@@ -155,12 +156,21 @@ class ExerciseRunner:
         }
 
     def _grade_code(self, exercise: Dict[str, Any], code_str: str) -> Dict[str, Any]:
-        import os
-        if os.getenv("DISABLE_CODE_EXERCISES", "false").lower() in ("true", "1", "yes"):
+        import backend.config
+        is_disabled = (
+            os.getenv("DISABLE_CODE_EXERCISES", "").lower() in ("true", "1", "yes")
+            if os.getenv("DISABLE_CODE_EXERCISES") is not None
+            else getattr(backend.config.settings, "DISABLE_CODE_EXERCISES", True)
+        )
+        if is_disabled:
             return {
                 "score": 0.0,
                 "is_correct": False,
-                "feedback": "Code exercise execution is disabled in this demo deployment for container sandbox hardening. Refer to README.md for architecture details.",
+                "feedback": (
+                    "Code exercise execution is disabled in safe mode. "
+                    "Please practice via conceptual MCQs, trace-the-output, and rubric-based exercises, "
+                    "or set DISABLE_CODE_EXERCISES=false to enable restricted execution (AST-filtered, not a full security boundary)."
+                ),
                 "passed_tests": 0,
                 "total_tests": 0,
                 "disabled": True
@@ -169,6 +179,10 @@ class ExerciseRunner:
         worker_path = Path(__file__).with_name("code_worker.py")
         clean_env = {
             "SYSTEMROOT": os.environ.get("SYSTEMROOT", ""),
+            "SYSTEMDRIVE": os.environ.get("SYSTEMDRIVE", ""),
+            "WINDIR": os.environ.get("WINDIR", ""),
+            "TEMP": os.environ.get("TEMP", ""),
+            "TMP": os.environ.get("TMP", ""),
             "PATH": os.environ.get("PATH", ""),
             "PYTHONPATH": str(worker_path.parents[2]),
         }

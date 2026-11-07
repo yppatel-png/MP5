@@ -2,7 +2,7 @@
 
 **Institution:** Indian Institute of Technology Bhilai (IIT Bhilai)  
 **Curriculum Track:** B.Tech in Computer Science and Engineering (`BH-CSE-BTECH`)  
-**Evaluation Date:** 2026-11-07T11:37:10Z  
+**Evaluation Date:** 2026-11-07T13:40:11Z  
 **Architecture:** 3 Provenance Tiers | Single PostgreSQL 16 DB | Zero Invented Institutional Facts | Offline Deterministic Solver  
 
 ---
@@ -19,13 +19,13 @@
 | **Safety & Anti-Jailbreak Defense** | &ge;40 attack vectors neutralized | **100.0%** (42/42 blocked) | **PASS** |
 | **Benign Safety Over-Blocking** | 0% false positives on legitimate queries | **0.0%** (0/32 blocked) | **PASS** |
 | **Zero Course Hallucination** | 0 invented course codes permitted | **100.0% Intercepted** (zero leakage) | **PASS** |
-| **Plan Certificate Sealing** | Canonical SHA-256 cryptographic seal | **100.0% Verified** (2.7 ms/cert) | **PASS** |
+| **Plan Certificate Sealing** | Canonical SHA-256 cryptographic seal | **100.0% Verified** (2.84 ms/cert) | **PASS** |
 | **Tamper Detection Sensitivity** | Immediate hash mismatch on change | **100.0% Detected** (20/20) | **PASS** |
 | **Assessment Item Bank** | &ge;10 items/skill across 24 skills | **240 Real Items** (difficulties 1–4, 100% grounded) | **PASS** |
 | **Verified Open Resources** | &ge;90% official skill coverage | **100.0%** (24/24 skills covered, NPTEL/SWAYAM/MIT/NCERT) | **PASS** |
-| **Solver Speed (p50 / p95)** | < 100 ms per multi-semester plan | **p50 = 0.21 ms / p95 = 0.35 ms** | **PASS** |
-| **Validator Speed (Average)** | < 50 ms per plan verification | **2.78 ms / plan** | **PASS** |
-| **Total Evaluation Duration** | Full 78-profile test suite execution | **5.96 seconds** | **PASS** |
+| **Solver Speed (p50 / p95)** | < 100 ms per multi-semester plan | **p50 = 0.2 ms / p95 = 0.37 ms** | **PASS** |
+| **Validator Speed (Average)** | < 50 ms per plan verification | **3.55 ms / plan** | **PASS** |
+| **Total Evaluation Duration** | Full 78-profile test suite execution | **7.21 seconds** | **PASS** |
 
 ---
 

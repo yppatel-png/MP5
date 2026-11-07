@@ -11,6 +11,7 @@ from backend.practice.runner import exercise_runner
 from backend.practice.generator import question_generator
 from backend.practice.mastery import mastery_engine
 from backend.student.model import StudentStore
+from backend.config import settings
 
 router = APIRouter(prefix="/practice", tags=["Learn, Practise & Mastery"])
 
@@ -89,6 +90,36 @@ def submit_exercise(sub: ExerciseSubmissionModel) -> Dict[str, Any]:
     """
     if not StudentStore.get_profile(sub.student_id):
         raise HTTPException(status_code=404, detail=f"Student ID '{sub.student_id}' not found.")
+
+    import os
+    import backend.config
+    is_disabled = (
+        os.getenv("DISABLE_CODE_EXERCISES", "").lower() in ("true", "1", "yes")
+        if os.getenv("DISABLE_CODE_EXERCISES") is not None
+        else getattr(backend.config.settings, "DISABLE_CODE_EXERCISES", True)
+    )
+    ex = exercise_runner.exercises.get(sub.exercise_id)
+    if ex and ex.get("type") == "code" and is_disabled:
+        skill_id = ex.get("skill_id", "")
+        return {
+            "exercise_id": sub.exercise_id,
+            "exercise_type": "code",
+            "skill_id": skill_id,
+            "skill_name": exercise_runner.skills.get(skill_id, {}).get("name", skill_id),
+            "score": 0.0,
+            "is_correct": False,
+            "feedback": (
+                "Code exercise execution is disabled in safe mode. "
+                "Please practice via conceptual MCQs, trace-the-output, and rubric-based exercises, "
+                "or set DISABLE_CODE_EXERCISES=false to enable restricted execution (AST-filtered, not a full security boundary)."
+            ),
+            "explanation": "To enable restricted Python execution in your environment, configure DISABLE_CODE_EXERCISES=false in .env.",
+            "details": {"disabled": True, "test_cases_passed": 0, "test_cases_total": 0},
+            "passed": False,
+            "test_cases_passed": 0,
+            "test_cases_total": 0,
+            "execution_time_ms": 0.0,
+        }
     code_content = sub.code or sub.submitted_code
     submission_data = {
         "selected_option": sub.selected_option,

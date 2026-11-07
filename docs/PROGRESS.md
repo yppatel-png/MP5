@@ -153,4 +153,19 @@
 - **Interactive UI Certificate Drawer**: Updated `frontend/index.html` and `frontend/static/js/app.js` to render the dynamic transparency notice and badge each rule check with its provenance tier.
 - **Ordinance Roadmap**: Created `data/raw/ordinance_TODO.md` documenting the exact official files, expected clauses, and step-by-step procedures to upgrade each of the 7 Tier 2 assumption rules (`rule_sem_min_credits`, `rule_sem_max_credits`, `rule_credit_overload_cap`, `rule_minor_cse_eligibility`, `rule_online_credit_transfer_limit`, `rule_semester_parity`, `rule_workload_hours`) to Tier 1 verified institutional facts upon official publication.
 - **Validation**: Added assertions in `tests/test_rules_certificate.py`; all 10 tests passed; `delhi_gate.py` passed with 0 violations.
+
+### Review Fix 6: Study Activity Logging, Adherence Tracking, and Adaptive Simulation (Item 6)
+- **Study Sessions Relational Table**: Utilized PostgreSQL-backed `study_sessions` table with foreign key cascading to `student_profiles`, logging `student_id`, `course_code`, `module_id`, `duration_minutes`, `notes`, and `session_date`.
+- **Domain Models & Persistence API**:
+  - Added `StudySessionCreate` and `StudySessionRecord` schemas to `backend/student/model.py`.
+  - Added `StudentStore.log_study_session`, `StudentStore.get_study_sessions`, and `StudentStore.get_weekly_study_metrics`.
+  - Implemented `POST /api/students/{student_id}/study-sessions` and `GET /api/students/{student_id}/study-sessions` in `backend/api/students.py`.
+- **Dynamic Adherence & Status Derivation**:
+  - Updated `backend/student/summary.py` (`build_student_summary`) to dynamically pull logged study minutes, calculate `weekly_hours_studied`, and reconcile `adherence_percentage = (weekly_hours_studied / available_hours_per_week) * 100`.
+  - Automatically updates student status to `on_track` (&ge;80% adherence) or `behind` (<50% adherence).
+- **Curriculum Adaptation Simulation Scenarios**:
+  - Added `scenario_strong_study_week` (20 hrs logged, 100% adherence, status On Track, maintaining curriculum momentum).
+  - Added `scenario_weak_study_week` (4 hrs logged, 20% adherence, status Behind, load-shedding upcoming semester credit cap to 16 credits).
+  - Added parameterized `run_study_week_simulation` to `AdaptationSimulator` and registered in `backend/adapt/simulator.py`.
+- **Validation**: Added `tests/test_study_sessions_and_simulation.py` with 4 comprehensive tests (all passed); `delhi_gate.py` passed with 0 violations.
 - **Validation**: `python scripts/validate_kb.py` passed with 100.0% skill-resource coverage and 100.0% skill-exercise coverage (0 errors). Added unit test in `tests/test_knowledge_base.py` verifying exclusion of unverified resources (6/6 passed).

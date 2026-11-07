@@ -8,7 +8,13 @@ import json
 from fastapi import APIRouter, HTTPException
 from typing import List, Dict, Any, Optional
 from pydantic import BaseModel
-from backend.student.model import StudentProfile, StudentStore, EvidenceEvent
+from backend.student.model import (
+    StudentProfile,
+    StudentStore,
+    EvidenceEvent,
+    StudySessionCreate,
+    StudySessionRecord,
+)
 from backend.student.diagnostic import diagnostic_engine
 from backend.student.summary import StudentSummary, build_student_summary
 from backend.student.conflict import conflict_detector
@@ -190,3 +196,38 @@ def get_student_gaps(student_id: str) -> Dict[str, Any]:
 def get_student_evidence_trail(student_id: str, skill_id: Optional[str] = None) -> List[Dict[str, Any]]:
     """Returns chronological audit trail of all evidence events."""
     return StudentStore.get_evidence_for_student(student_id, skill_id)
+
+@router.post("/{student_id}/study-sessions")
+def log_student_study_session(student_id: str, session: StudySessionCreate) -> Dict[str, Any]:
+    """Logs a study session and recalculates weekly study metrics and student adherence."""
+    profile = StudentStore.get_profile(student_id)
+    if not profile:
+        raise HTTPException(status_code=404, detail=f"Student ID '{student_id}' not found.")
+
+    session_id = StudentStore.log_study_session(student_id, session)
+    metrics = StudentStore.get_weekly_study_metrics(student_id)
+    weekly_hours = metrics.get("weekly_hours_studied", 0.0)
+    adherence = (
+        min(100.0, max(0.0, round((weekly_hours / profile.available_hours_per_week) * 100.0, 1)))
+        if profile.available_hours_per_week > 0 else 0.0
+    )
+
+    return {
+        "session_id": session_id,
+        "student_id": student_id,
+        "course_code": session.course_code,
+        "duration_minutes": session.duration_minutes,
+        "weekly_hours_studied": weekly_hours,
+        "available_hours_per_week": profile.available_hours_per_week,
+        "adherence_percentage": adherence,
+        "status": "on_track" if adherence >= 80 else ("needs_attention" if adherence >= 50 else "behind"),
+        "message": f"Successfully logged {session.duration_minutes} minutes for {session.course_code}."
+    }
+
+@router.get("/{student_id}/study-sessions", response_model=List[Dict[str, Any]])
+def get_student_study_sessions(student_id: str) -> List[Dict[str, Any]]:
+    """Returns chronological list of all study sessions logged by the student."""
+    profile = StudentStore.get_profile(student_id)
+    if not profile:
+        raise HTTPException(status_code=404, detail=f"Student ID '{student_id}' not found.")
+    return StudentStore.get_study_sessions(student_id)

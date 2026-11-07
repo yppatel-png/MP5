@@ -128,6 +128,17 @@ def build_student_summary(
         if next_semester is not None
         else None
     )
+
+    # Compute study metrics from study_sessions if not explicitly supplied
+    if weekly_hours_studied is None and adherence_percentage is None:
+        metrics = StudentStore.get_weekly_study_metrics(profile.student_id)
+        weekly_hours_studied = metrics.get("weekly_hours_studied")
+        if weekly_hours_studied is not None and profile.available_hours_per_week > 0:
+            adherence_percentage = min(
+                100.0,
+                max(0.0, round((weekly_hours_studied / profile.available_hours_per_week) * 100.0, 1))
+            )
+
     readiness = readiness_percentage if assessed_items_count >= min_assessed_items else None
     status = derive_student_status(
         assessed_items_count=assessed_items_count,

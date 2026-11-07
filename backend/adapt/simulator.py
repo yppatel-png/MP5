@@ -50,6 +50,22 @@ SCRIPTED_SCENARIOS = [
         "default_student_id": "BH-SW-001"
     },
     {
+        "id": "scenario_strong_study_week",
+        "name": "Strong Study Week (20 hrs logged, 100% Adherence)",
+        "category": "Study Engagement",
+        "description": "Student logs consistent daily study sessions totaling 20 hours (100% adherence). System confirms On Track status, detects strong momentum, and maintains full curriculum progression.",
+        "icon": "award",
+        "default_student_id": "BH-SW-001"
+    },
+    {
+        "id": "scenario_weak_study_week",
+        "name": "Weak Study Week (4 hrs logged, 20% Adherence)",
+        "category": "Study Engagement",
+        "description": "Student logs only 4 hours this week (<50% adherence). System flags Behind status, detects burnout or pacing drift, sheds upcoming elective load to 16 credits, and recommends load lightening.",
+        "icon": "alert-circle",
+        "default_student_id": "BH-SW-001"
+    },
+    {
         "id": "scenario_fast_forward",
         "name": "Multi-Semester Fast-Forward (Advance to Sem 5)",
         "category": "Curriculum Simulation",
@@ -547,6 +563,105 @@ class AdaptationSimulator:
             "adapted_plan": new_plan
         }
 
+    def run_study_week_simulation(
+        self,
+        student_id: str = "BH-SW-001",
+        weekly_hours: float = 20.0,
+        scenario_id: str = "scenario_strong_study_week",
+    ) -> Dict[str, Any]:
+        """
+        Simulates logging real study sessions across the week, calculating adherence,
+        updating student status (On Track vs Behind), and adapting the multi-semester course plan.
+        """
+        old_plan = self.get_latest_or_initial_plan(student_id)
+        profile = StudentStore.get_profile(student_id)
+        target_hours = profile.available_hours_per_week if profile else 20.0
+
+        from backend.student.model import StudySessionCreate
+        session_mins = int((weekly_hours * 60) / 4)
+        courses = ["CSL202", "CSL252", "CSL304", "CSL303"]
+        for i, code in enumerate(courses):
+            if weekly_hours >= 10.0 or i == 0:
+                mins = int(weekly_hours * 60) if weekly_hours < 10.0 else session_mins
+                StudentStore.log_study_session(
+                    student_id,
+                    StudySessionCreate(
+                        course_code=code,
+                        duration_minutes=mins,
+                        notes=f"Simulated session for {code} ({mins} mins)"
+                    )
+                )
+
+        adherence = min(100.0, max(0.0, round((weekly_hours / target_hours) * 100.0, 1))) if target_hours > 0 else 0.0
+        is_strong = adherence >= 80.0
+
+        actions = adaptation_policy_engine.evaluate_signals(
+            student_id=student_id,
+            signals={"actual_weekly_hours": weekly_hours, "target_weekly_hours": target_hours}
+        )
+
+        credit_cap = 24.0 if is_strong else 16.0
+        gaps_data = diagnostic_engine.compute_skill_gaps(student_id, goal_id=profile.goal_id)
+
+        new_plan = multi_semester_planner.plan_curriculum(
+            student_id=student_id,
+            programme_code=profile.programme,
+            current_semester=profile.current_semester,
+            cgpa=profile.cgpa,
+            completed_courses=[c.course_code for c in profile.completed_courses],
+            skill_gaps=gaps_data.get("gaps", []),
+            goal_id=profile.goal_id,
+            credit_cap=credit_cap,
+            overload_allowed=is_strong
+        )
+
+        val = independent_validator.validate_plan(new_plan, profile.model_dump())
+        diff = plan_explainer.generate_plan_diff(
+            old_plan=old_plan,
+            new_plan=new_plan,
+            reason_for_change=f"Study Week Simulation ({weekly_hours}h / {target_hours}h, {adherence}% adherence) - Cap set to {credit_cap} credits"
+        )
+        self.persist_adapted_plan(student_id, new_plan, diff, val)
+
+        if is_strong:
+            explanation = (
+                f"Excellent study engagement! You logged {weekly_hours} hours this week "
+                f"({adherence}% adherence against your {target_hours}h target). Your academic status is confirmed "
+                f"as On Track, maintaining full pace across core algorithms and software engineering electives."
+            )
+        else:
+            explanation = (
+                f"Your study engagement dropped to {weekly_hours} hours this week "
+                f"({adherence}% adherence against your {target_hours}h target). Your status is flagged as Behind. "
+                f"To keep your academic load sustainable, upcoming semester credits have been capped at 16 credits."
+            )
+
+        status_after = "on_track" if is_strong else "behind"
+        self.log_adaptation_event(
+            student_id,
+            f"Logged {weekly_hours} hrs/wk ({adherence}% adherence)",
+            "MOMENTUM_ADVANCE" if is_strong else "LOAD_SHED",
+            {"weekly_hours_target": target_hours, "status_before": "needs_attention"},
+            {"weekly_hours_actual": weekly_hours, "adherence": adherence, "status_after": status_after, "credit_cap": credit_cap},
+            diff, explanation
+        )
+
+        return {
+            "scenario_id": scenario_id,
+            "student_id": student_id,
+            "status": "adapted",
+            "action_triggered": "MOMENTUM_ADVANCE" if is_strong else "LOAD_SHED",
+            "weekly_hours_studied": weekly_hours,
+            "adherence_percentage": adherence,
+            "student_status": status_after,
+            "credit_cap": credit_cap,
+            "actions_triggered": [a.model_dump() for a in actions],
+            "plan_diff": diff,
+            "validation": val,
+            "explanation": explanation,
+            "adapted_plan": new_plan
+        }
+
     def execute_scenario(self, scenario_id: str, student_id: str = "BH-SW-001", params: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Dispatches execution to the corresponding scenario simulation handler."""
         p = params or {}
@@ -562,6 +677,12 @@ class AdaptationSimulator:
             return self.run_behavioural_drift(student_id, logged_weekly_hours=hours)
         elif scenario_id == "scenario_fast_forward":
             return self.run_fast_forward(student_id)
+        elif scenario_id in ["scenario_strong_study_week", "scenario_strong_week"]:
+            hours = float(p.get("weekly_hours", p.get("actual_weekly_hours", 20.0)))
+            return self.run_study_week_simulation(student_id, weekly_hours=hours, scenario_id="scenario_strong_study_week")
+        elif scenario_id in ["scenario_weak_study_week", "scenario_weak_week"]:
+            hours = float(p.get("weekly_hours", p.get("actual_weekly_hours", 4.0)))
+            return self.run_study_week_simulation(student_id, weekly_hours=hours, scenario_id="scenario_weak_study_week")
         else:
             raise ValueError(f"Unknown scenario_id: '{scenario_id}'")
 

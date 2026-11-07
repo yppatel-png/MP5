@@ -40,6 +40,23 @@ class EvidenceEvent(BaseModel):
     item_ref: Optional[str] = None
     timestamp: Optional[str] = None
 
+class StudySessionCreate(BaseModel):
+    course_code: str
+    duration_minutes: int = Field(..., gt=0, description="Duration in minutes")
+    module_id: Optional[str] = None
+    notes: Optional[str] = None
+    session_date: Optional[str] = None
+
+class StudySessionRecord(BaseModel):
+    id: int
+    student_id: str
+    course_code: str
+    duration_minutes: int
+    module_id: Optional[str] = None
+    notes: Optional[str] = None
+    session_date: str
+    created_at: Optional[str] = None
+
 class StudentStore:
     """Persistence manager for student profiles and evidence events in SQLite / Postgres."""
     
@@ -159,3 +176,49 @@ class StudentStore:
         with get_db_cursor() as cur:
             cur.execute(query, params)
             return [dict(r) for r in cur.fetchall()]
+
+    @staticmethod
+    def log_study_session(student_id: str, session: StudySessionCreate) -> int:
+        session_date = session.session_date or datetime.now().strftime("%Y-%m-%d")
+        with get_db_cursor() as cur:
+            cur.execute("""
+            INSERT INTO study_sessions (student_id, course_code, module_id, duration_minutes, notes, session_date)
+            VALUES (?, ?, ?, ?, ?, ?);
+            """, (
+                student_id,
+                session.course_code,
+                session.module_id,
+                session.duration_minutes,
+                session.notes,
+                session_date,
+            ))
+            cur.execute("SELECT id FROM study_sessions WHERE student_id = ? ORDER BY id DESC LIMIT 1;", (student_id,))
+            row = cur.fetchone()
+            return int(row["id"] if isinstance(row, dict) else row[0])
+
+    @staticmethod
+    def get_study_sessions(student_id: str, days: Optional[int] = None) -> List[Dict[str, Any]]:
+        with get_db_cursor() as cur:
+            cur.execute(
+                "SELECT * FROM study_sessions WHERE student_id = ? ORDER BY session_date DESC, id DESC",
+                (student_id,)
+            )
+            return [dict(r) for r in cur.fetchall()]
+
+    @staticmethod
+    def get_weekly_study_metrics(student_id: str) -> Dict[str, Any]:
+        """Calculates total hours studied and session count from logged study sessions."""
+        with get_db_cursor() as cur:
+            cur.execute(
+                "SELECT duration_minutes, session_date FROM study_sessions WHERE student_id = ?",
+                (student_id,)
+            )
+            rows = [dict(r) for r in cur.fetchall()]
+        if not rows:
+            return {"weekly_hours_studied": None, "session_count": 0}
+        total_mins = sum(int(r["duration_minutes"]) for r in rows)
+        total_hours = round(total_mins / 60.0, 1)
+        return {
+            "weekly_hours_studied": total_hours,
+            "session_count": len(rows),
+        }

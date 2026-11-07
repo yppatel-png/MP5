@@ -22,14 +22,15 @@ SUPPORTED_STATUS = "curriculum_available"
 
 class OnboardingProfileRequest(BaseModel):
     name: str = Field(min_length=1, max_length=120)
-    programme_id: str
+    programme_id: str = "BH-CSE-BTECH"
     current_semester: int = Field(ge=1)
-    cgpa: float = Field(ge=0, le=10)
-    available_hours_per_week: float = Field(ge=0, le=80)
+    cgpa: Optional[float] = Field(default=None, ge=0, le=10)
+    available_hours_per_week: float = Field(default=15.0, ge=0, le=80)
     goal: str = Field(min_length=1, max_length=160)
     interests: List[str] = Field(default_factory=list, max_length=12)
     completed_course_codes: List[str] = Field(default_factory=list, max_length=80)
     shortlisted_course_codes: List[str] = Field(default_factory=list, max_length=40)
+    learning_style: Optional[str] = "hands_on"
 
 
 class OnboardingProfileResponse(OnboardingProfileRequest):
@@ -55,6 +56,8 @@ class OnboardingAssistantResponse(BaseModel):
 
 
 def _programme(programme_id: str) -> CurriculumProgramme:
+    if programme_id in ("BH-CSE-BTECH", "BH-CSE", "btech_cse"):
+        programme_id = "iit_bhilai_btech_cse_2023"
     programme = next(
         (
             item
@@ -154,20 +157,29 @@ def _sync_to_student_store(profile: dict) -> None:
             for c in profile.get("completed_course_codes", [])
         ]
         curr_sem = int(profile["current_semester"])
+        cgpa_val = float(profile["cgpa"]) if profile.get("cgpa") is not None else 8.0
         stu_profile = StudentProfile(
             student_id=profile["student_id"],
             name=profile["name"],
             programme="BH-CSE-BTECH",
             year=max(1, (curr_sem + 1) // 2),
             current_semester=curr_sem,
-            cgpa=float(profile["cgpa"]),
+            cgpa=cgpa_val,
             goal_id=matched_goal,
             target_role=profile.get("goal"),
-            available_hours_per_week=float(profile["available_hours_per_week"]),
+            available_hours_per_week=float(profile.get("available_hours_per_week", 15.0)),
             completed_courses=completed,
-            interests=profile.get("interests", [])
+            interests=profile.get("interests", []),
+            preferences={
+                "learning_style": profile.get("learning_style", "hands_on"),
+                "provenance": "self_declared"
+            }
         )
         StudentStore.save_profile(stu_profile)
+
+        # Generate initial validated plan
+        from backend.api.plans import generate_student_plan, PlanGenerateRequest
+        generate_student_plan(PlanGenerateRequest(student_id=stu_profile.student_id))
     except Exception as e:
         import logging
         logging.getLogger("onboarding").warning("Failed to sync to student store: %s", e)

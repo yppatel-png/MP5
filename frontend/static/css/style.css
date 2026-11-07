@@ -18,7 +18,7 @@
   border-left: 1px solid var(--border);
   transform: translateX(102%);
   transition: transform 0.24s ease;
-  z-index: 600;
+  z-index: 40;
 }
 
 .heatmap-grid {
@@ -210,8 +210,6 @@
 
 .drawer.is-open, .drawer.is-active {
   right: 0 !important;
-  transform: translateX(0) !important;
-  z-index: 600 !important;
 }
 
 .drawer-backdrop.is-open, .drawer-backdrop.is-active {
@@ -538,3 +536,86 @@ textarea.code-editor-input {
   align-items: center;
   gap: 4px;
 }
+
+/* ----------------------------------------------------------------------------
+   ONBOARDING WIZARD (PDF §3 UX, §2.2)
+   ---------------------------------------------------------------------------- */
+.wizard-header {
+  max-width: 760px;
+  margin: 0 auto 20px auto;
+}
+
+.goal-card, .style-card {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.goal-card:hover, .style-card:hover {
+  border-color: var(--accent);
+  background: rgba(56, 189, 248, 0.04);
+}
+
+.goal-card.is-selected, .style-card.is-selected {
+  border-color: var(--accent);
+  background: rgba(56, 189, 248, 0.08);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.wizard-chip {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-2);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--ink);
+  transition: all 0.16s ease;
+  user-select: none;
+}
+
+.wizard-chip:hover {
+  border-color: var(--accent);
+}
+
+.wizard-chip.is-selected {
+  background: var(--accent);
+  color: #0F172A;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.sem-checklist-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.sem-checklist-header {
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sem-course-item {
+  padding: 8px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.sem-course-item:last-child {
+  border-bottom: none;
+}
+

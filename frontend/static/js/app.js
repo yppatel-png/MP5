@@ -171,68 +171,414 @@ function renderDiagnosticView() {
   if (count) count.innerText = `${state.diagnosticAnswered.length} answered this session`;
 }
 
+// ==============================================================================
+// ONBOARDING WIZARD (PDF §3 UX, §2.2)
+// ==============================================================================
+const wizardState = {
+  step: 1,
+  totalSteps: 6,
+  name: '',
+  programme_id: 'BH-CSE-BTECH',
+  semester: 3,
+  cgpa: null,
+  completedCourses: {}, // course_code -> grade
+  goal: 'goal_software',
+  interests: [],
+  hours: 15,
+  learningStyle: 'hands_on'
+};
+
+const CANONICAL_INTERESTS = [
+  "AI/ML", "Systems", "Web and App Dev", "Data and Databases",
+  "Algorithms and Theory", "Security", "Research", "Product and Business"
+];
+
+const SEMESTER_COURSES_CATALOGUE = [
+  {
+    sem: 1,
+    title: "Semester 1",
+    courses: [
+      { code: "CSL100", title: "Introduction to Computer Science", credits: 4.5 },
+      { code: "ECL101", title: "Digital Electronics", credits: 4.0 }
+    ]
+  },
+  {
+    sem: 2,
+    title: "Semester 2",
+    courses: [
+      { code: "MAL403", title: "Linear Algebra & Applications", credits: 4.0 },
+      { code: "LAL100", title: "Liberal Arts Course I", credits: 2.0 }
+    ]
+  },
+  {
+    sem: 3,
+    title: "Semester 3",
+    courses: [
+      { code: "CSL201", title: "Data Structures", credits: 4.0 },
+      { code: "CSL202", title: "Data Structures Laboratory", credits: 4.0 },
+      { code: "CSP203", title: "Software Systems Laboratory", credits: 3.0 },
+      { code: "LAL222", title: "Liberal Arts Course II", credits: 2.0 }
+    ]
+  },
+  {
+    sem: 4,
+    title: "Semester 4",
+    courses: [
+      { code: "CSL251", title: "Computer Architecture", credits: 4.0 },
+      { code: "CSL252", title: "Design and Analysis of Algorithms", credits: 4.0 },
+      { code: "CSL253", title: "Database Systems", credits: 4.0 },
+      { code: "LAL101", title: "Liberal Arts Course III", credits: 1.0 }
+    ]
+  }
+];
+
 function renderOnboardingForm() {
-  const profile = state.profileRecord;
-  if (!profile) return;
-  const goalSelect = document.getElementById('setup-goal');
-  goalSelect.replaceChildren(
-    new Option('Software Engineering & Systems', 'goal_software'),
-    new Option('Higher Studies & Research', 'goal_higher_studies'),
-    new Option('UPSC Civil Services', 'goal_upsc'),
-    new Option('Startup & Entrepreneurship', 'goal_startup')
-  );
-  document.getElementById('setup-scope-description').innerText =
-    'Update your learning profile and target goal. Your degree plan will be generated and verified against academic rules.';
-  document.getElementById('setup-save-btn').innerText = 'Save & regenerate plan';
-  document.getElementById('setup-name').value = profile.name || '';
-  goalSelect.value = profile.goal_id || 'goal_software';
-  document.getElementById('setup-hours').value = profile.available_hours_per_week ?? 8;
-  document.getElementById('setup-cgpa').value = profile.cgpa ?? 8;
-  document.getElementById('setup-interests').value = (profile.interests || []).join(', ');
-  document.getElementById('admin-edit-cgpa').value = profile.cgpa ?? '';
-  document.getElementById('admin-edit-hours').value = profile.available_hours_per_week ?? '';
+  wizardState.step = 1;
+  updateWizardProgress();
+  renderWizardCompletedCourses();
+  renderWizardInterests();
 }
 
-async function saveOnboarding() {
-  if (!state.profileRecord) return;
-  const goalTargets = {
-    goal_software: 'Software engineer',
-    goal_higher_studies: 'Computing researcher',
-    goal_research: 'Computing researcher',
-    goal_upsc: 'Civil servant',
-    goal_startup: 'Technical founder',
+function updateWizardProgress() {
+  const stepTitles = {
+    1: "Step 1 of 6: Basics",
+    2: "Step 2 of 6: Courses Completed",
+    3: "Step 3 of 6: Target Goal",
+    4: "Step 4 of 6: Interests",
+    5: "Step 5 of 6: Time & Preferences",
+    6: "Step 6 of 6: Review & Create"
   };
-  const name = document.getElementById('setup-name').value.trim();
-  const cgpa = Number(document.getElementById('setup-cgpa').value);
-  const hours = Number(document.getElementById('setup-hours').value);
-  const status = document.getElementById('setup-status');
-  if (!name || !Number.isFinite(cgpa) || cgpa < 0 || cgpa > 10
-      || !Number.isFinite(hours) || hours < 0 || hours > 80) {
-    status.innerText = 'Enter a name, CGPA from 0 to 10, and weekly study hours from 0 to 80.';
-    return;
+
+  const titleEl = document.getElementById('wizard-step-title');
+  const pctEl = document.getElementById('wizard-progress-pct');
+  const barEl = document.getElementById('wizard-progress-bar');
+  const indEl = document.getElementById('wizard-step-indicator');
+  const backBtn = document.getElementById('wizard-back-btn');
+  const nextBtn = document.getElementById('wizard-next-btn');
+  const submitBtn = document.getElementById('wizard-submit-btn');
+
+  const pct = Math.round((wizardState.step / wizardState.totalSteps) * 100);
+  if (titleEl) titleEl.innerText = stepTitles[wizardState.step] || `Step ${wizardState.step} of 6`;
+  if (pctEl) pctEl.innerText = `${pct}% Complete`;
+  if (barEl) barEl.style.width = `${pct}%`;
+  if (indEl) indEl.innerText = `Step ${wizardState.step} of 6`;
+
+  for (let s = 1; s <= 6; s++) {
+    const el = document.getElementById(`wizard-step-${s}`);
+    if (el) el.style.display = (s === wizardState.step) ? 'block' : 'none';
   }
-  const goalId = document.getElementById('setup-goal').value;
-  const profile = {
-    ...state.profileRecord,
-    name,
-    goal_id: goalId,
-    target_role: goalTargets[goalId] || state.profileRecord.target_role,
-    available_hours_per_week: hours,
-    cgpa,
-    interests: document.getElementById('setup-interests').value.split(',').map(value => value.trim()).filter(Boolean),
+
+  if (backBtn) backBtn.style.visibility = (wizardState.step > 1) ? 'visible' : 'hidden';
+  if (nextBtn) nextBtn.style.display = (wizardState.step < 6) ? 'inline-block' : 'none';
+  if (submitBtn) submitBtn.style.display = (wizardState.step === 6) ? 'inline-block' : 'none';
+}
+
+function wizardStepNext() {
+  if (wizardState.step === 1) {
+    const nameInput = document.getElementById('wizard-name');
+    const nameErr = document.getElementById('wizard-error-name');
+    const cgpaInput = document.getElementById('wizard-cgpa');
+    const cgpaErr = document.getElementById('wizard-error-cgpa');
+    const semSelect = document.getElementById('wizard-semester');
+
+    const name = nameInput ? nameInput.value.trim() : '';
+    if (!name) {
+      if (nameErr) nameErr.style.display = 'block';
+      if (nameInput) nameInput.focus();
+      return;
+    } else {
+      if (nameErr) nameErr.style.display = 'none';
+      wizardState.name = name;
+    }
+
+    if (cgpaInput && cgpaInput.value.trim() !== '') {
+      const val = parseFloat(cgpaInput.value);
+      if (isNaN(val) || val < 0.0 || val > 10.0) {
+        if (cgpaErr) cgpaErr.style.display = 'block';
+        return;
+      } else {
+        if (cgpaErr) cgpaErr.style.display = 'none';
+        wizardState.cgpa = val;
+      }
+    } else {
+      if (cgpaErr) cgpaErr.style.display = 'none';
+      wizardState.cgpa = null;
+    }
+
+    if (semSelect) wizardState.semester = parseInt(semSelect.value, 10);
+  } else if (wizardState.step === 4) {
+    const intErr = document.getElementById('wizard-error-interests');
+    if (wizardState.interests.length > 5) {
+      if (intErr) intErr.style.display = 'block';
+      return;
+    } else {
+      if (intErr) intErr.style.display = 'none';
+    }
+  }
+
+  if (wizardState.step < wizardState.totalSteps) {
+    wizardState.step++;
+    updateWizardProgress();
+    if (wizardState.step === 6) {
+      renderWizardReview();
+    }
+  }
+}
+
+function wizardStepBack() {
+  if (wizardState.step > 1) {
+    wizardState.step--;
+    updateWizardProgress();
+  }
+}
+
+function selectWizardGoal(goalId) {
+  wizardState.goal = goalId;
+  document.querySelectorAll('.wizard-goal-cards .goal-card, .goal-card[data-goal]').forEach(c => {
+    if (c.dataset.goal === goalId) {
+      c.classList.add('is-selected');
+    } else {
+      c.classList.remove('is-selected');
+    }
+  });
+}
+
+function selectWizardStyle(style) {
+  wizardState.learningStyle = style;
+  document.querySelectorAll('.style-card').forEach(c => {
+    if (c.dataset.style === style) {
+      c.classList.add('is-selected');
+    } else {
+      c.classList.remove('is-selected');
+    }
+  });
+}
+
+function updateWizardHours(val) {
+  wizardState.hours = parseFloat(val);
+  const el = document.getElementById('wizard-hours-val');
+  if (el) el.innerText = `${val} hrs/week`;
+}
+
+function renderWizardInterests() {
+  const container = document.getElementById('wizard-interest-chips');
+  if (!container) return;
+  container.innerHTML = CANONICAL_INTERESTS.map(intName => {
+    const sel = wizardState.interests.includes(intName) ? 'is-selected' : '';
+    return `<div class="wizard-chip ${sel}" onclick="toggleWizardInterest('${intName}', this)">${intName}</div>`;
+  }).join('');
+  updateWizardInterestCounter();
+}
+
+function toggleWizardInterest(intName, el) {
+  const idx = wizardState.interests.indexOf(intName);
+  const errEl = document.getElementById('wizard-error-interests');
+  if (idx >= 0) {
+    wizardState.interests.splice(idx, 1);
+    if (el) el.classList.remove('is-selected');
+    if (errEl) errEl.style.display = 'none';
+  } else {
+    if (wizardState.interests.length >= 5) {
+      if (errEl) errEl.style.display = 'block';
+      return;
+    }
+    wizardState.interests.push(intName);
+    if (el) el.classList.add('is-selected');
+    if (errEl) errEl.style.display = 'none';
+  }
+  updateWizardInterestCounter();
+}
+
+function updateWizardInterestCounter() {
+  const el = document.getElementById('wizard-interest-counter');
+  if (el) el.innerText = `${wizardState.interests.length} of 5 selected`;
+}
+
+function renderWizardCompletedCourses() {
+  const container = document.getElementById('wizard-completed-groups');
+  if (!container) return;
+
+  container.innerHTML = SEMESTER_COURSES_CATALOGUE.map(group => {
+    const courseRows = group.courses.map(c => {
+      const isChecked = wizardState.completedCourses[c.code] ? 'checked' : '';
+      return `
+        <div class="sem-course-item">
+          <label style="display:flex; align-items:center; gap:10px; cursor:pointer; flex:1;">
+            <input type="checkbox" data-sem="${group.sem}" data-code="${c.code}" ${isChecked} onchange="onWizardCourseToggle('${c.code}', ${group.sem}, this.checked)">
+            <div>
+              <span class="plan-course-code" style="font-size:11px;">${c.code}</span>
+              <span style="font-size:12px; font-weight:500; color:var(--ink); margin-left:6px;">${c.title}</span>
+              <span class="text-meta" style="font-size:11px; margin-left:4px;">(${c.credits} cr)</span>
+            </div>
+          </label>
+          <select class="input" style="font-size:11px; padding:2px 6px; width:80px;" onchange="onWizardCourseGradeChange('${c.code}', this.value)">
+            <option value="A">Grade: A</option>
+            <option value="A-">Grade: A-</option>
+            <option value="B" selected>Grade: B</option>
+            <option value="B-">Grade: B-</option>
+            <option value="C">Grade: C</option>
+            <option value="Pass">Pass</option>
+          </select>
+        </div>
+      `;
+    }).join('');
+
+    return `
+      <div class="sem-checklist-card">
+        <div class="sem-checklist-header">
+          <span>${group.title}</span>
+          <button type="button" class="btn btn-secondary btn-sm" style="font-size:11px; padding:2px 8px;" onclick="toggleSelectAllSemesterCourses(${group.sem})">Select all of ${group.title}</button>
+        </div>
+        <div>${courseRows}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function onWizardCourseToggle(code, sem, checked) {
+  if (checked) {
+    wizardState.completedCourses[code] = wizardState.completedCourses[code] || 'B';
+  } else {
+    delete wizardState.completedCourses[code];
+  }
+}
+
+function onWizardCourseGradeChange(code, grade) {
+  if (wizardState.completedCourses[code]) {
+    wizardState.completedCourses[code] = grade;
+  }
+}
+
+function toggleSelectAllSemesterCourses(sem) {
+  const group = SEMESTER_COURSES_CATALOGUE.find(g => g.sem === sem);
+  if (!group) return;
+  const checkboxes = document.querySelectorAll(`input[type="checkbox"][data-sem="${sem}"]`);
+  const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+  const targetState = !allChecked;
+
+  checkboxes.forEach(cb => {
+    cb.checked = targetState;
+    const code = cb.dataset.code;
+    if (targetState) {
+      wizardState.completedCourses[code] = 'B';
+    } else {
+      delete wizardState.completedCourses[code];
+    }
+  });
+}
+
+function renderWizardReview() {
+  const summaryEl = document.getElementById('wizard-review-summary');
+  if (!summaryEl) return;
+
+  const goalLabels = {
+    goal_software: 'Software / IT (Systems, Algorithms, Placements)',
+    goal_higher_studies: 'Higher Studies & Research (Theory, MS/PhD)',
+    goal_upsc: 'UPSC Civil Services (Humanities, General Studies)',
+    goal_startup: 'Startup & Entrepreneurship (Product, Full-stack)',
+    goal_exploratory: 'Not sure yet (General CSE exploration)'
   };
-  const button = document.getElementById('setup-save-btn');
-  button.disabled = true;
-  status.innerText = 'Saving your profile and generating a validated plan...';
+
+  const styleLabels = {
+    hands_on: '💻 Hands-on (Labs & Projects)',
+    videos: '🎥 Videos (Lectures & Visual Walkthroughs)',
+    reading: '📖 Reading (Textbooks & Formal Docs)'
+  };
+
+  const completedList = Object.keys(wizardState.completedCourses);
+  const interestsList = wizardState.interests.length ? wizardState.interests.join(', ') : 'None specified';
+
+  summaryEl.innerHTML = `
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+      <div>
+        <span class="text-meta" style="font-size:11px;">STUDENT NAME</span>
+        <div style="font-weight:600; font-size:13px; color:var(--ink);">${wizardState.name || 'Not provided'}</div>
+      </div>
+      <div>
+        <span class="text-meta" style="font-size:11px;">PROGRAMME</span>
+        <div style="font-weight:600; font-size:13px; color:var(--ink);">B.Tech CSE (BH-CSE-BTECH)</div>
+      </div>
+      <div>
+        <span class="text-meta" style="font-size:11px;">SEMESTER & CGPA (SELF-DECLARED)</span>
+        <div style="font-weight:500; font-size:13px; color:var(--ink);">Semester ${wizardState.semester} · CGPA ${wizardState.cgpa !== null ? wizardState.cgpa : 'Not entered (8.0 default)'}</div>
+      </div>
+      <div>
+        <span class="text-meta" style="font-size:11px;">PRIMARY GOAL</span>
+        <div style="font-weight:600; font-size:13px; color:var(--accent);">${goalLabels[wizardState.goal] || wizardState.goal}</div>
+      </div>
+      <div style="grid-column: 1 / -1;">
+        <span class="text-meta" style="font-size:11px;">COMPLETED COURSES (${completedList.length} SELF-DECLARED)</span>
+        <div style="font-size:12px; color:var(--ink);">${completedList.length ? completedList.join(', ') : 'None marked as completed'}</div>
+      </div>
+      <div style="grid-column: 1 / -1;">
+        <span class="text-meta" style="font-size:11px;">EXPRESSED INTERESTS (${wizardState.interests.length} OF 5)</span>
+        <div style="font-size:12px; color:var(--ink);">${interestsList}</div>
+      </div>
+      <div>
+        <span class="text-meta" style="font-size:11px;">INDEPENDENT STUDY BUDGET</span>
+        <div style="font-weight:500; font-size:12px; color:var(--ink);">${wizardState.hours} hours/week</div>
+      </div>
+      <div>
+        <span class="text-meta" style="font-size:11px;">PREFERRED LEARNING STYLE</span>
+        <div style="font-weight:500; font-size:12px; color:var(--ink);">${styleLabels[wizardState.learningStyle] || wizardState.learningStyle}</div>
+      </div>
+    </div>
+  `;
+}
+
+async function submitWizardOnboarding() {
+  const submitBtn = document.getElementById('wizard-submit-btn');
+  const statusEl = document.getElementById('wizard-submit-status');
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerText = 'Creating profile & generating valid plan...';
+  }
+  if (statusEl) statusEl.innerText = 'Validating inputs against curriculum rules...';
+
   try {
-    await api.saveProfile(profile);
-    await api.generatePlan(profile.student_id);
-    status.innerText = 'Your preferences are saved and the plan has been revalidated.';
-    await loadFullStudentContext(profile.student_id);
-  } catch (error) {
-    status.innerText = `${error.message || 'Could not save your profile.'} Request ID: ${error.requestId || 'unavailable'}`;
+    const payload = {
+      name: wizardState.name,
+      programme_id: 'BH-CSE-BTECH',
+      current_semester: wizardState.semester,
+      cgpa: wizardState.cgpa !== null ? wizardState.cgpa : 8.0,
+      available_hours_per_week: wizardState.hours,
+      goal: wizardState.goal === 'goal_exploratory' ? 'goal_software' : wizardState.goal,
+      interests: wizardState.interests,
+      completed_course_codes: Object.keys(wizardState.completedCourses),
+      shortlisted_course_codes: [],
+      learning_style: wizardState.learningStyle
+    };
+
+    const res = await api.createOnboardingProfile(payload);
+    const newStudentId = res.student_id;
+
+    if (statusEl) statusEl.innerText = 'Profile created! Switching to your validated degree plan...';
+    showToast(`Welcome, ${wizardState.name}! Your degree roadmap is verified and ready.`, 'success');
+
+    // Reload student dropdown and switch active context to newly created student
+    await loadStudentList();
+    const sel = document.getElementById('persona-select');
+    if (sel) {
+      sel.value = newStudentId;
+    }
+    await loadFullStudentContext(newStudentId);
+
+    // Land on Your Plan tab (PDF §3 Acceptance)
+    switchTab('plan');
+
+    // Offer short diagnostic
+    setTimeout(() => {
+      showToast('Take a short diagnostic to calibrate your baseline skill readiness.', 'info');
+    }, 1500);
+
+  } catch (err) {
+    if (statusEl) statusEl.innerText = `Failed: ${err.message || 'Validation error'}`;
+    showToast(`Error creating profile: ${err.message}`, 'error');
   } finally {
-    button.disabled = false;
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerText = 'Create Profile & Generate Valid Plan';
+    }
   }
 }
 

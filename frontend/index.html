@@ -59,6 +59,10 @@
           <span class="nav-item-icon" data-icon="check-circle" data-icon-size="16"></span>
           <span class="nav-item-label">Progress</span>
         </div>
+        <div class="nav-item" data-target="setup" onclick="switchTab('setup')">
+          <span class="nav-item-icon" data-icon="user-plus" data-icon-size="16"></span>
+          <span class="nav-item-label">Onboarding</span>
+        </div>
         <div class="nav-item" onclick="toggleBuddyPanel()">
           <span class="nav-item-icon" data-icon="message-square" data-icon-size="16"></span>
           <span class="nav-item-label">Buddy</span>
@@ -131,27 +135,192 @@
              style="margin-bottom:var(--space-16); padding:var(--space-12); border:1px solid var(--border); border-radius:var(--radius-panel); background:var(--surface-2);"></div>
 
         <section id="view-setup" class="tab-pane">
-          <div style="margin-bottom:var(--space-16);">
-            <h2 class="text-title">Personalize your plan</h2>
-            <div class="text-meta" id="setup-scope-description">Set your goal and study constraints. The planner will regenerate and independently validate your roadmap.</div>
+          <!-- Wizard Header & Progress Meter (PDF §3 UX, §2.2) -->
+          <div class="wizard-header">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div>
+                <h2 class="text-title" style="margin:0;">Student Onboarding</h2>
+                <div class="text-meta" id="wizard-step-title">Step 1 of 6: Basics</div>
+              </div>
+              <span class="tag tag-neutral" id="wizard-progress-pct" style="font-weight:600;">16% Complete</span>
+            </div>
+            <!-- Progress Bar -->
+            <div style="height:6px; background:var(--surface-2); border-radius:3px; overflow:hidden;">
+              <div id="wizard-progress-bar" style="width:16.6%; height:100%; background:var(--accent); transition:width 0.25s ease;"></div>
+            </div>
           </div>
-          <div class="setup-form">
-            <label>Name <input id="setup-name" class="input" autocomplete="name"></label>
-            <label>Career / learning goal
-              <select id="setup-goal" class="input">
-                <option value="goal_software">Software Engineering & Systems</option>
-                <option value="goal_higher_studies">Higher Studies & Research</option>
-                <option value="goal_upsc">UPSC Civil Services</option>
-                <option value="goal_startup">Entrepreneurship</option>
-              </select>
-            </label>
-            <label>Current CGPA (0–10) <input id="setup-cgpa" type="number" min="0" max="10" step="0.1" class="input"></label>
-            <label>Independent study hours per week <input id="setup-hours" type="number" min="0" max="80" step="1" class="input"></label>
-            <label class="setup-wide">Interests (comma-separated)
-              <input id="setup-interests" class="input" placeholder="systems, machine learning, policy">
-            </label>
-            <button id="setup-save-btn" class="btn btn-primary" onclick="saveOnboarding()">Save preferences & generate plan</button>
-            <div id="setup-status" class="text-meta" role="status" aria-live="polite"></div>
+
+          <div id="wizard-card" class="panel-card" style="padding:var(--space-24); background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); max-width:760px; margin:0 auto;">
+
+            <!-- STEP 1: BASICS -->
+            <div class="wizard-step" id="wizard-step-1">
+              <h3 class="text-section" style="margin-bottom:4px;">1. Basic Academic Information</h3>
+              <div class="text-meta" style="margin-bottom:var(--space-16);">Tell us who you are and where you currently stand in the programme.</div>
+
+              <div style="display:flex; flex-direction:column; gap:14px;">
+                <label>
+                  <span style="display:block; font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink);">Full Name *</span>
+                  <input id="wizard-name" class="input" placeholder="e.g. Priyanshu Verma" autocomplete="name" style="width:100%;">
+                  <span class="text-meta wizard-error" id="wizard-error-name" style="color:#F87171; display:none; margin-top:2px;">Please enter your full name.</span>
+                </label>
+
+                <label>
+                  <span style="display:block; font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink);">Programme (Curriculum Scope)</span>
+                  <input class="input" value="B.Tech Computer Science and Engineering (BH-CSE-BTECH)" readonly style="width:100%; opacity:0.85; background:var(--surface-2);">
+                  <span class="text-meta" style="font-size:11px;">Source of truth: IIT Bhilai Courses of Study (CSE B.Tech only).</span>
+                </label>
+
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+                  <label>
+                    <span style="display:block; font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink);">Current Semester *</span>
+                    <select id="wizard-semester" class="input" style="width:100%;">
+                      <option value="1">Semester 1 (Year 1)</option>
+                      <option value="2">Semester 2 (Year 1)</option>
+                      <option value="3" selected>Semester 3 (Year 2)</option>
+                      <option value="4">Semester 4 (Year 2)</option>
+                      <option value="5">Semester 5 (Year 3)</option>
+                      <option value="6">Semester 6 (Year 3)</option>
+                      <option value="7">Semester 7 (Year 4)</option>
+                      <option value="8">Semester 8 (Year 4)</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    <span style="display:block; font-size:12px; font-weight:600; margin-bottom:4px; color:var(--ink);">Current CGPA (0.0 – 10.0)</span>
+                    <input id="wizard-cgpa" type="number" min="0" max="10" step="0.01" class="input" placeholder="e.g. 8.25 (optional)" style="width:100%;">
+                    <span class="text-meta wizard-error" id="wizard-error-cgpa" style="color:#F87171; display:none; margin-top:2px;">CGPA must be between 0.0 and 10.0.</span>
+                  </label>
+                </div>
+
+                <div class="note-box" style="padding:10px 12px; background:var(--surface-2); border-left:3px solid var(--accent); font-size:11px; color:var(--ink-muted);">
+                  ℹ️ <strong>Self-declared note:</strong> Initial CGPA and baseline information are recorded as self-declared by the student until verified against official grade sheets.
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 2: COURSES COMPLETED -->
+            <div class="wizard-step" id="wizard-step-2" style="display:none;">
+              <h3 class="text-section" style="margin-bottom:4px;">2. Completed Courses Checklist</h3>
+              <div class="text-meta" style="margin-bottom:var(--space-16);">Select courses you have completed. No manual code typing needed.</div>
+
+              <div id="wizard-completed-groups" style="display:flex; flex-direction:column; gap:12px; max-height:360px; overflow-y:auto; padding-right:4px;">
+                <!-- Dynamically populated per semester with Select All toggles -->
+              </div>
+
+              <div class="note-box" style="margin-top:12px; padding:8px 12px; background:var(--surface-2); border-left:3px solid var(--accent); font-size:11px; color:var(--ink-muted);">
+                ℹ️ <strong>Self-declared note:</strong> Completed courses are self-declared. Prerequisites for upcoming electives will be verified automatically.
+              </div>
+            </div>
+
+            <!-- STEP 3: GOAL -->
+            <div class="wizard-step" id="wizard-step-3" style="display:none;">
+              <h3 class="text-section" style="margin-bottom:4px;">3. Target Goal</h3>
+              <div class="text-meta" style="margin-bottom:var(--space-16);">Select your primary academic and career focus.</div>
+
+              <div class="wizard-goal-cards" style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+                <div class="goal-card is-selected" data-goal="goal_software" onclick="selectWizardGoal('goal_software')">
+                  <div style="font-weight:600; font-size:14px; color:var(--ink);">💻 Software / IT</div>
+                  <div style="font-size:12px; color:var(--ink-muted); margin-top:4px;">Systems, Web/App Engineering, DSA, Algorithms, Cloud, and Software Placements.</div>
+                </div>
+                <div class="goal-card" data-goal="goal_higher_studies" onclick="selectWizardGoal('goal_higher_studies')">
+                  <div style="font-weight:600; font-size:14px; color:var(--ink);">🎓 Higher Studies & Research</div>
+                  <div style="font-size:12px; color:var(--ink-muted); margin-top:4px;">Graduate admissions (MS/PhD), Theoretical Computer Science, Research Labs, and Publications.</div>
+                </div>
+                <div class="goal-card" data-goal="goal_upsc" onclick="selectWizardGoal('goal_upsc')">
+                  <div style="font-weight:600; font-size:14px; color:var(--ink);">🏛️ UPSC Civil Services</div>
+                  <div style="font-size:12px; color:var(--ink-muted); margin-top:4px;">Administrative public services, Humanities electives, Economics, and General Studies baseline.</div>
+                </div>
+                <div class="goal-card" data-goal="goal_startup" onclick="selectWizardGoal('goal_startup')">
+                  <div style="font-weight:600; font-size:14px; color:var(--ink);">🚀 Startup & Entrepreneurship</div>
+                  <div style="font-size:12px; color:var(--ink-muted); margin-top:4px;">Product design, Full-stack prototyping, Business models, Innovation, and MVP deployment.</div>
+                </div>
+              </div>
+              <div class="goal-card" data-goal="goal_exploratory" onclick="selectWizardGoal('goal_exploratory')" style="margin-top:12px;">
+                <div style="font-weight:600; font-size:14px; color:var(--ink);">🧭 Not sure yet</div>
+                <div style="font-size:12px; color:var(--ink-muted); margin-top:4px;">Broad foundational CSE exploration. The Learning Buddy will ask clarifying questions in dialogue.</div>
+              </div>
+            </div>
+
+            <!-- STEP 4: INTERESTS -->
+            <div class="wizard-step" id="wizard-step-4" style="display:none;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <h3 class="text-section" style="margin:0;">4. Expressed Interests</h3>
+                <span class="text-meta" id="wizard-interest-counter" style="font-weight:600;">0 of 5 selected</span>
+              </div>
+              <div class="text-meta" style="margin-bottom:var(--space-16);">Pick up to 5 fixed areas of interest to rank and match elective recommendations.</div>
+
+              <div id="wizard-interest-chips" style="display:flex; flex-wrap:wrap; gap:8px;">
+                <!-- Rendered dynamically -->
+              </div>
+              <span class="text-meta wizard-error" id="wizard-error-interests" style="color:#F87171; display:none; margin-top:8px;">You can select a maximum of 5 interests.</span>
+            </div>
+
+            <!-- STEP 5: TIME AND PREFERENCES -->
+            <div class="wizard-step" id="wizard-step-5" style="display:none;">
+              <h3 class="text-section" style="margin-bottom:4px;">5. Time Budget & Learning Style</h3>
+              <div class="text-meta" style="margin-bottom:var(--space-16);">Calibrate workload constraints and preferred pedagogical format.</div>
+
+              <div style="display:flex; flex-direction:column; gap:20px;">
+                <div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                    <span style="font-size:13px; font-weight:600; color:var(--ink);">Independent study hours per week</span>
+                    <span id="wizard-hours-val" style="font-size:14px; font-weight:700; color:var(--accent);">15 hrs/week</span>
+                  </div>
+                  <input type="range" id="wizard-hours" min="2" max="40" step="1" value="15" style="width:100%; cursor:pointer;" oninput="updateWizardHours(this.value)">
+                  <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--ink-muted); margin-top:2px;">
+                    <span>2 hrs (Light)</span>
+                    <span>15 hrs (Recommended)</span>
+                    <span>40 hrs (Intense)</span>
+                  </div>
+                </div>
+
+                <div>
+                  <span style="display:block; font-size:13px; font-weight:600; margin-bottom:8px; color:var(--ink);">Preferred Learning Style</span>
+                  <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px;">
+                    <div class="style-card is-selected" data-style="hands_on" onclick="selectWizardStyle('hands_on')">
+                      <div style="font-size:20px;">💻</div>
+                      <div style="font-weight:600; font-size:13px; color:var(--ink); margin-top:4px;">Hands-on</div>
+                      <div style="font-size:11px; color:var(--ink-muted);">Coding labs & projects</div>
+                    </div>
+                    <div class="style-card" data-style="videos" onclick="selectWizardStyle('videos')">
+                      <div style="font-size:20px;">🎥</div>
+                      <div style="font-weight:600; font-size:13px; color:var(--ink); margin-top:4px;">Videos</div>
+                      <div style="font-size:11px; color:var(--ink-muted);">Lectures & visual guides</div>
+                    </div>
+                    <div class="style-card" data-style="reading" onclick="selectWizardStyle('reading')">
+                      <div style="font-size:20px;">📖</div>
+                      <div style="font-weight:600; font-size:13px; color:var(--ink); margin-top:4px;">Reading</div>
+                      <div style="font-size:11px; color:var(--ink-muted);">Textbooks & docs</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 6: REVIEW AND CREATE -->
+            <div class="wizard-step" id="wizard-step-6" style="display:none;">
+              <h3 class="text-section" style="margin-bottom:4px;">6. Review Profile & Generate Plan</h3>
+              <div class="text-meta" style="margin-bottom:var(--space-16);">Review your self-declared academic profile before generating your validated degree plan.</div>
+
+              <div id="wizard-review-summary" style="padding:14px; background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm); display:flex; flex-direction:column; gap:10px; font-size:12px;">
+                <!-- Populated dynamically -->
+              </div>
+
+              <div class="note-box" style="margin-top:12px; padding:10px 12px; background:rgba(56, 189, 248, 0.08); border-left:3px solid var(--accent); font-size:11px; color:var(--ink-muted);">
+                ✨ <strong>Next step:</strong> Once created, your multi-semester roadmap will be generated and validated. You will also be offered a short diagnostic to calibrate your baseline skills.
+              </div>
+            </div>
+
+            <!-- Wizard Controls: Back / Next / Submit -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:var(--space-24); padding-top:var(--space-16); border-top:1px solid var(--border);">
+              <button id="wizard-back-btn" class="btn btn-secondary" onclick="wizardStepBack()" style="visibility:hidden;">Back</button>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <span id="wizard-step-indicator" class="text-meta" style="font-size:11px;">Step 1 of 6</span>
+                <button id="wizard-next-btn" class="btn btn-primary" onclick="wizardStepNext()">Next Step &rarr;</button>
+                <button id="wizard-submit-btn" class="btn btn-primary" onclick="submitWizardOnboarding()" style="display:none;">Create Profile & Generate Valid Plan</button>
+              </div>
+            </div>
+            <div id="wizard-submit-status" class="text-meta" style="margin-top:10px; text-align:right;"></div>
           </div>
         </section>
 

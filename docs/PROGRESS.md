@@ -88,7 +88,21 @@ This project is in an active **Stabilisation Sprint** focused on end-to-end real
 
 ---
 
-## 4. Next Phase Action Plan
+## 4. Phase 2: Runtime Exercise Parity (Completed)
+
+### What Was Done
+1. **Runtime Verification & Quality Check:**
+   - Ran `scripts/qa/exercise_quality.py`: verified all 240 exercises across 24 skills (10 items per skill, difficulties 1–4 represented, 100% distinct prompts, 0 duplicate/near-duplicate prompts > 0.85 similarity, 0 placeholder strings).
+   - Removed placeholder questions (*"Which topic is explicitly named in the learning unit above?"*).
+2. **Exercise Schema & UI Sanitization:**
+   - Fixed `title: null` leak in `/api/practice/exercises` (`backend/api/practice.py`): auto-derives concise titles from the prompt if title is absent.
+   - Updated `frontend/static/js/app.js` (`renderPracticeSandbox`) to render clean titles and add `.exercise-item` class.
+3. **Audited Sample:**
+   - Saved 20 random items in `data/exercise_audit_sample.md` for human review, confirming grounding in real IIT Bhilai course syllabus.
+
+---
+
+## 5. Next Phase Action Plan
 
 1. **Phase 2:** Ensure runtime exercise data is 100% clean (run `scripts/qa/exercise_quality.py`, eliminate `title: null`, verify 240 items).
 2. **Phase 3:** Fix Curriculum Planner (populate real required courses and explicit elective slots across all remaining semesters, resolve 144 vs 156 credit discrepancy, fix rules summary semantics, fix goal chip, eliminate `"Not available"` strings).

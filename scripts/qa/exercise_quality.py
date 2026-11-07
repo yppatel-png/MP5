@@ -64,14 +64,26 @@ def audit_exercises() -> int:
         else:
             skill_counts[skill_id].append(eid)
 
-        # Prompt presence
-        if not prompt or len(prompt) < 10:
-            errors.append(f"[{eid}] Empty or trivial prompt (len < 10 chars).")
+        # Prompt presence and minimum length
+        if not prompt or len(prompt) < 20:
+            errors.append(f"[{eid}] Prompt too short or empty (len {len(prompt)} < 20 chars).")
+
+        # Anti-placeholder pattern check
+        placeholder_patterns = [
+            "explicitly named in",
+            "learning unit above",
+            "lorem ipsum",
+            "todo",
+            "placeholder",
+        ]
+        for pattern in placeholder_patterns:
+            if pattern in prompt.lower():
+                errors.append(f"[{eid}] Prompt contains forbidden placeholder pattern: '{pattern}'.")
 
         # Explanation check
         explanation = ans_key.get("explanation", "").strip()
-        if not explanation:
-            errors.append(f"[{eid}] Missing 'answer_key.explanation'.")
+        if not explanation or len(explanation) < 15:
+            errors.append(f"[{eid}] Missing or insufficient 'answer_key.explanation' (len < 15 chars).")
 
         # Correct answer check
         if ex_type == "mcq":
@@ -127,10 +139,21 @@ def audit_exercises() -> int:
                 )
                 duplicate_pairs += 1
 
-    # 3. Minimum exercise count per skill
+    # 3. Minimum exercise count per skill and difficulty spread (1-4)
+    skill_difficulties = defaultdict(set)
+    for ex in exercises:
+        sid = ex.get("skill_id", "")
+        diff = ex.get("difficulty")
+        if sid and diff is not None:
+            skill_difficulties[sid].add(diff)
+
     for skill_id, ex_list in skill_counts.items():
-        if len(ex_list) < 3:
-            errors.append(f"Skill '{skill_id}' has only {len(ex_list)} exercises (minimum required: 3).")
+        if len(ex_list) < 8:
+            errors.append(f"Skill '{skill_id}' has only {len(ex_list)} exercises (minimum required: 8).")
+        diffs = skill_difficulties.get(skill_id, set())
+        for required_diff in (1, 2, 3, 4):
+            if required_diff not in diffs:
+                errors.append(f"Skill '{skill_id}' is missing difficulty {required_diff} (present: {sorted(diffs)}).")
 
     # Output Summary
     print("-" * 70)

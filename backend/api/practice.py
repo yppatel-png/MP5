@@ -66,6 +66,11 @@ def list_exercises(
         ans = copy_ex.get("answer_key", {})
         copy_ex["options"] = ans.get("options", [])
         copy_ex.pop("answer_key", None)
+        if not copy_ex.get("title"):
+            first_line = copy_ex["prompt"].split("\n")[0].strip()
+            if len(first_line) > 60:
+                first_line = first_line[:57] + "..."
+            copy_ex["title"] = first_line
         sanitized.append(copy_ex)
     return sanitized
 
@@ -79,6 +84,11 @@ def get_exercise_detail(exercise_id: str) -> Dict[str, Any]:
     clean = dict(ex)
     clean["options"] = clean.get("answer_key", {}).get("options", [])
     clean.pop("answer_key", None)
+    if not clean.get("title"):
+        first_line = clean["prompt"].split("\n")[0].strip()
+        if len(first_line) > 60:
+            first_line = first_line[:57] + "..."
+        clean["title"] = first_line
     return clean
 
 @router.post("/submit")

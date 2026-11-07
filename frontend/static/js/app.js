@@ -802,12 +802,16 @@ function renderPracticeSandbox() {
     });
   }
 
-  listGroup.innerHTML = (state.exercises || []).map((ex, idx) => `
-    <div style="padding:8px 12px; border:1px solid var(--border); border-radius:var(--radius-sm); cursor:pointer; background:${state.activeExercise && state.activeExercise.exercise_id === ex.exercise_id ? 'var(--surface-2)' : 'var(--surface)'}; font-size:13px;" onclick="selectExercise(${idx})">
-      <div style="font-weight:500; color:var(--ink);">${ex.title}</div>
-      <div class="text-meta" style="margin-top:2px;">Difficulty: ${ex.difficulty} &bull; ${ex.type}</div>
+  listGroup.innerHTML = (state.exercises || []).map((ex, idx) => {
+    const itemTitle = ex.title || ex.prompt?.split('\n')[0] || `Exercise ${idx + 1}`;
+    const isActive = state.activeExercise && state.activeExercise.exercise_id === ex.exercise_id;
+    return `
+    <div class="exercise-item" style="padding:8px 12px; border:1px solid var(--border); border-radius:var(--radius-sm); cursor:pointer; background:${isActive ? 'var(--surface-2)' : 'var(--surface)'}; font-size:13px;" onclick="selectExercise(${idx})">
+      <div style="font-weight:500; color:var(--ink);">${itemTitle}</div>
+      <div class="text-meta" style="margin-top:2px;">Difficulty: ${ex.difficulty} &bull; ${ex.type.toUpperCase()}</div>
     </div>
-  `).join('');
+  `;
+  }).join('');
 
   if (!state.exercises || !state.exercises.length) {
     listGroup.innerHTML = '<div class="text-meta">No exercises available for this filter.</div>';

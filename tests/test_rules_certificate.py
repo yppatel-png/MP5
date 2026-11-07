@@ -56,6 +56,8 @@ class TestRulesCertificate(unittest.TestCase):
         self.assertTrue(cert.is_valid)
         self.assertGreater(cert.summary.total_rules, 5)
         self.assertEqual(cert.summary.failed, 0)
+        self.assertGreater(cert.summary.assumed_checks_count, 0)
+        self.assertIn("use assumptions pending the ordinance", cert.summary.assumptions_statement)
         self.assertEqual(len(cert.certificate_hash), 64)
         self.assertTrue(cert.verify_integrity())
 

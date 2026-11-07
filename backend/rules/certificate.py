@@ -46,6 +46,11 @@ class CertificateSummary(BaseModel):
     passed: int
     warned: int
     failed: int
+    assumed_checks_count: int = 0
+    verified_checks_count: int = 0
+    assumed_rules_count: int = 0
+    verified_rules_count: int = 0
+    assumptions_statement: str = ""
     tightest_margin: Optional[TightestMargin] = None
 
 class PlanCertificate(BaseModel):
@@ -112,6 +117,16 @@ def build_certificate(
     failed = sum(1 for r in results if r.status == RuleStatus.FAIL)
     is_valid = (failed == 0)
 
+    assumed_checks = sum(1 for r in results if getattr(r, "provenance", "verified") == "assumption")
+    verified_checks = total - assumed_checks
+    assumed_rules = len({r.rule_id for r in results if getattr(r, "provenance", "verified") == "assumption"})
+    verified_rules = len({r.rule_id for r in results if getattr(r, "provenance", "verified") == "verified"})
+
+    if total == 0:
+        assumptions_statement = "0 rule checks evaluated"
+    else:
+        assumptions_statement = f"{assumed_checks} of {total} rule checks use assumptions pending the ordinance"
+
     # Calculate tightest margin
     tightest: Optional[TightestMargin] = None
     if failed > 0:
@@ -152,6 +167,11 @@ def build_certificate(
         passed=passed,
         warned=warned,
         failed=failed,
+        assumed_checks_count=assumed_checks,
+        verified_checks_count=verified_checks,
+        assumed_rules_count=assumed_rules,
+        verified_rules_count=verified_rules,
+        assumptions_statement=assumptions_statement,
         tightest_margin=tightest
     )
 

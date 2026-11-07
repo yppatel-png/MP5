@@ -116,16 +116,17 @@ class PurePDFBuilder:
         content_ops.append(f"44 {table_top - 18} {self.page_width - 88:.2f} 18 re f")
         content_ops.append("0.333 0.322 0.294 rg")
         content_ops.append(f"BT /F2 8 Tf 50 {table_top - 12} Td (CLAUSE) Tj ET")
-        content_ops.append(f"BT /F2 8 Tf 110 {table_top - 12} Td (RULE TITLE / REQUIREMENT) Tj ET")
-        content_ops.append(f"BT /F2 8 Tf 350 {table_top - 12} Td (STATUS) Tj ET")
-        content_ops.append(f"BT /F2 8 Tf 410 {table_top - 12} Td (OBSERVED VALUE / MARGIN) Tj ET")
+        content_ops.append(f"BT /F2 8 Tf 115 {table_top - 12} Td (TIER) Tj ET")
+        content_ops.append(f"BT /F2 8 Tf 175 {table_top - 12} Td (RULE TITLE / REQUIREMENT) Tj ET")
+        content_ops.append(f"BT /F2 8 Tf 365 {table_top - 12} Td (STATUS) Tj ET")
+        content_ops.append(f"BT /F2 8 Tf 420 {table_top - 12} Td (OBSERVED VALUE / MARGIN) Tj ET")
 
         # Table Rows
         curr_y = table_top - 18
         row_height = 20
 
         # Take first 14 representative results for clean 1-page fit
-        display_results = cert.results[:15]
+        display_results = cert.results[:14]
         for idx, res in enumerate(display_results):
             curr_y -= row_height
             # Row hairline
@@ -138,43 +139,55 @@ class PurePDFBuilder:
                 content_ops.append(f"44 {curr_y} {self.page_width - 88:.2f} {row_height} re f")
 
             # Clause ID
-            clause = self._escape_pdf_text(res.clause_id or "ORD-SPEC")
+            clause = self._escape_pdf_text((res.clause_id or "ORD-SPEC")[:12])
             content_ops.append("0.169 0.361 0.541 rg") # info blue
-            content_ops.append(f"BT /F2 7.5 Tf 50 {curr_y + 6} Td ({clause}) Tj ET")
+            content_ops.append(f"BT /F2 7 Tf 50 {curr_y + 6} Td ({clause}) Tj ET")
+
+            # Provenance Tier badge
+            is_assumed = getattr(res, "provenance", "") == "assumption"
+            prov_text = "ASSUMED" if is_assumed else "VERIFIED"
+            prov_color = "0.718 0.475 0.122" if is_assumed else "0.184 0.490 0.310"
+            content_ops.append(f"{prov_color} rg")
+            content_ops.append(f"BT /F2 7 Tf 115 {curr_y + 6} Td ({prov_text}) Tj ET")
 
             # Rule Title
-            title = self._escape_pdf_text(res.rule_title[:45])
+            title = self._escape_pdf_text(res.rule_title[:38])
             content_ops.append("0.106 0.102 0.090 rg")
-            content_ops.append(f"BT /F1 8 Tf 110 {curr_y + 6} Td ({title}) Tj ET")
+            content_ops.append(f"BT /F1 7.5 Tf 175 {curr_y + 6} Td ({title}) Tj ET")
 
             # Status pill
             is_pass = (res.status.value == "pass")
             is_warn = (res.status.value == "warn")
             status_color = "0.184 0.490 0.310" if is_pass else ("0.718 0.475 0.122" if is_warn else "0.706 0.137 0.094")
             content_ops.append(f"{status_color} rg")
-            content_ops.append(f"BT /F2 7.5 Tf 350 {curr_y + 6} Td ({res.status.value.upper()}) Tj ET")
+            content_ops.append(f"BT /F2 7.5 Tf 365 {curr_y + 6} Td ({res.status.value.upper()}) Tj ET")
 
             # Observed & Margin
-            margin_str = f" [margin: {res.margin:+.1f}]" if res.margin is not None else ""
-            obs_clean = self._escape_pdf_text(str(res.observed)[:22] + margin_str)
+            margin_str = f" [m:{res.margin:+.1f}]" if res.margin is not None else ""
+            obs_clean = self._escape_pdf_text(str(res.observed)[:20] + margin_str)
             content_ops.append("0.333 0.322 0.294 rg")
-            content_ops.append(f"BT /F1 7.5 Tf 410 {curr_y + 6} Td ({obs_clean}) Tj ET")
+            content_ops.append(f"BT /F1 7 Tf 420 {curr_y + 6} Td ({obs_clean}) Tj ET")
 
         # Bottom Summary Card
-        summary_y = 65
+        summary_y = 56
         content_ops.append("0.953 0.945 0.929 rg")
-        content_ops.append(f"44 {summary_y} {self.page_width - 88:.2f} 42 re f")
+        content_ops.append(f"44 {summary_y} {self.page_width - 88:.2f} 48 re f")
         content_ops.append("0.902 0.886 0.855 RG")
-        content_ops.append(f"44 {summary_y} {self.page_width - 88:.2f} 42 re S")
+        content_ops.append(f"44 {summary_y} {self.page_width - 88:.2f} 48 re S")
 
         t_margin = cert.summary.tightest_margin
         tightest_text = f"Tightest Constraint Margin: {t_margin.margin:+.1f} on {t_margin.rule_title} ({t_margin.scope_ref})" if t_margin else "All constraints satisfied with ample margin."
         tightest_escaped = self._escape_pdf_text(tightest_text)
 
         content_ops.append("0.106 0.102 0.090 rg")
-        content_ops.append(f"BT /F2 8.5 Tf 52 {summary_y + 26} Td (Audit Summary: {cert.summary.passed}/{cert.summary.total_rules} rules satisfied  |  {cert.summary.warned} advisory warnings  |  {cert.summary.failed} statutory violations) Tj ET")
+        content_ops.append(f"BT /F2 8 Tf 52 {summary_y + 34} Td (Audit Summary: {cert.summary.passed}/{cert.summary.total_rules} rules satisfied  |  {cert.summary.warned} advisory warnings  |  {cert.summary.failed} statutory violations) Tj ET")
+        
+        assumptions_line = self._escape_pdf_text(cert.summary.assumptions_statement or "All rules verified against official ordinances.")
+        content_ops.append("0.718 0.475 0.122 rg")
+        content_ops.append(f"BT /F2 7.5 Tf 52 {summary_y + 22} Td (Provenance: {assumptions_line}) Tj ET")
+
         content_ops.append("0.333 0.322 0.294 rg")
-        content_ops.append(f"BT /F1 8 Tf 52 {summary_y + 12} Td ({tightest_escaped}) Tj ET")
+        content_ops.append(f"BT /F1 7.5 Tf 52 {summary_y + 10} Td ({tightest_escaped}) Tj ET")
 
         # Footer
         content_ops.append("0.541 0.525 0.486 rg")

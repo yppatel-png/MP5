@@ -1086,6 +1086,17 @@ function openCertificateDrawer() {
   if (cert) {
     document.getElementById('cert-plan-id').innerText = cert.plan_version_id || 'Version unavailable';
     document.getElementById('cert-hash-val').innerText = cert.certificate_hash || 'Certificate hash unavailable';
+    
+    const noticeEl = document.getElementById('cert-assumptions-notice');
+    if (noticeEl) {
+      if (cert.summary && cert.summary.assumptions_statement) {
+        noticeEl.innerText = `Transparency Note: ${cert.summary.assumptions_statement}`;
+        noticeEl.style.display = 'block';
+      } else {
+        noticeEl.style.display = 'none';
+      }
+    }
+
     const rulesList = document.getElementById('cert-rules-accordion-list');
     rulesList.replaceChildren();
     (cert.results || []).forEach(rule => {

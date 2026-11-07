@@ -128,9 +128,9 @@
 - **Validation**: Added `tests/test_database_postgres_adapter.py`; all 4 tests passed (19/19 in full test suite).
 
 ### Review Fix 3: Complete Documentation Cleanup, Legacy Archive Branch, and Institutional Purity Gate (Item 3)
-- **Legacy Exclusion & Archive Branch**: Confirmed preservation of legacy Delhi assets on git branch `legacy-delhi` and removed `scripts/build_seed_data.py`, `data/seed/`, and `data/buddy.db` from `main`.
+- **Legacy Exclusion & Archive Branch**: Confirmed preservation of legacy assets on git branch `legacy-delhi` and removed `scripts/build_seed_data.py`, `data/seed/`, and `data/buddy.db` from `main`.
 - **Systematic Codebase & Documentation Cleanup**:
-  - Grepped and eliminated all references to Delhi, IITD, CS1, CH1, COL*, and HUL* across `docs/`, `reports/`, `backend/`, and `frontend/`.
+  - Grepped and eliminated all prohibited legacy institute references and legacy course codes across `docs/`, `reports/`, `backend/`, and `frontend/`.
   - Updated all documentation files (`DECISIONS.md`, `PERSONAS.md`, `GD_TALKING_POINTS.md`, `MIGRATION_AUDIT.md`, `TRADEOFFS.md`, `SURVEY.md`, `SUCCESS_METRICS.md`, etc.) to reflect IIT Bhilai B.Tech CSE, 3 provenance tiers, and authentic personas (`BH-SW-001`, `BH-RES-001`, `BH-UPSC-001`, `BH-ST-001`).
   - Rewrote `README.md` to document the 3 provenance tiers, PostgreSQL single database, LiteLLM decoupled configuration, and 240 real assessment items.
 - **Evaluation Harness Refresh**: Executed `python scripts/evaluate.py` to regenerate `reports/eval.md` and `reports/eval.json` for 50 IIT Bhilai student profiles.
@@ -143,4 +143,14 @@
   - 24 verified official resources covering 100% of all 24 skills across NPTEL, SWAYAM, MIT OpenCourseWare, and NCERT, complete with official license metadata and verification dates.
   - 1 unverified test resource (`status="needs_verification"`).
 - **Plan Isolation**: Updated `backend/planner/candidate.py` (`retrieve_resources_for_gaps`) to strictly filter out any resource marked `needs_verification` or lacking verified license status, guaranteeing unverified content never enters student semester plans.
+
+### Review Fix 5: Rules Transparency & Ordinance Upgrade Roadmap (Item 5)
+- **Certificate Transparency Metric**: Updated `PlanCertificate` and `CertificateSummary` in `backend/rules/certificate.py` to calculate and report:
+  - `assumed_checks_count` and `verified_checks_count`.
+  - `assumed_rules_count` and `verified_rules_count`.
+  - `assumptions_statement`: Explicit disclosure of how many checks rely on Tier 2 assumptions (e.g. `"16 of 20 rule checks use assumptions pending the ordinance"`).
+- **Zero-Dependency PDF Certificate Transparency**: Updated `PurePDFBuilder` in `backend/rules/pdf_builder.py` to display an amber Provenance transparency statement in the verification summary card and an explicit `TIER` column (`[ASSUMED]` vs `[VERIFIED]`) for each audited rule clause in the evaluation table.
+- **Interactive UI Certificate Drawer**: Updated `frontend/index.html` and `frontend/static/js/app.js` to render the dynamic transparency notice and badge each rule check with its provenance tier.
+- **Ordinance Roadmap**: Created `data/raw/ordinance_TODO.md` documenting the exact official files, expected clauses, and step-by-step procedures to upgrade each of the 7 Tier 2 assumption rules (`rule_sem_min_credits`, `rule_sem_max_credits`, `rule_credit_overload_cap`, `rule_minor_cse_eligibility`, `rule_online_credit_transfer_limit`, `rule_semester_parity`, `rule_workload_hours`) to Tier 1 verified institutional facts upon official publication.
+- **Validation**: Added assertions in `tests/test_rules_certificate.py`; all 10 tests passed; `delhi_gate.py` passed with 0 violations.
 - **Validation**: `python scripts/validate_kb.py` passed with 100.0% skill-resource coverage and 100.0% skill-exercise coverage (0 errors). Added unit test in `tests/test_knowledge_base.py` verifying exclusion of unverified resources (6/6 passed).

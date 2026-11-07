@@ -1,0 +1,34 @@
+[
+  {
+    "interest": "AI/ML",
+    "skills": ["artificial_intelligence", "llm_software", "probability_statistics"]
+  },
+  {
+    "interest": "Systems",
+    "skills": ["operating_systems", "computer_architecture", "compiler_design", "computer_networks"]
+  },
+  {
+    "interest": "Web and App Dev",
+    "skills": ["software_engineering", "software_tools", "llm_software", "database_systems"]
+  },
+  {
+    "interest": "Data and Databases",
+    "skills": ["database_systems", "data_structures", "probability_statistics"]
+  },
+  {
+    "interest": "Algorithms and Theory",
+    "skills": ["algorithms", "data_structures", "discrete_mathematics", "theory_computation"]
+  },
+  {
+    "interest": "Security",
+    "skills": ["computer_networks", "operating_systems", "formal_verification"]
+  },
+  {
+    "interest": "Research",
+    "skills": ["research_methods", "theory_computation", "formal_verification", "algorithms"]
+  },
+  {
+    "interest": "Product and Business",
+    "skills": ["finance", "macroeconomics", "microeconomics", "communication", "international_trade"]
+  }
+]

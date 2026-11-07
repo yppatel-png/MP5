@@ -33,6 +33,7 @@ class StudentListEntry(BaseModel):
     programme: str
     goal_id: str
     target_role: Optional[str] = None
+    current_semester: Optional[int] = 1
 
 class SkillEstimate(BaseModel):
     skill_id: str
@@ -54,6 +55,7 @@ def list_students() -> List[StudentListEntry]:
             programme=profile.programme,
             goal_id=profile.goal_id,
             target_role=profile.target_role,
+            current_semester=profile.current_semester,
         )
         for profile in StudentStore.get_all_profiles()
     ]

@@ -1,11 +1,11 @@
 [
   {
     "student_id": "BH-SW-001",
-    "name": "Aarav Sharma (Demo)",
+    "name": "Aarav Sharma",
     "programme": "BH-CSE-BTECH",
     "year": 2,
     "current_semester": 4,
-    "cgpa": 7.8,
+    "cgpa": 8.4,
     "goal_id": "goal_software",
     "target_role": "Software engineer",
     "available_hours_per_week": 14,
@@ -14,22 +14,22 @@
       {
         "course_code": "CSL100",
         "grade": "B+",
-        "semester_completed": 4
+        "semester_completed": 1
       },
       {
         "course_code": "CSL201",
         "grade": "B+",
-        "semester_completed": 4
+        "semester_completed": 3
       },
       {
         "course_code": "CSL202",
-        "grade": "B+",
-        "semester_completed": 4
+        "grade": "A-",
+        "semester_completed": 3
       },
       {
         "course_code": "CSP203",
-        "grade": "B+",
-        "semester_completed": 4
+        "grade": "A",
+        "semester_completed": 3
       },
       {
         "course_code": "CSL251",
@@ -38,7 +38,7 @@
       },
       {
         "course_code": "CSL252",
-        "grade": "B+",
+        "grade": "A-",
         "semester_completed": 4
       },
       {
@@ -48,13 +48,15 @@
       }
     ],
     "interests": [
-      "Software engineer"
+      "Web and App Dev",
+      "Systems",
+      "Data and Databases"
     ],
     "constraints": {},
     "preferences": {
       "learning_style": [
-        "practice questions",
-        "short modules"
+        "hands-on",
+        "practice questions"
       ]
     },
     "diagnostic_evidence": [],
@@ -62,35 +64,35 @@
   },
   {
     "student_id": "BH-HS-001",
-    "name": "Diya Iyer (Demo)",
+    "name": "Diya Iyer",
     "programme": "BH-CSE-BTECH",
     "year": 2,
     "current_semester": 4,
     "cgpa": 8.7,
     "goal_id": "goal_higher_studies",
     "target_role": "Computing researcher",
-    "available_hours_per_week": 14,
+    "available_hours_per_week": 16,
     "remaining_elective_slots": 4,
     "completed_courses": [
       {
         "course_code": "CSL100",
-        "grade": "A-",
-        "semester_completed": 4
+        "grade": "A",
+        "semester_completed": 1
       },
       {
         "course_code": "CSL201",
-        "grade": "A-",
-        "semester_completed": 4
+        "grade": "A",
+        "semester_completed": 3
       },
       {
         "course_code": "CSL202",
         "grade": "A-",
-        "semester_completed": 4
+        "semester_completed": 3
       },
       {
         "course_code": "CSP203",
-        "grade": "A-",
-        "semester_completed": 4
+        "grade": "A",
+        "semester_completed": 3
       },
       {
         "course_code": "CSL251",
@@ -99,23 +101,25 @@
       },
       {
         "course_code": "CSL252",
-        "grade": "A-",
+        "grade": "A",
         "semester_completed": 4
       },
       {
         "course_code": "CSL253",
-        "grade": "A-",
+        "grade": "A",
         "semester_completed": 4
       }
     ],
     "interests": [
-      "Computing researcher"
+      "AI/ML",
+      "Research",
+      "Algorithms and Theory"
     ],
     "constraints": {},
     "preferences": {
       "learning_style": [
-        "practice questions",
-        "short modules"
+        "reading",
+        "hands-on"
       ]
     },
     "diagnostic_evidence": [],
@@ -123,20 +127,57 @@
   },
   {
     "student_id": "BH-UP-001",
-    "name": "Kabir Verma (Demo)",
+    "name": "Tara Rao",
     "programme": "BH-CSE-BTECH",
-    "year": 2,
-    "current_semester": 3,
-    "cgpa": 7.2,
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 7.6,
     "goal_id": "goal_upsc",
     "target_role": "Civil services aspirant",
-    "available_hours_per_week": 14,
-    "remaining_elective_slots": 4,
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 6,
     "completed_courses": [
       {
         "course_code": "CSL100",
         "grade": "B+",
-        "semester_completed": 3
+        "semester_completed": 1
+      },
+      {
+        "course_code": "ECL101",
+        "grade": "B",
+        "semester_completed": 2
+      }
+    ],
+    "interests": [
+      "Algorithms and Theory",
+      "Data and Databases"
+    ],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "reading",
+        "videos"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_demo_profile"
+  },
+  {
+    "student_id": "BH-ST-001",
+    "name": "Rohan Mehta",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 8.1,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 18,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "A-",
+        "semester_completed": 1
       },
       {
         "course_code": "CSL201",
@@ -145,23 +186,40 @@
       },
       {
         "course_code": "CSL202",
-        "grade": "B+",
+        "grade": "A",
         "semester_completed": 3
       },
       {
         "course_code": "CSP203",
-        "grade": "B+",
+        "grade": "A-",
         "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B+",
+        "semester_completed": 4
       }
     ],
     "interests": [
-      "Civil services aspirant"
+      "Product and Business",
+      "Web and App Dev",
+      "AI/ML"
     ],
     "constraints": {},
     "preferences": {
       "learning_style": [
-        "practice questions",
-        "short modules"
+        "hands-on",
+        "practice questions"
       ]
     },
     "diagnostic_evidence": [],

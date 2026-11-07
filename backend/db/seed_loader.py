@@ -164,12 +164,10 @@ def load_seed_data(reset: bool = False):
             """, (g["goal_id"], g["name"], g["target_role"], g.get("typical_duration_semesters", 4), json.dumps(g.get("required_skills", [])), json.dumps(g.get("milestones", [])), g["source"]))
         counts["goal_templates"] = len(goals)
 
-        # 11. Student Profiles & Initial Diagnostic Evidence (Hero + Synthetic Distribution)
+        # 11. Student Profiles & Initial Diagnostic Evidence (4 Clean Hero Demo Personas)
         profiles = load_json("student_profiles.json")
-        synth_profiles = load_json("synthetic_profiles.json")
-        all_profiles = profiles + synth_profiles
         evidence_count = 0
-        for p in all_profiles:
+        for p in profiles:
             cur.execute("""
             INSERT OR REPLACE INTO student_profiles (
                 student_id, name, programme, year, current_semester, cgpa,
@@ -204,7 +202,7 @@ def load_seed_data(reset: bool = False):
                 """, (p["student_id"], ev["skill_id"], ev["value"], ev.get("source_type", "assessed_diagnostic"), 1.0, "initial_seed_diagnostic"))
                 evidence_count += 1
 
-        counts["student_profiles"] = len(all_profiles)
+        counts["student_profiles"] = len(profiles)
         counts["seed_evidence_events"] = evidence_count
 
         provenance_groups = [

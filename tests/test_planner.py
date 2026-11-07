@@ -115,7 +115,9 @@ class TestPlanner(unittest.TestCase):
 
     def test_50_synthetic_profiles_plan_validity(self):
         """Evaluates 50 diverse synthetic profiles to prove the planner is not hand-tuned for a few personas."""
-        synth_path = PROJECT_ROOT / "data" / "seed_bhilai" / "synthetic_profiles.json"
+        synth_path = PROJECT_ROOT / "data" / "eval" / "synthetic_profiles.json"
+        if not synth_path.exists():
+            synth_path = PROJECT_ROOT / "data" / "seed_bhilai" / "synthetic_profiles.json"
         with open(synth_path, "r", encoding="utf-8") as f:
             profiles = json.load(f)
 

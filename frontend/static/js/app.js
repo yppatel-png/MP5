@@ -412,10 +412,18 @@ async function loadStudentList() {
     state.students = await api.getStudents();
     const selector = document.getElementById('persona-select');
     selector.replaceChildren();
+    const GOAL_LABELS = {
+      'goal_software': 'Software/IT',
+      'goal_higher_studies': 'Higher studies',
+      'goal_upsc': 'UPSC aspirant',
+      'goal_startup': 'Startup founder'
+    };
     state.students.forEach(student => {
       const option = document.createElement('option');
       option.value = student.student_id;
-      option.innerText = `${student.name} (${student.programme} · ${student.target_role || student.goal_id})`;
+      const cleanName = student.name.replace(/\s*\(Demo\)/gi, '').trim();
+      const goalLabel = GOAL_LABELS[student.goal_id] || student.target_role || student.goal_id;
+      option.innerText = `${cleanName} - ${goalLabel}, Sem ${student.current_semester}`;
       selector.appendChild(option);
     });
     if (!state.students.length) {

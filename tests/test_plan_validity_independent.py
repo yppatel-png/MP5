@@ -188,6 +188,14 @@ class TestPlanValidityIndependent(unittest.TestCase):
         for sid in synthetic_ids:
             profile = StudentStore.get_profile(sid)
             if not profile:
+                eval_file = PROJECT_ROOT / "data" / "eval" / "synthetic_profiles.json"
+                if eval_file.exists():
+                    with open(eval_file, "r", encoding="utf-8") as f:
+                        for sp in json.load(f):
+                            if sp["student_id"] == sid:
+                                profile = StudentStore.save_profile(sp)
+                                break
+            if not profile:
                 continue
             gaps = diagnostic_engine.compute_skill_gaps(sid)
             plan = multi_semester_planner.plan_curriculum(

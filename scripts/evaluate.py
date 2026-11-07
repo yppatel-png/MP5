@@ -217,7 +217,10 @@ def run_evaluation() -> Dict[str, Any]:
     # Load all profiles (hero profiles + synthetic profiles)
     with open(ROOT_DIR / "data" / "seed_bhilai" / "student_profiles.json", "r", encoding="utf-8") as f:
         hero_profiles = json.load(f)
-    with open(ROOT_DIR / "data" / "seed_bhilai" / "synthetic_profiles.json", "r", encoding="utf-8") as f:
+    synth_path = ROOT_DIR / "data" / "eval" / "synthetic_profiles.json"
+    if not synth_path.exists():
+        synth_path = ROOT_DIR / "data" / "seed_bhilai" / "synthetic_profiles.json"
+    with open(synth_path, "r", encoding="utf-8") as f:
         synthetic_profiles = json.load(f)
     all_profiles = hero_profiles + synthetic_profiles
 

@@ -90,9 +90,7 @@ def compute_seed_info() -> Tuple[str, Dict[str, int]]:
             elif file_path.name == "resources.json":
                 counts["resources"] = len(data)
             elif file_path.name == "student_profiles.json":
-                counts["profiles"] += len(data)
-            elif file_path.name == "synthetic_profiles.json":
-                counts["profiles"] += len(data)
+                counts["profiles"] = len(data)
         except Exception as exc:
             logger.warning(f"Error hashing seed file {file_path.name}: {exc}")
 

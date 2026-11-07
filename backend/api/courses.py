@@ -105,6 +105,15 @@ def list_goal_templates() -> List[Dict[str, Any]]:
             res.append(d)
         return res
 
+@kb_router.get("/interests")
+def list_interests() -> List[Dict[str, Any]]:
+    """Returns the canonical 8 student interests mapped to skills (§3 UX, Appendix A)."""
+    from backend.student.interests import FIXED_INTERESTS, INTEREST_TO_SKILLS_MAP
+    return [
+        {"interest": name, "skills": INTEREST_TO_SKILLS_MAP.get(name, [])}
+        for name in FIXED_INTERESTS
+    ]
+
 @kb_router.get("/programmes")
 def list_programmes() -> List[Dict[str, Any]]:
     """Returns degree structures and credit requirement rules."""

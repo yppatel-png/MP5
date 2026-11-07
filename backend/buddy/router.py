@@ -153,7 +153,7 @@ class BuddyRouter:
             proficient = [
                 s for s in matrix.values()
                 if s.get("evidence_count", 0) > 0
-                and (s.get("p_mastery", 0) >= 0.70 or s.get("mastered"))
+                and (s.get("p_mastery", 0) >= 0.85 or s.get("mastered"))
             ]
             factual_context["proficient_skills"] = proficient[:5]
             factual_context["total_skills_tracked"] = len(matrix)

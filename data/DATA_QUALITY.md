@@ -1,6 +1,6 @@
 # Knowledge Base Quality & Verification Audit
 
-**Generated:** 2026-11-07 13:50:25  
+**Generated:** 2026-11-07 15:06:56  
 **Target Institute:** Indian Institute of Technology Bhilai (IIT Bhilai)  
 **Programmes Covered:** B.Tech Computer Science and Engineering (`BH-CSE-BTECH`)  
 **Overall Validation Status:** `PASSED (100% Valid)`  
@@ -55,7 +55,7 @@ Every piece of institutional and pedagogical knowledge is partitioned into three
 ## 3. Prerequisite Graph Topological Ordering
 
 The prerequisite structure forms a strictly acyclic directed graph (DAG). The topological order of course levels is:
-`ECL101, LAL201, CSL100, CSL504, LAL224, LAL221, CSP352, LAL101, CSL303, LAL100, CSL201, CSL304, LAL225, LAL223, CSL505... and 19 more.`
+`ECL101, LAL223, CSL559, LAL221, CSL303, CSL511, CSQ401, CSL505, CSP352, LAL200, LAL202, MAL403, CSL504, CSL304, LAL100... and 19 more.`
 
 ---
 

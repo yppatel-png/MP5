@@ -164,3 +164,4 @@ def get_build_stamp() -> Dict[str, Any]:
         "mismatches": mismatches,
         "summary_string": summary,
     }
+

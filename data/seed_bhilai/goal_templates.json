@@ -7,36 +7,61 @@
     "required_skills": [
       {
         "skill_id": "programming_fundamentals",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": true
       },
       {
         "skill_id": "data_structures",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": true
       },
       {
         "skill_id": "algorithms",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": false
       },
       {
         "skill_id": "database_systems",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": false
       },
       {
         "skill_id": "software_engineering",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": false
       },
       {
         "skill_id": "software_tools",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": false
       }
     ],
-    "milestones": [],
+    "milestones": [
+      {
+        "milestone_id": "swe_m1",
+        "title": "Systems Core & Algorithmic Foundations",
+        "semester_offset": 1,
+        "description": "Establish core systems mastery (DBMS, OS) and solve 150+ medium LeetCode/Codeforces problems."
+      },
+      {
+        "milestone_id": "swe_m2",
+        "title": "Distributed Systems Capstone & Open Source",
+        "semester_offset": 2,
+        "description": "Build high-throughput distributed backend service and make 2 upstream open-source contributions."
+      },
+      {
+        "milestone_id": "swe_m3",
+        "title": "System Design & Technical Interview Preparation",
+        "semester_offset": 3,
+        "description": "Complete 10 mock system design interviews and software architecture case analyses."
+      },
+      {
+        "milestone_id": "swe_m4",
+        "title": "Industry Software Engineering Transition",
+        "semester_offset": 4,
+        "description": "Finalize production BTech capstone project and transition to full-time software engineering role."
+      }
+    ],
     "source": "Team-authored development goal; not an IIT Bhilai academic requirement",
     "provenance": "team_authored"
   },
@@ -48,31 +73,56 @@
     "required_skills": [
       {
         "skill_id": "discrete_mathematics",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": true
       },
       {
         "skill_id": "algorithms",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": true
       },
       {
         "skill_id": "probability_statistics",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": false
       },
       {
         "skill_id": "research_methods",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": false
       },
       {
         "skill_id": "communication",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": false
       }
     ],
-    "milestones": [],
+    "milestones": [
+      {
+        "milestone_id": "res_m1",
+        "title": "Faculty Lab Attachment & AI Literature Survey",
+        "semester_offset": 1,
+        "description": "Join research lab, complete comprehensive literature review on target topic (AI/Distributed Systems)."
+      },
+      {
+        "milestone_id": "res_m2",
+        "title": "Original Research Manuscript Submission",
+        "semester_offset": 2,
+        "description": "Submit first-author or co-author workshop paper to top-tier venue (NeurIPS, ICLR, OSDI workshop)."
+      },
+      {
+        "milestone_id": "res_m3",
+        "title": "SOP Formulation & Graduate Admissions Portfolio",
+        "semester_offset": 3,
+        "description": "Draft Statement of Purpose, secure 3 faculty recommendations, and finalize PhD/MS application shortlist."
+      },
+      {
+        "milestone_id": "res_m4",
+        "title": "Senior Honors Thesis Defense",
+        "semester_offset": 4,
+        "description": "Successfully defend BTech honors thesis before departmental evaluation committee."
+      }
+    ],
     "source": "Team-authored development goal; not an IIT Bhilai academic requirement",
     "provenance": "team_authored"
   },
@@ -84,36 +134,67 @@
     "required_skills": [
       {
         "skill_id": "communication",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": true
       },
       {
         "skill_id": "macroeconomics",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": true
       },
       {
         "skill_id": "microeconomics",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": false
       },
       {
         "skill_id": "international_trade",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": false
       },
       {
         "skill_id": "indian_society",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": false
       },
       {
         "skill_id": "literary_analysis",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": false
       }
     ],
-    "milestones": [],
+    "milestones": [
+      {
+        "milestone_id": "upsc_m1",
+        "title": "Foundational General Studies (GS I & IV) & Ethics",
+        "semester_offset": 1,
+        "description": "Complete Modern Indian History, Indian Society, and Administrative Ethics syllabus modules."
+      },
+      {
+        "milestone_id": "upsc_m2",
+        "title": "CSAT Mastery & Macroeconomic Policy Analysis",
+        "semester_offset": 2,
+        "description": "Target 99th percentile in CSAT mock papers and analyze Economic Survey / Union Budget."
+      },
+      {
+        "milestone_id": "upsc_m3",
+        "title": "Optional Subject Deep-Dive & Answer Writing Drills",
+        "semester_offset": 3,
+        "description": "Complete optional subject syllabus and submit 20 graded GS mains answer writing assignments."
+      },
+      {
+        "milestone_id": "upsc_m4",
+        "title": "UPSC Civil Services Prelims Mock Simulation Series",
+        "semester_offset": 4,
+        "description": "Complete 25 full-length UPSC CSE Prelims test series with consistent score > 115."
+      },
+      {
+        "milestone_id": "upsc_m5",
+        "title": "Personality Test / Interview Board Guidance",
+        "semester_offset": 5,
+        "description": "Attend mock UPSC interview panels and refine Detailed Application Form (DAF) presentation."
+      }
+    ],
     "source": "Team-authored development goal; not an IIT Bhilai academic requirement",
     "provenance": "team_authored"
   },
@@ -125,31 +206,56 @@
     "required_skills": [
       {
         "skill_id": "programming_fundamentals",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": true
       },
       {
         "skill_id": "software_engineering",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": true
       },
       {
         "skill_id": "database_systems",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": false
       },
       {
         "skill_id": "finance",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": false
       },
       {
         "skill_id": "communication",
-        "target_level": 0.7,
+        "target_level": 0.85,
         "critical": false
       }
     ],
-    "milestones": [],
+    "milestones": [
+      {
+        "milestone_id": "start_m1",
+        "title": "Problem-Solution Fit & Minimum Viable Product",
+        "semester_offset": 1,
+        "description": "Interview 50 prospective enterprise/consumer users and build interactive product prototype."
+      },
+      {
+        "milestone_id": "start_m2",
+        "title": "Incubator Pitch & Beta Traction",
+        "semester_offset": 2,
+        "description": "Present to IIT Bhilai IEDC / startup incubator and onboard first 100 active beta users."
+      },
+      {
+        "milestone_id": "start_m3",
+        "title": "Venture Unit Economics & Investor Deck",
+        "semester_offset": 3,
+        "description": "Model customer acquisition cost (CAC), LTV, and formulate 10-slide pre-seed pitch deck."
+      },
+      {
+        "milestone_id": "start_m4",
+        "title": "Legal Incorporation & Commercial Pilot Launch",
+        "semester_offset": 4,
+        "description": "Complete corporate registration, IP assignments, and deploy first paying commercial pilot."
+      }
+    ],
     "source": "Team-authored development goal; not an IIT Bhilai academic requirement",
     "provenance": "team_authored"
   }

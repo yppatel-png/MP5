@@ -44,6 +44,10 @@
           <span class="nav-item-icon" data-icon="book-open" data-icon-size="16"></span>
           <span class="nav-item-label">Practise</span>
         </div>
+        <div class="nav-item" data-target="diagnostic" onclick="switchTab('diagnostic')">
+          <span class="nav-item-icon" data-icon="award" data-icon-size="16"></span>
+          <span class="nav-item-label">Skill check</span>
+        </div>
         <div class="nav-item" data-target="mastery" onclick="switchTab('mastery')">
           <span class="nav-item-icon" data-icon="check-circle" data-icon-size="16"></span>
           <span class="nav-item-label">Progress</span>
@@ -176,7 +180,7 @@
               <div class="stat-label">Goal Readiness</div>
               <div class="stat-value" id="dash-readiness-val">&mdash;</div>
               <div class="text-meta" id="dash-readiness-sub" style="margin-top:4px;">
-                Not enough evidence yet &bull; <a href="#" onclick="switchTab('practice')" style="color:var(--accent); text-decoration:none;">Take diagnostic</a>
+                Not enough evidence yet &bull; <a href="#" onclick="switchTab('diagnostic')" style="color:var(--accent); text-decoration:none;">Take diagnostic</a>
               </div>
             </div>
             <div style="padding:var(--space-16); border-right:1px solid var(--border);">

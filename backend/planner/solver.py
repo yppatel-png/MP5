@@ -72,6 +72,60 @@ GOAL_LA_PREFS: Dict[str, List[Tuple[str, str]]] = {
     ]
 }
 
+GOAL_COURSE_PRIORITY: Dict[str, List[str]] = {
+    "goal_software": [
+        "CSL303",  # Database Management Systems (Core software backend & persistence)
+        "CSL559",  # Computer Systems Design
+        "CSL301",  # Operating Systems
+        "CSL351",  # Computer Networks
+        "CSL302",  # Compiler Design
+        "CSL518",  # Distributed Algorithms
+        "CSL512",  # Parallel Algorithms
+        "CSL511",  # Computer Architecture
+        "CSL304",  # Artificial Intelligence
+    ],
+    "goal_higher_studies": [
+        "CSL304",  # Artificial Intelligence (Core AI foundation & graduate research pre-req)
+        "CSL515",  # Machine Learning
+        "CSL510",  # Approximation Algorithms
+        "CSL505",  # Randomized Algorithms
+        "CSL504",  # Complexity Theory
+        "CSL302",  # Compiler Design
+        "CSL301",  # Operating Systems
+        "CSL351",  # Computer Networks
+        "CSL303",  # Database Management Systems
+    ],
+    "goal_research": [
+        "CSL304",  # Artificial Intelligence
+        "CSL515",  # Machine Learning
+        "CSL510",  # Approximation Algorithms
+        "CSL505",  # Randomized Algorithms
+        "CSL504",  # Complexity Theory
+        "CSL302",  # Compiler Design
+        "CSL301",  # Operating Systems
+        "CSL351",  # Computer Networks
+        "CSL303",  # Database Management Systems
+    ],
+    "goal_upsc": [
+        "LAL225",  # Self and Society in Modern India (Ethics & Indian Society for UPSC GS IV)
+        "LAL200",  # Macroeconomics (Indian Economy for UPSC GS III)
+        "LAL201",  # Microeconomics
+        "LAL222",  # City in Literature (Urbanization & Society)
+        "CSL252",  # Design and Analysis of Algorithms
+        "CSL253",  # Database Systems
+        "CSL301",  # Operating Systems
+        "CSL303",  # Database Management Systems
+    ],
+    "goal_startup": [
+        "CSL559",  # Computer Systems Design
+        "CSL303",  # Database Management Systems
+        "LAL200",  # Macroeconomics
+        "LAL201",  # Microeconomics
+        "CSL301",  # Operating Systems
+        "CSL351",  # Computer Networks
+    ]
+}
+
 
 class MultiSemesterPlanner:
     def __init__(self):
@@ -456,6 +510,16 @@ class MultiSemesterPlanner:
                 scheduled_so_far.add(c["code"])
 
             running_credits += sem_credits
+
+            # Sort courses within this semester so the top goal-aligned course appears first
+            # (giving Software, Research, and UPSC distinctly personalized Next Best Actions)
+            goal_prios = GOAL_COURSE_PRIORITY.get(goal_id, [])
+            def _sem_course_sort_key(c_item: Dict[str, Any]) -> Tuple[int, int]:
+                code = c_item.get("code", "")
+                if code in goal_prios:
+                    return (0, goal_prios.index(code))
+                return (1, 0)
+            sem_courses.sort(key=_sem_course_sort_key)
 
             semester_plans.append({
                 "semester_number": sem,

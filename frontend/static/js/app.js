@@ -277,7 +277,9 @@ async function startDiagnostic() {
       input.placeholder = 'Write a short answer...';
       answers.appendChild(input);
     }
-    document.getElementById('diagnostic-submit-btn').innerText = 'Submit answer';
+    const submitBtn = document.getElementById('diagnostic-submit-btn');
+    submitBtn.innerText = 'Submit answer';
+    submitBtn.onclick = submitDiagnosticAnswer;
     panel.hidden = false;
     feedback.innerText = '';
   } catch (error) {

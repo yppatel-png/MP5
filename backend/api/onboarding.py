@@ -14,6 +14,7 @@ from backend.db.onboarding_store import (
     update_onboarding_profile,
 )
 from backend.llm.client import llm_client
+from backend.student.model import StudentStore, StudentProfile, CompletedCourse
 
 router = APIRouter(prefix="/onboarding", tags=["Student onboarding"])
 SUPPORTED_STATUS = "curriculum_available"
@@ -136,6 +137,42 @@ def _validated_request_profile(
     }
 
 
+def _sync_to_student_store(profile: dict) -> None:
+    try:
+        goal_lower = profile.get("goal", "").lower()
+        if "research" in goal_lower or "higher" in goal_lower or "phd" in goal_lower:
+            matched_goal = "goal_higher_studies"
+        elif "upsc" in goal_lower or "civil" in goal_lower or "public" in goal_lower:
+            matched_goal = "goal_upsc"
+        elif "startup" in goal_lower or "found" in goal_lower:
+            matched_goal = "goal_startup"
+        else:
+            matched_goal = "goal_software"
+
+        completed = [
+            CompletedCourse(course_code=c, grade="B", semester=1)
+            for c in profile.get("completed_course_codes", [])
+        ]
+        curr_sem = int(profile["current_semester"])
+        stu_profile = StudentProfile(
+            student_id=profile["student_id"],
+            name=profile["name"],
+            programme="BH-CSE-BTECH",
+            year=max(1, (curr_sem + 1) // 2),
+            current_semester=curr_sem,
+            cgpa=float(profile["cgpa"]),
+            goal_id=matched_goal,
+            target_role=profile.get("goal"),
+            available_hours_per_week=float(profile["available_hours_per_week"]),
+            completed_courses=completed,
+            interests=profile.get("interests", [])
+        )
+        StudentStore.save_profile(stu_profile)
+    except Exception as e:
+        import logging
+        logging.getLogger("onboarding").warning("Failed to sync to student store: %s", e)
+
+
 @router.post(
     "/profiles",
     response_model=OnboardingProfileResponse,
@@ -147,6 +184,7 @@ def create_onboarding_profile(
     profile = _validated_request_profile(payload)
     profile["student_id"] = f"BH-{uuid4().hex[:10].upper()}"
     save_onboarding_profile(profile)
+    _sync_to_student_store(profile)
     return OnboardingProfileResponse.model_validate(profile)
 
 
@@ -175,6 +213,7 @@ def update_onboarding_profile_route(
     profile["student_id"] = student_id
     if not update_onboarding_profile(profile):
         raise HTTPException(status_code=404, detail="Onboarding profile not found.")
+    _sync_to_student_store(profile)
     return OnboardingProfileResponse.model_validate(profile)
 
 

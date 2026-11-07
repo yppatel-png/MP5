@@ -106,3 +106,4 @@ Based on this reality check, the path forward is unambiguous:
 5. **Phase 6 (Buddy Polish):** Replace context dump with short greeting and 3 action pills; cite course codes and PDF pages.
 6. **Phase 7 (Hide Unproven Features):** Move incomplete features behind Advanced and catalog them in `docs/KNOWN_LIMITATIONS.md`.
 7. **Phase 8 (Demo Check):** `make demo-check`, `make demo-reset`, `docs/DEMO_WALKTHROUGH.md`, and final verified report.
+

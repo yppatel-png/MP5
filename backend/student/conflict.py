@@ -77,7 +77,7 @@ class ConflictDetector:
             algo_data = skill_matrix.get("algorithms") or skill_matrix.get("skill_dsa_linear", {})
             dsa_level = (ds_data.get("p_mastery", 0.5) + algo_data.get("p_mastery", 0.5)) / 2.0
 
-            if dsa_level < 0.70:
+            if dsa_level < 0.85:
                 alerts.append({
                     "alert_id": "gap_alert_swe_dsa_deficiency",
                     "severity": "high",

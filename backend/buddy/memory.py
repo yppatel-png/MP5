@@ -14,12 +14,27 @@ from backend.student.model import StudentStore
 
 class BuddyMemory:
     @staticmethod
+    def record_turn(
+        student_id: str,
+        role: str,
+        content: str,
+        turn_id: Optional[str] = None,
+        tools_used: Optional[List[str]] = None,
+        intent: Optional[str] = None,
+        **kwargs
+    ) -> int:
+        return BuddyMemory.save_turn(
+            student_id, role, content, intent=intent, tools_called=tools_used, **kwargs
+        )
+
+    @staticmethod
     def save_turn(
         student_id: str,
         role: str,  # 'user' or 'assistant'
         content: str,
         intent: Optional[str] = None,
-        tools_called: Optional[List[str]] = None
+        tools_called: Optional[List[str]] = None,
+        **kwargs
     ) -> int:
         """Persists a conversation turn into SQLite chat_memory."""
         with get_db_cursor() as cur:

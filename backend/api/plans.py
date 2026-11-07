@@ -20,7 +20,6 @@ from backend.rules import rule_registry, pdf_builder, PlanCertificate
 from backend.db.database import get_db_cursor
 from backend.student.summary import build_student_summary
 from backend.planner.schemas import ActivePlanResponse
-from backend.db.seed_profile import get_institute_profile
 
 router = APIRouter(prefix="/plans", tags=["Curriculum Planning & Verification"])
 
@@ -38,17 +37,6 @@ class InfeasibleRequestModel(BaseModel):
 class CertificateVerifyRequest(BaseModel):
     expected_hash: Optional[str] = None
 
-def require_supported_planning() -> None:
-    if get_institute_profile() == "iit_bhilai":
-        raise HTTPException(
-            status_code=409,
-            detail=(
-                "Personalized degree planning and academic-rule certification are "
-                "disabled for the IIT Bhilai demo because the supplied source does "
-                "not establish prerequisites, elective eligibility, or semester credit limits."
-            ),
-        )
-
 @router.post("/generate")
 def generate_student_plan(req: PlanGenerateRequest) -> Dict[str, Any]:
     """
@@ -56,17 +44,25 @@ def generate_student_plan(req: PlanGenerateRequest) -> Dict[str, Any]:
     generates a sealed cryptographic PlanCertificate, creates a versioned snapshot,
     and returns a factual explanation.
     """
-    require_supported_planning()
     profile = StudentStore.get_profile(req.student_id)
     if not profile:
         raise HTTPException(status_code=404, detail=f"Student ID '{req.student_id}' not found.")
 
     # Check for infeasible credit requests first
-    if req.credit_cap_override and req.credit_cap_override > 24.0:
+    rules = multi_semester_planner.academic_rules
+    standard_cap = float(rules.get("rule_sem_max_credits", {}).get("parameters", {}).get("max_credits", 22.0))
+    overload_rule = rules.get("rule_credit_overload_cap", {}).get("parameters", {})
+    overload_cap = float(overload_rule.get("max_overload_credits", 24.0))
+    overload_threshold = float(overload_rule.get("min_cgpa_required", 8.5))
+    maximum_cap = overload_cap if profile.cgpa >= overload_threshold else standard_cap
+    if req.credit_cap_override and req.credit_cap_override > maximum_cap:
         return infeasible_handler.handle_excessive_credit_request(req.student_id, req.credit_cap_override)
 
     active_goal = req.goal_override or profile.goal_id
-    credit_cap = req.credit_cap_override or (24.0 if profile.cgpa >= 8.5 else 22.0)
+    credit_cap = req.credit_cap_override or standard_cap
+    minimum_credits = float(
+        rules.get("rule_sem_min_credits", {}).get("parameters", {}).get("min_credits", 14.0)
+    )
 
     # 1. Compute gaps
     gaps_data = diagnostic_engine.compute_skill_gaps(req.student_id, goal_id=active_goal)
@@ -81,10 +77,11 @@ def generate_student_plan(req: PlanGenerateRequest) -> Dict[str, Any]:
         skill_gaps=gaps_data.get("gaps", []),
         goal_id=active_goal,
         credit_cap=credit_cap,
+        min_credits=minimum_credits,
         max_weekly_hours=profile.available_hours_per_week,
-        overload_allowed=(profile.cgpa >= 8.5)
+        overload_allowed=(profile.cgpa >= overload_threshold)
     )
-    effective_credit_cap = 24.0 if profile.cgpa >= 8.5 else credit_cap
+    effective_credit_cap = req.credit_cap_override or maximum_cap
     plan["credit_cap"] = effective_credit_cap
     student_summary = build_student_summary(
         profile=profile,
@@ -161,7 +158,6 @@ def generate_student_plan(req: PlanGenerateRequest) -> Dict[str, Any]:
 @router.get("/{student_id}", response_model=ActivePlanResponse)
 def get_active_plan(student_id: str) -> Dict[str, Any]:
     """Retrieves the latest saved plan version and certificate for a student."""
-    require_supported_planning()
     profile = StudentStore.get_profile(student_id)
     if not profile:
         raise HTTPException(status_code=404, detail=f"Student ID '{student_id}' not found.")
@@ -230,7 +226,6 @@ def verify_plan_certificate(student_id: str, req: Optional[CertificateVerifyRequ
     Re-evaluates all 16 academic rules from scratch against the stored plan,
     checks cryptographic canonical hash match, and returns tamper detection results.
     """
-    require_supported_planning()
     profile = StudentStore.get_profile(student_id)
     if not profile:
         raise HTTPException(status_code=404, detail=f"Student '{student_id}' not found.")
@@ -255,7 +250,6 @@ def export_plan_certificate_pdf(student_id: str):
     Exports a clean, official one-page printable PDF certificate
     with ordinance citations, verification seal, and rule audit table.
     """
-    require_supported_planning()
     profile = StudentStore.get_profile(student_id)
     if not profile:
         raise HTTPException(status_code=404, detail=f"Student '{student_id}' not found.")
@@ -302,7 +296,6 @@ def get_plan_history(student_id: str) -> List[Dict[str, Any]]:
 @router.post("/infeasible")
 def infeasible_request(req: InfeasibleRequestModel) -> Dict[str, Any]:
     """Demonstrates how the planner handles mathematically or regulatorily infeasible requests."""
-    require_supported_planning()
     if req.requested_credits:
         return infeasible_handler.handle_excessive_credit_request(req.student_id, req.requested_credits)
     elif req.desired_course_code:

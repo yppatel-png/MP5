@@ -40,6 +40,7 @@ from backend.rules.certificate import (
     RULE_SET_VERSION,
 )
 from backend.db.seed_profile import get_institute_profile, get_seed_dir
+from backend.rules.bhilai_rules import build_bhilai_rules
 
 SEED_DIR = get_seed_dir()
 
@@ -54,7 +55,7 @@ class RuleRegistry:
 
     def __init__(self):
         if get_institute_profile() == "iit_bhilai":
-            self._rules: List[Rule] = [CourseExistsCatalogueRule()]
+            self._rules = build_bhilai_rules()
         else:
             self._rules = [
                 CourseExistsCatalogueRule(),

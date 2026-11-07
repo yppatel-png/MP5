@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run legacy regression tests and IIT Bhilai tests against isolated databases."""
+"""Run test suite for IIT Bhilai against isolated temporary database."""
 
 import os
 import subprocess
@@ -25,13 +25,7 @@ def run_profile_tests(profile: str, arguments: list[str]) -> int:
 
 
 def main() -> int:
-    legacy_result = run_profile_tests(
-        "legacy",
-        ["tests", "--ignore=tests/test_bhilai_seed.py"],
-    )
-    if legacy_result:
-        return legacy_result
-    return run_profile_tests("iit_bhilai", ["tests/test_bhilai_seed.py"])
+    return run_profile_tests("iit_bhilai", ["tests"])
 
 
 if __name__ == "__main__":

@@ -1,1 +1,266 @@
-[]
+[
+  {
+    "skill_id": "programming_fundamentals",
+    "name": "Programming fundamentals",
+    "domain": "Computer Science",
+    "description": "Read and reason about imperative programs and basic data types.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "software_tools",
+    "name": "Software tools and collaboration",
+    "domain": "Computer Science",
+    "description": "Use command-line, versioning, testing, and development tools.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "discrete_mathematics",
+    "name": "Discrete mathematics",
+    "domain": "Mathematics",
+    "description": "Use sets, relations, logic, proof, counting, and graph concepts.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "data_structures",
+    "name": "Data structures",
+    "domain": "Computer Science",
+    "description": "Select and reason about linear and non-linear data structures.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "algorithms",
+    "name": "Algorithm design and analysis",
+    "domain": "Computer Science",
+    "description": "Analyze and design algorithms using established paradigms.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "computer_architecture",
+    "name": "Computer architecture",
+    "domain": "Computer Science",
+    "description": "Explain instruction execution, arithmetic units, memory, and I/O.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "theory_computation",
+    "name": "Theory of computation",
+    "domain": "Computer Science",
+    "description": "Reason about formal languages, automata, and computability.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "operating_systems",
+    "name": "Operating systems",
+    "domain": "Computer Science",
+    "description": "Explain processes, concurrency, memory, and persistence.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "compiler_design",
+    "name": "Compiler design",
+    "domain": "Computer Science",
+    "description": "Describe the phases and intermediate representations of compilation.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "database_systems",
+    "name": "Database systems",
+    "domain": "Computer Science",
+    "description": "Model, query, and normalize relational data.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "artificial_intelligence",
+    "name": "Artificial intelligence",
+    "domain": "Computer Science",
+    "description": "Apply search, representation, reasoning, and learning concepts.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "computer_networks",
+    "name": "Computer networks",
+    "domain": "Computer Science",
+    "description": "Explain network layers, protocols, and communication.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "software_engineering",
+    "name": "Software engineering",
+    "domain": "Computer Science",
+    "description": "Specify, construct, test, and review software systems.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "llm_software",
+    "name": "LLM-assisted software development",
+    "domain": "Computer Science",
+    "description": "Use constrained prompts, structured outputs, tools, and evaluation responsibly.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "research_methods",
+    "name": "Research and project methods",
+    "domain": "Computer Science",
+    "description": "Frame a problem, develop a solution, and communicate evidence.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "probability_statistics",
+    "name": "Probability and statistics",
+    "domain": "Mathematics",
+    "description": "Use probability and statistical reasoning to analyze uncertainty.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "communication",
+    "name": "Communication",
+    "domain": "Humanities",
+    "description": "Communicate an idea clearly for a defined audience.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "finance",
+    "name": "Personal and institutional finance",
+    "domain": "Humanities",
+    "description": "Interpret foundational finance concepts and terminology.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "macroeconomics",
+    "name": "Macroeconomics",
+    "domain": "Humanities",
+    "description": "Reason about aggregate economic activity and policy.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "microeconomics",
+    "name": "Microeconomics",
+    "domain": "Humanities",
+    "description": "Reason about individual choices, markets, and incentives.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "international_trade",
+    "name": "International trade",
+    "domain": "Humanities",
+    "description": "Explain trade flows and the role of trade policy.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "indian_society",
+    "name": "Society and institutions",
+    "domain": "Humanities",
+    "description": "Analyze social structures and institutions using course themes.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "literary_analysis",
+    "name": "Literary analysis",
+    "domain": "Humanities",
+    "description": "Interpret literary form, context, and narrative.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "skill_id": "formal_verification",
+    "name": "Formal verification",
+    "domain": "Computer Science",
+    "description": "Express and verify properties of systems using formal methods.",
+    "parent_skill_id": null,
+    "source": "Team-authored skill taxonomy mapped to cited course syllabus topics",
+    "source_page": null,
+    "provenance": "team_authored",
+    "last_verified": "2026-11-06"
+  }
+]

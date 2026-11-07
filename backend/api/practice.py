@@ -37,7 +37,7 @@ class ExerciseListItem(BaseModel):
     exercise_id: str
     title: Optional[str] = None
     prompt: str
-    difficulty: int
+    difficulty: int = 2
     type: str
     skill_id: str
     starter_code: Optional[str] = None

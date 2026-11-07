@@ -1,11 +1,156 @@
 [
   {
-    "goal_id": "goal_bhilai_cse",
-    "name": "BTech CSE Curriculum Orientation",
-    "target_role": "BTech CSE student",
+    "goal_id": "goal_software",
+    "name": "Software Engineering",
+    "target_role": "Software engineer",
     "typical_duration_semesters": 8,
-    "required_skills": [],
+    "required_skills": [
+      {
+        "skill_id": "programming_fundamentals",
+        "target_level": 0.7,
+        "critical": true
+      },
+      {
+        "skill_id": "data_structures",
+        "target_level": 0.7,
+        "critical": true
+      },
+      {
+        "skill_id": "algorithms",
+        "target_level": 0.7,
+        "critical": false
+      },
+      {
+        "skill_id": "database_systems",
+        "target_level": 0.7,
+        "critical": false
+      },
+      {
+        "skill_id": "software_engineering",
+        "target_level": 0.7,
+        "critical": false
+      },
+      {
+        "skill_id": "software_tools",
+        "target_level": 0.7,
+        "critical": false
+      }
+    ],
     "milestones": [],
-    "source": "Project-authored orientation goal; not an IIT Bhilai academic rule"
+    "source": "Team-authored development goal; not an IIT Bhilai academic requirement",
+    "provenance": "team_authored"
+  },
+  {
+    "goal_id": "goal_higher_studies",
+    "name": "Higher Studies",
+    "target_role": "Computing researcher",
+    "typical_duration_semesters": 8,
+    "required_skills": [
+      {
+        "skill_id": "discrete_mathematics",
+        "target_level": 0.7,
+        "critical": true
+      },
+      {
+        "skill_id": "algorithms",
+        "target_level": 0.7,
+        "critical": true
+      },
+      {
+        "skill_id": "probability_statistics",
+        "target_level": 0.7,
+        "critical": false
+      },
+      {
+        "skill_id": "research_methods",
+        "target_level": 0.7,
+        "critical": false
+      },
+      {
+        "skill_id": "communication",
+        "target_level": 0.7,
+        "critical": false
+      }
+    ],
+    "milestones": [],
+    "source": "Team-authored development goal; not an IIT Bhilai academic requirement",
+    "provenance": "team_authored"
+  },
+  {
+    "goal_id": "goal_upsc",
+    "name": "UPSC Preparation",
+    "target_role": "Civil services aspirant",
+    "typical_duration_semesters": 8,
+    "required_skills": [
+      {
+        "skill_id": "communication",
+        "target_level": 0.7,
+        "critical": true
+      },
+      {
+        "skill_id": "macroeconomics",
+        "target_level": 0.7,
+        "critical": true
+      },
+      {
+        "skill_id": "microeconomics",
+        "target_level": 0.7,
+        "critical": false
+      },
+      {
+        "skill_id": "international_trade",
+        "target_level": 0.7,
+        "critical": false
+      },
+      {
+        "skill_id": "indian_society",
+        "target_level": 0.7,
+        "critical": false
+      },
+      {
+        "skill_id": "literary_analysis",
+        "target_level": 0.7,
+        "critical": false
+      }
+    ],
+    "milestones": [],
+    "source": "Team-authored development goal; not an IIT Bhilai academic requirement",
+    "provenance": "team_authored"
+  },
+  {
+    "goal_id": "goal_startup",
+    "name": "Startup",
+    "target_role": "Technology founder",
+    "typical_duration_semesters": 8,
+    "required_skills": [
+      {
+        "skill_id": "programming_fundamentals",
+        "target_level": 0.7,
+        "critical": true
+      },
+      {
+        "skill_id": "software_engineering",
+        "target_level": 0.7,
+        "critical": true
+      },
+      {
+        "skill_id": "database_systems",
+        "target_level": 0.7,
+        "critical": false
+      },
+      {
+        "skill_id": "finance",
+        "target_level": 0.7,
+        "critical": false
+      },
+      {
+        "skill_id": "communication",
+        "target_level": 0.7,
+        "critical": false
+      }
+    ],
+    "milestones": [],
+    "source": "Team-authored development goal; not an IIT Bhilai academic requirement",
+    "provenance": "team_authored"
   }
 ]

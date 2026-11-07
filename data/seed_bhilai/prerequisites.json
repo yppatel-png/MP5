@@ -1,1 +1,146 @@
-[]
+[
+  {
+    "course_code": "CSL202",
+    "requires_code": "CSL100",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 83",
+    "source_page": 83,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSP203",
+    "requires_code": "CSL100",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 83",
+    "source_page": 83,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSL251",
+    "requires_code": "CSL100",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 83",
+    "source_page": 83,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSL251",
+    "requires_code": "ECL101",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 83",
+    "source_page": 83,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSL252",
+    "requires_code": "CSL100",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 84",
+    "source_page": 84,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSL252",
+    "requires_code": "CSL201",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 84",
+    "source_page": 84,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSL252",
+    "requires_code": "CSL202",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 84",
+    "source_page": 84,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSL253",
+    "requires_code": "CSL201",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 84",
+    "source_page": 84,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSL253",
+    "requires_code": "CSL202",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 84",
+    "source_page": 84,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSL301",
+    "requires_code": "CSL202",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 84",
+    "source_page": 84,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSL301",
+    "requires_code": "CSL251",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 84",
+    "source_page": 84,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSL302",
+    "requires_code": "CSL251",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 84",
+    "source_page": 84,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSL302",
+    "requires_code": "CSL253",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 84",
+    "source_page": 84,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSP352",
+    "requires_code": "IC100",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 86",
+    "source_page": 86,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSL510",
+    "requires_code": "CSL252",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 88",
+    "source_page": 88,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSL512",
+    "requires_code": "CSL252",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 89",
+    "source_page": 89,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSL515",
+    "requires_code": "CSL252",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 89",
+    "source_page": 89,
+    "provenance": "verified"
+  },
+  {
+    "course_code": "CSL518",
+    "requires_code": "CSL252",
+    "type": "hard",
+    "source": "IIT Bhilai Courses of Study, PDF p. 90",
+    "source_page": 90,
+    "provenance": "verified"
+  }
+]

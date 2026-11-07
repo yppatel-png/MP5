@@ -33,8 +33,8 @@ class InfeasibleRequestHandler:
         blocking_rule = {
             "rule_id": "rule_credit_cap_standard",
             "rule_name": "Standard Semester Credit Ceiling",
-            "ordinance_clause": "IIT Delhi UG Ordinance Section 4.2",
-            "explanation": f"You requested {requested_credit_cap} credits. Institute regulations strictly cap semester course registration at {max_allowed} credits (to ensure academic rigor and prevent student burnout)."
+            "ordinance_clause": "IIT Bhilai Academic Regulations (Assumed ceiling pending ordinance)",
+            "explanation": f"You requested {requested_credit_cap} credits. Institute regulations cap semester course registration at {max_allowed} credits (to ensure academic rigor and prevent student burnout)."
         }
 
         # Synthesize the closest valid alternative
@@ -96,7 +96,7 @@ class InfeasibleRequestHandler:
         blocking_rule = {
             "rule_id": "rule_prereq_strict_enforcement",
             "rule_name": "Prerequisite Passing Grade Enforcement",
-            "ordinance_clause": "IIT Delhi UG Ordinance Section 5.1",
+            "ordinance_clause": "IIT Bhilai Curriculum Specification (Printed Prerequisites)",
             "explanation": f"Cannot register for {code_norm}. You must first pass mandatory prerequisite(s): {', '.join(unmet_reqs)}."
         }
 

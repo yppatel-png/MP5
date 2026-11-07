@@ -44,8 +44,8 @@ RUNTIME_DOWNLOAD_PATTERNS = [
 
 # Allowed domains for plain documentation links cited in text/HTML anchors
 ALLOWED_CITATION_DOMAINS = {
-    "home.iitd.ac.in",
-    "cse.iitd.ac.in",
+    "iitbhilai.ac.in",
+    "www.iitbhilai.ac.in",
     "nptel.ac.in",
     "ocw.mit.edu",
     "cs229.stanford.edu",

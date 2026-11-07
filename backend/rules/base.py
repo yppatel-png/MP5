@@ -44,6 +44,9 @@ class RuleResult(BaseModel):
     clause_id: Optional[str] = None         # e.g. "ORD-4.2.1" or "student_preference"
     section_title: Optional[str] = None
     source_url: Optional[str] = None
+    provenance: str = "verified"
+    reason: Optional[str] = None
+    source_page: Optional[int] = None
 
 class Rule:
     """Base class for all deterministic academic rules."""
@@ -68,4 +71,3 @@ class Rule:
         No LLM calls required.
         """
         return result.message
-

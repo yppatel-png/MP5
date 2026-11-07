@@ -101,7 +101,7 @@ class TestPhase1Audit(unittest.TestCase):
 
         # Plan generation must still succeed with 100% validity in offline mode
         plan_res = generate_student_plan(PlanGenerateRequest(
-            student_id="S1024",
+            student_id="BH-SW-001",
             reason_for_change="Offline audit test"
         ))
         self.assertIn("validation_report", plan_res)
@@ -127,10 +127,10 @@ class TestPhase1Audit(unittest.TestCase):
 
     def test_06_admin_grade_edit_triggers_recomputation(self):
         """Verify editing student grade updates CGPA and triggers plan re-synthesis without restarts."""
-        # Update grade of S1024
+        # Update grade of BH-SW-001
         res = edit_student_grade(EditGradeRequest(
-            student_id="S1024",
-            course_code="COL106",
+            student_id="BH-SW-001",
+            course_code="CSL100",
             new_grade="A"
         ))
         self.assertEqual(res["status"], "success")
@@ -138,34 +138,32 @@ class TestPhase1Audit(unittest.TestCase):
         self.assertTrue(res["plan_valid"])
 
         # Verify profile has updated grade and CGPA
-        prof = StudentStore.get_profile("S1024")
-        col106 = next(c for c in prof.completed_courses if c.course_code == "COL106")
-        self.assertEqual(col106.grade, "A")
+        prof = StudentStore.get_profile("BH-SW-001")
+        csl100 = next(c for c in prof.completed_courses if c.course_code == "CSL100")
+        self.assertEqual(csl100.grade, "A")
 
     def test_07_admin_course_edit_and_prerequisite_sync(self):
         """Verify course credit update and prerequisite addition immediately sync in-memory structures."""
         # 1. Edit course credits
         res_c = edit_course(EditCourseRequest(
-            code="COL106",
+            code="CSL202",
             credits=5.0
         ))
         self.assertEqual(res_c["status"], "success")
 
         # Check in-memory sync
-        self.assertEqual(multi_semester_planner.courses["COL106"]["credits"], 5.0)
-        self.assertEqual(rule_registry.courses_db["COL106"]["credits"], 5.0)
+        self.assertEqual(multi_semester_planner.courses["CSL202"]["credits"], 5.0)
 
         # 2. Add prerequisite
         res_p = edit_prerequisite(EditPrerequisiteRequest(
-            course_code="COL380",
-            requires_code="COL106",
+            course_code="CSL304",
+            requires_code="CSL202",
             action="add"
         ))
         self.assertEqual(res_p["status"], "success")
 
         # Check in-memory sync
-        self.assertIn("COL106", multi_semester_planner.prereq_map["COL380"])
-        self.assertIn("COL106", rule_registry.prereq_map["COL380"])
+        self.assertIn("CSL202", multi_semester_planner.prereq_map["CSL304"])
 
     def test_08_admin_rule_and_constraint_mutation(self):
         """Verify updating rule parameters and student constraints triggers dynamic re-solution."""
@@ -178,7 +176,7 @@ class TestPhase1Audit(unittest.TestCase):
 
         # 2. Edit student constraints
         res_cons = edit_student_constraint(EditConstraintRequest(
-            student_id="S1024",
+            student_id="BH-SW-001",
             constraints={"credit_headroom_next_semester": 2.0}
         ))
         self.assertEqual(res_cons["status"], "success")

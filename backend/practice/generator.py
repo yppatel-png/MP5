@@ -87,7 +87,7 @@ class QuestionGenerator:
         # If LLM is live, attempt grounded generation
         if llm_client.is_live():
             prompt = (
-                f"You are an academic exam creator for IIT Delhi. "
+                f"You are an academic exam creator for IIT Bhilai. "
                 f"Generate a challenging Multiple-Choice Question (MCQ) testing skill '{target_skill}' "
                 f"strictly grounded in the following module syllabus text:\n\n"
                 f"MODULE TEXT:\n\"{module_text}\"\n\n"

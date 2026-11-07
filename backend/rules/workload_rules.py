@@ -17,10 +17,10 @@ class NoCoTakingPairRule(Rule):
     scope = RuleScope.SEMESTER
     clause_id = "ORD-8.2.0"
     section_title = "Workload Optimization: Mutually Exclusive Theory Coursework"
-    source_url = "https://cse.iitd.ac.in/curriculum/undergraduate-advising-notes"
+    source_url = "https://cse.iitbhilai.ac.in/curriculum/undergraduate-advising-notes"
 
     def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
-        pair = ["COL351", "COL352"]
+        pair = ["CSL351", "CSL352"]
         violations = []
 
         for sem in plan.get("semesters", []):
@@ -64,7 +64,7 @@ class WeeklyTimeBudgetRule(Rule):
     scope = RuleScope.SEMESTER
     clause_id = "ORD-8.1.0"
     section_title = "Student Weekly Self-Study and Contact Hour Budget"
-    source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-8.1.0"
+    source_url = "https://home.iitbhilai.ac.in/academic-rules/ordinance-section-8.1.0"
 
     def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
         results = []
@@ -111,7 +111,7 @@ class NoDuplicateRegistrationRule(Rule):
     scope = RuleScope.PLAN
     clause_id = "ORD-4.4.0"
     section_title = "Duplicate Registration Prevention"
-    source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-4.4.0"
+    source_url = "https://home.iitbhilai.ac.in/academic-rules/ordinance-section-4.4.0"
 
     def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
         completed_past = set(

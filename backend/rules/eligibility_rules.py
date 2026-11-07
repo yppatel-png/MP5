@@ -14,7 +14,7 @@ class MinorEligibilityRule(Rule):
     scope = RuleScope.PLAN
     clause_id = "ORD-6.1.0"
     section_title = "Minor Area in Computer Science Eligibility"
-    source_url = "https://home.iitd.ac.in/academic-rules/minor-guidelines-2023"
+    source_url = "https://home.iitbhilai.ac.in/academic-rules/minor-guidelines-2023"
 
     def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
         programme = ctx.get("programme", "CS1")
@@ -102,7 +102,7 @@ class OnlineCreditCapRule(Rule):
     scope = RuleScope.PLAN
     clause_id = "ORD-7.1.0"
     section_title = "Online Credit Transfer Ceiling (NPTEL / SWAYAM)"
-    source_url = "https://home.iitd.ac.in/academic-rules/nptel-transfer-policy"
+    source_url = "https://home.iitbhilai.ac.in/academic-rules/nptel-transfer-policy"
 
     def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
         max_total_online = 12.0

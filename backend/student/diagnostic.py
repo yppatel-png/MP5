@@ -146,12 +146,14 @@ class DiagnosticEngine:
         # If no unasked exercises in goal skills or threshold reached
         if not selected_exercise or len(answered_exercise_ids) >= 12:
             return {
+                "available": False,
                 "diagnostic_complete": True,
                 "questions_answered": len(answered_exercise_ids),
                 "message": "Diagnostic assessment complete. Skill vector calibrated with high confidence."
             }
 
         return {
+            "available": True,
             "diagnostic_complete": False,
             "exercise": {
                 "exercise_id": selected_exercise["exercise_id"],

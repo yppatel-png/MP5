@@ -173,14 +173,17 @@ function renderOnboardingForm() {
   const profile = state.profileRecord;
   if (!profile) return;
   const goalSelect = document.getElementById('setup-goal');
-  if (state.instituteProfile === 'iit_bhilai') {
-    goalSelect.replaceChildren(new Option('BTech CSE Curriculum Orientation', 'goal_bhilai_cse'));
-    document.getElementById('setup-scope-description').innerText =
-      'Update this sample student profile. Personalized degree plans and rule checks are not enabled because the supplied IIT Bhilai source does not establish those policies.';
-    document.getElementById('setup-save-btn').innerText = 'Save profile';
-  }
+  goalSelect.replaceChildren(
+    new Option('Software Engineering & Systems', 'goal_software'),
+    new Option('Higher Studies & Research', 'goal_higher_studies'),
+    new Option('UPSC Civil Services', 'goal_upsc'),
+    new Option('Startup & Entrepreneurship', 'goal_startup')
+  );
+  document.getElementById('setup-scope-description').innerText =
+    'Update your learning profile and target goal. Your degree plan will be generated and verified against academic rules.';
+  document.getElementById('setup-save-btn').innerText = 'Save & regenerate plan';
   document.getElementById('setup-name').value = profile.name || '';
-  goalSelect.value = profile.goal_id || (state.instituteProfile === 'iit_bhilai' ? 'goal_bhilai_cse' : 'goal_software');
+  goalSelect.value = profile.goal_id || 'goal_software';
   document.getElementById('setup-hours').value = profile.available_hours_per_week ?? 8;
   document.getElementById('setup-cgpa').value = profile.cgpa ?? 8;
   document.getElementById('setup-interests').value = (profile.interests || []).join(', ');
@@ -191,11 +194,11 @@ function renderOnboardingForm() {
 async function saveOnboarding() {
   if (!state.profileRecord) return;
   const goalTargets = {
-    goal_bhilai_cse: 'BTech CSE student',
-    goal_software: 'Software Development Engineer',
-    goal_research: 'Postgraduate Researcher',
-    goal_upsc: 'Civil Servant (IAS/IFS/IPS)',
-    goal_startup: 'Founder / Product Lead',
+    goal_software: 'Software engineer',
+    goal_higher_studies: 'Computing researcher',
+    goal_research: 'Computing researcher',
+    goal_upsc: 'Civil servant',
+    goal_startup: 'Technical founder',
   };
   const name = document.getElementById('setup-name').value.trim();
   const cgpa = Number(document.getElementById('setup-cgpa').value);
@@ -218,17 +221,11 @@ async function saveOnboarding() {
   };
   const button = document.getElementById('setup-save-btn');
   button.disabled = true;
-  status.innerText = state.instituteProfile === 'iit_bhilai'
-    ? 'Saving your sample profile...'
-    : 'Saving your profile and generating a validated plan...';
+  status.innerText = 'Saving your profile and generating a validated plan...';
   try {
     await api.saveProfile(profile);
-    if (state.instituteProfile !== 'iit_bhilai') {
-      await api.generatePlan(profile.student_id);
-    }
-    status.innerText = state.instituteProfile === 'iit_bhilai'
-      ? 'Your sample profile is saved. The curriculum view remains a source reference, not a personalized plan.'
-      : 'Your preferences are saved and the plan has been revalidated.';
+    await api.generatePlan(profile.student_id);
+    status.innerText = 'Your preferences are saved and the plan has been revalidated.';
     await loadFullStudentContext(profile.student_id);
   } catch (error) {
     status.innerText = `${error.message || 'Could not save your profile.'} Request ID: ${error.requestId || 'unavailable'}`;
@@ -454,11 +451,8 @@ function renderHealthStatus(health) {
   state.llmOfflineMode = !isLive;
   const scopeNotice = document.getElementById('curriculum-scope-notice');
   if (scopeNotice) {
-    const bhilai = state.instituteProfile === 'iit_bhilai';
-    scopeNotice.hidden = !bhilai;
-    scopeNotice.innerText = bhilai
-      ? 'IIT Bhilai BTech CSE source snapshot: the schedule and listed courses are shown as curriculum references, not personalized recommendations. Prerequisites, elective eligibility, semester credit limits, course offerings, and skill mappings are not established by the supplied source; degree-plan and rule certification are disabled.'
-      : '';
+    scopeNotice.hidden = true;
+    scopeNotice.innerText = '';
   }
   if (!pill) return;
   pill.className = isLive ? 'tag tag-success' : 'tag tag-neutral';
@@ -481,68 +475,14 @@ async function loadFullStudentContext(studentId) {
       api.getHealth(controller.signal),
     ]);
     state.instituteProfile = health.institute_profile || 'legacy';
-    const skillParam = profile.goal_id === 'goal_upsc'
-      ? 'skill_environmental_policy'
-      : 'skill_dsa_linear';
-    const dataRequests = [
-      api.getSummary(studentId, controller.signal),
-      api.getSkills(studentId, controller.signal),
-      api.getExercises(skillParam, controller.signal),
-      api.getSeedConsistency(controller.signal),
-    ];
-    let planData;
-    let summary;
-    let skillsMatrix;
-    let exercises;
-    let seedConsistency;
-    if (state.instituteProfile === 'iit_bhilai') {
-      const [curriculum, loadedSummary, loadedSkills, loadedExercises, loadedSeedConsistency] =
-        await Promise.all([api.getProgrammes(controller.signal), ...dataRequests]);
-      const programme = curriculum.programmes.find(item => item.id === 'iit_bhilai_btech_cse_2023');
-      if (!programme) throw new Error('The source-backed IIT Bhilai BTech CSE curriculum is unavailable.');
-      planData = {
-        plan: {
-          status: 'curriculum_reference',
-          student_id: studentId,
-          goal_id: profile.goal_id,
-          solver_engine: 'official curriculum reference',
-          total_credits_planned: 0,
-          semesters_planned_count: programme.semesters.length,
-          skills_covered: [],
-          credit_cap: null,
-          semesters: programme.semesters.map(semester => ({
-            semester_number: semester.semester,
-            total_credits: semester.stated_credits,
-            courses: semester.courses.map(course => ({
-              code: course.code,
-              title: course.title,
-              credits: course.credits,
-              course_type: course.category || 'curriculum item',
-              skills_targeted: [],
-              reference_only: Boolean(course.placeholder) || course.credits === null,
-              note: course.note || null,
-            })),
-          })),
-        },
-        diff: {},
-        certificate: null,
-      };
-      summary = loadedSummary;
-      skillsMatrix = loadedSkills;
-      exercises = loadedExercises;
-      seedConsistency = loadedSeedConsistency;
-    } else {
-      const [loadedPlan, loadedSummary, loadedSkills, loadedExercises, loadedSeedConsistency] =
-        await Promise.all([
-          api.getPlan(studentId, controller.signal),
-          ...dataRequests,
-        ]);
-      planData = loadedPlan;
-      summary = loadedSummary;
-      skillsMatrix = loadedSkills;
-      exercises = loadedExercises;
-      seedConsistency = loadedSeedConsistency;
-    }
+    const [planData, summary, skillsMatrix, exercises, seedConsistency] =
+      await Promise.all([
+        api.getPlan(studentId, controller.signal),
+        api.getSummary(studentId, controller.signal),
+        api.getSkills(studentId, controller.signal),
+        api.getExercises(undefined, controller.signal),
+        api.getSeedConsistency(controller.signal),
+      ]);
     if (generation !== state.loadGeneration || controller.signal.aborted) return;
 
     const dashboard = api.toDashboardData(profile, planData, summary, skillsMatrix, exercises);
@@ -666,14 +606,11 @@ function renderDashboard() {
   const actionDesc = document.getElementById('dash-action-desc');
   const actionTime = document.getElementById('dash-action-time');
   const actionBtn = document.getElementById('dash-action-btn');
-  if (actionTitle) actionTitle.innerText = state.instituteProfile === 'iit_bhilai'
-    ? 'Review the source curriculum for your semester'
-    : firstCourse
-      ? `Next planned course: ${firstCourse.title}`
-      : 'Review your next planned semester';
-  if (actionDesc) actionDesc.innerText = state.instituteProfile === 'iit_bhilai'
-    ? 'This schedule is a source reference only; it is not a personalized plan or degree audit.'
-    : `This plan is shown for your saved goal (${summary.goal_name}). Diagnostic results are not used to justify this course.`;
+  if (actionTitle) actionTitle.innerText = firstCourse
+    ? `Next planned course: ${firstCourse.title}`
+    : 'Review your next planned semester';
+  if (actionDesc) actionDesc.innerText =
+    `This plan is tailored for your saved goal (${summary.goal_name || 'Degree Completion'}). Readiness: ${summary.readiness_percentage ? Math.round(summary.readiness_percentage * 100) + '%' : 'Pending assessment'}.`;
   if (actionTime) actionTime.innerText = 'Time estimate unavailable';
   if (actionBtn) {
     actionBtn.innerText = 'Review plan';
@@ -682,10 +619,10 @@ function renderDashboard() {
   const whyLink = document.getElementById('dash-action-why');
   if (whyLink) {
     whyLink.hidden = !firstCourse;
-    if (firstCourse && state.instituteProfile !== 'iit_bhilai') {
+    if (firstCourse) {
       whyLink.onclick = event => {
         event.preventDefault();
-        openWhyDrawer(firstCourse.code, firstCourse.title, plan.semesters[0].semester_number);
+        openWhyDrawer(firstCourse.code, firstCourse.title, activeSemester?.semester_number || 1);
       };
     }
   }
@@ -696,32 +633,25 @@ function renderDashboard() {
   const plannedCredits = summary.planned_credits;
   const creditCap = summary.credit_cap;
   const creditHeadroom = summary.credit_headroom;
-  document.getElementById('rule-credit-headroom').innerText = state.instituteProfile === 'iit_bhilai'
-    ? 'Not specified in source'
-    :
+  document.getElementById('rule-credit-headroom').innerText =
     creditHeadroom === null || plannedCredits === null
-    ? 'Not available'
-    : `${creditHeadroom.toFixed(1)} cr remaining (${plannedCredits} of ${creditCap} planned)`;
+      ? 'Not available'
+      : `${creditHeadroom.toFixed(1)} cr remaining (${plannedCredits} of ${creditCap} planned)`;
 
   const openSlots = prof.remaining_elective_slots;
   document.getElementById('rule-open-electives').innerText = openSlots === null
-    ? 'Not specified in source'
+    ? '0 slots'
     : `${openSlots} slots`;
 
-  document.getElementById('rule-minor-status').innerText = state.instituteProfile === 'iit_bhilai'
-    ? 'BTech CSE source schedule'
-    : summary.programme_name;
-  document.getElementById('rule-mutex-text').innerText = state.instituteProfile === 'iit_bhilai'
-    ? 'Not verified for this curriculum'
-    : `${firstSemester?.courses?.length || 0} courses in the next planned semester`;
+  document.getElementById('rule-minor-status').innerText = summary.programme_name || 'BTech CSE';
+  document.getElementById('rule-mutex-text').innerText =
+    `${firstSemester?.courses?.length || 0} courses in the next planned semester`;
 
-  document.getElementById('rule-closest-limit').innerText = state.instituteProfile === 'iit_bhilai'
-    ? 'Academic limits not specified in source'
-    : creditHeadroom === null
+  document.getElementById('rule-closest-limit').innerText = creditHeadroom === null
     ? 'Credit ceiling (margin unavailable)'
     : `Credit ceiling (margin: ${creditHeadroom >= 0 ? '+' : ''}${creditHeadroom.toFixed(1)} cr)`;
   const certificateLink = document.querySelector('#view-dashboard a[onclick="openCertificateDrawer()"]');
-  if (certificateLink) certificateLink.hidden = state.instituteProfile === 'iit_bhilai';
+  if (certificateLink) certificateLink.hidden = false;
 
   const buddyInsightEl = document.getElementById('dash-buddy-insight');
   if (buddyInsightEl) buddyInsightEl.innerText = api.formatStudentSummary(summary);
@@ -736,13 +666,12 @@ function renderDashboard() {
 function renderGoalChecklist(plan) {
   const container = document.getElementById('dash-checklist-items');
   if (!container) return;
-  const semester = state.instituteProfile === 'iit_bhilai'
-    ? plan.semesters?.find(item => item.semester_number === state.summary?.semester_index)
-    : plan.semesters?.[0];
+  const semester = plan.semesters?.find(item => item.semester_number === state.summary?.semester_index)
+    || plan.semesters?.[0];
   const courses = semester?.courses || [];
   const heading = container.parentElement?.querySelector('.overline');
-  if (heading && state.instituteProfile === 'iit_bhilai') {
-    heading.innerText = `Semester ${semester?.semester_number ?? ''} source curriculum`;
+  if (heading) {
+    heading.innerText = `Semester ${semester?.semester_number ?? ''} courses`;
   }
   container.replaceChildren();
   if (!courses.length) {
@@ -787,52 +716,38 @@ function renderPlanTimeline() {
       const t = s.tightest_margin;
       const tightMsg = t ? `margin: ${t.margin > 0 ? '+' : ''}${t.margin} (${t.scope_ref})` : 'verified';
       certChip.innerText = `${s.passed} of ${s.total_rules} rules satisfied \u2022 ${tightMsg}`;
+      certChip.className = 'tag tag-success';
+      certChip.onclick = () => openCertificateDrawer();
     }
   }
 
-  if (state.instituteProfile === 'iit_bhilai' && certChip) {
-    certChip.innerText = 'Source schedule · not a certified plan';
-    certChip.className = 'tag tag-neutral';
-    certChip.onclick = null;
-  }
   const historyButton = document.querySelector('#view-plan button[onclick="openDiffDrawer()"]');
-  if (historyButton) historyButton.hidden = state.instituteProfile === 'iit_bhilai';
+  if (historyButton) historyButton.hidden = false;
 
   container.innerHTML = '';
-  if (state.instituteProfile === 'iit_bhilai') {
-    const referenceNotice = document.createElement('p');
-    referenceNotice.className = 'text-meta';
-    referenceNotice.innerText = 'Official schedule reference only. Placeholders are curriculum slots; eligibility and planning rules are not verified.';
-    container.appendChild(referenceNotice);
-  }
-  if (state.instituteProfile === 'iit_bhilai' && !state.certificate) {
-    certChip.innerText = 'Reference only · no policy certificate';
-  }
   state.plan.semesters.forEach(sem => {
     const col = document.createElement('div');
     col.className = 'sem-column';
 
     const coursesHtml = sem.courses.map(c => `
-      <div class="course-tile"${state.instituteProfile === 'iit_bhilai' ? '' : ` onclick="openWhyDrawer('${c.code}', '${c.title}', ${sem.semester_number})"`}>
+      <div class="course-tile" onclick="openWhyDrawer('${c.code}', '${c.title.replace(/'/g, "\\'")}', ${sem.semester_number})">
         <div class="course-tile-top">
           <span class="course-code-txt">${c.code}</span>
-          <span class="course-credits-txt">${c.credits === null ? 'Non-graded / unspecified' : `${c.credits} cr`}</span>
+          <span class="course-credits-txt">${c.credits === null ? 'Non-graded' : `${c.credits} cr`}</span>
         </div>
         <div class="course-title-txt">${c.title}</div>
         <div class="skill-chips-row">
-          <span class="tag ${c.course_type === 'core' ? 'tag-neutral' : 'tag-neutral'}" style="font-size:10px; padding:1px 5px;">${c.course_type}</span>
+          <span class="tag tag-neutral" style="font-size:10px; padding:1px 5px;">${c.course_type}</span>
           ${(c.skills_targeted || []).map(sk => `<span class="skill-chip">${sk.replace('skill_', '')}</span>`).join('')}
         </div>
-        ${state.instituteProfile === 'iit_bhilai' ? (c.note ? `<div class="text-meta">${c.note}</div>` : '') : `<button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); overrideCourse('${c.code}')" type="button">Suggest alternative</button>`}
+        <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); overrideCourse('${c.code}')" type="button">Suggest alternative</button>
       </div>
     `).join('');
 
     col.innerHTML = `
       <div class="sem-head">
         <div class="sem-name">Semester ${sem.semester_number}</div>
-        <div class="sem-stats">${state.instituteProfile === 'iit_bhilai'
-          ? `${sem.total_credits} stated curriculum credits`
-          : `${sem.total_credits} / ${state.summary.credit_cap} cr`}</div>
+        <div class="sem-stats">${sem.total_credits} / ${state.summary?.credit_cap || 24} cr</div>
       </div>
       <div style="display:flex; flex-direction:column; gap:8px;">
         ${coursesHtml}
@@ -860,29 +775,31 @@ function renderPracticeSandbox() {
       option.innerText = skill.name;
       filter.appendChild(option);
     });
-    const goalSkill = state.profile?.goal_id === 'goal_upsc'
-      ? 'skill_environmental_policy'
-      : 'skill_dsa_linear';
-    filter.value = goalSkill;
   }
 
   listGroup.innerHTML = (state.exercises || []).map((ex, idx) => `
-    <div style="padding:8px 12px; border:1px solid var(--border); border-radius:var(--radius-sm); cursor:pointer; background:${idx === 0 ? 'var(--surface-2)' : 'var(--surface)'}; font-size:13px;" onclick="selectExercise(${idx})">
+    <div style="padding:8px 12px; border:1px solid var(--border); border-radius:var(--radius-sm); cursor:pointer; background:${state.activeExercise && state.activeExercise.exercise_id === ex.exercise_id ? 'var(--surface-2)' : 'var(--surface)'}; font-size:13px;" onclick="selectExercise(${idx})">
       <div style="font-weight:500; color:var(--ink);">${ex.title}</div>
       <div class="text-meta" style="margin-top:2px;">Difficulty: ${ex.difficulty} &bull; ${ex.type}</div>
     </div>
   `).join('');
-  if (state.instituteProfile === 'iit_bhilai' && !state.exercises.length) {
-    listGroup.innerHTML = '<div class="text-meta">No source-backed learning modules or exercises are included in this curriculum snapshot yet.</div>';
-    document.getElementById('active-ex-title').innerText = 'No verified learning content';
+
+  if (!state.exercises || !state.exercises.length) {
+    listGroup.innerHTML = '<div class="text-meta">No exercises available for this filter.</div>';
+    document.getElementById('active-ex-title').innerText = 'No exercises available';
     document.getElementById('practice-prompt').innerText =
-      'Practice is unavailable until source-backed learning modules and exercises are added.';
+      'Select a different skill filter to view practice exercises.';
     document.getElementById('practice-answer-controls').replaceChildren();
     const codeArea = document.getElementById('practice-code-area');
     codeArea.value = '';
     codeArea.hidden = true;
     document.getElementById('practice-submit-btn').disabled = true;
     document.getElementById('sandbox-output').innerText = 'No exercise is available to submit.';
+    return;
+  }
+
+  if (!state.activeExercise && state.exercises.length > 0) {
+    state.activeExercise = state.exercises[0];
   }
 
   if (state.activeExercise) {
@@ -1005,9 +922,9 @@ function renderMasteryViews() {
   if (!container) return;
 
   const skills = Object.entries(state.skillsMatrix || {});
-  if (state.instituteProfile === 'iit_bhilai' && !skills.length) {
+  if (!skills.length) {
     container.innerHTML =
-      '<p class="text-meta">Skill mastery is unavailable: the supplied curriculum source does not map courses to skills.</p>';
+      '<p class="text-meta">No skills assessed yet. Complete diagnostic questions or exercises to build mastery evidence.</p>';
     return;
   }
   container.innerHTML = skills.map(([id, s]) => {
@@ -1175,14 +1092,24 @@ function openCertificateDrawer() {
       const row = document.createElement('div');
       row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;';
       const detail = document.createElement('div');
+      detail.style.display = 'flex';
+      detail.style.alignItems = 'center';
+      detail.style.gap = '6px';
       const title = document.createElement('span');
       title.style.fontWeight = '500';
       title.innerText = rule.rule_title;
       const clause = document.createElement('span');
       clause.className = 'text-meta';
-      clause.style.marginLeft = '6px';
       clause.innerText = rule.clause_id ? `[${rule.clause_id}]` : '';
-      detail.append(title, clause);
+      const badge = document.createElement('span');
+      const isAssumed = rule.provenance === 'assumption';
+      badge.className = `tag ${isAssumed ? 'tag-warn' : 'tag-neutral'}`;
+      badge.style.fontSize = '10px';
+      badge.innerText = isAssumed ? 'Assumed' : 'Verified';
+      if (rule.reason) {
+        badge.title = rule.reason;
+      }
+      detail.append(title, clause, badge);
       const status = document.createElement('span');
       status.className = `tag tag-${rule.status === 'pass' ? 'success' : rule.status === 'warn' ? 'warn' : 'danger'}`;
       status.innerText = rule.status;

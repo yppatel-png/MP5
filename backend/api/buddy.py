@@ -4,7 +4,7 @@ Provides multi-turn dialogue, intent-routed advice, memory inspection, and safet
 """
 
 from fastapi import APIRouter, HTTPException
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Union
 from pydantic import BaseModel, Field
 from backend.buddy.router import buddy_router
 from backend.buddy.memory import buddy_memory
@@ -12,14 +12,14 @@ from backend.buddy.memory import buddy_memory
 router = APIRouter(prefix="/buddy", tags=["Conversational Buddy & Explainability"])
 
 class ChatRequest(BaseModel):
-    student_id: str = "S1024"
+    student_id: str = "BH-SW-001"
     message: str
 
 class ChatResponse(BaseModel):
     reply: str
     intent: str
     tools_used: List[str]
-    turn_id: Optional[int] = None
+    turn_id: Optional[Union[int, str]] = None
     facts_used: Optional[Dict[str, Any]] = None
     model: Optional[str] = None
     fallback_used: bool = True

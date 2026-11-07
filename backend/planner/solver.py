@@ -13,7 +13,6 @@ Features OR-Tools CP-SAT formulation with deterministic topological constraint f
 
 import json
 from typing import List, Dict, Any, Set, Tuple, Optional
-from pathlib import Path
 from backend.db.database import get_db_cursor
 from backend.db.seed_profile import get_seed_dir
 from backend.db.seed_profile import get_institute_profile
@@ -63,11 +62,6 @@ class MultiSemesterPlanner:
         """
         Synthesizes a valid multi-semester academic schedule.
         """
-        if get_institute_profile() == "iit_bhilai":
-            raise ValueError(
-                "Personalized planning is disabled: source-backed IIT Bhilai prerequisite, "
-                "elective, and credit-limit rules are not available."
-            )
         completed_set = set(c.upper() for c in completed_courses)
         excluded_set = set(c.upper() for c in (excluded_courses or []))
         start_sem = current_semester + 1
@@ -90,15 +84,21 @@ class MultiSemesterPlanner:
             candidates = [c for c in candidates if c["code"].upper() not in excluded_set]
 
         # Check Minor eligibility if non-CS student taking CSE courses
-        is_minor_eligible = cgpa >= 7.5
+        minor_rule = self.academic_rules.get("rule_minor_cse_eligibility", {})
+        minor_threshold = float(minor_rule.get("parameters", {}).get("min_cgpa_cutoff", 7.5))
+        is_minor_eligible = cgpa >= minor_threshold
 
         # Format no-co-taking pairs
-        all_no_co_pairs = [["COL351", "COL352"]]
+        all_no_co_pairs = [] if get_institute_profile() == "iit_bhilai" else [["COL351", "COL352"]]
         if no_co_taking_pairs:
             all_no_co_pairs.extend(no_co_taking_pairs)
 
         # Effective semester credit cap
-        effective_cap = 24.0 if (overload_allowed and cgpa >= 8.5) else credit_cap
+        overload_rule = self.academic_rules.get("rule_credit_overload_cap", {})
+        overload_parameters = overload_rule.get("parameters", {})
+        overload_threshold = float(overload_parameters.get("min_cgpa_required", 8.5))
+        overload_limit = float(overload_parameters.get("max_overload_credits", 24.0))
+        effective_cap = overload_limit if (overload_allowed and cgpa >= overload_threshold) else credit_cap
 
         # Solve using Deterministic Topological Constraint Solver (or CP-SAT)
         plan_result, engine_used = self._solve_topological(
@@ -187,6 +187,8 @@ class MultiSemesterPlanner:
 
                 # 2. Check offering parity
                 offering = cand.get("semester_offered", "both").lower()
+                if offering.startswith("semester_") and offering != f"semester_{sem}":
+                    continue
                 if offering == "odd" and not is_odd:
                     continue
                 if offering == "even" and is_odd:
@@ -222,7 +224,10 @@ class MultiSemesterPlanner:
                     "course_type": cand["course_type"],
                     "workload_hours_per_week": cand.get("workload_hours_per_week", 10.0),
                     "skills_targeted": cand["skills_targeted"],
-                    "reason": cand["reasons"][0] if cand["reasons"] else "Closes priority skill gap."
+                    "reason": cand["reasons"][0] if cand["reasons"] else "Targets a selected goal skill.",
+                    "provenance": cand.get("provenance", "verified"),
+                    "source_page": cand.get("source_page"),
+                    "offering_assumption": cand.get("semester_offered") == "catalogue_unscheduled",
                 })
                 sem_credits += credits
                 sem_workload += cand.get("workload_hours_per_week", 10.0)

@@ -24,8 +24,8 @@ test('all seeded personas load Today, Plan, Skills, Learn, and Buddy without err
   const students: Array<{ student_id: string; name: string }> = await studentsResponse.json();
   expect(students.length).toBeGreaterThan(0);
 
-  // Test all 4 core hero personas plus representative edge cases across programs and years
-  const heroIds = ['S1024', 'S1025', 'S1026', 'S1027', 'S2001', 'S2002', 'S2014', 'S2025', 'S2045', 'S2056'];
+  // Test all core hero personas plus representative synthetic profiles
+  const heroIds = ['BH-SW-001', 'BH-HS-001', 'BH-UP-001', 'BH-SYN-001', 'BH-SYN-002'];
   const studentsToTest = students.filter(s => heroIds.includes(s.student_id));
 
   await page.goto('/');

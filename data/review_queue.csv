@@ -1,0 +1,8 @@
+item_type,item_id,issue,source_page
+prerequisite_reference,CSP352:IC100,Official prerequisite IC100 is outside this compact catalogue or unresolved; retain as an explicit constraint.,86
+prerequisite_course,IC100,Prerequisite appears in an official CSE description but is not in this course bundle; student must report it as completed before the dependent course is recommended.,86
+source_discrepancy,SL302/CSL302,The semester table on PDF p. 21 prints SL302; p. 22 and catalogue p. 84 print CSL302.,"21,22,84"
+prerequisite_code,CSP352:IC100,Prerequisite printed as IC100 on PDF p. 86; no matching course entry was located in the 208-page PDF.,86
+policy_gap,CS-minor,"No CS-minor eligibility, curriculum, or credit pathway is stated in the supplied PDF.",full PDF
+policy_gap,semester-credit-limits,No minimum/maximum semester credits or overload rule was found; current values remain assumptions pending ordinance.,full PDF
+policy_gap,course-offering-and-elective-eligibility,Catalogue-only courses have no BTech CSE semester slot; annual availability and elective eligibility remain assumptions.,"9,22,83-95"

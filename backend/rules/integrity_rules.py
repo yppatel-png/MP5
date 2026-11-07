@@ -13,7 +13,7 @@ class CourseExistsCatalogueRule(Rule):
     scope = RuleScope.COURSE
     clause_id = "ORD-1.1.0"
     section_title = "Accredited Course Catalogue Verification"
-    source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-1.1.0"
+    source_url = "https://home.iitbhilai.ac.in/academic-rules/ordinance-section-1.1.0"
 
     def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
         courses_db = ctx.get("courses_db", {})

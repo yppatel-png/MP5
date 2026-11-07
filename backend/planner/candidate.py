@@ -22,6 +22,10 @@ class CandidateRetriever:
         self.course_skills = load_seed("course_skills.json")
         self.resources = load_seed("resources.json")
         self.skills = {s["skill_id"]: s for s in load_seed("skills.json")}
+        rules = {rule["rule_id"]: rule for rule in load_seed("academic_rules.json")}
+        self.hours_per_credit = float(
+            rules.get("rule_workload_hours", {}).get("parameters", {}).get("hours_per_credit_week", 2)
+        )
 
         # Build reverse index: skill_id -> list of (course_code, depth, weight)
         self.skill_to_courses: Dict[str, List[Dict[str, Any]]] = {}
@@ -65,7 +69,13 @@ class CandidateRetriever:
                         "course_type": course_meta["course_type"],
                         "department": course_meta["department"],
                         "level": course_meta.get("level", "undergraduate"),
-                        "workload_hours_per_week": course_meta.get("workload_hours_per_week", 10.0),
+                        "workload_hours_per_week": (
+                            course_meta.get("workload_hours_per_week")
+                            or float(course_meta["credits"]) * self.hours_per_credit
+                        ),
+                        "source_page": course_meta.get("source_page"),
+                        "provenance": course_meta.get("provenance", "verified"),
+                        "mode": course_meta.get("mode", "offline"),
                         "skills_targeted": [],
                         "score": 0.0,
                         "reasons": []
@@ -77,7 +87,7 @@ class CandidateRetriever:
                 scored_courses[code]["score"] += contribution
                 scored_courses[code]["skills_targeted"].append(sk_id)
                 scored_courses[code]["reasons"].append(
-                    f"Directly closes {round(gap.get('gap', 0.5)*100)}% gap in {self.skills.get(sk_id, {}).get('name', sk_id)}"
+                    f"Targets {round(gap.get('gap', 0.5)*100)}% gap in {self.skills.get(sk_id, {}).get('name', sk_id)}; mapping confidence {match.get('confidence', 0.5):.0%}."
                 )
 
         # Sort candidates deterministically by score descending, then course code

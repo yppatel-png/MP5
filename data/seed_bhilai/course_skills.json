@@ -1,1 +1,392 @@
-[]
+[
+  {
+    "course_code": "CSL100",
+    "skill_id": "programming_fundamentals",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 83",
+    "source_page": 83
+  },
+  {
+    "course_code": "ECL101",
+    "skill_id": "computer_architecture",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 21",
+    "source_page": 21
+  },
+  {
+    "course_code": "MAL403",
+    "skill_id": "probability_statistics",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 21",
+    "source_page": 21
+  },
+  {
+    "course_code": "CSL201",
+    "skill_id": "discrete_mathematics",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 83",
+    "source_page": 83
+  },
+  {
+    "course_code": "CSL202",
+    "skill_id": "data_structures",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 83",
+    "source_page": 83
+  },
+  {
+    "course_code": "CSL202",
+    "skill_id": "algorithms",
+    "depth": "intermediate",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 83",
+    "source_page": 83
+  },
+  {
+    "course_code": "CSP203",
+    "skill_id": "software_tools",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 83",
+    "source_page": 83
+  },
+  {
+    "course_code": "CSL251",
+    "skill_id": "computer_architecture",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 83",
+    "source_page": 83
+  },
+  {
+    "course_code": "CSL252",
+    "skill_id": "algorithms",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 84",
+    "source_page": 84
+  },
+  {
+    "course_code": "CSL253",
+    "skill_id": "theory_computation",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 84",
+    "source_page": 84
+  },
+  {
+    "course_code": "CSL301",
+    "skill_id": "operating_systems",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 84",
+    "source_page": 84
+  },
+  {
+    "course_code": "CSL302",
+    "skill_id": "compiler_design",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 84",
+    "source_page": 84
+  },
+  {
+    "course_code": "CSL303",
+    "skill_id": "database_systems",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 85",
+    "source_page": 85
+  },
+  {
+    "course_code": "CSL304",
+    "skill_id": "artificial_intelligence",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 85",
+    "source_page": 85
+  },
+  {
+    "course_code": "CSL351",
+    "skill_id": "computer_networks",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 85",
+    "source_page": 85
+  },
+  {
+    "course_code": "CSP352",
+    "skill_id": "llm_software",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 86",
+    "source_page": 86
+  },
+  {
+    "course_code": "CSQ401",
+    "skill_id": "research_methods",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 87",
+    "source_page": 87
+  },
+  {
+    "course_code": "CSQ401",
+    "skill_id": "communication",
+    "depth": "intermediate",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 87",
+    "source_page": 87
+  },
+  {
+    "course_code": "LAL100",
+    "skill_id": "communication",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 136",
+    "source_page": 136
+  },
+  {
+    "course_code": "LAL101",
+    "skill_id": "finance",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 136",
+    "source_page": 136
+  },
+  {
+    "course_code": "CSL504",
+    "skill_id": "discrete_mathematics",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 88",
+    "source_page": 88
+  },
+  {
+    "course_code": "CSL505",
+    "skill_id": "theory_computation",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 88",
+    "source_page": 88
+  },
+  {
+    "course_code": "CSL510",
+    "skill_id": "algorithms",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 88",
+    "source_page": 88
+  },
+  {
+    "course_code": "CSL511",
+    "skill_id": "formal_verification",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 89",
+    "source_page": 89
+  },
+  {
+    "course_code": "CSL512",
+    "skill_id": "algorithms",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 89",
+    "source_page": 89
+  },
+  {
+    "course_code": "CSL515",
+    "skill_id": "algorithms",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 89",
+    "source_page": 89
+  },
+  {
+    "course_code": "CSL515",
+    "skill_id": "probability_statistics",
+    "depth": "intermediate",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 89",
+    "source_page": 89
+  },
+  {
+    "course_code": "CSL518",
+    "skill_id": "computer_networks",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 90",
+    "source_page": 90
+  },
+  {
+    "course_code": "CSL518",
+    "skill_id": "algorithms",
+    "depth": "intermediate",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 90",
+    "source_page": 90
+  },
+  {
+    "course_code": "CSL559",
+    "skill_id": "software_engineering",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 90",
+    "source_page": 90
+  },
+  {
+    "course_code": "CSL559",
+    "skill_id": "computer_networks",
+    "depth": "intermediate",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 90",
+    "source_page": 90
+  },
+  {
+    "course_code": "LAL200",
+    "skill_id": "macroeconomics",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 137",
+    "source_page": 137
+  },
+  {
+    "course_code": "LAL201",
+    "skill_id": "microeconomics",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 137",
+    "source_page": 137
+  },
+  {
+    "course_code": "LAL202",
+    "skill_id": "international_trade",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 137",
+    "source_page": 137
+  },
+  {
+    "course_code": "LAL221",
+    "skill_id": "literary_analysis",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 138",
+    "source_page": 138
+  },
+  {
+    "course_code": "LAL222",
+    "skill_id": "literary_analysis",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 138",
+    "source_page": 138
+  },
+  {
+    "course_code": "LAL223",
+    "skill_id": "literary_analysis",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 139",
+    "source_page": 139
+  },
+  {
+    "course_code": "LAL224",
+    "skill_id": "literary_analysis",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 139",
+    "source_page": 139
+  },
+  {
+    "course_code": "LAL225",
+    "skill_id": "indian_society",
+    "depth": "intro",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 139",
+    "source_page": 139
+  }
+]

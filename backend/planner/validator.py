@@ -8,6 +8,7 @@ and delegates to the central RuleRegistry to generate sealed cryptographic Plan 
 import json
 from typing import List, Dict, Any, Set
 from pathlib import Path
+from backend.rules.base import RuleStatus
 from backend.rules.registry import rule_registry
 from backend.db.seed_profile import get_institute_profile, get_seed_dir
 
@@ -39,10 +40,35 @@ class IndependentPlanValidator:
         and generates a sealed cryptographic PlanCertificate with all 16 ordinance rules.
         """
         if get_institute_profile() == "iit_bhilai":
-            raise ValueError(
-                "Plan validation is disabled: the supplied IIT Bhilai source does not establish "
-                "the academic policies required for a degree-plan audit."
-            )
+            bhilai_results = self.registry.run_all(plan, student_profile)
+            rule_checks = [
+                {
+                    "rule_id": item.rule_id,
+                    "name": item.rule_title,
+                    "passed": item.status != RuleStatus.FAIL,
+                    "status": item.status.value,
+                    "details": item.message,
+                    "clause_id": item.clause_id,
+                    "provenance": item.provenance,
+                    "badge": "Assumed" if item.provenance == "assumption" else "Verified",
+                    "reason": item.reason,
+                    "source_page": item.source_page,
+                }
+                for item in bhilai_results
+            ]
+            errors = [item.message for item in bhilai_results if item.status == RuleStatus.FAIL]
+            certificate = self.registry.generate_certificate(plan, student_profile)
+            rules_passed = sum(1 for item in rule_checks if item["passed"])
+            return {
+                "is_valid": not errors,
+                "verification_scope": "valid_under_verified_facts_and_labelled_assumptions",
+                "rules_evaluated": len(rule_checks),
+                "rules_passed": rules_passed,
+                "assumed_rules": sum(1 for item in rule_checks if item["provenance"] == "assumption"),
+                "rule_results": rule_checks,
+                "errors": errors,
+                "certificate": certificate.model_dump(),
+            }
         rule_checks = []
         errors = []
 
@@ -210,7 +236,7 @@ class IndependentPlanValidator:
         # Rule 7: Mutually Exclusive / No-Co-Taking Pairs
         # -------------------------------------------------------------------
         co_taking_violations = []
-        restricted_pairs = [["COL351", "COL352"]]
+        restricted_pairs = [] if get_institute_profile() == "iit_bhilai" else [["CSL351", "CSL352"]]
         for sem in semesters:
             s_num = sem["semester_number"]
             sem_codes = [c["code"].upper() for c in sem.get("courses", [])]

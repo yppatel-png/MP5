@@ -193,6 +193,19 @@ def init_db():
         );
         """)
 
+        cur.execute("""
+        CREATE TABLE IF NOT EXISTS seed_provenance (
+            entity_type TEXT NOT NULL,
+            entity_id TEXT NOT NULL,
+            provenance TEXT NOT NULL,
+            source_page TEXT,
+            confidence REAL,
+            reason TEXT,
+            metadata_json TEXT NOT NULL DEFAULT '{}',
+            PRIMARY KEY (entity_type, entity_id)
+        );
+        """)
+
         # 11. Student Profiles & Evidence Tables
         cur.execute("""
         CREATE TABLE IF NOT EXISTS student_profiles (
@@ -286,5 +299,4 @@ def init_db():
             FOREIGN KEY (student_id) REFERENCES student_profiles (student_id) ON DELETE CASCADE
         );
         """)
-
 

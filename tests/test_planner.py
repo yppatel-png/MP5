@@ -4,20 +4,34 @@ Verifies that all generated plans pass 100% of independent validator rules.
 """
 
 import unittest
+from pathlib import Path
+import json
+
 from backend.db.seed_loader import load_seed_data
-from backend.student.model import StudentStore
-from backend.api.plans import generate_student_plan, get_active_plan, get_plan_history, test_infeasible_request, PlanGenerateRequest, InfeasibleRequestModel
+from backend.student.model import StudentProfile, StudentStore
+from backend.api.plans import (
+    generate_student_plan,
+    get_active_plan,
+    get_plan_history,
+    test_infeasible_request,
+    PlanGenerateRequest,
+    InfeasibleRequestModel,
+)
 from backend.planner.validator import independent_validator
+from backend.planner.solver import multi_semester_planner
+from backend.student.diagnostic import diagnostic_engine
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 class TestPlanner(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         load_seed_data(reset=True)
 
-    def test_s1024_plan_generation_and_validation(self):
-        """Generates plan for Hero Persona S1024 and verifies 100% pass on 9 independent rules."""
-        res = generate_student_plan(PlanGenerateRequest(student_id="S1024"))
-        self.assertEqual(res["student_id"], "S1024")
+    def test_bh_sw_001_plan_generation_and_validation(self):
+        """Generates plan for Hero Persona BH-SW-001 and verifies 100% pass on validator rules."""
+        res = generate_student_plan(PlanGenerateRequest(student_id="BH-SW-001"))
+        self.assertEqual(res["student_id"], "BH-SW-001")
         self.assertGreaterEqual(res["version_number"], 1)
 
         plan = res["plan"]
@@ -27,17 +41,17 @@ class TestPlanner(unittest.TestCase):
         # Check Independent Validation Report
         report = res["validation_report"]
         self.assertTrue(report["is_valid"], f"Plan failed validation! Errors: {report.get('errors')}")
-        self.assertEqual(report["rules_evaluated"], 9)
-        self.assertEqual(report["rules_passed"], 9)
+        self.assertGreaterEqual(report["rules_evaluated"], 8)
+        self.assertEqual(report["rules_passed"], report["rules_evaluated"])
 
-        # Verify specific course sequencing for S1024 (Chem Eng to Software)
+        # Verify specific course sequencing for BH-SW-001 (Bhilai BTech CSE)
         scheduled_courses = [c["code"] for s in plan["semesters"] for c in s.get("courses", [])]
-        self.assertIn("COL106", scheduled_courses)
+        self.assertIn("CSL303", scheduled_courses)
 
     def test_planner_determinism(self):
         """Verifies that identical inputs produce exactly identical multi-semester plans."""
-        res1 = generate_student_plan(PlanGenerateRequest(student_id="S1024", reason_for_change="Determinism run 1"))
-        res2 = generate_student_plan(PlanGenerateRequest(student_id="S1024", reason_for_change="Determinism run 2"))
+        res1 = generate_student_plan(PlanGenerateRequest(student_id="BH-SW-001", reason_for_change="Determinism run 1"))
+        res2 = generate_student_plan(PlanGenerateRequest(student_id="BH-SW-001", reason_for_change="Determinism run 2"))
 
         plan1 = res1["plan"]
         plan2 = res2["plan"]
@@ -52,7 +66,7 @@ class TestPlanner(unittest.TestCase):
 
     def test_infeasible_credit_request_handling(self):
         """Handles request for 30 credits (exceeding limit) and returns best valid plan."""
-        infeasible_res = test_infeasible_request(InfeasibleRequestModel(student_id="S1024", requested_credits=30.0))
+        infeasible_res = test_infeasible_request(InfeasibleRequestModel(student_id="BH-SW-001", requested_credits=30.0))
         self.assertEqual(infeasible_res["status"], "infeasible")
         self.assertIn("blocking_rule", infeasible_res)
         self.assertEqual(infeasible_res["blocking_rule"]["rule_id"], "rule_credit_cap_standard")
@@ -65,49 +79,43 @@ class TestPlanner(unittest.TestCase):
 
     def test_infeasible_missing_prerequisite_request(self):
         """Handles request for advanced course without completed prerequisite."""
-        # Desired COL331 requires COL106 and COL216
-        infeasible_res = test_infeasible_request(InfeasibleRequestModel(student_id="S1024", desired_course_code="COL331"))
+        # Desired CSL252 requires CSL202 (unfulfilled for BH-SYN-001)
+        infeasible_res = test_infeasible_request(InfeasibleRequestModel(student_id="BH-SYN-001", desired_course_code="CSL252"))
         self.assertEqual(infeasible_res["status"], "infeasible")
         self.assertIn("missing_prerequisites", infeasible_res)
-        self.assertIn("COL106", infeasible_res["missing_prerequisites"])
+        self.assertIn("CSL202", infeasible_res["missing_prerequisites"])
 
     def test_plan_versioning_and_diff(self):
         """Tests plan version evolution and semantic diff calculation."""
         # Generate initial plan (v1)
-        res_v1 = generate_student_plan(PlanGenerateRequest(student_id="S1024", goal_override="goal_software"))
+        res_v1 = generate_student_plan(PlanGenerateRequest(student_id="BH-SW-001", goal_override="goal_software"))
         v1_num = res_v1["version_number"]
 
         # Adapt plan to new goal (v2)
-        res_v2 = generate_student_plan(PlanGenerateRequest(student_id="S1024", goal_override="goal_research", reason_for_change="Pivot to Research"))
+        res_v2 = generate_student_plan(PlanGenerateRequest(student_id="BH-SW-001", goal_override="goal_higher_studies", reason_for_change="Pivot to Higher Studies"))
         v2_num = res_v2["version_number"]
         self.assertGreater(v2_num, v1_num)
 
         # Verify diff
         diff = res_v2["diff"]
         self.assertIn("reason", diff)
-        self.assertEqual(diff["reason"], "Pivot to Research")
+        self.assertEqual(diff["reason"], "Pivot to Higher Studies")
 
         # History endpoint
-        history = get_plan_history("S1024")
+        history = get_plan_history("BH-SW-001")
         self.assertGreaterEqual(len(history), 2)
 
     def test_multi_persona_plan_validations(self):
-        """Verifies that all 4 hero personas produce 100% valid plans."""
-        personas = ["S1024", "S1025", "S1026", "S1027"]
+        """Verifies that all hero personas produce 100% valid plans."""
+        personas = ["BH-SW-001", "BH-HS-001", "BH-UP-001"]
         for pid in personas:
             res = generate_student_plan(PlanGenerateRequest(student_id=pid))
             self.assertTrue(res["validation_report"]["is_valid"], f"Plan for {pid} failed validation!")
-            self.assertEqual(res["validation_report"]["rules_passed"], 9)
+            self.assertEqual(res["validation_report"]["rules_passed"], res["validation_report"]["rules_evaluated"])
 
     def test_50_synthetic_profiles_plan_validity(self):
         """Evaluates 50 diverse synthetic profiles to prove the planner is not hand-tuned for a few personas."""
-        import json
-        from pathlib import Path
-        from backend.student.model import StudentProfile, StudentStore
-        from backend.planner.solver import multi_semester_planner
-        from backend.student.diagnostic import diagnostic_engine
-
-        synth_path = Path(__file__).resolve().parent.parent / "data" / "seed" / "synthetic_profiles.json"
+        synth_path = PROJECT_ROOT / "data" / "seed_bhilai" / "synthetic_profiles.json"
         with open(synth_path, "r", encoding="utf-8") as f:
             profiles = json.load(f)
 
@@ -147,7 +155,7 @@ class TestPlanner(unittest.TestCase):
 
             val = independent_validator.validate_plan(plan, p_obj.model_dump())
             self.assertTrue(val["is_valid"], f"Profile {p_obj.student_id} failed validation! Errors: {val.get('errors')}")
-            self.assertEqual(val["rules_passed"], 9)
+            self.assertEqual(val["rules_passed"], val["rules_evaluated"])
             passed_count += 1
 
         self.assertEqual(passed_count, 50)

@@ -1,1 +1,3307 @@
-[]
+[
+  {
+    "student_id": "BH-SYN-001",
+    "name": "Mira Rao (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 6.65,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 8,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL252",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "B+",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL351",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSP352",
+        "grade": "B+",
+        "semester_completed": 5
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-002",
+    "name": "Anaya Das (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 6.65,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 8,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-003",
+    "name": "Tara Das (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 1,
+    "cgpa": 9.04,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-004",
+    "name": "Anaya Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 1,
+    "cgpa": 7.62,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-005",
+    "name": "Mira Das (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.16,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 10,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A-",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-006",
+    "name": "Rohan Rao (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 1,
+    "cgpa": 7.73,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-007",
+    "name": "Anaya Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 7.65,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-008",
+    "name": "Mira Mehta (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 6.35,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "CSL202",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "A",
+        "semester_completed": 4
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-009",
+    "name": "Anaya Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 7.37,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL202",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "A",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "A-",
+        "semester_completed": 4
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-010",
+    "name": "Dev Mehta (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 7.41,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "B",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSP203",
+        "grade": "A",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "MAL403",
+        "grade": "A-",
+        "semester_completed": 2
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-011",
+    "name": "Dev Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 1,
+    "cgpa": 7.45,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-012",
+    "name": "Anaya Nair (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 7.75,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "CSL252",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "B+",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "B+",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "B+",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL351",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSP352",
+        "grade": "A-",
+        "semester_completed": 5
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-013",
+    "name": "Rohan Nair (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.99,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 10,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-014",
+    "name": "Tara Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 8.14,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL252",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL351",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSP352",
+        "grade": "A-",
+        "semester_completed": 5
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-015",
+    "name": "Rohan Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 7.37,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A-",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSP203",
+        "grade": "B",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "MAL403",
+        "grade": "A",
+        "semester_completed": 2
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-016",
+    "name": "Tara Shah (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.9,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-017",
+    "name": "Dev Das (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 8.38,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "A-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-018",
+    "name": "Ishaan Rao (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 8.76,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 10,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "B",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A-",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSP203",
+        "grade": "A-",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "MAL403",
+        "grade": "A-",
+        "semester_completed": 2
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-019",
+    "name": "Anaya Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 6.59,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "B+",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "B+",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSP203",
+        "grade": "B+",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "MAL403",
+        "grade": "B",
+        "semester_completed": 2
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-020",
+    "name": "Anaya Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 8.73,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 10,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A-",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-021",
+    "name": "Ishaan Rao (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 7.44,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-022",
+    "name": "Tara Nair (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 1,
+    "cgpa": 8.64,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-023",
+    "name": "Ishaan Shah (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 8.6,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-024",
+    "name": "Tara Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 7.41,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "A",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-025",
+    "name": "Dev Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.03,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-026",
+    "name": "Anaya Das (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 6.73,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 10,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-027",
+    "name": "Mira Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.33,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-028",
+    "name": "Tara Das (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 6.22,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSP203",
+        "grade": "B",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "MAL403",
+        "grade": "A-",
+        "semester_completed": 2
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-029",
+    "name": "Mira Rao (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 8.06,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "B",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A-",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSP203",
+        "grade": "A-",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "MAL403",
+        "grade": "B+",
+        "semester_completed": 2
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-030",
+    "name": "Rohan Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.44,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-031",
+    "name": "Dev Nair (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 6.53,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 10,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-032",
+    "name": "Rohan Rao (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 7.8,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 8,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "A-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-033",
+    "name": "Anaya Nair (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.77,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-034",
+    "name": "Ishaan Shah (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 6.29,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A-",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-035",
+    "name": "Mira Shah (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 6.98,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "B",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A-",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSP203",
+        "grade": "A",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "MAL403",
+        "grade": "A",
+        "semester_completed": 2
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-036",
+    "name": "Dev Nair (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 1,
+    "cgpa": 7.9,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "A",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-037",
+    "name": "Ishaan Mehta (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 1,
+    "cgpa": 7.75,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 8,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-038",
+    "name": "Tara Nair (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.86,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-039",
+    "name": "Ishaan Shah (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 6.97,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL202",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "A-",
+        "semester_completed": 4
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-040",
+    "name": "Dev Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 6.29,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 8,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-041",
+    "name": "Mira Rao (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 8.74,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-042",
+    "name": "Tara Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 7.53,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "A-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-043",
+    "name": "Ishaan Mehta (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 7.26,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 8,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A-",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSP203",
+        "grade": "A",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "MAL403",
+        "grade": "B+",
+        "semester_completed": 2
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-044",
+    "name": "Dev Mehta (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 6.43,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "A-",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-045",
+    "name": "Dev Shah (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 8.27,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL202",
+        "grade": "A",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "A",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "B",
+        "semester_completed": 4
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-046",
+    "name": "Dev Mehta (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 8.88,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-047",
+    "name": "Mira Nair (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 1,
+    "cgpa": 9.03,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "A",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-048",
+    "name": "Anaya Nair (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 9.0,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A-",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A-",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSP203",
+        "grade": "A",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "MAL403",
+        "grade": "A-",
+        "semester_completed": 2
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-049",
+    "name": "Tara Shah (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 6.47,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-050",
+    "name": "Ishaan Shah (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 8.49,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL252",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL351",
+        "grade": "B+",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSP352",
+        "grade": "A",
+        "semester_completed": 5
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-051",
+    "name": "Tara Rao (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 8.68,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 10,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL252",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "B+",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL351",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSP352",
+        "grade": "B",
+        "semester_completed": 5
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-052",
+    "name": "Tara Shah (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 8.74,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-053",
+    "name": "Rohan Mehta (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 6.35,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "B+",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSP203",
+        "grade": "B",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "MAL403",
+        "grade": "B+",
+        "semester_completed": 2
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-054",
+    "name": "Anaya Rao (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 8.91,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL202",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "A",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "B",
+        "semester_completed": 4
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-055",
+    "name": "Mira Nair (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 1,
+    "cgpa": 6.46,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-056",
+    "name": "Anaya Shah (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 8.84,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "B",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSP203",
+        "grade": "A",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "MAL403",
+        "grade": "B",
+        "semester_completed": 2
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-057",
+    "name": "Dev Das (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 7.76,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "A-",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "CSP203",
+        "grade": "A",
+        "semester_completed": 2
+      },
+      {
+        "course_code": "MAL403",
+        "grade": "B",
+        "semester_completed": 2
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-058",
+    "name": "Tara Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 9.02,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-059",
+    "name": "Tara Nair (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 8.94,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL202",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "A",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "A-",
+        "semester_completed": 4
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-060",
+    "name": "Tara Shah (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 8.94,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "A",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-061",
+    "name": "Tara Rao (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 8.1,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 8,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL202",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "A",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "A",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "A",
+        "semester_completed": 4
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-062",
+    "name": "Tara Nair (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.5,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 10,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A-",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-063",
+    "name": "Tara Nair (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 8.75,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-064",
+    "name": "Rohan Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 6.28,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL252",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "B+",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL351",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSP352",
+        "grade": "B",
+        "semester_completed": 5
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-065",
+    "name": "Tara Shah (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 8.24,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 8,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-066",
+    "name": "Anaya Shah (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 6.26,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL252",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "B+",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "B+",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL351",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSP352",
+        "grade": "B",
+        "semester_completed": 5
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-067",
+    "name": "Dev Rao (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 9.43,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "CSL252",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL351",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSP352",
+        "grade": "A-",
+        "semester_completed": 5
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-068",
+    "name": "Tara Rao (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 9.23,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 10,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL201",
+        "grade": "B",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "A-",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-069",
+    "name": "Tara Mehta (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 9.33,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "CSL252",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "B+",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL351",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSP352",
+        "grade": "B+",
+        "semester_completed": 5
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-070",
+    "name": "Anaya Das (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 6.29,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-071",
+    "name": "Tara Rao (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 2,
+    "cgpa": 7.45,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 10,
+    "remaining_elective_slots": 5,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B+",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-072",
+    "name": "Dev Mehta (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 8.54,
+    "goal_id": "goal_startup",
+    "target_role": "Technology founder",
+    "available_hours_per_week": 16,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL202",
+        "grade": "A",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "A",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "B",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "B+",
+        "semester_completed": 4
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-073",
+    "name": "Tara Shah (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 5,
+    "cgpa": 8.2,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL202",
+        "grade": "A",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "A",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "A",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "B+",
+        "semester_completed": 4
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-074",
+    "name": "Mira Kapoor (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 3,
+    "current_semester": 6,
+    "cgpa": 8.46,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 2,
+    "completed_courses": [
+      {
+        "course_code": "CSL252",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL301",
+        "grade": "A",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL302",
+        "grade": "A-",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL303",
+        "grade": "B+",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL304",
+        "grade": "B+",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSL351",
+        "grade": "B+",
+        "semester_completed": 5
+      },
+      {
+        "course_code": "CSP352",
+        "grade": "B+",
+        "semester_completed": 5
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  },
+  {
+    "student_id": "BH-SYN-075",
+    "name": "Anaya Nair (Synthetic)",
+    "programme": "BH-CSE-BTECH",
+    "year": 1,
+    "current_semester": 1,
+    "cgpa": 7.17,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 12,
+    "remaining_elective_slots": 3,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "A",
+        "semester_completed": 1
+      }
+    ],
+    "interests": [],
+    "constraints": {},
+    "preferences": {
+      "learning_style": [
+        "practice questions"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_synthetic_profile"
+  }
+]

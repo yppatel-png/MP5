@@ -1,43 +1,37 @@
 """
-Adaptation & Simulation API Endpoints.
-Enables real-time simulation of student performance signals, policy evaluation,
-course overrides, and live before/after plan diffing for evaluators and students.
+Adaptation API Endpoints.
+Provides scenario simulation, course override trade-off resolution,
+real-time policy signal evaluations, and audit trail queries.
 """
 
 from fastapi import APIRouter, HTTPException
 from typing import Dict, Any, List, Optional
 from pydantic import BaseModel, Field
 import json
-from backend.adapt.policy import adaptation_policy_engine
 from backend.adapt.simulator import adaptation_simulator, SCRIPTED_SCENARIOS
+from backend.adapt.policy import adaptation_policy_engine
 from backend.db.database import get_db_cursor
-from backend.db.seed_profile import get_institute_profile
+from backend.student.model import StudentStore
 
 router = APIRouter(prefix="/adapt", tags=["Dynamic Adaptation & Simulation"])
 
 class SimulateScenarioRequest(BaseModel):
     scenario_id: str
-    student_id: Optional[str] = "S1024"
+    student_id: Optional[str] = "BH-SW-001"
     params: Optional[Dict[str, Any]] = Field(default_factory=dict)
 
 class CourseOverrideRequest(BaseModel):
-    student_id: str = "S1024"
-    rejected_course: str = "COL362"
+    student_id: str = "BH-SW-001"
+    rejected_course: str = "CSL303"
     reason: Optional[str] = "Student preference"
 
 class SignalEvaluationRequest(BaseModel):
-    student_id: str = "S1024"
+    student_id: str = "BH-SW-001"
     signals: Dict[str, Any]
 
 @router.get("/scenarios")
 def list_simulation_scenarios() -> Dict[str, Any]:
     """Returns the catalog of one-click scripted demo scenarios for evaluators."""
-    if get_institute_profile() == "iit_bhilai":
-        return {
-            "count": 0,
-            "scenarios": [],
-            "message": "Legacy academic-plan simulations are disabled for the IIT Bhilai curriculum profile.",
-        }
     return {
         "count": len(SCRIPTED_SCENARIOS),
         "scenarios": SCRIPTED_SCENARIOS
@@ -49,15 +43,18 @@ def simulate_scenario(req: SimulateScenarioRequest) -> Dict[str, Any]:
     Executes a scripted simulation scenario, injects synthetic activity,
     evaluates policy, and returns before/after plan diffs and explanations.
     """
-    if get_institute_profile() == "iit_bhilai":
-        raise HTTPException(
-            status_code=409,
-            detail="Academic-plan simulations are not verified for the IIT Bhilai curriculum profile.",
-        )
+    target_student = req.student_id or "BH-SW-001"
+    profile = StudentStore.get_profile(target_student)
+    if not profile:
+        students = StudentStore.get_all_profiles()
+        if students:
+            target_student = students[0].student_id
+        else:
+            raise HTTPException(status_code=404, detail="No students available for simulation.")
     try:
         result = adaptation_simulator.execute_scenario(
             scenario_id=req.scenario_id,
-            student_id=req.student_id or "S1024",
+            student_id=target_student,
             params=req.params
         )
         return result
@@ -72,11 +69,9 @@ def submit_course_override(req: CourseOverrideRequest) -> Dict[str, Any]:
     Handles a student course rejection override.
     Re-solves the multi-semester plan with the exclusion constraint and details trade-offs.
     """
-    if get_institute_profile() == "iit_bhilai":
-        raise HTTPException(
-            status_code=409,
-            detail="Course overrides are not verified for the IIT Bhilai curriculum profile.",
-        )
+    profile = StudentStore.get_profile(req.student_id)
+    if not profile:
+        raise HTTPException(status_code=404, detail=f"Student ID '{req.student_id}' not found.")
     try:
         return adaptation_simulator.run_course_override(
             student_id=req.student_id,

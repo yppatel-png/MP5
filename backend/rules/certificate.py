@@ -16,7 +16,7 @@ from backend.db.seed_profile import get_institute_profile, get_seed_dir
 RULE_SET_VERSION = (
     "2026.1-IIT-BHILAI-CSE-CURRICULUM"
     if get_institute_profile() == "iit_bhilai"
-    else "2024.1-IITD-ACAD"
+    else "2026.1-IIT-BHILAI-CSE-CURRICULUM"
 )
 SEED_DIR = get_seed_dir()
 

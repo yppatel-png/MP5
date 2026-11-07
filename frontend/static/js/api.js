@@ -25,7 +25,7 @@ function toDashboardData(profile, activePlan, summary, skills, exercises) {
             type: exercise.type,
             skill_id: exercise.skill_id,
             starter_code: exercise.starter_code,
-            options: exercise.options,
+            options: exercise.options || exercise.answer_key?.options || [],
         })),
     };
 }

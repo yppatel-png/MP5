@@ -36,7 +36,8 @@ def reset_database():
                     "chat_memory", "adaptation_events", "exercise_attempts",
                     "plan_versions", "evidence_events", "student_profiles",
                     "exercises", "modules", "resources", "course_skills", "prerequisites",
-                    "skills", "courses", "programmes", "academic_rules", "goal_templates"
+                    "skills", "courses", "programmes", "academic_rules", "goal_templates",
+                    "seed_provenance",
                 ]
                 for tbl in tables:
                     cur.execute(f"DROP TABLE IF EXISTS {tbl};")
@@ -78,12 +79,25 @@ def load_seed_data(reset: bool = False):
 
         # 3. Prerequisites
         prereqs = load_json("prerequisites.json")
+        known_course_codes = {course["code"].upper() for course in courses}
+        loaded_prerequisites = 0
         for pr in prereqs:
+            if (
+                pr["course_code"].upper() not in known_course_codes
+                or pr["requires_code"].upper() not in known_course_codes
+            ):
+                logger.warning(
+                    "Retaining unresolved prerequisite %s -> %s in seed provenance only.",
+                    pr["requires_code"],
+                    pr["course_code"],
+                )
+                continue
             cur.execute("""
             INSERT OR REPLACE INTO prerequisites (course_code, requires_code, type, source)
             VALUES (?, ?, ?, ?);
             """, (pr["course_code"], pr["requires_code"], pr.get("type", "hard"), pr["source"]))
-        counts["prerequisites"] = len(prereqs)
+            loaded_prerequisites += 1
+        counts["prerequisites"] = loaded_prerequisites
 
         # 4. Skills
         skills = load_json("skills.json")
@@ -190,6 +204,54 @@ def load_seed_data(reset: bool = False):
 
         counts["student_profiles"] = len(all_profiles)
         counts["seed_evidence_events"] = evidence_count
+
+        provenance_groups = [
+            ("programme", "programmes.json", "code"),
+            ("course", "courses.json", "code"),
+            ("prerequisite", "prerequisites.json", None),
+            ("skill", "skills.json", "skill_id"),
+            ("course_skill", "course_skills.json", None),
+            ("module", "modules.json", "module_id"),
+            ("resource", "resources.json", "resource_id"),
+            ("exercise", "exercises.json", "exercise_id"),
+            ("academic_rule", "academic_rules.json", "rule_id"),
+            ("goal", "goal_templates.json", "goal_id"),
+        ]
+        cur.execute("DELETE FROM seed_provenance")
+        provenance_count = 0
+        for entity_type, filename, id_field in provenance_groups:
+            rows = load_json(filename)
+            for row in rows:
+                if id_field:
+                    entity_id = str(row[id_field])
+                elif entity_type == "prerequisite":
+                    entity_id = f"{row['course_code']}:{row['requires_code']}"
+                else:
+                    entity_id = f"{row['course_code']}:{row['skill_id']}"
+                provenance = row.get("provenance", "verified")
+                source_page = row.get("source_page")
+                confidence = row.get("confidence")
+                reason = row.get("reason")
+                metadata = {
+                    key: value for key, value in row.items()
+                    if key not in {"provenance", "source_page", "confidence", "reason"}
+                }
+                cur.execute("""
+                INSERT OR REPLACE INTO seed_provenance (
+                    entity_type, entity_id, provenance, source_page,
+                    confidence, reason, metadata_json
+                ) VALUES (?, ?, ?, ?, ?, ?, ?)
+                """, (
+                    entity_type,
+                    entity_id,
+                    provenance,
+                    json.dumps(source_page) if isinstance(source_page, (list, dict)) else source_page,
+                    confidence,
+                    reason,
+                    json.dumps(metadata, ensure_ascii=False),
+                ))
+                provenance_count += 1
+        counts["provenance_records"] = provenance_count
 
     logger.info("Seed data loaded successfully.")
     for k, v in counts.items():

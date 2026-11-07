@@ -2,20 +2,40 @@
   "profile": "iit_bhilai",
   "institution": "Indian Institute of Technology Bhilai",
   "programme": "BTech in Computer Science and Engineering",
-  "source": "IIT Bhilai Courses of Study, October 2026; applicable from the 2023 batch onwards",
+  "source": "IIT Bhilai Courses of Study, October 2026; applicable for 2023 batch onwards",
   "source_file": "data/raw/courses of study.pdf",
-  "source_pages": [9, 21, 22, 42, 83, 87],
-  "limitations": [
-    "The main catalogue contains only named BTech CSE courses from the source-backed curriculum schedule, not every institute-wide course.",
-    "Prerequisites, elective eligibility, semester credit caps, course offerings, workload estimates, and course-to-skill mappings are not established by the supplied source.",
-    "The source prints SL302 in the BTech PC list and CSL302 in the semester sequence and course catalogue; CSL302 is preserved from the latter, with the discrepancy documented.",
-    "The source states 144 graded credits plus 12 non-graded core units; it does not provide credit values for those non-graded units."
+  "full_extraction": "data/raw/courses_of_study_extracted.json",
+  "source_page_count": 208,
+  "source_pages_used": [
+    9,
+    10,
+    11,
+    12,
+    21,
+    22,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    136,
+    137,
+    138,
+    139
   ],
-  "unsupported_features": [
-    "Automated degree-audit or graduation eligibility decisions",
-    "Credit-cap and overload validation",
-    "Prerequisite and co-requisite validation",
-    "Elective eligibility and course-offering validation",
-    "Evidence-backed course-skill alignment"
+  "provenance_tiers": {
+    "tier_1": "Verified PDF facts: course identity, codes, credits, L-T-P-C, schedule, programme structure, and printed prerequisite statements.",
+    "tier_2": "Explicit demo assumptions marked pending ordinance and never represented as IIT Bhilai policy.",
+    "tier_3": "Team-authored and derived skills, lessons, goal templates, and original assessments; skill links cite source syllabus pages where applicable."
+  },
+  "limitations": [
+    "No CS minor pathway or eligibility is stated in the supplied PDF.",
+    "CSE catalogue-only courses are not assigned to BTech CSE PE/OE slots; their use is visibly assumption-backed.",
+    "IC100 in the CSP352 prerequisite is printed in the source but could not be resolved to a course entry in this PDF.",
+    "The PDF prints SL302 in one programme table and CSL302 in the next table/catalogue.",
+    "The Liberal Arts catalogue titles and credits are verified; team-authored lessons are not official course syllabi."
   ]
 }

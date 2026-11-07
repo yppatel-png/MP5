@@ -1,1 +1,103 @@
-[]
+[
+  {
+    "rule_id": "rule_sem_min_credits",
+    "name": "Minimum recommended semester credits",
+    "type": "credit_min",
+    "parameters": {
+      "min_credits": 12.0
+    },
+    "source_text": "Demo planning floor; no semester minimum was found in the supplied PDF. Pending ordinance.",
+    "source_url": "",
+    "clause_id": "pending ordinance",
+    "provenance": "assumption",
+    "reason": "Demo planning floor; no semester minimum was found in the supplied PDF. Pending ordinance.",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "rule_id": "rule_sem_max_credits",
+    "name": "Standard semester credit cap",
+    "type": "credit_cap_max",
+    "parameters": {
+      "max_credits": 24.0
+    },
+    "source_text": "Demo planning cap; no semester maximum was found in the supplied PDF. Pending ordinance.",
+    "source_url": "",
+    "clause_id": "pending ordinance",
+    "provenance": "assumption",
+    "reason": "Demo planning cap; no semester maximum was found in the supplied PDF. Pending ordinance.",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "rule_id": "rule_credit_overload_cap",
+    "name": "Overload credit cap",
+    "type": "credit_overload_max",
+    "parameters": {
+      "max_overload_credits": 27.0,
+      "min_cgpa_required": 8.0
+    },
+    "source_text": "Demo overload threshold approved by the project owner; not an IIT Bhilai rule. Pending ordinance.",
+    "source_url": "",
+    "clause_id": "pending ordinance",
+    "provenance": "assumption",
+    "reason": "Demo overload threshold approved by the project owner; not an IIT Bhilai rule. Pending ordinance.",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "rule_id": "rule_minor_cse_eligibility",
+    "name": "CS minor eligibility",
+    "type": "minor_eligibility",
+    "parameters": {
+      "min_cgpa_cutoff": 7.0
+    },
+    "source_text": "Illustrative threshold only. The supplied PDF contains no CS minor pathway or eligibility policy. Pending ordinance; this does not establish a credential.",
+    "source_url": "",
+    "clause_id": "pending ordinance",
+    "provenance": "assumption",
+    "reason": "Illustrative threshold only. The supplied PDF contains no CS minor pathway or eligibility policy. Pending ordinance; this does not establish a credential.",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "rule_id": "rule_online_credit_transfer_limit",
+    "name": "Online credit planning cap",
+    "type": "online_credit_limit",
+    "parameters": {
+      "max_online_credits_total": 25,
+      "max_online_courses_per_semester": 1
+    },
+    "source_text": "Demo planning limit approved by the project owner; no online-credit policy was found in the supplied PDF. Pending ordinance.",
+    "source_url": "",
+    "clause_id": "pending ordinance",
+    "provenance": "assumption",
+    "reason": "Demo planning limit approved by the project owner; no online-credit policy was found in the supplied PDF. Pending ordinance.",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "rule_id": "rule_semester_parity",
+    "name": "Annual catalogue offering assumption",
+    "type": "semester_parity",
+    "parameters": {
+      "assume_annual_scheduled_offering": true,
+      "catalogue_electives_selectable": true
+    },
+    "source_text": "Scheduled courses are assumed to run in the semester printed in the curriculum; catalogue-only electives are assumed selectable for demo planning. Neither availability nor elective eligibility is guaranteed by the PDF. Pending ordinance.",
+    "source_url": "",
+    "clause_id": "pending ordinance",
+    "provenance": "assumption",
+    "reason": "Scheduled courses are assumed to run in the semester printed in the curriculum; catalogue-only electives are assumed selectable for demo planning. Neither availability nor elective eligibility is guaranteed by the PDF. Pending ordinance.",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "rule_id": "rule_workload_hours",
+    "name": "Independent study workload estimate",
+    "type": "workload_hours",
+    "parameters": {
+      "hours_per_credit_week": 2
+    },
+    "source_text": "Planning estimate approved by the project owner; not an IIT Bhilai workload standard. Pending ordinance.",
+    "source_url": "",
+    "clause_id": "pending ordinance",
+    "provenance": "assumption",
+    "reason": "Planning estimate approved by the project owner; not an IIT Bhilai workload standard. Pending ordinance.",
+    "last_verified": "2026-11-06"
+  }
+]

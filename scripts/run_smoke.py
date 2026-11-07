@@ -20,10 +20,6 @@ def main() -> int:
     environment["DATABASE_URL"] = f"sqlite:///{smoke_database.as_posix()}"
     environment["INSTITUTE_PROFILE"] = "iit_bhilai"
     environment["LEARNING_BUDDY_SMOKE_DATABASE"] = str(smoke_database)
-    legacy_database = Path(tempfile.gettempdir()) / f"learning-buddy-legacy-smoke-{os.getpid()}.db"
-    legacy_environment = environment.copy()
-    legacy_environment["DATABASE_URL"] = f"sqlite:///{legacy_database.as_posix()}"
-    legacy_environment["INSTITUTE_PROFILE"] = "legacy"
     server = None
     try:
         bhilai_tests = subprocess.run(
@@ -35,20 +31,13 @@ def main() -> int:
                 "tests/test_student_summary_api.py",
                 "tests/test_bhilai_onboarding.py",
                 "tests/test_bhilai_seed.py",
+                "tests/test_product_flows.py",
             ],
             cwd=ROOT_DIR,
             env=environment,
         )
         if bhilai_tests.returncode:
             return bhilai_tests.returncode
-
-        legacy_tests = subprocess.run(
-            [sys.executable, "-m", "pytest", "-q", "tests/test_product_flows.py"],
-            cwd=ROOT_DIR,
-            env=legacy_environment,
-        )
-        if legacy_tests.returncode:
-            return legacy_tests.returncode
 
         server_environment = environment.copy()
         server_environment["OFFLINE_MODE"] = "true"
@@ -92,9 +81,6 @@ def main() -> int:
             smoke_database,
             Path(f"{smoke_database}-shm"),
             Path(f"{smoke_database}-wal"),
-            legacy_database,
-            Path(f"{legacy_database}-shm"),
-            Path(f"{legacy_database}-wal"),
         ):
             path.unlink(missing_ok=True)
 

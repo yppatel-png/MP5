@@ -1,50 +1,170 @@
 [
   {
-    "student_id": "BH-DEMO-001",
-    "name": "Aarav Demo (Sample)",
+    "student_id": "BH-SW-001",
+    "name": "Aarav Sharma (Demo)",
     "programme": "BH-CSE-BTECH",
-    "year": 1,
-    "current_semester": 1,
-    "cgpa": 0.0,
-    "goal_id": "goal_bhilai_cse",
-    "target_role": "BTech CSE student",
-    "available_hours_per_week": 10,
-    "remaining_elective_slots": null,
-    "completed_courses": [],
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 7.8,
+    "goal_id": "goal_software",
+    "target_role": "Software engineer",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL201",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSP203",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "B+",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "B+",
+        "semester_completed": 4
+      }
+    ],
+    "interests": [
+      "Software engineer"
+    ],
     "constraints": {},
-    "preferences": {},
-    "diagnostic_evidence": []
+    "preferences": {
+      "learning_style": [
+        "practice questions",
+        "short modules"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_demo_profile"
   },
   {
-    "student_id": "BH-DEMO-002",
-    "name": "Diya Demo (Sample)",
+    "student_id": "BH-HS-001",
+    "name": "Diya Iyer (Demo)",
     "programme": "BH-CSE-BTECH",
-    "year": 1,
-    "current_semester": 1,
-    "cgpa": 0.0,
-    "goal_id": "goal_bhilai_cse",
-    "target_role": "BTech CSE student",
-    "available_hours_per_week": 10,
-    "remaining_elective_slots": null,
-    "completed_courses": [],
+    "year": 2,
+    "current_semester": 4,
+    "cgpa": 8.7,
+    "goal_id": "goal_higher_studies",
+    "target_role": "Computing researcher",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL201",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSP203",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL251",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL252",
+        "grade": "A-",
+        "semester_completed": 4
+      },
+      {
+        "course_code": "CSL253",
+        "grade": "A-",
+        "semester_completed": 4
+      }
+    ],
+    "interests": [
+      "Computing researcher"
+    ],
     "constraints": {},
-    "preferences": {},
-    "diagnostic_evidence": []
+    "preferences": {
+      "learning_style": [
+        "practice questions",
+        "short modules"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_demo_profile"
   },
   {
-    "student_id": "BH-DEMO-003",
-    "name": "Kabir Demo (Sample)",
+    "student_id": "BH-UP-001",
+    "name": "Kabir Verma (Demo)",
     "programme": "BH-CSE-BTECH",
-    "year": 1,
-    "current_semester": 1,
-    "cgpa": 0.0,
-    "goal_id": "goal_bhilai_cse",
-    "target_role": "BTech CSE student",
-    "available_hours_per_week": 10,
-    "remaining_elective_slots": null,
-    "completed_courses": [],
+    "year": 2,
+    "current_semester": 3,
+    "cgpa": 7.2,
+    "goal_id": "goal_upsc",
+    "target_role": "Civil services aspirant",
+    "available_hours_per_week": 14,
+    "remaining_elective_slots": 4,
+    "completed_courses": [
+      {
+        "course_code": "CSL100",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL201",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSL202",
+        "grade": "B+",
+        "semester_completed": 3
+      },
+      {
+        "course_code": "CSP203",
+        "grade": "B+",
+        "semester_completed": 3
+      }
+    ],
+    "interests": [
+      "Civil services aspirant"
+    ],
     "constraints": {},
-    "preferences": {},
-    "diagnostic_evidence": []
+    "preferences": {
+      "learning_style": [
+        "practice questions",
+        "short modules"
+      ]
+    },
+    "diagnostic_evidence": [],
+    "provenance": "team_authored_demo_profile"
   }
 ]

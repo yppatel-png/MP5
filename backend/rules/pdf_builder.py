@@ -50,9 +50,9 @@ class PurePDFBuilder:
         content_ops.append(f"28 {self.page_height - 34:.2f} {self.page_width - 56:.2f} 6 re f")
 
         # Header Titles
-        # Title: "INDIAN INSTITUTE OF TECHNOLOGY DELHI"
+        # Title: "INDIAN INSTITUTE OF TECHNOLOGY BHILAI"
         content_ops.append("0.333 0.322 0.294 rg") # ink-2
-        content_ops.append("BT /F1 9 Tf 44 790 Td (OFFICE OF UNDERGRADUATE ACADEMIC ADVISING) Tj ET")
+        content_ops.append("BT /F1 9 Tf 44 790 Td (INDIAN INSTITUTE OF TECHNOLOGY BHILAI - ACADEMIC ADVISING) Tj ET")
 
         content_ops.append("0.106 0.102 0.090 rg") # ink
         content_ops.append("BT /F2 18 Tf 44 766 Td (Academic Plan Verification Certificate) Tj ET")
@@ -69,9 +69,9 @@ class PurePDFBuilder:
         content_ops.append("0.902 0.886 0.855 RG")
         content_ops.append(f"44 748 m {self.page_width - 44:.2f} 748 l S")
 
-        student_name = self._escape_pdf_text(student_profile.get("name", "Arjun Sharma"))
+        student_name = self._escape_pdf_text(student_profile.get("name", "Bhilai Student"))
         stu_id = self._escape_pdf_text(cert.student_id)
-        prog = self._escape_pdf_text(student_profile.get("programme", "CS1 (B.Tech CSE)"))
+        prog = self._escape_pdf_text(student_profile.get("programme", "BH-CSE-BTECH (B.Tech CSE)"))
         cgpa = f"{float(student_profile.get('cgpa', 8.50)):.2f}"
         gen_date = self._escape_pdf_text(cert.generated_at[:19].replace('T', ' ') + " UTC")
 

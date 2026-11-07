@@ -109,7 +109,7 @@ class PlanExplainer:
                 })
 
         messages = [
-            {"role": "system", "content": "You are an empathetic, precise academic advisor at IIT Delhi explaining a personalized semester course roadmap."},
+            {"role": "system", "content": "You are an empathetic, precise academic advisor at IIT Bhilai explaining a personalized semester course roadmap."},
             {"role": "user", "content": f"Explain why this course schedule was designed for {student_name} based on their goal."}
         ]
 

@@ -1,1 +1,2354 @@
-[]
+[
+  {
+    "exercise_id": "ex_mod_csl100_1",
+    "skill_id": "programming_fundamentals",
+    "module_id": "mod_csl100_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "C programming",
+        "Program construction",
+        "Memory and data",
+        "Control flow"
+      ],
+      "correct": "C programming",
+      "explanation": "The unit explicitly identifies C programming."
+    },
+    "source": "Original team-authored question grounded in mod_csl100_1",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl100_2",
+    "skill_id": "programming_fundamentals",
+    "module_id": "mod_csl100_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Control flow",
+        "Memory and data",
+        "Electronics foundations",
+        "Program construction"
+      ],
+      "correct": "Control flow",
+      "explanation": "The unit explicitly identifies Control flow."
+    },
+    "source": "Original team-authored question grounded in mod_csl100_2",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl100_3",
+    "skill_id": "programming_fundamentals",
+    "module_id": "mod_csl100_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Electronics foundations",
+        "Program construction",
+        "Memory and data",
+        "Digital signals"
+      ],
+      "correct": "Memory and data",
+      "explanation": "The unit explicitly identifies Memory and data."
+    },
+    "source": "Original team-authored question grounded in mod_csl100_3",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl100_4",
+    "skill_id": "programming_fundamentals",
+    "module_id": "mod_csl100_4",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Program construction",
+        "Electronics foundations",
+        "Circuits and systems",
+        "Digital signals"
+      ],
+      "correct": "Program construction",
+      "explanation": "The unit explicitly identifies Program construction."
+    },
+    "source": "Original team-authored question grounded in mod_csl100_4",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_ecl101_1",
+    "skill_id": "computer_architecture",
+    "module_id": "mod_ecl101_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Circuits and systems",
+        "Digital signals",
+        "Probability",
+        "Electronics foundations"
+      ],
+      "correct": "Electronics foundations",
+      "explanation": "The unit explicitly identifies Electronics foundations."
+    },
+    "source": "Original team-authored question grounded in mod_ecl101_1",
+    "source_page": 21,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_ecl101_2",
+    "skill_id": "computer_architecture",
+    "module_id": "mod_ecl101_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Probability",
+        "Statistical reasoning",
+        "Circuits and systems",
+        "Digital signals"
+      ],
+      "correct": "Digital signals",
+      "explanation": "The unit explicitly identifies Digital signals."
+    },
+    "source": "Original team-authored question grounded in mod_ecl101_2",
+    "source_page": 21,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_ecl101_3",
+    "skill_id": "computer_architecture",
+    "module_id": "mod_ecl101_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Circuits and systems",
+        "Uncertainty",
+        "Probability",
+        "Statistical reasoning"
+      ],
+      "correct": "Circuits and systems",
+      "explanation": "The unit explicitly identifies Circuits and systems."
+    },
+    "source": "Original team-authored question grounded in mod_ecl101_3",
+    "source_page": 21,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_mal403_1",
+    "skill_id": "probability_statistics",
+    "module_id": "mod_mal403_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Sets and relations",
+        "Probability",
+        "Uncertainty",
+        "Statistical reasoning"
+      ],
+      "correct": "Probability",
+      "explanation": "The unit explicitly identifies Probability."
+    },
+    "source": "Original team-authored question grounded in mod_mal403_1",
+    "source_page": 21,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_mal403_2",
+    "skill_id": "probability_statistics",
+    "module_id": "mod_mal403_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Sets and relations",
+        "Logic and proof",
+        "Uncertainty",
+        "Statistical reasoning"
+      ],
+      "correct": "Statistical reasoning",
+      "explanation": "The unit explicitly identifies Statistical reasoning."
+    },
+    "source": "Original team-authored question grounded in mod_mal403_2",
+    "source_page": 21,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_mal403_3",
+    "skill_id": "probability_statistics",
+    "module_id": "mod_mal403_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Counting and recurrence",
+        "Logic and proof",
+        "Uncertainty",
+        "Sets and relations"
+      ],
+      "correct": "Uncertainty",
+      "explanation": "The unit explicitly identifies Uncertainty."
+    },
+    "source": "Original team-authored question grounded in mod_mal403_3",
+    "source_page": 21,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl201_1",
+    "skill_id": "discrete_mathematics",
+    "module_id": "mod_csl201_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Graph and number theory",
+        "Counting and recurrence",
+        "Logic and proof",
+        "Sets and relations"
+      ],
+      "correct": "Sets and relations",
+      "explanation": "The unit explicitly identifies Sets and relations."
+    },
+    "source": "Original team-authored question grounded in mod_csl201_1",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl201_2",
+    "skill_id": "discrete_mathematics",
+    "module_id": "mod_csl201_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Counting and recurrence",
+        "Logic and proof",
+        "Stacks and queues",
+        "Graph and number theory"
+      ],
+      "correct": "Logic and proof",
+      "explanation": "The unit explicitly identifies Logic and proof."
+    },
+    "source": "Original team-authored question grounded in mod_csl201_2",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl201_3",
+    "skill_id": "discrete_mathematics",
+    "module_id": "mod_csl201_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Trees and traversals",
+        "Graph and number theory",
+        "Stacks and queues",
+        "Counting and recurrence"
+      ],
+      "correct": "Counting and recurrence",
+      "explanation": "The unit explicitly identifies Counting and recurrence."
+    },
+    "source": "Original team-authored question grounded in mod_csl201_3",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl201_4",
+    "skill_id": "discrete_mathematics",
+    "module_id": "mod_csl201_4",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Graph traversal",
+        "Graph and number theory",
+        "Trees and traversals",
+        "Stacks and queues"
+      ],
+      "correct": "Graph and number theory",
+      "explanation": "The unit explicitly identifies Graph and number theory."
+    },
+    "source": "Original team-authored question grounded in mod_csl201_4",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl202_1",
+    "skill_id": "data_structures",
+    "module_id": "mod_csl202_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Graph traversal",
+        "Sorting and searching",
+        "Trees and traversals",
+        "Stacks and queues"
+      ],
+      "correct": "Stacks and queues",
+      "explanation": "The unit explicitly identifies Stacks and queues."
+    },
+    "source": "Original team-authored question grounded in mod_csl202_1",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl202_2",
+    "skill_id": "data_structures",
+    "module_id": "mod_csl202_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Linux commands",
+        "Sorting and searching",
+        "Trees and traversals",
+        "Graph traversal"
+      ],
+      "correct": "Trees and traversals",
+      "explanation": "The unit explicitly identifies Trees and traversals."
+    },
+    "source": "Original team-authored question grounded in mod_csl202_2",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl202_3",
+    "skill_id": "data_structures",
+    "module_id": "mod_csl202_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Graph traversal",
+        "Development environment",
+        "Linux commands",
+        "Sorting and searching"
+      ],
+      "correct": "Graph traversal",
+      "explanation": "The unit explicitly identifies Graph traversal."
+    },
+    "source": "Original team-authored question grounded in mod_csl202_3",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl202_4",
+    "skill_id": "algorithms",
+    "module_id": "mod_csl202_4",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Versioned changes",
+        "Development environment",
+        "Sorting and searching",
+        "Linux commands"
+      ],
+      "correct": "Sorting and searching",
+      "explanation": "The unit explicitly identifies Sorting and searching."
+    },
+    "source": "Original team-authored question grounded in mod_csl202_4",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csp203_1",
+    "skill_id": "software_tools",
+    "module_id": "mod_csp203_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Versioned changes",
+        "Digital building blocks",
+        "Linux commands",
+        "Development environment"
+      ],
+      "correct": "Linux commands",
+      "explanation": "The unit explicitly identifies Linux commands."
+    },
+    "source": "Original team-authored question grounded in mod_csp203_1",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csp203_2",
+    "skill_id": "software_tools",
+    "module_id": "mod_csp203_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Development environment",
+        "Instruction execution",
+        "Versioned changes",
+        "Digital building blocks"
+      ],
+      "correct": "Development environment",
+      "explanation": "The unit explicitly identifies Development environment."
+    },
+    "source": "Original team-authored question grounded in mod_csp203_2",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csp203_3",
+    "skill_id": "software_tools",
+    "module_id": "mod_csp203_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Digital building blocks",
+        "Memory hierarchy",
+        "Instruction execution",
+        "Versioned changes"
+      ],
+      "correct": "Versioned changes",
+      "explanation": "The unit explicitly identifies Versioned changes."
+    },
+    "source": "Original team-authored question grounded in mod_csp203_3",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl251_1",
+    "skill_id": "computer_architecture",
+    "module_id": "mod_csl251_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Digital building blocks",
+        "Input and pipelining",
+        "Memory hierarchy",
+        "Instruction execution"
+      ],
+      "correct": "Digital building blocks",
+      "explanation": "The unit explicitly identifies Digital building blocks."
+    },
+    "source": "Original team-authored question grounded in mod_csl251_1",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl251_2",
+    "skill_id": "computer_architecture",
+    "module_id": "mod_csl251_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Memory hierarchy",
+        "Algorithm analysis",
+        "Instruction execution",
+        "Input and pipelining"
+      ],
+      "correct": "Instruction execution",
+      "explanation": "The unit explicitly identifies Instruction execution."
+    },
+    "source": "Original team-authored question grounded in mod_csl251_2",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl251_3",
+    "skill_id": "computer_architecture",
+    "module_id": "mod_csl251_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Algorithm analysis",
+        "Divide and conquer",
+        "Input and pipelining",
+        "Memory hierarchy"
+      ],
+      "correct": "Memory hierarchy",
+      "explanation": "The unit explicitly identifies Memory hierarchy."
+    },
+    "source": "Original team-authored question grounded in mod_csl251_3",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl251_4",
+    "skill_id": "computer_architecture",
+    "module_id": "mod_csl251_4",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Input and pipelining",
+        "Algorithm analysis",
+        "Divide and conquer",
+        "Greedy and dynamic programming"
+      ],
+      "correct": "Input and pipelining",
+      "explanation": "The unit explicitly identifies Input and pipelining."
+    },
+    "source": "Original team-authored question grounded in mod_csl251_4",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl252_1",
+    "skill_id": "algorithms",
+    "module_id": "mod_csl252_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Divide and conquer",
+        "Greedy and dynamic programming",
+        "Graph algorithms and hardness",
+        "Algorithm analysis"
+      ],
+      "correct": "Algorithm analysis",
+      "explanation": "The unit explicitly identifies Algorithm analysis."
+    },
+    "source": "Original team-authored question grounded in mod_csl252_1",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl252_2",
+    "skill_id": "algorithms",
+    "module_id": "mod_csl252_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Finite-state machines",
+        "Divide and conquer",
+        "Graph algorithms and hardness",
+        "Greedy and dynamic programming"
+      ],
+      "correct": "Divide and conquer",
+      "explanation": "The unit explicitly identifies Divide and conquer."
+    },
+    "source": "Original team-authored question grounded in mod_csl252_2",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl252_3",
+    "skill_id": "algorithms",
+    "module_id": "mod_csl252_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Graph algorithms and hardness",
+        "Context-free languages",
+        "Finite-state machines",
+        "Greedy and dynamic programming"
+      ],
+      "correct": "Greedy and dynamic programming",
+      "explanation": "The unit explicitly identifies Greedy and dynamic programming."
+    },
+    "source": "Original team-authored question grounded in mod_csl252_3",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl252_4",
+    "skill_id": "algorithms",
+    "module_id": "mod_csl252_4",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Context-free languages",
+        "Turing machines",
+        "Graph algorithms and hardness",
+        "Finite-state machines"
+      ],
+      "correct": "Graph algorithms and hardness",
+      "explanation": "The unit explicitly identifies Graph algorithms and hardness."
+    },
+    "source": "Original team-authored question grounded in mod_csl252_4",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl253_1",
+    "skill_id": "theory_computation",
+    "module_id": "mod_csl253_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Context-free languages",
+        "Finite-state machines",
+        "Undecidability and complexity",
+        "Turing machines"
+      ],
+      "correct": "Finite-state machines",
+      "explanation": "The unit explicitly identifies Finite-state machines."
+    },
+    "source": "Original team-authored question grounded in mod_csl253_1",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl253_2",
+    "skill_id": "theory_computation",
+    "module_id": "mod_csl253_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Context-free languages",
+        "Operating-system foundations",
+        "Turing machines",
+        "Undecidability and complexity"
+      ],
+      "correct": "Context-free languages",
+      "explanation": "The unit explicitly identifies Context-free languages."
+    },
+    "source": "Original team-authored question grounded in mod_csl253_2",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl253_3",
+    "skill_id": "theory_computation",
+    "module_id": "mod_csl253_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Operating-system foundations",
+        "Turing machines",
+        "Processes and scheduling",
+        "Undecidability and complexity"
+      ],
+      "correct": "Turing machines",
+      "explanation": "The unit explicitly identifies Turing machines."
+    },
+    "source": "Original team-authored question grounded in mod_csl253_3",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl253_4",
+    "skill_id": "theory_computation",
+    "module_id": "mod_csl253_4",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Operating-system foundations",
+        "Undecidability and complexity",
+        "Processes and scheduling",
+        "Memory virtualization"
+      ],
+      "correct": "Undecidability and complexity",
+      "explanation": "The unit explicitly identifies Undecidability and complexity."
+    },
+    "source": "Original team-authored question grounded in mod_csl253_4",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl301_1",
+    "skill_id": "operating_systems",
+    "module_id": "mod_csl301_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Operating-system foundations",
+        "Processes and scheduling",
+        "Compiler phases",
+        "Memory virtualization"
+      ],
+      "correct": "Operating-system foundations",
+      "explanation": "The unit explicitly identifies Operating-system foundations."
+    },
+    "source": "Original team-authored question grounded in mod_csl301_1",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl301_2",
+    "skill_id": "operating_systems",
+    "module_id": "mod_csl301_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Compiler phases",
+        "Lexing and parsing",
+        "Memory virtualization",
+        "Processes and scheduling"
+      ],
+      "correct": "Processes and scheduling",
+      "explanation": "The unit explicitly identifies Processes and scheduling."
+    },
+    "source": "Original team-authored question grounded in mod_csl301_2",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl301_3",
+    "skill_id": "operating_systems",
+    "module_id": "mod_csl301_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Translation and checking",
+        "Lexing and parsing",
+        "Compiler phases",
+        "Memory virtualization"
+      ],
+      "correct": "Memory virtualization",
+      "explanation": "The unit explicitly identifies Memory virtualization."
+    },
+    "source": "Original team-authored question grounded in mod_csl301_3",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl302_1",
+    "skill_id": "compiler_design",
+    "module_id": "mod_csl302_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Compiler phases",
+        "Lexing and parsing",
+        "Translation and checking",
+        "Code generation"
+      ],
+      "correct": "Compiler phases",
+      "explanation": "The unit explicitly identifies Compiler phases."
+    },
+    "source": "Original team-authored question grounded in mod_csl302_1",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl302_2",
+    "skill_id": "compiler_design",
+    "module_id": "mod_csl302_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Translation and checking",
+        "Code generation",
+        "Data models",
+        "Lexing and parsing"
+      ],
+      "correct": "Lexing and parsing",
+      "explanation": "The unit explicitly identifies Lexing and parsing."
+    },
+    "source": "Original team-authored question grounded in mod_csl302_2",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl302_3",
+    "skill_id": "compiler_design",
+    "module_id": "mod_csl302_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Relational algebra",
+        "Code generation",
+        "Data models",
+        "Translation and checking"
+      ],
+      "correct": "Translation and checking",
+      "explanation": "The unit explicitly identifies Translation and checking."
+    },
+    "source": "Original team-authored question grounded in mod_csl302_3",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl302_4",
+    "skill_id": "compiler_design",
+    "module_id": "mod_csl302_4",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Entity-relationship design",
+        "Relational algebra",
+        "Data models",
+        "Code generation"
+      ],
+      "correct": "Code generation",
+      "explanation": "The unit explicitly identifies Code generation."
+    },
+    "source": "Original team-authored question grounded in mod_csl302_4",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl303_1",
+    "skill_id": "database_systems",
+    "module_id": "mod_csl303_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Entity-relationship design",
+        "Normalization and SQL",
+        "Relational algebra",
+        "Data models"
+      ],
+      "correct": "Data models",
+      "explanation": "The unit explicitly identifies Data models."
+    },
+    "source": "Original team-authored question grounded in mod_csl303_1",
+    "source_page": 85,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl303_2",
+    "skill_id": "database_systems",
+    "module_id": "mod_csl303_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Search and problem solving",
+        "Relational algebra",
+        "Normalization and SQL",
+        "Entity-relationship design"
+      ],
+      "correct": "Relational algebra",
+      "explanation": "The unit explicitly identifies Relational algebra."
+    },
+    "source": "Original team-authored question grounded in mod_csl303_2",
+    "source_page": 85,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl303_3",
+    "skill_id": "database_systems",
+    "module_id": "mod_csl303_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Search and problem solving",
+        "Entity-relationship design",
+        "Normalization and SQL",
+        "Automated reasoning"
+      ],
+      "correct": "Entity-relationship design",
+      "explanation": "The unit explicitly identifies Entity-relationship design."
+    },
+    "source": "Original team-authored question grounded in mod_csl303_3",
+    "source_page": 85,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl303_4",
+    "skill_id": "database_systems",
+    "module_id": "mod_csl303_4",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Automated reasoning",
+        "Search and problem solving",
+        "Normalization and SQL",
+        "Planning"
+      ],
+      "correct": "Normalization and SQL",
+      "explanation": "The unit explicitly identifies Normalization and SQL."
+    },
+    "source": "Original team-authored question grounded in mod_csl303_4",
+    "source_page": 85,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl304_1",
+    "skill_id": "artificial_intelligence",
+    "module_id": "mod_csl304_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Planning",
+        "Uncertainty and learning",
+        "Search and problem solving",
+        "Automated reasoning"
+      ],
+      "correct": "Search and problem solving",
+      "explanation": "The unit explicitly identifies Search and problem solving."
+    },
+    "source": "Original team-authored question grounded in mod_csl304_1",
+    "source_page": 85,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl304_2",
+    "skill_id": "artificial_intelligence",
+    "module_id": "mod_csl304_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Planning",
+        "Uncertainty and learning",
+        "Network architecture",
+        "Automated reasoning"
+      ],
+      "correct": "Automated reasoning",
+      "explanation": "The unit explicitly identifies Automated reasoning."
+    },
+    "source": "Original team-authored question grounded in mod_csl304_2",
+    "source_page": 85,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl304_3",
+    "skill_id": "artificial_intelligence",
+    "module_id": "mod_csl304_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Uncertainty and learning",
+        "Communication layers",
+        "Planning",
+        "Network architecture"
+      ],
+      "correct": "Planning",
+      "explanation": "The unit explicitly identifies Planning."
+    },
+    "source": "Original team-authored question grounded in mod_csl304_3",
+    "source_page": 85,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl304_4",
+    "skill_id": "artificial_intelligence",
+    "module_id": "mod_csl304_4",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Communication layers",
+        "Uncertainty and learning",
+        "Network reliability",
+        "Network architecture"
+      ],
+      "correct": "Uncertainty and learning",
+      "explanation": "The unit explicitly identifies Uncertainty and learning."
+    },
+    "source": "Original team-authored question grounded in mod_csl304_4",
+    "source_page": 85,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl351_1",
+    "skill_id": "computer_networks",
+    "module_id": "mod_csl351_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Communication layers",
+        "Network architecture",
+        "Network reliability",
+        "LLMs in software work"
+      ],
+      "correct": "Network architecture",
+      "explanation": "The unit explicitly identifies Network architecture."
+    },
+    "source": "Original team-authored question grounded in mod_csl351_1",
+    "source_page": 85,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl351_2",
+    "skill_id": "computer_networks",
+    "module_id": "mod_csl351_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Structured prompts",
+        "LLMs in software work",
+        "Communication layers",
+        "Network reliability"
+      ],
+      "correct": "Communication layers",
+      "explanation": "The unit explicitly identifies Communication layers."
+    },
+    "source": "Original team-authored question grounded in mod_csl351_2",
+    "source_page": 85,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl351_3",
+    "skill_id": "computer_networks",
+    "module_id": "mod_csl351_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Network reliability",
+        "Structured prompts",
+        "Validated integration",
+        "LLMs in software work"
+      ],
+      "correct": "Network reliability",
+      "explanation": "The unit explicitly identifies Network reliability."
+    },
+    "source": "Original team-authored question grounded in mod_csl351_3",
+    "source_page": 85,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csp352_1",
+    "skill_id": "llm_software",
+    "module_id": "mod_csp352_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Validated integration",
+        "Structured prompts",
+        "Bounded agents",
+        "LLMs in software work"
+      ],
+      "correct": "LLMs in software work",
+      "explanation": "The unit explicitly identifies LLMs in software work."
+    },
+    "source": "Original team-authored question grounded in mod_csp352_1",
+    "source_page": 86,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csp352_2",
+    "skill_id": "llm_software",
+    "module_id": "mod_csp352_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Structured prompts",
+        "Validated integration",
+        "Research question",
+        "Bounded agents"
+      ],
+      "correct": "Structured prompts",
+      "explanation": "The unit explicitly identifies Structured prompts."
+    },
+    "source": "Original team-authored question grounded in mod_csp352_2",
+    "source_page": 86,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csp352_3",
+    "skill_id": "llm_software",
+    "module_id": "mod_csp352_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Research question",
+        "Project goals",
+        "Validated integration",
+        "Bounded agents"
+      ],
+      "correct": "Validated integration",
+      "explanation": "The unit explicitly identifies Validated integration."
+    },
+    "source": "Original team-authored question grounded in mod_csp352_3",
+    "source_page": 86,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csp352_4",
+    "skill_id": "llm_software",
+    "module_id": "mod_csp352_4",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Project goals",
+        "Research question",
+        "Presentations and reports",
+        "Bounded agents"
+      ],
+      "correct": "Bounded agents",
+      "explanation": "The unit explicitly identifies Bounded agents."
+    },
+    "source": "Original team-authored question grounded in mod_csp352_4",
+    "source_page": 86,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csq401_1",
+    "skill_id": "research_methods",
+    "module_id": "mod_csq401_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Project goals",
+        "Audience and purpose",
+        "Presentations and reports",
+        "Research question"
+      ],
+      "correct": "Research question",
+      "explanation": "The unit explicitly identifies Research question."
+    },
+    "source": "Original team-authored question grounded in mod_csq401_1",
+    "source_page": 87,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csq401_2",
+    "skill_id": "research_methods",
+    "module_id": "mod_csq401_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Project goals",
+        "Clear explanations",
+        "Audience and purpose",
+        "Presentations and reports"
+      ],
+      "correct": "Project goals",
+      "explanation": "The unit explicitly identifies Project goals."
+    },
+    "source": "Original team-authored question grounded in mod_csq401_2",
+    "source_page": 87,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csq401_3",
+    "skill_id": "communication",
+    "module_id": "mod_csq401_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Clear explanations",
+        "Evidence and structure",
+        "Presentations and reports",
+        "Audience and purpose"
+      ],
+      "correct": "Presentations and reports",
+      "explanation": "The unit explicitly identifies Presentations and reports."
+    },
+    "source": "Original team-authored question grounded in mod_csq401_3",
+    "source_page": 87,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal100_1",
+    "skill_id": "communication",
+    "module_id": "mod_lal100_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Evidence and structure",
+        "Clear explanations",
+        "Financial vocabulary",
+        "Audience and purpose"
+      ],
+      "correct": "Audience and purpose",
+      "explanation": "The unit explicitly identifies Audience and purpose."
+    },
+    "source": "Original team-authored question grounded in mod_lal100_1",
+    "source_page": 136,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal100_2",
+    "skill_id": "communication",
+    "module_id": "mod_lal100_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Time and value",
+        "Clear explanations",
+        "Financial vocabulary",
+        "Evidence and structure"
+      ],
+      "correct": "Clear explanations",
+      "explanation": "The unit explicitly identifies Clear explanations."
+    },
+    "source": "Original team-authored question grounded in mod_lal100_2",
+    "source_page": 136,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal100_3",
+    "skill_id": "communication",
+    "module_id": "mod_lal100_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Time and value",
+        "Evidence and structure",
+        "Financial vocabulary",
+        "Risk and return"
+      ],
+      "correct": "Evidence and structure",
+      "explanation": "The unit explicitly identifies Evidence and structure."
+    },
+    "source": "Original team-authored question grounded in mod_lal100_3",
+    "source_page": 136,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal101_1",
+    "skill_id": "finance",
+    "module_id": "mod_lal101_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Risk and return",
+        "Graph representations",
+        "Financial vocabulary",
+        "Time and value"
+      ],
+      "correct": "Financial vocabulary",
+      "explanation": "The unit explicitly identifies Financial vocabulary."
+    },
+    "source": "Original team-authored question grounded in mod_lal101_1",
+    "source_page": 136,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal101_2",
+    "skill_id": "finance",
+    "module_id": "mod_lal101_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Time and value",
+        "Matchings and connectivity",
+        "Graph representations",
+        "Risk and return"
+      ],
+      "correct": "Time and value",
+      "explanation": "The unit explicitly identifies Time and value."
+    },
+    "source": "Original team-authored question grounded in mod_lal101_2",
+    "source_page": 136,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal101_3",
+    "skill_id": "finance",
+    "module_id": "mod_lal101_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Graph representations",
+        "Risk and return",
+        "Coloring and planar graphs",
+        "Matchings and connectivity"
+      ],
+      "correct": "Risk and return",
+      "explanation": "The unit explicitly identifies Risk and return."
+    },
+    "source": "Original team-authored question grounded in mod_lal101_3",
+    "source_page": 136,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl504_1",
+    "skill_id": "discrete_mathematics",
+    "module_id": "mod_csl504_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Cryptographic notions",
+        "Graph representations",
+        "Coloring and planar graphs",
+        "Matchings and connectivity"
+      ],
+      "correct": "Graph representations",
+      "explanation": "The unit explicitly identifies Graph representations."
+    },
+    "source": "Original team-authored question grounded in mod_csl504_1",
+    "source_page": 88,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl504_2",
+    "skill_id": "discrete_mathematics",
+    "module_id": "mod_csl504_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Matchings and connectivity",
+        "Historical ciphers",
+        "Cryptographic notions",
+        "Coloring and planar graphs"
+      ],
+      "correct": "Matchings and connectivity",
+      "explanation": "The unit explicitly identifies Matchings and connectivity."
+    },
+    "source": "Original team-authored question grounded in mod_csl504_2",
+    "source_page": 88,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl504_3",
+    "skill_id": "discrete_mathematics",
+    "module_id": "mod_csl504_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Coloring and planar graphs",
+        "Historical ciphers",
+        "Cryptographic notions",
+        "Security reasoning"
+      ],
+      "correct": "Coloring and planar graphs",
+      "explanation": "The unit explicitly identifies Coloring and planar graphs."
+    },
+    "source": "Original team-authored question grounded in mod_csl504_3",
+    "source_page": 88,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl505_1",
+    "skill_id": "theory_computation",
+    "module_id": "mod_csl505_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Approximation algorithms",
+        "Security reasoning",
+        "Cryptographic notions",
+        "Historical ciphers"
+      ],
+      "correct": "Cryptographic notions",
+      "explanation": "The unit explicitly identifies Cryptographic notions."
+    },
+    "source": "Original team-authored question grounded in mod_csl505_1",
+    "source_page": 88,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl505_2",
+    "skill_id": "theory_computation",
+    "module_id": "mod_csl505_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Security reasoning",
+        "Primal-dual method",
+        "Historical ciphers",
+        "Approximation algorithms"
+      ],
+      "correct": "Historical ciphers",
+      "explanation": "The unit explicitly identifies Historical ciphers."
+    },
+    "source": "Original team-authored question grounded in mod_csl505_2",
+    "source_page": 88,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl505_3",
+    "skill_id": "theory_computation",
+    "module_id": "mod_csl505_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Approximation algorithms",
+        "Metric rounding",
+        "Security reasoning",
+        "Primal-dual method"
+      ],
+      "correct": "Security reasoning",
+      "explanation": "The unit explicitly identifies Security reasoning."
+    },
+    "source": "Original team-authored question grounded in mod_csl505_3",
+    "source_page": 88,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl510_1",
+    "skill_id": "algorithms",
+    "module_id": "mod_csl510_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Hoare logic",
+        "Approximation algorithms",
+        "Metric rounding",
+        "Primal-dual method"
+      ],
+      "correct": "Approximation algorithms",
+      "explanation": "The unit explicitly identifies Approximation algorithms."
+    },
+    "source": "Original team-authored question grounded in mod_csl510_1",
+    "source_page": 88,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl510_2",
+    "skill_id": "algorithms",
+    "module_id": "mod_csl510_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Hoare logic",
+        "Primal-dual method",
+        "Metric rounding",
+        "Decision diagrams"
+      ],
+      "correct": "Primal-dual method",
+      "explanation": "The unit explicitly identifies Primal-dual method."
+    },
+    "source": "Original team-authored question grounded in mod_csl510_2",
+    "source_page": 88,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl510_3",
+    "skill_id": "algorithms",
+    "module_id": "mod_csl510_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Metric rounding",
+        "Decision diagrams",
+        "Temporal logic",
+        "Hoare logic"
+      ],
+      "correct": "Metric rounding",
+      "explanation": "The unit explicitly identifies Metric rounding."
+    },
+    "source": "Original team-authored question grounded in mod_csl510_3",
+    "source_page": 88,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl511_1",
+    "skill_id": "formal_verification",
+    "module_id": "mod_csl511_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Decision diagrams",
+        "Parallel models",
+        "Hoare logic",
+        "Temporal logic"
+      ],
+      "correct": "Hoare logic",
+      "explanation": "The unit explicitly identifies Hoare logic."
+    },
+    "source": "Original team-authored question grounded in mod_csl511_1",
+    "source_page": 89,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl511_2",
+    "skill_id": "formal_verification",
+    "module_id": "mod_csl511_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Parallel techniques",
+        "Temporal logic",
+        "Decision diagrams",
+        "Parallel models"
+      ],
+      "correct": "Decision diagrams",
+      "explanation": "The unit explicitly identifies Decision diagrams."
+    },
+    "source": "Original team-authored question grounded in mod_csl511_2",
+    "source_page": 89,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl511_3",
+    "skill_id": "formal_verification",
+    "module_id": "mod_csl511_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Temporal logic",
+        "Parallel techniques",
+        "Parallel models",
+        "Parallel graph algorithms"
+      ],
+      "correct": "Temporal logic",
+      "explanation": "The unit explicitly identifies Temporal logic."
+    },
+    "source": "Original team-authored question grounded in mod_csl511_3",
+    "source_page": 89,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl512_1",
+    "skill_id": "algorithms",
+    "module_id": "mod_csl512_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Randomized methods",
+        "Parallel graph algorithms",
+        "Parallel techniques",
+        "Parallel models"
+      ],
+      "correct": "Parallel models",
+      "explanation": "The unit explicitly identifies Parallel models."
+    },
+    "source": "Original team-authored question grounded in mod_csl512_1",
+    "source_page": 89,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl512_2",
+    "skill_id": "algorithms",
+    "module_id": "mod_csl512_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Parallel techniques",
+        "Parallel graph algorithms",
+        "Probability in algorithms",
+        "Randomized methods"
+      ],
+      "correct": "Parallel techniques",
+      "explanation": "The unit explicitly identifies Parallel techniques."
+    },
+    "source": "Original team-authored question grounded in mod_csl512_2",
+    "source_page": 89,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl512_3",
+    "skill_id": "algorithms",
+    "module_id": "mod_csl512_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Probability in algorithms",
+        "Parallel graph algorithms",
+        "Randomized methods",
+        "Algorithm guarantees"
+      ],
+      "correct": "Parallel graph algorithms",
+      "explanation": "The unit explicitly identifies Parallel graph algorithms."
+    },
+    "source": "Original team-authored question grounded in mod_csl512_3",
+    "source_page": 89,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl515_1",
+    "skill_id": "algorithms",
+    "module_id": "mod_csl515_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Probability in algorithms",
+        "Algorithm guarantees",
+        "Distributed computing models",
+        "Randomized methods"
+      ],
+      "correct": "Randomized methods",
+      "explanation": "The unit explicitly identifies Randomized methods."
+    },
+    "source": "Original team-authored question grounded in mod_csl515_1",
+    "source_page": 89,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl515_2",
+    "skill_id": "probability_statistics",
+    "module_id": "mod_csl515_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Probability in algorithms",
+        "Broadcast and trees",
+        "Algorithm guarantees",
+        "Distributed computing models"
+      ],
+      "correct": "Probability in algorithms",
+      "explanation": "The unit explicitly identifies Probability in algorithms."
+    },
+    "source": "Original team-authored question grounded in mod_csl515_2",
+    "source_page": 89,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl515_3",
+    "skill_id": "algorithms",
+    "module_id": "mod_csl515_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Distributed computing models",
+        "Leader election",
+        "Broadcast and trees",
+        "Algorithm guarantees"
+      ],
+      "correct": "Algorithm guarantees",
+      "explanation": "The unit explicitly identifies Algorithm guarantees."
+    },
+    "source": "Original team-authored question grounded in mod_csl515_3",
+    "source_page": 89,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl518_1",
+    "skill_id": "computer_networks",
+    "module_id": "mod_csl518_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "System goals",
+        "Leader election",
+        "Distributed computing models",
+        "Broadcast and trees"
+      ],
+      "correct": "Distributed computing models",
+      "explanation": "The unit explicitly identifies Distributed computing models."
+    },
+    "source": "Original team-authored question grounded in mod_csl518_1",
+    "source_page": 90,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl518_2",
+    "skill_id": "algorithms",
+    "module_id": "mod_csl518_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Broadcast and trees",
+        "Quantitative system models",
+        "System goals",
+        "Leader election"
+      ],
+      "correct": "Broadcast and trees",
+      "explanation": "The unit explicitly identifies Broadcast and trees."
+    },
+    "source": "Original team-authored question grounded in mod_csl518_2",
+    "source_page": 90,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl518_3",
+    "skill_id": "algorithms",
+    "module_id": "mod_csl518_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Leader election",
+        "System goals",
+        "Quantitative system models",
+        "Resource management"
+      ],
+      "correct": "Leader election",
+      "explanation": "The unit explicitly identifies Leader election."
+    },
+    "source": "Original team-authored question grounded in mod_csl518_3",
+    "source_page": 90,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl559_1",
+    "skill_id": "software_engineering",
+    "module_id": "mod_csl559_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "System goals",
+        "Resource management",
+        "Aggregate economic activity",
+        "Quantitative system models"
+      ],
+      "correct": "System goals",
+      "explanation": "The unit explicitly identifies System goals."
+    },
+    "source": "Original team-authored question grounded in mod_csl559_1",
+    "source_page": 90,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl559_2",
+    "skill_id": "software_engineering",
+    "module_id": "mod_csl559_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Quantitative system models",
+        "Aggregate economic activity",
+        "Economic indicators",
+        "Resource management"
+      ],
+      "correct": "Quantitative system models",
+      "explanation": "The unit explicitly identifies Quantitative system models."
+    },
+    "source": "Original team-authored question grounded in mod_csl559_2",
+    "source_page": 90,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_csl559_3",
+    "skill_id": "computer_networks",
+    "module_id": "mod_csl559_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Aggregate economic activity",
+        "Policy questions",
+        "Economic indicators",
+        "Resource management"
+      ],
+      "correct": "Resource management",
+      "explanation": "The unit explicitly identifies Resource management."
+    },
+    "source": "Original team-authored question grounded in mod_csl559_3",
+    "source_page": 90,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal200_1",
+    "skill_id": "macroeconomics",
+    "module_id": "mod_lal200_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Aggregate economic activity",
+        "Economic indicators",
+        "Choice and incentives",
+        "Policy questions"
+      ],
+      "correct": "Aggregate economic activity",
+      "explanation": "The unit explicitly identifies Aggregate economic activity."
+    },
+    "source": "Original team-authored question grounded in mod_lal200_1",
+    "source_page": 137,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal200_2",
+    "skill_id": "macroeconomics",
+    "module_id": "mod_lal200_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Economic indicators",
+        "Choice and incentives",
+        "Policy questions",
+        "Markets"
+      ],
+      "correct": "Economic indicators",
+      "explanation": "The unit explicitly identifies Economic indicators."
+    },
+    "source": "Original team-authored question grounded in mod_lal200_2",
+    "source_page": 137,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal200_3",
+    "skill_id": "macroeconomics",
+    "module_id": "mod_lal200_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Markets",
+        "Trade-offs",
+        "Policy questions",
+        "Choice and incentives"
+      ],
+      "correct": "Policy questions",
+      "explanation": "The unit explicitly identifies Policy questions."
+    },
+    "source": "Original team-authored question grounded in mod_lal200_3",
+    "source_page": 137,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal201_1",
+    "skill_id": "microeconomics",
+    "module_id": "mod_lal201_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Choice and incentives",
+        "Trade flows",
+        "Trade-offs",
+        "Markets"
+      ],
+      "correct": "Choice and incentives",
+      "explanation": "The unit explicitly identifies Choice and incentives."
+    },
+    "source": "Original team-authored question grounded in mod_lal201_1",
+    "source_page": 137,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal201_2",
+    "skill_id": "microeconomics",
+    "module_id": "mod_lal201_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Trade restrictions",
+        "Markets",
+        "Trade flows",
+        "Trade-offs"
+      ],
+      "correct": "Markets",
+      "explanation": "The unit explicitly identifies Markets."
+    },
+    "source": "Original team-authored question grounded in mod_lal201_2",
+    "source_page": 137,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal201_3",
+    "skill_id": "microeconomics",
+    "module_id": "mod_lal201_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Trade-offs",
+        "Trade restrictions",
+        "Trade policy",
+        "Trade flows"
+      ],
+      "correct": "Trade-offs",
+      "explanation": "The unit explicitly identifies Trade-offs."
+    },
+    "source": "Original team-authored question grounded in mod_lal201_3",
+    "source_page": 137,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal202_1",
+    "skill_id": "international_trade",
+    "module_id": "mod_lal202_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Trade restrictions",
+        "Trade flows",
+        "Trade policy",
+        "Reading in context"
+      ],
+      "correct": "Trade flows",
+      "explanation": "The unit explicitly identifies Trade flows."
+    },
+    "source": "Original team-authored question grounded in mod_lal202_1",
+    "source_page": 137,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal202_2",
+    "skill_id": "international_trade",
+    "module_id": "mod_lal202_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Trade policy",
+        "Reading in context",
+        "Trade restrictions",
+        "Voice and perspective"
+      ],
+      "correct": "Trade restrictions",
+      "explanation": "The unit explicitly identifies Trade restrictions."
+    },
+    "source": "Original team-authored question grounded in mod_lal202_2",
+    "source_page": 137,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal202_3",
+    "skill_id": "international_trade",
+    "module_id": "mod_lal202_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Voice and perspective",
+        "Reading in context",
+        "Evidence-based interpretation",
+        "Trade policy"
+      ],
+      "correct": "Trade policy",
+      "explanation": "The unit explicitly identifies Trade policy."
+    },
+    "source": "Original team-authored question grounded in mod_lal202_3",
+    "source_page": 137,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal221_1",
+    "skill_id": "literary_analysis",
+    "module_id": "mod_lal221_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Literary representations of cities",
+        "Reading in context",
+        "Voice and perspective",
+        "Evidence-based interpretation"
+      ],
+      "correct": "Reading in context",
+      "explanation": "The unit explicitly identifies Reading in context."
+    },
+    "source": "Original team-authored question grounded in mod_lal221_1",
+    "source_page": 138,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal221_2",
+    "skill_id": "literary_analysis",
+    "module_id": "mod_lal221_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Voice and perspective",
+        "Evidence-based interpretation",
+        "Literary representations of cities",
+        "Setting and character"
+      ],
+      "correct": "Voice and perspective",
+      "explanation": "The unit explicitly identifies Voice and perspective."
+    },
+    "source": "Original team-authored question grounded in mod_lal221_2",
+    "source_page": 138,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal221_3",
+    "skill_id": "literary_analysis",
+    "module_id": "mod_lal221_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Literary representations of cities",
+        "Evidence-based interpretation",
+        "Literature and historical context",
+        "Setting and character"
+      ],
+      "correct": "Evidence-based interpretation",
+      "explanation": "The unit explicitly identifies Evidence-based interpretation."
+    },
+    "source": "Original team-authored question grounded in mod_lal221_3",
+    "source_page": 138,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal222_1",
+    "skill_id": "literary_analysis",
+    "module_id": "mod_lal222_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Textual evidence",
+        "Literature and historical context",
+        "Literary representations of cities",
+        "Setting and character"
+      ],
+      "correct": "Literary representations of cities",
+      "explanation": "The unit explicitly identifies Literary representations of cities."
+    },
+    "source": "Original team-authored question grounded in mod_lal222_1",
+    "source_page": 138,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal222_2",
+    "skill_id": "literary_analysis",
+    "module_id": "mod_lal222_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Narrative perspective",
+        "Setting and character",
+        "Textual evidence",
+        "Literature and historical context"
+      ],
+      "correct": "Setting and character",
+      "explanation": "The unit explicitly identifies Setting and character."
+    },
+    "source": "Original team-authored question grounded in mod_lal222_2",
+    "source_page": 138,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal222_3",
+    "skill_id": "literary_analysis",
+    "module_id": "mod_lal222_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Narrative perspective",
+        "Memory and representation",
+        "Literature and historical context",
+        "Textual evidence"
+      ],
+      "correct": "Textual evidence",
+      "explanation": "The unit explicitly identifies Textual evidence."
+    },
+    "source": "Original team-authored question grounded in mod_lal222_3",
+    "source_page": 138,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal223_1",
+    "skill_id": "literary_analysis",
+    "module_id": "mod_lal223_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Literature and power",
+        "Literature and historical context",
+        "Narrative perspective",
+        "Memory and representation"
+      ],
+      "correct": "Literature and historical context",
+      "explanation": "The unit explicitly identifies Literature and historical context."
+    },
+    "source": "Original team-authored question grounded in mod_lal223_1",
+    "source_page": 139,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal223_2",
+    "skill_id": "literary_analysis",
+    "module_id": "mod_lal223_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Narrative perspective",
+        "Literature and power",
+        "Voice and identity",
+        "Memory and representation"
+      ],
+      "correct": "Narrative perspective",
+      "explanation": "The unit explicitly identifies Narrative perspective."
+    },
+    "source": "Original team-authored question grounded in mod_lal223_2",
+    "source_page": 139,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal223_3",
+    "skill_id": "literary_analysis",
+    "module_id": "mod_lal223_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Literature and power",
+        "Close reading",
+        "Memory and representation",
+        "Voice and identity"
+      ],
+      "correct": "Memory and representation",
+      "explanation": "The unit explicitly identifies Memory and representation."
+    },
+    "source": "Original team-authored question grounded in mod_lal223_3",
+    "source_page": 139,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal224_1",
+    "skill_id": "literary_analysis",
+    "module_id": "mod_lal224_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Voice and identity",
+        "Close reading",
+        "Self and society",
+        "Literature and power"
+      ],
+      "correct": "Literature and power",
+      "explanation": "The unit explicitly identifies Literature and power."
+    },
+    "source": "Original team-authored question grounded in mod_lal224_1",
+    "source_page": 139,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal224_2",
+    "skill_id": "literary_analysis",
+    "module_id": "mod_lal224_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Self and society",
+        "Close reading",
+        "Voice and identity",
+        "Social institutions"
+      ],
+      "correct": "Voice and identity",
+      "explanation": "The unit explicitly identifies Voice and identity."
+    },
+    "source": "Original team-authored question grounded in mod_lal224_2",
+    "source_page": 139,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal224_3",
+    "skill_id": "literary_analysis",
+    "module_id": "mod_lal224_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Self and society",
+        "Evidence and interpretation",
+        "Social institutions",
+        "Close reading"
+      ],
+      "correct": "Close reading",
+      "explanation": "The unit explicitly identifies Close reading."
+    },
+    "source": "Original team-authored question grounded in mod_lal224_3",
+    "source_page": 139,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal225_1",
+    "skill_id": "indian_society",
+    "module_id": "mod_lal225_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Social institutions",
+        "Evidence and interpretation",
+        "C programming",
+        "Self and society"
+      ],
+      "correct": "Self and society",
+      "explanation": "The unit explicitly identifies Self and society."
+    },
+    "source": "Original team-authored question grounded in mod_lal225_1",
+    "source_page": 139,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal225_2",
+    "skill_id": "indian_society",
+    "module_id": "mod_lal225_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "Control flow",
+        "Social institutions",
+        "C programming",
+        "Evidence and interpretation"
+      ],
+      "correct": "Social institutions",
+      "explanation": "The unit explicitly identifies Social institutions."
+    },
+    "source": "Original team-authored question grounded in mod_lal225_2",
+    "source_page": 139,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_mod_lal225_3",
+    "skill_id": "indian_society",
+    "module_id": "mod_lal225_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "Which topic is explicitly named in the learning unit above?",
+    "answer_key": {
+      "options": [
+        "C programming",
+        "Control flow",
+        "Evidence and interpretation",
+        "Memory and data"
+      ],
+      "correct": "Evidence and interpretation",
+      "explanation": "The unit explicitly identifies Evidence and interpretation."
+    },
+    "source": "Original team-authored question grounded in mod_lal225_3",
+    "source_page": 139,
+    "provenance": "team_authored"
+  }
+]

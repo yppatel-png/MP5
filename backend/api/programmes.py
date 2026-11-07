@@ -12,7 +12,7 @@ router = APIRouter(prefix="/curricula", tags=["Programmes and curriculum"])
 CURRICULA_FILE = (
     Path(__file__).resolve().parents[2]
     / "data"
-    / "seed"
+    / "seed_bhilai"
     / "iit_bhilai_cse_curricula.json"
 )
 

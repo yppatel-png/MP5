@@ -16,7 +16,7 @@ class SemesterMinCreditsRule(Rule):
     scope = RuleScope.SEMESTER
     clause_id = "ORD-4.2.1"
     section_title = "Minimum Semester Registration Limit"
-    source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-4.2.1"
+    source_url = "https://home.iitbhilai.ac.in/academic-rules/ordinance-section-4.2.1"
 
     def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
         results = []
@@ -66,7 +66,7 @@ class SemesterMaxCreditsRule(Rule):
     scope = RuleScope.SEMESTER
     clause_id = "ORD-4.2.2"
     section_title = "Maximum Standard Semester Credit Ceiling"
-    source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-4.2.2"
+    source_url = "https://home.iitbhilai.ac.in/academic-rules/ordinance-section-4.2.2"
 
     def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
         results = []
@@ -112,7 +112,7 @@ class DegreeTotalCreditsRule(Rule):
     scope = RuleScope.PLAN
     clause_id = "ORD-3.1.0"
     section_title = "Degree Graduation Credit Requirements"
-    source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-3.1.0"
+    source_url = "https://home.iitbhilai.ac.in/academic-rules/ordinance-section-3.1.0"
 
     def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
         min_required = 142.0

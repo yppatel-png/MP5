@@ -1,1 +1,124 @@
-[]
+[
+  {
+    "resource_id": "mit_6006",
+    "title": "Introduction to Algorithms",
+    "provider": "MIT OpenCourseWare",
+    "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+    "license": "CC BY-NC-SA 4.0 (course page structured metadata)",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "license_verified": true,
+    "format": "Open course materials",
+    "difficulty": "intermediate",
+    "est_minutes": 60,
+    "credit_eligible": false,
+    "skill_ids": [
+      "data_structures",
+      "algorithms"
+    ],
+    "source": "MIT OpenCourseWare official course page",
+    "provenance": "team_authored",
+    "date_verified": "2026-11-06",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "resource_id": "mit_6042",
+    "title": "Mathematics for Computer Science",
+    "provider": "MIT OpenCourseWare",
+    "url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/",
+    "license": "CC BY-NC-SA 4.0 (course page structured metadata)",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "license_verified": true,
+    "format": "Open course materials",
+    "difficulty": "intermediate",
+    "est_minutes": 60,
+    "credit_eligible": false,
+    "skill_ids": [
+      "discrete_mathematics",
+      "probability_statistics"
+    ],
+    "source": "MIT OpenCourseWare official course page",
+    "provenance": "team_authored",
+    "date_verified": "2026-11-06",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "resource_id": "mit_6004",
+    "title": "Computation Structures",
+    "provider": "MIT OpenCourseWare",
+    "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+    "license": "CC BY-NC-SA 4.0 (course page structured metadata)",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "license_verified": true,
+    "format": "Open course materials",
+    "difficulty": "intermediate",
+    "est_minutes": 60,
+    "credit_eligible": false,
+    "skill_ids": [
+      "computer_architecture"
+    ],
+    "source": "MIT OpenCourseWare official course page",
+    "provenance": "team_authored",
+    "date_verified": "2026-11-06",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "resource_id": "mit_6034",
+    "title": "Artificial Intelligence",
+    "provider": "MIT OpenCourseWare",
+    "url": "https://ocw.mit.edu/courses/6-034-artificial-intelligence-fall-2010/",
+    "license": "CC BY-NC-SA 4.0 (course page structured metadata)",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "license_verified": true,
+    "format": "Open course materials",
+    "difficulty": "intermediate",
+    "est_minutes": 60,
+    "credit_eligible": false,
+    "skill_ids": [
+      "artificial_intelligence"
+    ],
+    "source": "MIT OpenCourseWare official course page",
+    "provenance": "team_authored",
+    "date_verified": "2026-11-06",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "resource_id": "mit_6830",
+    "title": "Database Systems",
+    "provider": "MIT OpenCourseWare",
+    "url": "https://ocw.mit.edu/courses/6-830-database-systems-fall-2010/",
+    "license": "CC BY-NC-SA 4.0 (course page structured metadata)",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "license_verified": true,
+    "format": "Open course materials",
+    "difficulty": "intermediate",
+    "est_minutes": 60,
+    "credit_eligible": false,
+    "skill_ids": [
+      "database_systems"
+    ],
+    "source": "MIT OpenCourseWare official course page",
+    "provenance": "team_authored",
+    "date_verified": "2026-11-06",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "resource_id": "mit_61810",
+    "title": "Operating System Engineering",
+    "provider": "MIT OpenCourseWare",
+    "url": "https://ocw.mit.edu/courses/6-1810-operating-system-engineering-fall-2023/",
+    "license": "CC BY-NC-SA 4.0 (course page structured metadata)",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "license_verified": true,
+    "format": "Open course materials",
+    "difficulty": "intermediate",
+    "est_minutes": 60,
+    "credit_eligible": false,
+    "skill_ids": [
+      "operating_systems"
+    ],
+    "source": "MIT OpenCourseWare official course page",
+    "provenance": "team_authored",
+    "date_verified": "2026-11-06",
+    "last_verified": "2026-11-06"
+  }
+]

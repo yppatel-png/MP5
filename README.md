@@ -1,22 +1,75 @@
-# Learning Buddy — IIT Bhilai BTech CSE demo
+# Learning Buddy — IIT Bhilai BTech CSE Personalised Learning System
 
-This prototype now defaults to a compact, source-backed IIT Bhilai BTech Computer Science and Engineering curriculum snapshot. It is designed to let students explore the supplied curriculum and let judges try the supported flows without presenting unverified IIT Delhi rules as IIT Bhilai policy.
+A personalized learning and degree planning system for the IIT Bhilai BTech Computer Science & Engineering curriculum. Built on a strict **Three-Tier Provenance Architecture**, the platform delivers the full Adobe learning loop (**Assess, Personalise, Learn, Practise, Adapt, Demonstrate Mastery**) without conflating official institutional policy with pedagogical or assumed data.
 
-## What is supported
+---
 
-- The main demo contains 14 named CSE courses from the BTech schedule and catalogue, with source-cited credits and semester slots.
-- The **New Student** flow lets a student enter profile details, review the supplied semester schedule, search the 44-course CSE catalogue, shortlist courses, and ask Buddy questions. It is a planning aid, not course registration.
-- Three clearly labeled sample personas can be selected from the API-backed selector.
-- Today shows the selected student's profile and evidence-aware status. Buddy can answer questions about courses in the compact seed using the cited course and semester information.
-- The supplied source states 144 graded BTech credits plus 12 non-graded core units. A source discrepancy for `SL302`/`CSL302` is preserved in the data notes.
+## Three-Tier Provenance Architecture
 
-## Explicitly not claimed
+To maintain strict academic integrity while providing a rich learning experience, all data in the platform is partitioned into three transparent tiers:
 
-The supplied source does not establish prerequisites, co-requisites, elective eligibility, course offerings, semester credit limits, workload estimates, or course-to-skill mappings. Consequently, the main Plan view is a **source schedule reference**, not a personalized plan or degree audit. Credit/prerequisite checks, academic certificates, skill-readiness claims, and course substitutions are disabled or marked unavailable. No learning modules or diagnostic exercises are included in this compact dataset yet.
+### Tier 1 — Verified Institutional Facts (`provenance="verified"`)
+- **Official Source**: Extracted directly from official institute documents (`data/raw/courses of study.pdf`).
+- **Includes**: 34 verified courses across CSE core, departmental electives, CS minor path, and humanities/open electives, complete with course codes, titles, credits, L-T-P-C breakdowns, semester slots, official programme structure (144 graded credits + 12 non-graded core units), and explicitly printed course prerequisites with cited `source_page` numbers.
+- **Ambiguity Queue**: Ambiguities or discrepancies (e.g. `SL302`/`CSL302`) are recorded in `data/review_queue.csv`.
 
-See [data/DATA_QUALITY.md](data/DATA_QUALITY.md) and [data/seed_bhilai/dataset.json](data/seed_bhilai/dataset.json) for provenance and limitations. The historic IIT Delhi bundle remains under `data/seed/` for the separate legacy profile; it is not the default demo. The Bhilai demo uses `data/buddy_bhilai.db`, leaving an existing `data/buddy.db` untouched.
+### Tier 2 — Labelled Assumptions (`provenance="assumption"`)
+- **Ordinance Gaps**: For policies not explicitly published in the syllabus document (e.g., semester credit minimums/maximums, minor eligibility CGPA, overload thresholds, online-credit caps, offering parity, weekly workload hours).
+- **Transparency**: Stored as configurable academic rules marked with `provenance="assumption"`, a visible reason, and a `"pending ordinance"` note.
+- **Badging**: The solver, validator, and cryptographic plan certificate run on these rules and prominently display an **"Assumed"** badge next to them (contrasted with **"Verified"** badges for Tier 1 rules), ensuring students and advisors never mistake an assumption for an official institute decree.
 
-## Run the app
+### Tier 3 — Team-Authored Learning Layer (`provenance="team_authored" / "derived"`)
+- **Pedagogical Taxonomy**: 24 granular skills mapped across Computer Science, Mathematics, and Humanities domains.
+- **Course-to-Skill Mappings**: 39 mappings grounded in course syllabus topics with confidence scores and source page citations.
+- **Learning Modules**: 112 modules derived from course syllabi topics with learning objectives and concepts.
+- **Original Exercises**: 112 original practice and assessment questions (MCQ, code, short answer, project) with validated correct answer keys grounded directly in module texts.
+- **Goal Templates**: 4 career and academic tracks (`goal_software`, `goal_higher_studies`, `goal_upsc`, `goal_startup`) defining skill proficiency requirements and milestones.
+- **Open Educational Resources**: Open resources (NPTEL, SWAYAM, MIT OCW, NCERT) with provider URLs, licenses, and verification timestamps.
+
+---
+
+## Restored Product Capabilities
+
+- **Personalised Degree Planning**: Fast constraint solver generating valid multi-semester course roadmaps aligned to student career goals and current academic standing.
+- **Cryptographic Plan Certificate**: Deterministic plan verification with SHA-256 certificate hashing, rule audit table, and live **Verified** vs **Assumed** provenance badges.
+- **Why-Not & What-If Exploration**: Transparent rationales for every course recommendation, plus one-click course alternative suggestions.
+- **Plan Version History**: Chronological version tracking with structural diffs (`plan_versions`).
+- **Diagnostic & Exercise Sandbox**: Interactive diagnostic questions identifying student skill gaps, and a live exercise runner with automatic scoring, feedback, and evidence logging.
+- **Bayesian Knowledge Tracing (BKT)**: Probabilistic skill mastery tracking and memory retention modeling.
+- **Dynamic Adaptation Simulation**: Scenario engine demonstrating automatic curriculum remediation when students struggle with assessments.
+- **Goal Reality Check**: Real-time gap analysis comparing student proficiencies against target role requirements.
+- **Conversational Buddy**: Natural language advising grounded strictly in structured curriculum facts and student context.
+
+---
+
+## LiteLLM Configuration
+
+All LLM calls route through **LiteLLM**, decoupling the application from specific model vendors and enabling seamless switches between local and cloud providers:
+
+- Environment Variables:
+  - `LLM_MODEL`: Model identifier (tested default: `gemini/gemini-3.5-flash-lite`; supports `gemini/*`, `openai/*`, `azure/*`, `ollama/*`).
+  - `LLM_API_KEY`: API key for the chosen provider.
+  - `LLM_API_BASE`: (Optional) Custom endpoint base URL for self-hosted or proxy deployments.
+- **Offline Resilience**: When no API key is supplied or when network calls fail, the system falls back gracefully to deterministic, grounded template responses without breaking the user experience.
+
+---
+
+## Quick Start
+
+### Local Setup
+
+```powershell
+# 1. Install dependencies
+python -m pip install -r requirements.txt
+
+# 2. Configure environment (optional: add LLM_API_KEY for live LLM)
+cp .env.example .env
+
+# 3. Start development server
+python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+Open `http://localhost:8000/`. API documentation is available at `http://localhost:8000/docs`.
 
 ### Docker
 
@@ -24,26 +77,17 @@ See [data/DATA_QUALITY.md](data/DATA_QUALITY.md) and [data/seed_bhilai/dataset.j
 docker compose up --build
 ```
 
-Open `http://localhost:8000/`. Swagger is at `http://localhost:8000/docs`. On first startup, the app initializes the isolated Bhilai database and checks every seeded persona's summary. Docker Compose behavior depends on Docker being installed.
+---
 
-### Local Python
-
-```powershell
-python -m pip install -r requirements.txt
-python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
-```
-
-The default `INSTITUTE_PROFILE` is `iit_bhilai`; the app seeds the new database on first startup. To run the legacy dataset for regression testing, set `INSTITUTE_PROFILE=legacy` and use a separate database URL.
-
-## Gemini Buddy (optional)
-
-Set `LLM_API_KEY` in a private `.env` file and restart the app. Do not commit the key or paste it into source files. Without a key, Buddy uses deterministic responses. Live Gemini requests can include the student's question and relevant profile/curriculum context; do not enable live mode for data you are not allowed to share with the configured provider.
-
-## Validation
+## Verification & Testing
 
 ```powershell
+# Run the full test suite (82 tests, 122 subtests)
 python scripts/run_tests.py
-python scripts/run_smoke.py
-```
 
-The test runner executes legacy regressions and Bhilai seed/API checks in separate temporary databases. The smoke runner also exercises the browser flows. `make smoke` and `make verify` are available where GNU Make and their other dependencies are installed.
+# Run the end-to-end smoke tests (pytest + Playwright browser flows)
+python scripts/run_smoke.py
+
+# Run knowledge base validation
+python scripts/validate_kb.py
+```

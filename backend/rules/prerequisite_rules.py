@@ -16,7 +16,7 @@ class PrerequisiteChainRule(Rule):
     scope = RuleScope.COURSE
     clause_id = "ORD-5.1.0"
     section_title = "Prerequisite Passing Grade Enforcement"
-    source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-5.1.0"
+    source_url = "https://home.iitbhilai.ac.in/academic-rules/ordinance-section-5.1.0"
 
     def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
         results = []
@@ -96,7 +96,7 @@ class SemesterParityRule(Rule):
     scope = RuleScope.COURSE
     clause_id = "ORD-5.2.0"
     section_title = "Course Offering Parity Regulation"
-    source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-5.2.0"
+    source_url = "https://home.iitbhilai.ac.in/academic-rules/ordinance-section-5.2.0"
 
     def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
         results = []
@@ -152,7 +152,7 @@ class CoRequisiteRule(Rule):
     scope = RuleScope.COURSE
     clause_id = "ORD-5.1.0"
     section_title = "Prerequisite and Co-requisite Regulations"
-    source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-5.1.0"
+    source_url = "https://home.iitbhilai.ac.in/academic-rules/ordinance-section-5.1.0"
 
     def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
         # Evaluates courses that must be taken in the same semester or earlier
@@ -205,7 +205,7 @@ class BacklogSequenceRule(Rule):
     scope = RuleScope.PLAN
     clause_id = "ORD-5.3.0"
     section_title = "Backlog Remediation Precedence"
-    source_url = "https://home.iitd.ac.in/academic-rules/ordinance-section-5.3.0"
+    source_url = "https://home.iitbhilai.ac.in/academic-rules/ordinance-section-5.3.0"
 
     def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
         # If student profile has backlogs, verify they are scheduled in the first available semester

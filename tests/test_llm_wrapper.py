@@ -13,28 +13,32 @@ class TestLLMWrapper(unittest.TestCase):
 
     def test_offline_fallback_goal_intake(self):
         # Even with no LLM key, goal intake returns structured valid JSON
+        from unittest.mock import patch
         messages = [{"role": "user", "content": "I want to become a software engineer at a top tech company"}]
-        res = llm_client.generate(call_type="GOAL_INTAKE", messages=messages)
-        self.assertTrue(res["fallback_used"])
-        self.assertIn("content", res)
-        
-        parsed = json.loads(res["content"])
-        self.assertEqual(parsed["goal_id"], "goal_software")
-        self.assertEqual(parsed["target_role"], "Software Development Engineer")
+        with patch.object(llm_client, "is_live", return_value=False):
+            res = llm_client.generate(call_type="GOAL_INTAKE", messages=messages)
+            self.assertTrue(res["fallback_used"])
+            self.assertIn("content", res)
+            
+            parsed = json.loads(res["content"])
+            self.assertEqual(parsed["goal_id"], "goal_software")
+            self.assertEqual(parsed["target_role"], "Software Development Engineer")
 
     def test_offline_fallback_explain_plan(self):
+        from unittest.mock import patch
         mock_plan = [
-            {"semester": 3, "code": "COL106", "title": "Data Structures & Algorithms", "credits": 4, "skills_targeted": ["Data Structures", "Algorithms"]},
-            {"semester": 3, "code": "ELL100", "title": "Intro to Electrical Eng", "credits": 4, "skills_targeted": []}
+            {"semester": 3, "code": "CSL202", "title": "Data Structures", "credits": 4, "skills_targeted": ["Data Structures", "Algorithms"]},
+            {"semester": 3, "code": "EEL101", "title": "Basic Electronics Engineering", "credits": 4, "skills_targeted": []}
         ]
-        res = llm_client.generate(
-            call_type="EXPLAIN_PLAN",
-            messages=[{"role": "user", "content": "Explain my schedule"}],
-            fallback_data={"plan_items": mock_plan, "student_name": "Aryan"}
-        )
-        self.assertTrue(res["fallback_used"])
-        self.assertIn("COL106", res["content"])
-        self.assertIn("Semester 3", res["content"])
+        with patch.object(llm_client, "is_live", return_value=False):
+            res = llm_client.generate(
+                call_type="EXPLAIN_PLAN",
+                messages=[{"role": "user", "content": "Explain my schedule"}],
+                fallback_data={"plan_items": mock_plan, "student_name": "Aarav"}
+            )
+            self.assertTrue(res["fallback_used"])
+            self.assertIn("CSL202", res["content"])
+            self.assertIn("Semester 3", res["content"])
 
     def test_caching_layer(self):
         messages = [{"role": "user", "content": "What is Bayesian Knowledge Tracing?"}]
@@ -48,10 +52,10 @@ class TestLLMWrapper(unittest.TestCase):
         self.assertGreaterEqual(stats["cache_hits"], 1)
 
     def test_course_code_hallucination_filter(self):
-        valid_courses = ["COL106", "COL215", "MTL106"]
-        test_text = "You should take COL106 and FAK999 for machine learning."
+        valid_courses = ["CSL202", "CSL252", "MAL403"]
+        test_text = "You should take CSL202 and FAK999 for machine learning."
         verified = llm_client._verify_course_codes(test_text, valid_courses)
-        self.assertIn("COL106", verified)
+        self.assertIn("CSL202", verified)
         self.assertIn("FAK999 (Note: Unverified course code)", verified)
 
     def test_telemetry_logging(self):
@@ -62,4 +66,3 @@ class TestLLMWrapper(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

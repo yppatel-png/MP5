@@ -9,6 +9,7 @@ from pydantic import BaseModel
 from backend.config import settings
 from backend.db.seed_profile import get_institute_profile
 from backend.llm.client import llm_client, call_logger
+from backend.build_stamp import get_build_stamp
 
 router = APIRouter(tags=["Health"])
 
@@ -29,11 +30,14 @@ class HealthResponse(BaseModel):
     database: HealthDatabaseStatus
     institute_profile: str
     telemetry: Dict[str, Any]
+    build_stamp: Dict[str, Any]
 
 @router.get("/health")
 def health_check() -> HealthResponse:
+    stamp = get_build_stamp()
+    status_str = "healthy" if stamp["seed_match"] else "degraded"
     return {
-        "status": "healthy",
+        "status": status_str,
         "service": "Adobe Personalised Learning Buddy",
         "app_env": settings.APP_ENV,
         "llm": {
@@ -43,8 +47,10 @@ def health_check() -> HealthResponse:
             "offline_mode": settings.OFFLINE_MODE
         },
         "database": {
-            "type": "sqlite" if "sqlite" in settings.DATABASE_URL else "postgresql"
+            "type": stamp["database_type"],
+            "name": stamp["database_name"],
         },
         "institute_profile": get_institute_profile(),
-        "telemetry": call_logger.get_summary()
+        "telemetry": call_logger.get_summary(),
+        "build_stamp": stamp,
     }

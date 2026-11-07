@@ -454,9 +454,34 @@ function renderHealthStatus(health) {
     scopeNotice.hidden = true;
     scopeNotice.innerText = '';
   }
-  if (!pill) return;
-  pill.className = isLive ? 'tag tag-success' : 'tag tag-neutral';
-  pill.innerText = isLive ? '• Live assistance available' : '• Offline (Deterministic)';
+  if (pill) {
+    pill.className = isLive ? 'tag tag-success' : 'tag tag-neutral';
+    pill.innerText = isLive ? '• Live assistance available' : '• Offline (Deterministic)';
+  }
+
+  // Build stamp and database sync badge
+  const stampPill = document.getElementById('build-stamp-pill');
+  const banner = document.getElementById('stale-build-banner');
+  const stamp = health?.build_stamp;
+  if (stampPill && stamp) {
+    stampPill.title = stamp.summary_string || '';
+    if (stamp.seed_match) {
+      stampPill.innerText = `Build ${stamp.git_commit} · ${stamp.database_type.toUpperCase()} · Synced (${stamp.db_counts?.exercises || 0} ex)`;
+      stampPill.className = 'tag tag-outline';
+    } else {
+      stampPill.innerText = `⚠️ Stale DB (${stamp.git_commit})`;
+      stampPill.className = 'tag tag-danger';
+    }
+  }
+
+  if (banner && stamp) {
+    if (!stamp.seed_match) {
+      banner.style.display = 'block';
+      banner.innerHTML = `⚠️ <strong>Database out of sync with seed!</strong> ${stamp.mismatches ? stamp.mismatches.join(', ') : 'Count mismatch'}. <button class="btn btn-sm btn-danger" onclick="resetDatabasePrompt()" style="margin-left:8px; padding:2px 8px; font-size:11px;">Reset Data to Sync</button>`;
+    } else {
+      banner.style.display = 'none';
+    }
+  }
 }
 
 // Load Context
@@ -959,7 +984,7 @@ function renderMasteryViews() {
 function sendPresetChat(msg) {
   const input = document.getElementById('buddy-input');
   if (input) input.value = msg;
-  const panel = document.getElementById('buddy-panel');
+  const panel = document.getElementById('buddy-panel') || document.getElementById('buddy-drawer');
   if (panel && !panel.classList.contains('is-open')) {
     panel.classList.add('is-open');
   }

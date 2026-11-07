@@ -33,6 +33,7 @@ from backend.db.onboarding_store import init_onboarding_store
 from backend.student.diagnostic import diagnostic_engine
 from backend.student.model import StudentStore
 from backend.student.summary import build_student_summary
+from backend.build_stamp import get_build_stamp
 
 logger = logging.getLogger("learning_buddy.startup")
 seed_consistency_report = {
@@ -123,24 +124,25 @@ def verify_seeded_student_summaries() -> None:
     validate_llm_configuration()
     init_db()
     init_onboarding_store()
+
+    # Log database connection target
+    stamp = get_build_stamp()
+    logger.info("[DATABASE] Connected to %s (%s)", stamp["database_type"], stamp["database_name"])
+
     if get_institute_profile() == "iit_bhilai":
-        with get_db_cursor() as cur:
-            cur.execute(
-                "SELECT "
-                "(SELECT COUNT(*) FROM programmes), "
-                "(SELECT COUNT(*) FROM courses), "
-                "(SELECT COUNT(*) FROM student_profiles)"
-            )
-            seed_counts = tuple(cur.fetchone())
-        if not any(seed_counts):
-            logger.info("Initializing the isolated IIT Bhilai demo database from its seed bundle.")
+        # Check if database is empty or unseeded
+        if stamp["db_counts"].get("courses", 0) == 0:
+            logger.info("Initializing the isolated IIT Bhilai database from its seed bundle.")
             load_seed_data()
-        elif not all(seed_counts):
+            stamp = get_build_stamp()
+
+        if not stamp["seed_match"]:
             logger.error(
-                "IIT Bhilai database is only partially seeded (programmes=%s, courses=%s, students=%s). "
-                "No automatic reset was performed.",
-                *seed_counts
+                "[BUILD STAMP WARNING] Database out of sync with seed! Expected vs actual: %s",
+                stamp["mismatches"]
             )
+        else:
+            logger.info("[BUILD STAMP VERIFIED] %s", stamp["summary_string"])
     load_programme_catalog()
     profiles = StudentStore.get_all_profiles()
     failures = []

@@ -1,3 +1,9 @@
+> [!WARNING]
+> **STALE AUDIT NOTICE (2026-11-07):**
+> This matrix contains prior automated audit self-assessments that claimed "100% Verified".
+> Under the active **Stabilisation Sprint**, live visual inspection of the running app revealed critical UI and planner defects (P1–P14 documented in `docs/REALITY_CHECK.md`).
+> Treat all "Done" claims in this file as **UNVERIFIED / PENDING** until Phase 8 demo-check execution regenerates this trace from live browser evidence.
+
 # Requirements Traceability Matrix (Adobe Problem Statement)
 
 **Source Document:** `data/adobe_ps_extracted.txt` (Adobe Inter-IIT Tech Meet 15.0 Problem Statement)  

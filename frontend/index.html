@@ -81,6 +81,7 @@
           <select id="persona-select" class="demo-persona-select">
             <option value="" selected disabled>Loading personas...</option>
           </select>
+          <span class="tag tag-outline" id="build-stamp-pill" style="font-family:var(--font-mono); font-size:11px;" title="Build & Database Status">Build ...</span>
         </div>
         <div class="demo-bar-right">
           <span class="tag tag-neutral" id="llm-status-pill">&bull; Offline (Deterministic)</span>
@@ -89,6 +90,7 @@
           </button>
         </div>
       </div>
+      <div id="stale-build-banner" class="banner banner-danger" style="display:none; padding:8px 16px; background:#FEE2E2; color:#991B1B; font-size:12px; font-weight:600; text-align:center; border-bottom:1px solid #F87171;"></div>
 
       <!-- Top Bar (56px) -->
       <header class="app-topbar">

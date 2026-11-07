@@ -37,6 +37,16 @@ def get_git_commit() -> str:
         pass
     return "dev-local"
 
+def get_app_js_hash() -> str:
+    """Returns the SHA-256 slice of frontend/static/js/app.js."""
+    app_js = BASE_DIR / "frontend" / "static" / "js" / "app.js"
+    if app_js.exists():
+        try:
+            return hashlib.sha256(app_js.read_bytes()).hexdigest()[:12]
+        except Exception:
+            pass
+    return "unknown"
+
 def compute_seed_info() -> Tuple[str, Dict[str, int]]:
     """
     Computes deterministic SHA-256 hash across all JSON files in the seed directory

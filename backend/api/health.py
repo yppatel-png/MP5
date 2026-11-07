@@ -9,9 +9,23 @@ from pydantic import BaseModel
 from backend.config import settings
 from backend.db.seed_profile import get_institute_profile
 from backend.llm.client import llm_client, call_logger
-from backend.build_stamp import get_build_stamp
+from backend.build_stamp import get_build_stamp, get_git_commit, get_app_js_hash, _BUILD_TIMESTAMP
 
 router = APIRouter(tags=["Health"])
+
+class VersionResponse(BaseModel):
+    git_hash: str
+    build_time: str
+    app_js_hash: str
+
+@router.get("/version", response_model=VersionResponse)
+def version_check() -> VersionResponse:
+    """Returns the current git commit hash, server build time, and SHA-256 hash of app.js."""
+    return {
+        "git_hash": get_git_commit(),
+        "build_time": _BUILD_TIMESTAMP,
+        "app_js_hash": get_app_js_hash(),
+    }
 
 class HealthLLMStatus(BaseModel):
     model: Optional[str] = None

@@ -117,6 +117,20 @@ async def add_request_id(request: Request, call_next):
     response.headers["X-Request-ID"] = request_id
     return response
 
+@app.middleware("http")
+async def add_no_cache_headers(request: Request, call_next):
+    response = await call_next(request)
+    if (
+        settings.APP_ENV == "development"
+        or request.url.path.startswith("/static")
+        or request.url.path in ("/", "/index.html", "/styleguide")
+        or request.url.path.startswith("/api/")
+    ):
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
+    return response
+
 @app.on_event("startup")
 def verify_seeded_student_summaries() -> None:
     """Verify every persisted student profile can produce the shared summary."""
@@ -208,16 +222,36 @@ def root(request: Request = None):
                 "goals": "/api/goals"
             })
 
-    # Serve the visual web application
+    # Serve the visual web application with content-hashed assets to prevent stale caching
     index_file = FRONTEND_DIR / "index.html"
     if index_file.exists():
-        return FileResponse(str(index_file))
+        import re
+        import hashlib
+        html_content = index_file.read_text(encoding="utf-8")
+        def _add_hash(match):
+            attr = match.group(1)
+            rel_path = match.group(2)
+            target = STATIC_DIR / rel_path
+            h = hashlib.sha256(target.read_bytes()).hexdigest()[:10] if target.exists() else "1"
+            return f'{attr}="/static/{rel_path}?v={h}"'
+        html_content = re.sub(r'(src|href)="/static/([^"?\s]+)"', _add_hash, html_content)
+        return HTMLResponse(content=html_content, headers={
+            "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+            "Pragma": "no-cache",
+            "Expires": "0"
+        })
 
     return JSONResponse({
         "message": "Welcome to Adobe Personalised Learning Buddy API",
         "health_check": "/api/health",
+        "version": "/api/version",
         "docs": "/docs"
     })
+
+@app.get("/version", response_model=None)
+def version_redirect():
+    from backend.api.health import version_check
+    return version_check()
 
 @app.get("/styleguide", response_model=None)
 def styleguide():

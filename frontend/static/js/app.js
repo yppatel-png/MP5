@@ -446,7 +446,7 @@ function renderSeedConsistencyWarning() {
   });
 }
 
-function renderHealthStatus(health) {
+async function renderHealthStatus(health) {
   const pill = document.getElementById('llm-status-pill');
   const isLive = health?.llm?.is_live;
   state.instituteProfile = health?.institute_profile || 'legacy';
@@ -461,17 +461,29 @@ function renderHealthStatus(health) {
     pill.innerText = isLive ? '• Live assistance available' : '• Offline (Deterministic)';
   }
 
-  // Build stamp and database sync badge
+  // Build stamp and database sync badge in footer
   const stampPill = document.getElementById('build-stamp-pill');
   const banner = document.getElementById('stale-build-banner');
   const stamp = health?.build_stamp;
   if (stampPill && stamp) {
+    let verSuffix = '';
+    try {
+      const verRes = await fetch('/api/version');
+      if (verRes.ok) {
+        const verData = await verRes.json();
+        if (verData.app_js_hash) {
+          verSuffix = ` · js:${verData.app_js_hash.substring(0, 7)}`;
+        }
+      }
+    } catch (e) {
+      // non-critical version fetch fallback
+    }
     stampPill.title = stamp.summary_string || '';
     if (stamp.seed_match) {
-      stampPill.innerText = `Build ${stamp.git_commit} · ${stamp.database_type.toUpperCase()} · Synced (${stamp.db_counts?.exercises || 0} ex)`;
+      stampPill.innerText = `Build ${stamp.git_commit}${verSuffix} · ${stamp.database_type.toUpperCase()} · Synced (${stamp.db_counts?.exercises || 0} ex)`;
       stampPill.className = 'tag tag-outline';
     } else {
-      stampPill.innerText = `⚠️ Stale DB (${stamp.git_commit})`;
+      stampPill.innerText = `⚠️ Stale DB (${stamp.git_commit}${verSuffix})`;
       stampPill.className = 'tag tag-danger';
     }
   }
@@ -534,7 +546,7 @@ async function loadFullStudentContext(studentId) {
     renderPracticeSandbox();
     renderDiagnosticView();
     renderSeedConsistencyWarning();
-    renderHealthStatus(health);
+    await renderHealthStatus(health);
 
     const avatar = document.getElementById('user-avatar');
     if (avatar && profile.name) {

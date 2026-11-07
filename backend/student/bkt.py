@@ -18,6 +18,15 @@ class BKTEstimator:
         self.p_guess = bkt_params.get("p_guess_default", 0.2)
         self.mastery_threshold = bkt_params.get("mastery_threshold", 0.85)
         self.min_items_required = bkt_params.get("min_items_required", 2)
+        self.exercise_diffs: Dict[str, int] = {}
+        try:
+            import json
+            from backend.db.seed_profile import get_seed_dir
+            seed_dir = get_seed_dir()
+            with open(seed_dir / "exercises.json", "r", encoding="utf-8") as f:
+                self.exercise_diffs = {e["exercise_id"]: int(e.get("difficulty", 2)) for e in json.load(f)}
+        except Exception:
+            pass
 
     def estimate_skill_mastery(
         self,
@@ -54,12 +63,25 @@ class BKTEstimator:
             weight = float(ev.get("confidence", 0.5))
             total_weight += weight
 
+            # Difficulty weighting (1=easy, 2=medium, 3=hard, 4=expert)
+            item_ref = ev.get("item_ref")
+            raw_diff = ev.get("difficulty") or (self.exercise_diffs.get(item_ref, 2) if item_ref else 2)
+            try:
+                difficulty = max(1, min(4, int(raw_diff)))
+            except (ValueError, TypeError):
+                difficulty = 2
+
             # Treat val >= 0.7 as correct response (O=1), else incorrect (O=0)
             is_correct = val >= 0.7
 
-            # Weight blending: adjust slip and guess based on source reliability
-            p_s = self.p_slip * (1.0 - 0.2 * weight)
-            p_g = self.p_guess * (1.0 - 0.2 * weight)
+            # Difficulty-adjusted slip and guess:
+            # - For hard items (diff 3-4): guessing is harder (lower p_g), slipping is more plausible (higher p_s)
+            # - For easy items (diff 1-2): guessing is easier (higher p_g), slipping is rare (lower p_s)
+            diff_factor = difficulty - 2.0
+            p_s_base = self.p_slip * (1.0 + 0.15 * diff_factor)
+            p_g_base = self.p_guess * (1.0 - 0.20 * diff_factor)
+            p_s = max(0.02, min(0.30, p_s_base * (1.0 - 0.2 * weight)))
+            p_g = max(0.02, min(0.35, p_g_base * (1.0 - 0.2 * weight)))
 
             if is_correct:
                 numerator = p_l * (1.0 - p_s)
@@ -72,13 +94,14 @@ class BKTEstimator:
             p_l_given_obs = numerator / max(denominator, 1e-6)
 
             # Transition update: P(L_t) = P(L_{t-1}|O) + (1 - P(L_{t-1}|O)) * P(T)
-            # Higher weight events apply full transit; low weight events apply reduced transit
-            effective_transit = self.p_transit * weight
+            # Solving harder items provides a stronger positive transition signal
+            diff_learning_multiplier = 0.85 + 0.10 * difficulty
+            effective_transit = self.p_transit * weight * (diff_learning_multiplier if is_correct else 1.0)
             p_l = p_l_given_obs + ((1.0 - p_l_given_obs) * effective_transit)
             p_l = float(np.clip(p_l, 0.01, 0.99))
 
             trail.append(
-                f"Step {i+1}: {source.replace('_', ' ').title()} result ({round(val*100)}%) "
+                f"Step {i+1}: {source.replace('_', ' ').title()} result ({round(val*100)}%, diff={difficulty}) "
                 f"[weight: {round(weight, 2)}] -> updated mastery probability: {round(p_l, 3)}"
             )
 

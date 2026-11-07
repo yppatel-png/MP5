@@ -94,3 +94,22 @@
 - Enhanced `scripts/qa/secrets_scan.py` with repo-wide grep verification for hardcoded model names (`gemini/*`, `gpt-*`, `claude-*`, `llama-*`) and known tokens (`adm_secret_token_*`), removing any `config.py` exemption.
 - Added automated unit test `test_security_unset_model_and_token` in `tests/test_llm_wrapper.py`.
 - Validation: `python scripts/qa/secrets_scan.py` passed cleanly; `python -m pytest tests/test_llm_wrapper.py` passed (6/6).
+
+### Review Fix 1: Real Assessment Items & Adaptive Diagnostic Engine (Item 1)
+- **Replaced Placeholder Exercises**: Completely eliminated the 112 placeholder exercises sharing the generic prompt pattern ("Which topic is explicitly named in the learning unit above?").
+- **Authored 240 Grounded Assessment Items**: Authored exactly 10 high-quality questions for each of the 24 skills (240 total items), spanning difficulties 1 to 4 with mixed modalities:
+  - Conceptual MCQs with distractors based on genuine conceptual misconceptions.
+  - Trace-the-output questions.
+  - Numeric / short-answer calculation problems with scoring rubrics.
+  - Code challenges with unit test suites for software / programming skills.
+- **Provenance & Grounding**: Every item is grounded in syllabus module text, marked with `provenance: team_authored`, citing exact course catalog source pages (p. 21, 42, 83-87, 136-138).
+- **Knowledge Base Validator Enhancements**: Added strict validation rules to `scripts/validate_kb.py`:
+  - Zero duplicate prompts across the corpus.
+  - Prohibition of placeholder prompt patterns.
+  - Validation of exactly one correct answer and unique non-empty options.
+  - Complete difficulty coverage across tiers 1-4 for each skill.
+- **Adaptive Diagnostic & Difficulty Weighting**:
+  - `backend/student/diagnostic.py`: `get_next_question` selects candidate questions optimizing Fisher information gain, matching candidate item difficulty against estimated student ability $p_{\text{mastery}}$.
+  - `backend/student/bkt.py`: Implemented difficulty-weighted Bayesian Knowledge Tracing adjusting slip $p_s$, guess $p_g$, and transition learning rate by item difficulty.
+- **Human Review Audit**: Exported 20 randomly sampled items to `data/exercise_audit_sample.md` and `data/exercise_audit_sample.json`.
+- **Validation**: All tests in `tests/test_practice_mastery.py` and `tests/test_student_diagnostic.py` passed (9/9). `scripts/validate_kb.py` passed with 0 errors.

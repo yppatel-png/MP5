@@ -158,17 +158,24 @@ def is_palindrome(s: str) -> bool:
         self.assertFalse(initial_state["has_demonstrated_proficiency"])
 
         # 2. Student passes 2 independent exercises (empirically demonstrating retention)
+        pf_exercises = [
+            ex for ex in exercise_runner.exercises.values()
+            if ex.get("skill_id") == "programming_fundamentals" and ex.get("type") == "mcq"
+        ]
+        self.assertGreaterEqual(len(pf_exercises), 2)
+        ex1, ex2 = pf_exercises[0], pf_exercises[1]
+
         # Attempt 1
         exercise_runner.evaluate_submission(
             student_id=test_student_id,
-            exercise_id="ex_mod_csl100_1",
-            submission={"selected_option": "C programming"}
+            exercise_id=ex1["exercise_id"],
+            submission={"selected_option": ex1["answer_key"]["correct"]}
         )
         # Attempt 2
         exercise_runner.evaluate_submission(
             student_id=test_student_id,
-            exercise_id="ex_mod_csl100_2",
-            submission={"selected_option": "Control flow"}
+            exercise_id=ex2["exercise_id"],
+            submission={"selected_option": ex2["answer_key"]["correct"]}
         )
 
         # 3. After active corroborating evidence: Status MUST transition to 'demonstrated_proficiency'

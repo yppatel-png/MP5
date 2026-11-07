@@ -1,0 +1,413 @@
+[
+  {
+    "exercise_id": "ex_comm_04",
+    "skill_id": "communication",
+    "module_id": "mod_csq401_3",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "During collaborative software code reviews, how should actionable technical feedback be framed?",
+    "answer_key": {
+      "options": [
+        "Objective, respectful, and focused on code artifacts, maintainability, and standards rather than personal critique",
+        "Demanding immediate rewriting without providing rationale",
+        "Focusing exclusively on stylistic preferences",
+        "Rejecting pull requests without explanatory commentary"
+      ],
+      "correct": "Objective, respectful, and focused on code artifacts, maintainability, and standards rather than personal critique",
+      "explanation": "Constructive code reviews critique implementation decisions with explanatory rationale and suggestions, fostering team growth."
+    },
+    "source": "Original team-authored question grounded in mod_csq401_3",
+    "source_page": 87,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_dm_09",
+    "skill_id": "discrete_mathematics",
+    "module_id": "mod_csl201_4",
+    "type": "mcq",
+    "difficulty": 4,
+    "prompt": "What is the coefficient of x^3 in the expansion of (2x - 1)^5 using the Binomial Theorem?",
+    "answer_key": {
+      "options": [
+        "80",
+        "-80",
+        "40",
+        "-40"
+      ],
+      "correct": "80",
+      "explanation": "The term is C(5, 3) * (2x)^3 * (-1)^(5-3) = 10 * 8x^3 * 1 = 80x^3. So coefficient is 80."
+    },
+    "source": "Original team-authored question grounded in mod_csl201_4",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_prog_07",
+    "skill_id": "programming_fundamentals",
+    "module_id": "mod_csl100_4",
+    "type": "mcq",
+    "difficulty": 3,
+    "prompt": "In C memory layout, dynamically allocated memory via malloc() resides in which memory segment?",
+    "answer_key": {
+      "options": [
+        "Stack",
+        "Heap",
+        "BSS segment",
+        "Text segment"
+      ],
+      "correct": "Heap",
+      "explanation": "malloc() allocates memory from the process heap segment; local variables reside on the call stack."
+    },
+    "source": "Original team-authored question grounded in mod_csl100_4",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_macro_10",
+    "skill_id": "macroeconomics",
+    "module_id": "mod_lal200_2",
+    "type": "mcq",
+    "difficulty": 4,
+    "prompt": "According to the Classical Quantity Theory of Money (M * V = P * Y), what consequence occurs if the money supply M doubles while velocity V and real output Y remain constant?",
+    "answer_key": {
+      "options": [
+        "The price level P exactly doubles, causing 100% inflation",
+        "Real output Y doubles",
+        "Velocity V drops to zero",
+        "Interest rates turn negative"
+      ],
+      "correct": "The price level P exactly doubles, causing 100% inflation",
+      "explanation": "With constant transaction velocity and real production capacity, money supply growth translates directly into proportional price inflation."
+    },
+    "source": "Original team-authored question grounded in mod_lal200_2",
+    "source_page": 137,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_os_01",
+    "skill_id": "operating_systems",
+    "module_id": "mod_csl301_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "What state does a running process enter when it executes a blocking read() system call?",
+    "answer_key": {
+      "options": [
+        "Waiting / Blocked state",
+        "Ready state",
+        "Terminated state",
+        "Zombie state"
+      ],
+      "correct": "Waiting / Blocked state",
+      "explanation": "When awaiting an I/O event or resource, the kernel transitions the process to the Waiting/Blocked queue."
+    },
+    "source": "Original team-authored question grounded in mod_csl301_1",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_toc_03",
+    "skill_id": "theory_computation",
+    "module_id": "mod_csl253_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "What is the computational equivalence between Non-deterministic Finite Automata (NFA) and Deterministic Finite Automata (DFA)?",
+    "answer_key": {
+      "options": [
+        "NFAs and DFAs recognize the exact same class of regular languages",
+        "NFAs can recognize non-regular languages that DFAs cannot",
+        "DFAs are strictly more powerful than NFAs",
+        "NFAs can recognize context-free languages"
+      ],
+      "correct": "NFAs and DFAs recognize the exact same class of regular languages",
+      "explanation": "Via the subset construction algorithm, any NFA with n states can be converted into an equivalent DFA with at most 2^n states."
+    },
+    "source": "Original team-authored question grounded in mod_csl253_2",
+    "source_page": 84,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_arch_08",
+    "skill_id": "computer_architecture",
+    "module_id": "mod_ecl101_3",
+    "type": "mcq",
+    "difficulty": 3,
+    "prompt": "Which cache replacement policy evicts the block that has remained unreferenced for the longest elapsed time?",
+    "answer_key": {
+      "options": [
+        "Least Recently Used (LRU)",
+        "First-In-First-Out (FIFO)",
+        "Random Replacement",
+        "Most Recently Used (MRU)"
+      ],
+      "correct": "Least Recently Used (LRU)",
+      "explanation": "LRU exploits temporal locality by discarding items not accessed for the longest period."
+    },
+    "source": "Original team-authored question grounded in mod_ecl101_3",
+    "source_page": 21,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_ds_06",
+    "skill_id": "data_structures",
+    "module_id": "mod_csl202_2",
+    "type": "mcq",
+    "difficulty": 3,
+    "prompt": "What is the permitted balance factor range for every node in an AVL tree?",
+    "answer_key": {
+      "options": [
+        "{-1, 0, 1}",
+        "{-2, -1, 0, 1, 2}",
+        "{0, 1}",
+        "{-1, 1}"
+      ],
+      "correct": "{-1, 0, 1}",
+      "explanation": "An AVL tree maintains height balance such that height(left) - height(right) is in {-1, 0, 1} for every node."
+    },
+    "source": "Original team-authored question grounded in mod_csl202_2",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_macro_09",
+    "skill_id": "macroeconomics",
+    "module_id": "mod_lal200_3",
+    "type": "mcq",
+    "difficulty": 4,
+    "prompt": "What economic phenomenon occurs when massive government deficit borrowing increases market interest rates, dampening private capital investment?",
+    "answer_key": {
+      "options": [
+        "Crowding-out effect",
+        "Ricardian equivalence",
+        "Paradox of thrift",
+        "Balance sheet recession"
+      ],
+      "correct": "Crowding-out effect",
+      "explanation": "Heavy government bond issuance absorbs loanable funds, bidding up interest rates and crowding out private sector borrowers."
+    },
+    "source": "Original team-authored question grounded in mod_lal200_3",
+    "source_page": 137,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_dm_07",
+    "skill_id": "discrete_mathematics",
+    "module_id": "mod_csl201_3",
+    "type": "mcq",
+    "difficulty": 3,
+    "prompt": "How many edges does a connected tree with 50 vertices have?",
+    "answer_key": {
+      "options": [
+        "49",
+        "50",
+        "25",
+        "100"
+      ],
+      "correct": "49",
+      "explanation": "Every tree with V vertices has exactly V - 1 edges. 50 - 1 = 49."
+    },
+    "source": "Original team-authored question grounded in mod_csl201_3",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_fin_04",
+    "skill_id": "finance",
+    "module_id": "mod_lal101_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "In corporate capital budgeting, what is the decision rule for the Net Present Value (NPV) criterion?",
+    "answer_key": {
+      "options": [
+        "Accept the capital investment project if NPV > 0",
+        "Accept only projects with NPV < 0",
+        "Accept projects where NPV equals initial cost",
+        "Reject projects with positive cash flows"
+      ],
+      "correct": "Accept the capital investment project if NPV > 0",
+      "explanation": "An NPV > 0 signifies that the project generates discounted cash flows exceeding the cost of capital, adding value to the firm."
+    },
+    "source": "Original team-authored question grounded in mod_lal101_2",
+    "source_page": 136,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_lit_09",
+    "skill_id": "literary_analysis",
+    "module_id": "mod_lal221_3",
+    "type": "mcq",
+    "difficulty": 4,
+    "prompt": "In literary theorist Mikhail Bakhtin's analysis of the novel, what does 'Polyphony' (Dialogism) signify?",
+    "answer_key": {
+      "options": [
+        "A plurality of independent and unmerged voices and worldviews interacting democratically without total authorial subordination",
+        "The musical accompaniment performed during theatrical readings",
+        "Rhyming schemes occurring at the center of poetic lines",
+        "The translation of a novel into multiple world languages"
+      ],
+      "correct": "A plurality of independent and unmerged voices and worldviews interacting democratically without total authorial subordination",
+      "explanation": "Bakhtin identified polyphony (e.g. in Dostoevsky) where characters possess distinct autonomous consciousnesses beyond the author's voice."
+    },
+    "source": "Original team-authored question grounded in mod_lal221_3",
+    "source_page": 138,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_llm_10",
+    "skill_id": "llm_software",
+    "module_id": "mod_csp352_4",
+    "type": "mcq",
+    "difficulty": 4,
+    "prompt": "How does Low-Rank Adaptation (LoRA) enable parameter-efficient fine-tuning of large pre-trained weight matrices W_0 in R^(d x k)?",
+    "answer_key": {
+      "options": [
+        "Constrains weight updates to a low-rank decomposition delta_W = B * A where B in R^(d x r) and A in R^(r x k) with r << min(d, k)",
+        "Quantizes all weights to 1-bit integers",
+        "Freezes the first half of the layers and prunes the second half",
+        "Applies singular value decomposition and truncates input prompts"
+      ],
+      "correct": "Constrains weight updates to a low-rank decomposition delta_W = B * A where B in R^(d x r) and A in R^(r x k) with r << min(d, k)",
+      "explanation": "LoRA freezes pre-trained weights W_0 and trains small low-rank adapter matrices A and B, drastically reducing trainable parameter counts."
+    },
+    "source": "Original team-authored question grounded in mod_csp352_4",
+    "source_page": 86,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_dm_03",
+    "skill_id": "discrete_mathematics",
+    "module_id": "mod_csl201_2",
+    "type": "mcq",
+    "difficulty": 2,
+    "prompt": "A binary relation R on set A is an equivalence relation if and only if it satisfies which three properties?",
+    "answer_key": {
+      "options": [
+        "Reflexive, symmetric, and transitive",
+        "Reflexive, antisymmetric, and transitive",
+        "Irreflexive, symmetric, and transitive",
+        "Reflexive, symmetric, and total"
+      ],
+      "correct": "Reflexive, symmetric, and transitive",
+      "explanation": "By definition, an equivalence relation must be reflexive (aRa), symmetric (aRb => bRa), and transitive (aRb and bRc => aRc)."
+    },
+    "source": "Original team-authored question grounded in mod_csl201_2",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_prob_02",
+    "skill_id": "probability_statistics",
+    "module_id": "mod_mal403_1",
+    "type": "mcq",
+    "difficulty": 1,
+    "prompt": "What is the sum of probabilities across all mutually exclusive and collectively exhaustive outcomes in a valid sample space?",
+    "answer_key": {
+      "options": [
+        "1.0",
+        "0.0",
+        "100.0",
+        "Infinity"
+      ],
+      "correct": "1.0",
+      "explanation": "By Kolmogorov's second probability axiom, the total measure of the entire sample space S equals 1.0."
+    },
+    "source": "Original team-authored question grounded in mod_mal403_1",
+    "source_page": 21,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_ai_09",
+    "skill_id": "artificial_intelligence",
+    "module_id": "mod_csl304_2",
+    "type": "mcq",
+    "difficulty": 4,
+    "prompt": "In Constraint Satisfaction Problems (CSPs), what constraint propagation algorithm maintains directional consistency across all variable arcs?",
+    "answer_key": {
+      "options": [
+        "AC-3 (Arc Consistency Algorithm #3)",
+        "Dijkstra's algorithm",
+        "Minimax with alpha-beta",
+        "K-means clustering"
+      ],
+      "correct": "AC-3 (Arc Consistency Algorithm #3)",
+      "explanation": "AC-3 iteratively prunes values from variable domains that have no valid supporting assignment in adjacent constrained variable domains."
+    },
+    "source": "Original team-authored question grounded in mod_csl304_2",
+    "source_page": 85,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_prog_09",
+    "skill_id": "programming_fundamentals",
+    "module_id": "mod_csl100_3",
+    "type": "mcq",
+    "difficulty": 4,
+    "prompt": "What happens when free(ptr) is called twice on the same allocated pointer without reallocation?",
+    "answer_key": {
+      "options": [
+        "Memory is reallocated",
+        "Double free vulnerability / runtime crash",
+        "Safe no-op",
+        "Stack overflow"
+      ],
+      "correct": "Double free vulnerability / runtime crash",
+      "explanation": "Invoking free() twice on the same pointer is undefined behavior leading to heap corruption or abort."
+    },
+    "source": "Original team-authored question grounded in mod_csl100_3",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_prog_08",
+    "skill_id": "programming_fundamentals",
+    "module_id": "mod_csl100_4",
+    "type": "code",
+    "difficulty": 3,
+    "prompt": "Write a function is_palindrome(s) that returns 1 if string s is a palindrome, otherwise 0.",
+    "answer_key": {
+      "correct": "palindrome checker",
+      "explanation": "Compares characters from both ends inwards towards the middle.",
+      "solution": "def is_palindrome(s):\n    return 1 if s == s[::-1] else 0"
+    },
+    "source": "Original team-authored question grounded in mod_csl100_4",
+    "source_page": 83,
+    "provenance": "team_authored",
+    "starter_code": "def is_palindrome(s):\n    # Return 1 if s is a palindrome, else 0\n    pass"
+  },
+  {
+    "exercise_id": "ex_dm_04",
+    "skill_id": "discrete_mathematics",
+    "module_id": "mod_csl201_2",
+    "type": "short",
+    "difficulty": 2,
+    "prompt": "In how many distinct ways can 4 books be arranged on a shelf from a collection of 7 distinct books?",
+    "answer_key": {
+      "correct": "840",
+      "rubric": "840 permutation calculation 7! / (7-4)! = 7 * 6 * 5 * 4",
+      "explanation": "P(7, 4) = 7 * 6 * 5 * 4 = 840 distinct arrangements."
+    },
+    "source": "Original team-authored question grounded in mod_csl201_2",
+    "source_page": 83,
+    "provenance": "team_authored"
+  },
+  {
+    "exercise_id": "ex_arch_06",
+    "skill_id": "computer_architecture",
+    "module_id": "mod_ecl101_3",
+    "type": "mcq",
+    "difficulty": 3,
+    "prompt": "In a direct-mapped cache, how is a memory address partitioned into fields?",
+    "answer_key": {
+      "options": [
+        "Tag, Index, and Block Offset",
+        "Tag and Offset only",
+        "Set, Page, and Offset",
+        "Base, Limit, and Offset"
+      ],
+      "correct": "Tag, Index, and Block Offset",
+      "explanation": "A direct-mapped cache address splits into Block Offset (within line), Index (selects line), and Tag (confirms identity)."
+    },
+    "source": "Original team-authored question grounded in mod_ecl101_3",
+    "source_page": 21,
+    "provenance": "team_authored"
+  }
+]

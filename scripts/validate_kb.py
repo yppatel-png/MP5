@@ -97,24 +97,68 @@ def run_validation():
     exercises_with_modules = 0
     exercises_with_valid_key = 0
     skill_exercise_counts = {sk: 0 for sk in skill_ids}
+    seen_prompts: Set[str] = set()
+
     for ex in exercises:
+        ex_id = ex.get("exercise_id", "unknown")
         m_id = ex.get("module_id")
         s_id = ex.get("skill_id")
+        prompt = ex.get("prompt", "").strip()
+
+        if not prompt:
+            errors.append(f"Exercise '{ex_id}' has an empty prompt.")
+        elif prompt.lower() in seen_prompts:
+            errors.append(f"Exercise '{ex_id}' has a duplicate prompt: '{prompt[:50]}...'")
+        else:
+            seen_prompts.add(prompt.lower())
+
+        if "explicitly named" in prompt.lower() or "in the learning unit above" in prompt.lower():
+            errors.append(f"Exercise '{ex_id}' contains banned placeholder prompt phrasing: '{prompt}'")
+
         if m_id and m_id not in module_ids:
-            errors.append(f"Exercise '{ex['exercise_id']}' references unknown module '{m_id}'.")
+            errors.append(f"Exercise '{ex_id}' references unknown module '{m_id}'.")
         else:
             exercises_with_modules += 1
+
         if s_id and s_id not in skill_ids:
-            errors.append(f"Exercise '{ex['exercise_id']}' references unknown skill '{s_id}'.")
+            errors.append(f"Exercise '{ex_id}' references unknown skill '{s_id}'.")
         elif s_id:
             skill_exercise_counts[s_id] += 1
 
         # Validate answer key
         ans_key = ex.get("answer_key", {})
-        if ans_key and "correct" in ans_key and ans_key["correct"]:
-            exercises_with_valid_key += 1
+        if not ans_key:
+            errors.append(f"Exercise '{ex_id}' is missing answer_key.")
+            continue
+
+        correct = ans_key.get("correct")
+        if not correct:
+            errors.append(f"Exercise '{ex_id}' is missing a valid single correct answer key.")
         else:
-            errors.append(f"Exercise '{ex['exercise_id']}' is missing a valid single correct answer key.")
+            exercises_with_valid_key += 1
+
+        explanation = ans_key.get("explanation", "").strip()
+        if not explanation:
+            errors.append(f"Exercise '{ex_id}' is missing an explanation.")
+
+        if ex.get("type") == "mcq":
+            options = ans_key.get("options", [])
+            if not options or len(options) < 2:
+                errors.append(f"MCQ Exercise '{ex_id}' must have at least 2 options.")
+            elif len(set(options)) != len(options):
+                errors.append(f"MCQ Exercise '{ex_id}' has duplicate options.")
+            elif correct not in options:
+                errors.append(f"MCQ Exercise '{ex_id}' correct answer '{correct}' is not in options.")
+
+    # Check difficulty distribution per skill
+    for sk in skill_ids:
+        sk_items = [e for e in exercises if e.get("skill_id") == sk]
+        if len(sk_items) < 10:
+            errors.append(f"Skill '{sk}' has only {len(sk_items)} exercises (minimum 10 required).")
+        diffs = {e.get("difficulty") for e in sk_items}
+        missing_diffs = {1, 2, 3, 4} - diffs
+        if missing_diffs:
+            errors.append(f"Skill '{sk}' is missing difficulty levels {sorted(missing_diffs)}.")
 
     skill_resource_counts = {sk: 0 for sk in skill_ids}
     for r in resources:

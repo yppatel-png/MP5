@@ -129,19 +129,33 @@ class DiagnosticEngine:
 
         scored_skills.sort(key=lambda x: x[0], reverse=True)
 
-        # Pick an unasked exercise for the top priority skill
-        selected_exercise = None
-        for _, sk_id in scored_skills:
+        # Select exercise by information gain and difficulty matching
+        # Information Gain combines skill priority (uncertainty / goal importance)
+        # and difficulty matching: maximum Fisher information occurs when item difficulty
+        # matches current estimated ability: target_diff = 1.0 + 3.0 * p_mastery (range 1-4)
+        best_candidate = None
+        best_info_gain = -1.0
+
+        for priority, sk_id in scored_skills:
+            curr = skill_matrix.get(sk_id, {})
+            p_m = curr.get("p_mastery", 0.5)
+            target_difficulty = max(1.0, min(4.0, 1.0 + 3.0 * p_m))
+
             candidate_exs = [
                 ex for ex in self.exercises
                 if ex["skill_id"] == sk_id
                 and ex["exercise_id"] not in answered_exercise_ids
                 and ex["type"] in {"mcq", "short"}
             ]
-            if candidate_exs:
-                # Pick medium difficulty first, then adaptive
-                selected_exercise = candidate_exs[0]
-                break
+            for ex in candidate_exs:
+                diff = float(ex.get("difficulty", 2))
+                diff_match = 1.0 / (1.0 + abs(diff - target_difficulty))
+                info_gain = priority * diff_match
+                if info_gain > best_info_gain:
+                    best_info_gain = info_gain
+                    best_candidate = ex
+
+        selected_exercise = best_candidate
 
         # If no unasked exercises in goal skills or threshold reached
         if not selected_exercise or len(answered_exercise_ids) >= 12:

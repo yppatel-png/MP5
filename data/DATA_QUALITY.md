@@ -1,6 +1,6 @@
 # Knowledge Base Quality & Verification Audit
 
-**Generated:** 2026-11-07 08:47:45  
+**Generated:** 2026-11-07 09:06:28  
 **Target Institute:** Indian Institute of Technology Bhilai (IIT Bhilai)  
 **Programmes Covered:** B.Tech Computer Science and Engineering (`BH-CSE-BTECH`)  
 **Overall Validation Status:** `PASSED (100% Valid)`  
@@ -15,12 +15,12 @@
 | **Courses** | 20 to 40 courses | **34 courses** | `PASSED` |
 | **Modules / Lessons** | 100 to 300 modules | **112 modules** | `PASSED` |
 | **Skill Nodes** | 20 to 30 skills | **24 skills** | `PASSED` |
-| **Assessment Exercises**| 100+ exercises | **112 exercises** (all validated single correct answer) | `PASSED` |
+| **Assessment Exercises**| 100+ exercises | **240 exercises** (all validated single correct answer) | `PASSED` |
 | **Curated OERs** | At least 1 per core skill | **6 resources** (NPTEL, SWAYAM, MIT OCW, NCERT) | `PASSED` |
 | **Prerequisite Graph** | Strictly Acyclic (DAG) | **Zero cycles (18 directed edges, 17 catalogue-resolved)** | `PASSED` |
 | **Referential Integrity**| 100% Foreign Key match | **0 orphan records / 0 missing references** | `PASSED` |
 | **Skill Resource Coverage**| >= 90% | **33.3%** | `PASSED` |
-| **Skill Exercise Coverage**| >= 90% | **91.7%** | `PASSED` |
+| **Skill Exercise Coverage**| >= 90% | **100.0%** | `PASSED` |
 | **Rule Engine Integrity** | Valid JSON parameters | **7 rules configured with visible reasons** | `PASSED` |
 
 ---
@@ -39,7 +39,7 @@ Every piece of institutional and pedagogical knowledge is partitioned into three
 * **Marking**: Stored with `provenance="assumption"`, a visible rationale, and clause citation `"pending ordinance"`.
 * **Badge**: The planner, independent validator, and cryptographic PlanCertificate show an **"Assumed"** badge next to these checks, never silently presenting them as statutory IIT Bhilai ordinances.
 
-### Tier 3 — Team-Authored Learning Layer (24 skills, 112 modules, 112 exercises, 39 mappings)
+### Tier 3 — Team-Authored Learning Layer (24 skills, 112 modules, 240 exercises, 39 mappings)
 * **Authority**: Authored and validated curriculum breakdown based directly on cited syllabus topics.
 * **Contents**:
   * **24 Skill Nodes** spanning Computing, Mathematics, and Liberal Arts.
@@ -55,7 +55,7 @@ Every piece of institutional and pedagogical knowledge is partitioned into three
 ## 3. Prerequisite Graph Topological Ordering
 
 The prerequisite structure forms a strictly acyclic directed graph (DAG). The topological order of course levels is:
-`CSQ401, LAL225, CSL505, LAL222, CSL303, CSP352, CSL511, MAL403, CSL201, CSL559, CSL100, LAL101, ECL101, LAL223, LAL201... and 19 more.`
+`CSL504, LAL202, CSL505, LAL201, CSL303, LAL101, CSL351, ECL101, LAL224, CSL511, CSQ401, LAL100, CSP352, CSL304, LAL222... and 19 more.`
 
 ---
 

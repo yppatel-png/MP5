@@ -9,10 +9,51 @@ import sys
 MEMORY_LIMIT_BYTES = 512 * 1024 * 1024
 
 
+class SecurityVisitor(ast.NodeVisitor):
+    FORBIDDEN_MODULES = {
+        "os", "sys", "subprocess", "socket", "shutil", "pathlib", "importlib",
+        "requests", "urllib", "http", "socketserver", "pty", "posix", "_posixsubprocess",
+        "ctypes", "winreg", "msvcrt", "builtins", "signal", "threading", "multiprocessing"
+    }
+    FORBIDDEN_CALLS = {
+        "open", "eval", "exec", "__import__", "compile", "globals", "locals",
+        "getattr", "setattr", "delattr", "hasattr", "breakpoint", "memoryview"
+    }
+    FORBIDDEN_ATTRS = {
+        "__class__", "__subclasses__", "__bases__", "__globals__", "__code__",
+        "__builtins__", "__mro__", "__dict__", "__closure__", "__func__"
+    }
+
+    def visit_Import(self, node):
+        for alias in node.names:
+            base_mod = alias.name.split('.')[0]
+            if base_mod in self.FORBIDDEN_MODULES:
+                raise ValueError(f"Forbidden construct: module import '{alias.name}' is prohibited.")
+        self.generic_visit(node)
+
+    def visit_ImportFrom(self, node):
+        if node.module:
+            base_mod = node.module.split('.')[0]
+            if base_mod in self.FORBIDDEN_MODULES:
+                raise ValueError(f"Forbidden construct: module import '{node.module}' is prohibited.")
+        self.generic_visit(node)
+
+    def visit_Call(self, node):
+        if isinstance(node.func, ast.Name) and node.func.id in self.FORBIDDEN_CALLS:
+            raise ValueError(f"Forbidden construct: call '{node.func.id}' is prohibited.")
+        self.generic_visit(node)
+
+    def visit_Attribute(self, node):
+        if node.attr in self.FORBIDDEN_ATTRS:
+            raise ValueError(f"Forbidden construct: attribute '{node.attr}' access is prohibited.")
+        self.generic_visit(node)
+
+
 def grade_code(exercise, code_str):
     if not code_str or not code_str.strip():
         return {"score": 0.0, "is_correct": False, "feedback": "No code provided."}
 
+    # 1. Text token fast check
     forbidden = [
         "import os", "import sys", "import subprocess", "import socket",
         "open(", "eval(", "exec(", "__import__",
@@ -26,6 +67,27 @@ def grade_code(exercise, code_str):
                 "passed_tests": 0,
                 "total_tests": 1,
             }
+
+    # 2. AST-level static security scan
+    try:
+        parsed_ast = ast.parse(code_str)
+        SecurityVisitor().visit(parsed_ast)
+    except ValueError as ve:
+        return {
+            "score": 0.0,
+            "is_correct": False,
+            "feedback": f"Security restriction: {str(ve)}",
+            "passed_tests": 0,
+            "total_tests": 1,
+        }
+    except SyntaxError as se:
+        return {
+            "score": 0.0,
+            "is_correct": False,
+            "feedback": f"Syntax error in submitted code: {se.msg} (line {se.lineno})",
+            "passed_tests": 0,
+            "total_tests": 1,
+        }
 
     test_cases = exercise.get("answer_key", {}).get("test_cases", [])
     safe_globals = {

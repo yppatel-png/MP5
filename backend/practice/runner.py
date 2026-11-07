@@ -155,7 +155,23 @@ class ExerciseRunner:
         }
 
     def _grade_code(self, exercise: Dict[str, Any], code_str: str) -> Dict[str, Any]:
+        import os
+        if os.getenv("DISABLE_CODE_EXERCISES", "false").lower() in ("true", "1", "yes"):
+            return {
+                "score": 0.0,
+                "is_correct": False,
+                "feedback": "Code exercise execution is disabled in this demo deployment for container sandbox hardening. Refer to README.md for architecture details.",
+                "passed_tests": 0,
+                "total_tests": 0,
+                "disabled": True
+            }
+
         worker_path = Path(__file__).with_name("code_worker.py")
+        clean_env = {
+            "SYSTEMROOT": os.environ.get("SYSTEMROOT", ""),
+            "PATH": os.environ.get("PATH", ""),
+            "PYTHONPATH": str(worker_path.parents[2]),
+        }
         try:
             process = subprocess.run(
                 [sys.executable, "-m", "backend.practice.code_worker"],
@@ -164,6 +180,7 @@ class ExerciseRunner:
                 text=True,
                 timeout=CODE_EXECUTION_TIMEOUT_SECONDS,
                 cwd=worker_path.parents[2],
+                env=clean_env,
                 check=False,
             )
         except subprocess.TimeoutExpired:

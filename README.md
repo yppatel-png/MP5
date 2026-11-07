@@ -47,6 +47,20 @@ To maintain uncompromising academic integrity while delivering a complete learni
 
 ---
 
+## Sandbox Security & Code Execution Architecture
+
+Python practice exercises are evaluated through a multi-tier hardened security boundary:
+- **AST Static Analysis (`backend/practice/code_worker.py`)**: Before code is executed, an abstract syntax tree visitor (`SecurityVisitor`) strictly blocks:
+  - Unauthorized module imports (`os`, `sys`, `subprocess`, `socket`, `pathlib`, `shutil`, `urllib`, `requests`, `ctypes`, etc.).
+  - Unsafe built-in calls (`open`, `eval`, `exec`, `compile`, `globals`, `locals`, `getattr`, `breakpoint`).
+  - Dunder reflection escapes (`__subclasses__`, `__globals__`, `__bases__`, `__mro__`, `__code__`).
+- **Subprocess Isolation**: Code executes in a dedicated child worker process (`python -m backend.practice.code_worker`) decoupled from the web application server, with all sensitive environment variables scrubbed from the worker's environment.
+- **Resource Limits & Timeouts**: Hardened with an absolute 7.0-second process timeout, 512 MB virtual memory ceiling (`RLIMIT_AS`), and a 2-second CPU ceiling (`RLIMIT_CPU`).
+- **Restricted Built-in Scope**: Code runs in a clean scope limited to pure mathematical and algorithmic primitives (e.g. `range`, `len`, `int`, `min`, `max`, `sum`, `abs`, `sorted`).
+- **Demo Toggle**: Code execution can be completely disabled for demo environments by setting `DISABLE_CODE_EXERCISES=true` in `.env`. When active, code submission endpoints return an informative advisory guiding the student to conceptual MCQs and rubric-graded exercises.
+
+---
+
 ## Single Database Architecture (PostgreSQL)
 
 The platform standardizes on **PostgreSQL 16** via SQLAlchemy 2.0 and psycopg2 as the single primary production database:

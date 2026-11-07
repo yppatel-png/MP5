@@ -168,4 +168,13 @@
   - Added `scenario_weak_study_week` (4 hrs logged, 20% adherence, status Behind, load-shedding upcoming semester credit cap to 16 credits).
   - Added parameterized `run_study_week_simulation` to `AdaptationSimulator` and registered in `backend/adapt/simulator.py`.
 - **Validation**: Added `tests/test_study_sessions_and_simulation.py` with 4 comprehensive tests (all passed); `delhi_gate.py` passed with 0 violations.
+
+### Review Fix 7: Code Sandbox Hardening & Documentation (Item 7)
+- **Hardened Sandbox Security Pipeline**:
+  - Implemented `SecurityVisitor` in `backend/practice/code_worker.py` utilizing AST-level parsing to forbid unsafe modules (`os`, `sys`, `subprocess`, `socket`, `pathlib`, `shutil`, `urllib`, `requests`, `ctypes`), unsafe functions (`open`, `eval`, `exec`, `compile`, `globals`, `locals`), and dunder reflection access (`__subclasses__`, `__globals__`, `__mro__`, `__bases__`, `__code__`).
+  - Decoupled code execution into a dedicated child subprocess with a sanitized environment dictionary (`clean_env` stripping all tokens and database credentials).
+  - Enforced strict execution ceilings (7.0-second timeout, 512 MB memory limit, 2s CPU ceiling).
+- **Demo Toggle Support**: Added `DISABLE_CODE_EXERCISES` environment toggle support to disable code evaluation for restricted demo environments.
+- **Documentation**: Documented sandbox isolation layers, security constraints, and demo toggles in `README.md`.
+- **Validation**: All tests in `tests/test_practice_mastery.py` passed (including malicious code rejection and timeout enforcement); `delhi_gate.py` passed with 0 violations.
 - **Validation**: `python scripts/validate_kb.py` passed with 100.0% skill-resource coverage and 100.0% skill-exercise coverage (0 errors). Added unit test in `tests/test_knowledge_base.py` verifying exclusion of unverified resources (6/6 passed).

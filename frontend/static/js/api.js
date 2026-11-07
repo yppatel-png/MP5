@@ -170,6 +170,16 @@ const client = {
         const query = skillId ? `?skill_id=${encodeURIComponent(skillId)}` : '';
         return request(`/api/practice/exercises${query}`, {}, signal);
     },
+    getResources(skillId, signal) {
+        const query = skillId ? `?skill_id=${encodeURIComponent(skillId)}` : '';
+        return request(`/api/practice/resources${query}`, {}, signal);
+    },
+    getMasteryReport(studentId, signal) {
+        return request(`/api/practice/mastery/${encodeURIComponent(studentId)}`, {}, signal);
+    },
+    getEvidence(studentId, signal) {
+        return request(`/api/students/${encodeURIComponent(studentId)}/evidence`, {}, signal);
+    },
     saveProfile(profile) {
         return request('/api/students', {
             method: 'POST',

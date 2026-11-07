@@ -66,6 +66,7 @@ def list_exercises(
         ans = copy_ex.get("answer_key", {})
         copy_ex["options"] = ans.get("options", [])
         copy_ex.pop("answer_key", None)
+        copy_ex["skill_name"] = exercise_runner.skills.get(copy_ex.get("skill_id", ""), {}).get("name", copy_ex.get("skill_id", ""))
         if not copy_ex.get("title"):
             first_line = copy_ex["prompt"].split("\n")[0].strip()
             if len(first_line) > 60:
@@ -73,6 +74,18 @@ def list_exercises(
             copy_ex["title"] = first_line
         sanitized.append(copy_ex)
     return sanitized
+
+@router.get("/resources")
+def list_resources(skill_id: Optional[str] = None) -> List[Dict[str, Any]]:
+    """Returns curated educational resources mapped to skills."""
+    import json
+    from backend.db.seed_profile import get_seed_dir
+    seed_dir = get_seed_dir()
+    with open(seed_dir / "resources.json", "r", encoding="utf-8") as f:
+        all_res = json.load(f)
+    if skill_id:
+        return [r for r in all_res if skill_id in r.get("skill_ids", [])]
+    return all_res
 
 @router.get("/exercises/{exercise_id}")
 def get_exercise_detail(exercise_id: str) -> Dict[str, Any]:

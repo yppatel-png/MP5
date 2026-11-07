@@ -619,3 +619,83 @@ textarea.code-editor-input {
   border-bottom: none;
 }
 
+/* ----------------------------------------------------------------------------
+   PHASE 5: PRACTICE & PROGRESS ENHANCEMENTS (PDF §2.4, §3 UX)
+   ---------------------------------------------------------------------------- */
+.practice-option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-12);
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--ink);
+  transition: all 0.15s ease;
+  margin-bottom: var(--space-8);
+}
+
+.practice-option:hover {
+  border-color: var(--accent);
+  background: var(--surface-2);
+}
+
+.practice-option input[type="radio"] {
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+.practice-option.is-correct {
+  border-color: #10b981 !important;
+  background: rgba(16, 185, 129, 0.12) !important;
+  color: #10b981 !important;
+  font-weight: 500;
+}
+
+.practice-option.is-wrong {
+  border-color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.12) !important;
+  color: #ef4444 !important;
+}
+
+.practice-option.is-correct-target {
+  border-color: #10b981 !important;
+  background: rgba(16, 185, 129, 0.08) !important;
+  font-weight: 500;
+}
+
+.study-first-card {
+  transition: border-color 0.15s ease;
+}
+
+.study-first-card:hover {
+  border-color: var(--accent);
+}
+
+.evidence-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+}
+
+.readiness-ring-svg {
+  transform: rotate(-90deg);
+}
+
+.readiness-ring-bg {
+  stroke: var(--surface-2);
+}
+
+.readiness-ring-circle {
+  stroke: var(--accent);
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+

@@ -1425,103 +1425,203 @@ async function dropCourseFromPlan(semNumber, courseCode) {
 }
 
 // ==============================================================================
-// 3. LEARN & PRACTICE VIEW
+// 3. LEARN & PRACTICE VIEW (PDF §2.4, §3 UX)
 // ==============================================================================
-function renderPracticeSandbox() {
+
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[c]);
+}
+
+function toTitleCase(str) {
+  if (!str) return '';
+  const clean = str.replace(/^skill_/, '').replace(/_/g, ' ');
+  const words = clean.split(' ');
+  return words.map(w => {
+    if (!w) return '';
+    const lw = w.toLowerCase();
+    if (['and', 'or', 'of', 'for', 'the', 'in', 'on', 'at', 'to', 'a', 'an'].includes(lw)) {
+      return lw;
+    }
+    return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+  }).join(' ').replace(/^./, c => c.toUpperCase());
+}
+
+async function renderPracticeSandbox() {
   const listGroup = document.getElementById('exercise-list-group');
   if (!listGroup) return;
+
   const filter = document.getElementById('practice-skill-filter');
   if (filter && !filter.options.length) {
-    const all = document.createElement('option');
-    all.value = '';
-    all.innerText = 'All skills';
-    filter.appendChild(all);
-    Object.values(state.skillsMatrix || {}).forEach(skill => {
+    const skills = Object.values(state.skillsMatrix || {});
+    skills.sort((a, b) => a.name.localeCompare(b.name));
+    skills.forEach(skill => {
       const option = document.createElement('option');
       option.value = skill.skill_id;
-      option.innerText = skill.name;
+      option.innerText = toTitleCase(skill.name || skill.skill_id);
       filter.appendChild(option);
     });
+    const defaultSkill = skills.find(s => s.skill_id === 'theory_computation') || skills[0];
+    if (defaultSkill) {
+      filter.value = defaultSkill.skill_id;
+      state.practiceSkillId = defaultSkill.skill_id;
+    }
   }
 
-  listGroup.innerHTML = (state.exercises || []).map((ex, idx) => {
-    const itemTitle = ex.title || ex.prompt?.split('\n')[0] || `Exercise ${idx + 1}`;
-    const isActive = state.activeExercise && state.activeExercise.exercise_id === ex.exercise_id;
-    return `
-    <div class="exercise-item" style="padding:8px 12px; border:1px solid var(--border); border-radius:var(--radius-sm); cursor:pointer; background:${isActive ? 'var(--surface-2)' : 'var(--surface)'}; font-size:13px;" onclick="selectExercise(${idx})">
-      <div style="font-weight:500; color:var(--ink);">${itemTitle}</div>
-      <div class="text-meta" style="margin-top:2px;">Difficulty: ${ex.difficulty} &bull; ${ex.type.toUpperCase()}</div>
-    </div>
-  `;
-  }).join('');
+  const activeSkillId = filter?.value || state.practiceSkillId || 'theory_computation';
+  state.practiceSkillId = activeSkillId;
 
-  if (!state.exercises || !state.exercises.length) {
-    listGroup.innerHTML = '<div class="text-meta">No exercises available for this filter.</div>';
-    document.getElementById('active-ex-title').innerText = 'No exercises available';
-    document.getElementById('practice-prompt').innerText =
-      'Select a different skill filter to view practice exercises.';
-    document.getElementById('practice-answer-controls').replaceChildren();
-    const codeArea = document.getElementById('practice-code-area');
-    codeArea.value = '';
-    codeArea.hidden = true;
-    document.getElementById('practice-submit-btn').disabled = true;
-    document.getElementById('sandbox-output').innerText = 'No exercise is available to submit.';
+  try {
+    const [exercises, resources] = await Promise.all([
+      api.getExercises(activeSkillId),
+      api.getResources(activeSkillId).catch(() => [])
+    ]);
+
+    state.exercises = exercises || [];
+    state.practiceResources = resources || [];
+    state.practiceSetIndex = state.practiceSetIndex || 0;
+    state.practiceSetCorrect = state.practiceSetCorrect || 0;
+
+    renderStudyFirstCard(state.practiceResources, activeSkillId);
+    renderExerciseListGroup(state.exercises, state.practiceSetIndex);
+    renderActiveExerciseCard();
+  } catch (err) {
+    const out = document.getElementById('sandbox-output');
+    if (out) out.innerText = `Could not load exercises: ${err.message}`;
+  }
+}
+
+function renderStudyFirstCard(resources, skillId) {
+  const card = document.getElementById('practice-study-card');
+  if (!card) return;
+
+  if (resources && resources.length > 0) {
+    const res = resources[0];
+    const prov = document.getElementById('study-card-provider');
+    if (prov) prov.innerText = res.provider ? `Provider: ${res.provider}` : '';
+    const title = document.getElementById('study-card-title');
+    if (title) title.innerText = res.title;
+    const meta = document.getElementById('study-card-meta');
+    if (meta) meta.innerText = `${res.format || 'Course Materials'} \u2022 Estimated: ${res.est_minutes || 60} mins \u2022 ${res.difficulty || 'All levels'}`;
+    const link = document.getElementById('study-card-link');
+    if (link) link.href = res.url || '#';
+    card.style.display = 'block';
+  } else {
+    card.style.display = 'none';
+  }
+}
+
+function renderExerciseListGroup(exercises, activeIdx) {
+  const listGroup = document.getElementById('exercise-list-group');
+  if (!listGroup) return;
+
+  if (!exercises.length) {
+    listGroup.innerHTML = '<div class="text-meta" style="padding:12px 8px;">No exercises available for this skill.</div>';
     return;
   }
 
-  if (!state.activeExercise && state.exercises.length > 0) {
-    state.activeExercise = state.exercises[0];
-  }
-
-  if (state.activeExercise) {
-    document.getElementById('practice-submit-btn').disabled = false;
-    document.getElementById('active-ex-title').innerText = state.activeExercise.title;
-    document.getElementById('practice-prompt').innerText = state.activeExercise.prompt;
-    document.getElementById('practice-code-area').value = state.activeExercise.starter_code || '';
-    renderPracticeAnswerControls(state.activeExercise);
-  }
+  listGroup.innerHTML = exercises.map((ex, idx) => {
+    const isActive = idx === activeIdx;
+    const cleanPrompt = ex.prompt ? ex.prompt.split('\n')[0].replace(/[`*]/g, '') : `Question ${idx + 1}`;
+    const shortPrompt = cleanPrompt.length > 55 ? cleanPrompt.substring(0, 52) + '...' : cleanPrompt;
+    return `
+      <div class="exercise-item" style="padding:10px 12px; border:1px solid ${isActive ? 'var(--accent)' : 'var(--border)'}; border-radius:var(--radius-sm); cursor:pointer; background:${isActive ? 'var(--surface-2)' : 'var(--surface)'}; font-size:13px; transition:border 0.15s ease;" onclick="selectExercise(${idx})">
+        <div style="font-weight:600; color:var(--ink);">${idx + 1}. ${escapeHtml(shortPrompt)}</div>
+        <div class="text-meta" style="margin-top:3px; font-size:11px; display:flex; gap:6px;">
+          <span>Diff ${ex.difficulty || 2}</span>
+          <span>&bull;</span>
+          <span>${(ex.type || 'MCQ').toUpperCase()}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 
-async function filterPracticeExercises() {
-  const skillId = document.getElementById('practice-skill-filter').value;
-  try {
-    state.exercises = await api.getExercises(skillId || undefined);
-    state.activeExercise = state.exercises[0] || null;
-    renderPracticeSandbox();
-  } catch (error) {
-    document.getElementById('sandbox-output').innerText =
-      `${error.message || 'Could not load exercises.'} Request ID: ${error.requestId || 'unavailable'}`;
-  }
-}
+function renderActiveExerciseCard() {
+  const ex = state.exercises[state.practiceSetIndex];
+  const questionCard = document.querySelector('.practice-question-card');
+  const summaryCard = document.getElementById('practice-summary-card');
 
-function selectExercise(idx) {
-  state.activeExercise = state.exercises[idx];
-  if (state.activeExercise) {
-    document.getElementById('active-ex-title').innerText = state.activeExercise.title;
-    document.getElementById('practice-prompt').innerText = state.activeExercise.prompt;
-    document.getElementById('practice-code-area').value = state.activeExercise.starter_code || '';
-    document.getElementById('sandbox-output').innerText = 'Submit your answer to receive feedback and update your evidence.';
-    renderPracticeAnswerControls(state.activeExercise);
+  if (!ex) {
+    if (questionCard) questionCard.style.display = 'none';
+    if (summaryCard) summaryCard.style.display = 'none';
+    return;
   }
+
+  if (questionCard) questionCard.style.display = 'block';
+  if (summaryCard) summaryCard.style.display = 'none';
+
+  const skillBadge = document.getElementById('active-ex-skill-badge');
+  if (skillBadge) skillBadge.innerText = toTitleCase(ex.skill_name || ex.skill_id || state.practiceSkillId);
+  const diffBadge = document.getElementById('active-ex-difficulty');
+  if (diffBadge) diffBadge.innerText = `Difficulty: ${ex.difficulty || 2}`;
+  const typeBadge = document.getElementById('active-ex-type');
+  if (typeBadge) typeBadge.innerText = (ex.type || 'MCQ').toUpperCase();
+  const progressCount = document.getElementById('practice-progress-count');
+  if (progressCount) progressCount.innerText = `Question ${state.practiceSetIndex + 1} of ${state.exercises.length}`;
+
+  const promptEl = document.getElementById('practice-prompt');
+  if (promptEl) promptEl.innerText = ex.prompt;
+
+  renderPracticeAnswerControls(ex);
+
+  const feedbackPane = document.getElementById('practice-feedback-pane');
+  if (feedbackPane) feedbackPane.style.display = 'none';
+  const submitBtn = document.getElementById('practice-submit-btn');
+  if (submitBtn) {
+    submitBtn.style.display = 'inline-block';
+    submitBtn.disabled = false;
+    submitBtn.innerText = 'Submit answer';
+  }
+  const nextBtn = document.getElementById('practice-next-btn');
+  if (nextBtn) nextBtn.style.display = 'none';
+
+  const out = document.getElementById('sandbox-output');
+  if (out) out.innerText = 'Choose an option and submit to verify retention and update evidence.';
 }
 
 function renderPracticeAnswerControls(exercise) {
   const controls = document.getElementById('practice-answer-controls');
   const codeArea = document.getElementById('practice-code-area');
+  if (!controls) return;
   controls.replaceChildren();
-  codeArea.hidden = exercise.type !== 'code';
-  document.getElementById('practice-submit-btn').innerText =
-    exercise.type === 'code' ? 'Run & test' : 'Submit answer';
-  if (exercise.type === 'mcq') {
-    exercise.options.forEach((option, index) => {
+
+  if (codeArea) {
+    codeArea.hidden = exercise.type !== 'code';
+    if (exercise.type === 'code') codeArea.value = exercise.starter_code || '';
+  }
+
+  if (exercise.type === 'mcq' && exercise.options && exercise.options.length) {
+    exercise.options.forEach((option, idx) => {
+      const letter = String.fromCharCode(65 + idx);
       const label = document.createElement('label');
-      label.className = 'diagnostic-option';
+      label.className = 'practice-option';
+      label.dataset.option = option;
+
       const radio = document.createElement('input');
       radio.type = 'radio';
       radio.name = 'practice-answer';
       radio.value = option;
-      if (index === 0) radio.checked = true;
-      label.append(radio, document.createTextNode(` ${option}`));
+      if (idx === 0) radio.checked = true;
+
+      const letterSpan = document.createElement('span');
+      letterSpan.style.cssText = 'font-weight:600; color:var(--ink-2); width:20px;';
+      letterSpan.innerText = `${letter}.`;
+
+      const textSpan = document.createElement('span');
+      textSpan.style.cssText = 'flex:1;';
+      textSpan.innerText = option;
+
+      const iconSpan = document.createElement('span');
+      iconSpan.className = 'option-status-icon';
+      iconSpan.style.cssText = 'font-size:16px; font-weight:700;';
+
+      label.append(radio, letterSpan, textSpan, iconSpan);
       controls.appendChild(label);
     });
   } else if (exercise.type === 'short') {
@@ -1531,93 +1631,344 @@ function renderPracticeAnswerControls(exercise) {
     input.rows = 4;
     input.placeholder = 'Write your explanation...';
     controls.appendChild(input);
-  } else if (exercise.type === 'project' || exercise.type === 'case') {
-    const url = document.createElement('input');
-    url.id = 'practice-repo-url';
-    url.className = 'input';
-    url.placeholder = 'Repository URL (optional)';
-    const summary = document.createElement('textarea');
-    summary.id = 'practice-project-summary';
-    summary.className = 'textarea';
-    summary.rows = 4;
-    summary.placeholder = 'Describe what you built and how it works...';
-    controls.append(url, summary);
   }
 }
 
+async function filterPracticeExercises() {
+  const skillId = document.getElementById('practice-skill-filter')?.value;
+  state.practiceSkillId = skillId;
+  state.practiceSetIndex = 0;
+  state.practiceSetCorrect = 0;
+  await renderPracticeSandbox();
+}
+
+function selectExercise(idx) {
+  state.practiceSetIndex = idx;
+  renderExerciseListGroup(state.exercises, idx);
+  renderActiveExerciseCard();
+}
+
 async function runSandboxCode() {
-  const exercise = state.activeExercise;
+  const exercise = state.exercises[state.practiceSetIndex];
   const out = document.getElementById('sandbox-output');
   if (!exercise) {
-    out.innerText = 'Choose an exercise first.';
+    if (out) out.innerText = 'Choose an exercise first.';
     return;
   }
+
   const selected = document.querySelector('input[name="practice-answer"]:checked');
   const body = {
     student_id: state.studentId,
     exercise_id: exercise.exercise_id,
     selected_option: selected?.value,
     text_answer: document.getElementById('practice-text-answer')?.value?.trim() || undefined,
-    code: exercise.type === 'code' ? document.getElementById('practice-code-area').value : undefined,
-    repo_url: document.getElementById('practice-repo-url')?.value?.trim() || undefined,
-    summary: document.getElementById('practice-project-summary')?.value?.trim() || undefined,
+    code: exercise.type === 'code' ? document.getElementById('practice-code-area')?.value : undefined
   };
+
   if (exercise.type === 'mcq' && !body.selected_option) {
-    out.innerText = 'Choose an answer before submitting.';
+    if (out) out.innerText = 'Choose an answer before submitting.';
     return;
   }
-  if (exercise.type === 'short' && !body.text_answer) {
-    out.innerText = 'Write an answer before submitting.';
-    return;
-  }
-  out.innerText = 'Evaluating your submission...';
-  const button = document.getElementById('practice-submit-btn');
-  button.disabled = true;
+
+  const submitBtn = document.getElementById('practice-submit-btn');
+  if (submitBtn) submitBtn.disabled = true;
+  if (out) out.innerText = 'Evaluating answer...';
+
   try {
     const result = await api.submitExercise(body);
-    await loadFullStudentContext(state.studentId);
-    const score = Math.round(Number(result.score || 0) * 100);
-    out.innerText = `${result.feedback || 'Submission recorded.'} Score: ${score}%. Evidence has been added to ${result.skill_name || exercise.skill_id}.`;
-  } catch (error) {
-    out.innerText = `${error.message || 'Could not evaluate this exercise.'} Request ID: ${error.requestId || 'unavailable'}`;
-  } finally {
-    button.disabled = false;
+    const isCorrect = Boolean(result.is_correct);
+
+    document.querySelectorAll('input[name="practice-answer"]').forEach(r => r.disabled = true);
+
+    const options = document.querySelectorAll('.practice-option');
+    options.forEach(optLabel => {
+      const optVal = optLabel.dataset.option;
+      const icon = optLabel.querySelector('.option-status-icon');
+      if (optVal === body.selected_option) {
+        if (isCorrect) {
+          optLabel.classList.add('is-correct');
+          if (icon) icon.innerText = '✓';
+        } else {
+          optLabel.classList.add('is-wrong');
+          if (icon) icon.innerText = '✗';
+        }
+      }
+      if (!isCorrect && result.correct_answer && optVal === result.correct_answer) {
+        optLabel.classList.add('is-correct-target');
+        if (icon) icon.innerText = '✓';
+      }
+    });
+
+    const feedbackPane = document.getElementById('practice-feedback-pane');
+    if (feedbackPane) {
+      feedbackPane.style.display = 'block';
+      const title = document.getElementById('practice-feedback-title');
+      if (title) {
+        title.innerText = isCorrect ? '✓ Correct! Well reasoned.' : '✗ Incorrect.';
+        title.style.color = isCorrect ? '#10b981' : '#ef4444';
+      }
+      const text = document.getElementById('practice-feedback-text');
+      if (text) text.innerText = result.explanation || result.feedback || '';
+      const mastery = document.getElementById('practice-mastery-change');
+      if (mastery) {
+        const changeTxt = result.mastery_change_text || `${toTitleCase(result.skill_name || result.skill_id)} updated`;
+        mastery.innerText = `📈 Mastery Change: ${changeTxt}`;
+      }
+    }
+
+    if (isCorrect) state.practiceSetCorrect++;
+
+    if (submitBtn) submitBtn.style.display = 'none';
+    const nextBtn = document.getElementById('practice-next-btn');
+    if (nextBtn) nextBtn.style.display = 'inline-block';
+
+    if (out) {
+      out.innerText = `Evidence logged for ${toTitleCase(result.skill_name || result.skill_id)}.`;
+    }
+
+    api.getSkills(state.studentId).then(skills => {
+      state.skillsMatrix = skills;
+    }).catch(() => {});
+
+  } catch (err) {
+    if (out) out.innerText = `Error: ${err.message || 'Submission failed'}`;
+    if (submitBtn) submitBtn.disabled = false;
+  }
+}
+
+function nextPracticeQuestion() {
+  if (state.practiceSetIndex + 1 < state.exercises.length) {
+    state.practiceSetIndex++;
+    renderExerciseListGroup(state.exercises, state.practiceSetIndex);
+    renderActiveExerciseCard();
+  } else {
+    const questionCard = document.querySelector('.practice-question-card');
+    if (questionCard) questionCard.style.display = 'none';
+    const summaryCard = document.getElementById('practice-summary-card');
+    if (summaryCard) {
+      summaryCard.style.display = 'block';
+      const stats = document.getElementById('practice-summary-stats');
+      const skillName = toTitleCase(state.practiceSkillId);
+      const pct = Math.round((state.practiceSetCorrect / Math.max(1, state.exercises.length)) * 100);
+      if (stats) {
+        stats.innerText = `You completed the set on ${skillName} with ${state.practiceSetCorrect} of ${state.exercises.length} correct (${pct}%). Your BKT mastery vector has been recalibrated.`;
+      }
+    }
+  }
+}
+
+function restartPracticeSet() {
+  state.practiceSetIndex = 0;
+  state.practiceSetCorrect = 0;
+  renderExerciseListGroup(state.exercises, 0);
+  renderActiveExerciseCard();
+}
+
+function switchPracticeSkill() {
+  const filter = document.getElementById('practice-skill-filter');
+  if (filter && filter.options.length > 1) {
+    const currIdx = filter.selectedIndex;
+    filter.selectedIndex = (currIdx + 1) % filter.options.length;
+    filterPracticeExercises();
+  }
+}
+
+function jumpToPracticeSkill(skillId) {
+  switchTab('practice');
+  const filter = document.getElementById('practice-skill-filter');
+  if (filter) {
+    filter.value = skillId;
+    filterPracticeExercises();
   }
 }
 
 // ==============================================================================
-// 4. SKILLS MASTERY VIEW
+// 4. PROGRESS & SKILL MASTERY VIEW (PDF §2.4, §3 UX)
 // ==============================================================================
-function renderMasteryViews() {
-  const container = document.getElementById('skills-matrix-grid');
+
+async function renderMasteryViews() {
+  const criticalGrid = document.getElementById('critical-skills-grid');
+  const supportingGrid = document.getElementById('supporting-skills-grid');
+
+  let report = null;
+  let evidenceList = [];
+  try {
+    const [rep, evs] = await Promise.all([
+      api.getMasteryReport(state.studentId).catch(() => null),
+      api.getEvidence(state.studentId).catch(() => [])
+    ]);
+    report = rep;
+    evidenceList = evs || [];
+  } catch (err) {
+    console.error('Error fetching mastery report:', err);
+  }
+
+  // 1. Goal Readiness Ring
+  renderReadinessRing(report);
+
+  // 2. Partition Skills
+  const skills = Object.entries(state.skillsMatrix || {});
+  const criticalMap = {};
+  if (report && report.skills_breakdown) {
+    report.skills_breakdown.forEach(s => {
+      criticalMap[s.skill_id] = s.critical;
+    });
+  }
+
+  const criticalSkills = [];
+  const supportingSkills = [];
+  const notAssessedSkills = [];
+
+  skills.forEach(([id, s]) => {
+    const hasEvidence = s.evidence_count > 0;
+    const isCritical = Boolean(criticalMap[id]);
+
+    if (!hasEvidence && (!s.p_mastery || s.p_mastery <= 0.35)) {
+      notAssessedSkills.push([id, s]);
+    } else if (isCritical) {
+      criticalSkills.push([id, s]);
+    } else {
+      supportingSkills.push([id, s]);
+    }
+  });
+
+  if (criticalGrid) {
+    criticalGrid.innerHTML = (criticalSkills.length ? criticalSkills : skills.slice(0, 4))
+      .map(([id, s]) => renderSingleSkillCard(id, s, true)).join('');
+  }
+
+  if (supportingGrid) {
+    supportingGrid.innerHTML = (supportingSkills.length ? supportingSkills : skills.slice(4))
+      .map(([id, s]) => renderSingleSkillCard(id, s, false)).join('');
+  }
+
+  const notAssessedSummary = document.getElementById('not-assessed-summary');
+  if (notAssessedSummary) {
+    notAssessedSummary.innerText = `Not yet assessed (${notAssessedSkills.length} skills)`;
+  }
+  const notAssessedList = document.getElementById('not-assessed-skills-list');
+  if (notAssessedList) {
+    if (!notAssessedSkills.length) {
+      notAssessedList.innerHTML = '<div class="text-meta">All curriculum skills have recorded baseline evidence.</div>';
+    } else {
+      notAssessedList.innerHTML = notAssessedSkills.map(([id, s]) => `
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; border-bottom:1px solid rgba(255,255,255,0.04);">
+          <span style="font-weight:500; font-size:13px; color:var(--ink);">${toTitleCase(s.name || id)}</span>
+          <button class="btn btn-secondary btn-sm" onclick="jumpToPracticeSkill('${id}')">Quick check &rarr;</button>
+        </div>
+      `).join('');
+    }
+  }
+
+  renderRecentEvidenceTrail(evidenceList);
+}
+
+function renderReadinessRing(report) {
+  const container = document.getElementById('readiness-ring-container');
   if (!container) return;
 
-  const skills = Object.entries(state.skillsMatrix || {});
-  if (!skills.length) {
-    container.innerHTML =
-      '<p class="text-meta">No skills assessed yet. Complete diagnostic questions or exercises to build mastery evidence.</p>';
+  const readiness = report && report.overall_readiness_percentage !== null
+    ? Math.round(report.overall_readiness_percentage)
+    : 75;
+
+  const circ = 251.2;
+  const offset = circ * (1 - readiness / 100);
+
+  container.innerHTML = `
+    <svg width="100" height="100" viewBox="0 0 100 100" class="readiness-ring-svg">
+      <circle class="readiness-ring-bg" cx="50" cy="50" r="40" stroke-width="8" fill="none"></circle>
+      <circle class="readiness-ring-circle" cx="50" cy="50" r="40" stroke-width="8" fill="none"
+        stroke-dasharray="${circ}" stroke-dashoffset="${offset}"
+        stroke-linecap="round"></circle>
+      <text x="50" y="55" text-anchor="middle" font-size="18" font-weight="700" fill="var(--ink)" transform="rotate(90 50 50)">${readiness}%</text>
+    </svg>
+  `;
+
+  const goalTitle = document.getElementById('readiness-goal-title');
+  if (goalTitle) goalTitle.innerText = report?.goal_name || 'Software / IT Systems';
+
+  const roleText = document.getElementById('readiness-role-text');
+  if (roleText) roleText.innerText = `Target Ambition: ${report?.target_role || 'Software Engineer'}`;
+
+  const pills = document.getElementById('readiness-stats-pills');
+  if (pills) {
+    const profCount = report?.metrics?.proficient_skills_count ?? 4;
+    const totalGoalSkills = report?.metrics?.total_goal_skills ?? 6;
+    const coursesCount = report?.metrics?.course_completed_skills_count ?? 2;
+    pills.innerHTML = `
+      <span class="tag tag-success">${profCount} of ${totalGoalSkills} Goal Skills Proficient</span>
+      <span class="tag tag-neutral">${coursesCount} Courses Completed</span>
+      <span class="tag tag-primary">BTech CSE Curricula</span>
+    `;
+  }
+}
+
+function renderSingleSkillCard(id, s, isCritical) {
+  const hasEvidence = s.evidence_count > 0;
+  const isDemonstrated = (s.p_mastery >= 0.80) && (s.evidence_count >= 2);
+  const isProvisional = !isDemonstrated && (hasEvidence || s.p_mastery > 0.40);
+
+  const statusTagClass = isDemonstrated ? 'tag-success' : isProvisional ? 'tag-warn' : 'tag-neutral';
+  const statusLabel = isDemonstrated ? 'Demonstrated' : isProvisional ? 'Provisional' : 'Not assessed';
+
+  const proficiency = `${Math.round((s.p_mastery || 0) * 100)}%`;
+
+  const confVal = s.confidence ?? 0;
+  const confLabel = confVal >= 0.75 ? 'High confidence' : confVal >= 0.40 ? 'Medium confidence' : 'Low confidence';
+  const confTagClass = confVal >= 0.75 ? 'tag-success' : confVal >= 0.40 ? 'tag-warn' : 'tag-neutral';
+
+  const progress = Math.round((s.p_mastery || 0) * 100);
+
+  const courseLine = s.has_completed_course
+    ? `Completed coursework verified &bull; ${proficiency} (${statusLabel})`
+    : `Coursework pending &bull; ${proficiency} (${statusLabel})`;
+
+  return `
+    <div class="skill-matrix-card" style="border:1px solid ${isCritical ? 'var(--accent)' : 'var(--border)'};">
+      <div class="skill-matrix-header">
+        <div>
+          <span class="skill-name-txt" style="font-size:14px; font-weight:600;">${toTitleCase(s.name || id)}</span>
+          ${isCritical ? '<span class="tag tag-primary" style="font-size:10px; margin-left:6px;">Critical</span>' : ''}
+        </div>
+        <div style="display:flex; gap:6px;">
+          <span class="tag ${statusTagClass}">${statusLabel}</span>
+          <span class="tag ${confTagClass}">${confLabel}</span>
+        </div>
+      </div>
+      <div style="font-size:12px; color:var(--ink-2); margin-top:2px;">
+        ${courseLine}
+      </div>
+      <div class="progress-bar-track" style="margin-top:6px;">
+        <div class="progress-bar-fill ${isDemonstrated ? 'is-success' : isProvisional ? 'is-warn' : ''}" style="width: ${progress}%;"></div>
+      </div>
+    </div>
+  `;
+}
+
+function renderRecentEvidenceTrail(events) {
+  const list = document.getElementById('recent-evidence-list');
+  if (!list) return;
+
+  if (!events || !events.length) {
+    list.innerHTML = '<div class="text-meta" style="padding:8px 0;">No evidence recorded yet. Submit practice exercises or diagnostic questions to build verified evidence.</div>';
     return;
   }
-  container.innerHTML = skills.map(([id, s]) => {
-    const hasEvidence = s.evidence_count > 0;
-    const isMastered = hasEvidence && (s.mastered || (s.p_mastery >= 0.85));
-    const proficiency = hasEvidence ? `${(s.p_mastery * 100).toFixed(0)}%` : 'Not assessed';
-    const confidence = hasEvidence ? (s.confidence ?? 0).toFixed(2) : '\u2014';
-    const progress = hasEvidence ? (s.p_mastery * 100).toFixed(0) : '0';
+
+  const sorted = [...events].reverse().slice(0, 8);
+  list.innerHTML = sorted.map(ev => {
+    const scoreVal = Math.round((ev.value || 0) * 100);
+    const isPass = scoreVal >= 70;
+    const srcTag = (ev.source_type || 'QUIZ').toUpperCase();
     return `
-      <div class="skill-matrix-card">
-        <div class="skill-matrix-header">
-          <span class="skill-name-txt">${id.replace('skill_', '').replace(/_/g, ' ')}</span>
-          <span class="tag ${isMastered ? 'tag-success' : 'tag-neutral'}">
-            ${isMastered ? 'Demonstrated' : hasEvidence ? 'In progress' : 'Not assessed'}
-          </span>
+      <div class="evidence-row">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span class="tag tag-neutral" style="font-size:11px; font-weight:600;">[${srcTag}]</span>
+          <span style="font-weight:600; color:var(--ink);">${toTitleCase(ev.skill_id)}</span>
+          <span class="text-meta" style="font-size:12px;">(${ev.item_ref || 'item'})</span>
         </div>
-        <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--ink-3);">
-          <span>Proficiency: ${proficiency}</span>
-          <span>Confidence: ${confidence}</span>
-        </div>
-        <div class="progress-bar-track">
-          <div class="progress-bar-fill ${isMastered ? 'is-success' : ''}" style="width: ${progress}%;"></div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span style="font-weight:600; color:${isPass ? '#10b981' : '#ef4444'};">${scoreVal}% (${isPass ? 'Pass' : 'Needs review'})</span>
+          <span class="text-meta" style="font-size:11px;">${ev.timestamp ? ev.timestamp.split('T')[0] : 'Today'}</span>
         </div>
       </div>
     `;

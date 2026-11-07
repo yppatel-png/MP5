@@ -561,57 +561,156 @@
         </section>
 
         <!-- ==========================================
-             VIEW 3: LEARN & PRACTICE (Split View)
+             VIEW 3: LEARN & PRACTICE (PDF §2.4, §3 UX)
              ========================================== -->
         <section id="view-practice" class="tab-pane">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-16);">
             <div>
-              <h2 class="text-title">Learn & Practise</h2>
+              <h2 class="text-title">Learn &amp; Practise</h2>
               <div class="text-meta" style="margin-top:2px;">
-                Grounded interactive sandbox exercises with zero external telemetry
+                Questions matched to your plan
               </div>
             </div>
+            <div id="practice-session-stats" class="text-meta" style="font-weight:500;"></div>
           </div>
 
           <div class="learn-split-layout">
+            <!-- Left: Filter & Exercises list -->
             <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
               <div class="overline" style="margin-bottom:var(--space-8);">Curated Exercises</div>
               <label class="text-dense" for="practice-skill-filter">Filter by skill</label>
-              <select id="practice-skill-filter" class="input" onchange="filterPracticeExercises()"></select>
-              <div id="exercise-list-group" style="display:flex; flex-direction:column; gap:var(--space-8);">
+              <select id="practice-skill-filter" class="input" onchange="filterPracticeExercises()" style="margin-bottom:var(--space-12);"></select>
+              <div id="exercise-list-group" style="display:flex; flex-direction:column; gap:var(--space-8); max-height:600px; overflow-y:auto;">
                 <!-- Populated via API -->
               </div>
             </div>
-            <div>
-              <div class="code-box-container">
-                <div class="code-box-header">
-                  <span id="active-ex-title">Practice Sandbox</span>
-                  <button class="btn btn-primary btn-sm" id="practice-submit-btn" onclick="runSandboxCode()">Submit answer</button>
+
+            <!-- Right: Question and Study Area -->
+            <div style="display:flex; flex-direction:column; gap:var(--space-16);">
+              <!-- "Study this first" Card -->
+              <div id="practice-study-card" class="study-first-card" style="display:none; background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span class="tag tag-neutral" style="font-weight:600;">📖 Study this first</span>
+                  <span id="study-card-provider" class="text-meta" style="font-size:12px;"></span>
                 </div>
-                <p id="practice-prompt" class="text-body"></p>
-                <div id="practice-answer-controls"></div>
+                <div id="study-card-title" style="font-weight:600; font-size:15px; color:var(--ink); margin-top:6px;"></div>
+                <div id="study-card-meta" class="text-meta" style="margin-top:2px; font-size:13px;"></div>
+                <a id="study-card-link" href="#" target="_blank" rel="noopener noreferrer" class="study-first-link" style="display:inline-block; margin-top:8px; font-size:13px; color:var(--accent); text-decoration:none; font-weight:500;">Open reference material ↗</a>
+              </div>
+
+              <!-- Question Container (Clean typography) -->
+              <div class="practice-question-card" style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-20);">
+                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:var(--space-12); margin-bottom:var(--space-16);">
+                  <div style="display:flex; align-items:center; gap:var(--space-8);">
+                    <span id="active-ex-skill-badge" class="tag tag-neutral" style="font-weight:600;">Skill</span>
+                    <span id="active-ex-difficulty" class="tag tag-neutral">Difficulty: 2</span>
+                    <span id="active-ex-type" class="tag tag-neutral">MCQ</span>
+                  </div>
+                  <span id="practice-progress-count" class="text-meta" style="font-size:13px; font-weight:500;">Question 1 of 5</span>
+                </div>
+
+                <div id="active-ex-prompt-box" style="margin-bottom:var(--space-16);">
+                  <div id="practice-prompt" class="text-body" style="font-size:15px; line-height:1.6; color:var(--ink); font-weight:500;">Choose an exercise to begin.</div>
+                </div>
+
+                <div id="practice-answer-controls" style="margin-bottom:var(--space-16);"></div>
                 <textarea class="code-editor-input" id="practice-code-area" spellcheck="false" hidden></textarea>
-                <div class="code-output-pane" id="sandbox-output">Choose an exercise to begin.</div>
+
+                <!-- Post-submit feedback & Mastery change -->
+                <div id="practice-feedback-pane" style="display:none; margin-bottom:var(--space-16); padding:var(--space-12) var(--space-16); border-radius:var(--radius-sm); font-size:14px; background:var(--surface-2); border:1px solid var(--border);">
+                  <div id="practice-feedback-title" style="font-weight:600; margin-bottom:4px;"></div>
+                  <div id="practice-feedback-text" style="color:var(--ink-2); line-height:1.5;"></div>
+                  <div id="practice-mastery-change" style="margin-top:8px; font-weight:600; color:var(--accent); font-size:13px;"></div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:var(--space-12);">
+                  <div id="sandbox-output" class="text-meta" style="font-size:13px;">Submit your answer to update your evidence.</div>
+                  <div style="display:flex; gap:8px;">
+                    <button class="btn btn-primary btn-md" id="practice-submit-btn" onclick="runSandboxCode()">Submit answer</button>
+                    <button class="btn btn-secondary btn-md" id="practice-next-btn" onclick="nextPracticeQuestion()" style="display:none;">Next question →</button>
+                  </div>
+                </div>
                 <div id="sandbox-console" aria-hidden="true" style="display:none;"></div>
+              </div>
+
+              <!-- Set Completion Summary Card -->
+              <div id="practice-summary-card" style="display:none; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-20); text-align:center;">
+                <div style="font-size:32px; margin-bottom:8px;">🎉</div>
+                <h3 class="text-title" style="margin-bottom:4px;">Practice Set Complete!</h3>
+                <p id="practice-summary-stats" class="text-body" style="color:var(--ink-2); margin-bottom:var(--space-16);"></p>
+                <div style="display:flex; justify-content:center; gap:var(--space-12);">
+                  <button class="btn btn-secondary btn-md" onclick="restartPracticeSet()">Practice set again</button>
+                  <button class="btn btn-primary btn-md" onclick="switchPracticeSkill()">Practice another skill</button>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         <!-- ==========================================
-             VIEW 4: SKILLS MASTERY MATRIX
+             VIEW 4: PROGRESS & SKILL MASTERY (PDF §2.4, §3 UX)
              ========================================== -->
         <section id="view-mastery" class="tab-pane">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-16);">
             <div>
-              <h2 class="text-title">Skill Mastery Matrix</h2>
+              <h2 class="text-title">Your Progress &amp; Mastery</h2>
               <div class="text-meta" style="margin-top:2px;">
-                Skill estimates reflect recorded evidence.
+                Verified retention, coursework completion, and readiness towards your career goal
               </div>
             </div>
           </div>
-          <div class="skills-matrix-grid" id="skills-matrix-grid">
-            <!-- Populated via API -->
+
+          <!-- Goal Readiness Ring Hero Card -->
+          <div id="goal-readiness-hero" style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-20); margin-bottom:var(--space-20); display:flex; align-items:center; gap:var(--space-24); flex-wrap:wrap;">
+            <div id="readiness-ring-container" style="flex-shrink:0;"></div>
+            <div style="flex:1; min-width:260px;">
+              <div class="overline" style="margin-bottom:4px;">Career Target Readiness</div>
+              <h3 id="readiness-goal-title" class="text-title" style="margin-bottom:4px; font-size:20px;">—</h3>
+              <div id="readiness-role-text" class="text-meta" style="margin-bottom:var(--space-12);">Target Role: —</div>
+              <div id="readiness-stats-pills" style="display:flex; gap:var(--space-8); flex-wrap:wrap;"></div>
+            </div>
+          </div>
+
+          <!-- Section 1: Goal-Critical Skills -->
+          <div style="margin-bottom:var(--space-20);">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:var(--space-12);">
+              <h3 class="text-dense" style="font-size:16px; font-weight:600; color:var(--ink);">🎯 Goal-Critical Skills</h3>
+              <span class="tag tag-primary" style="font-size:11px;">Primary Focus</span>
+            </div>
+            <div class="skills-matrix-grid" id="critical-skills-grid">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+
+          <!-- Section 2: Supporting Curriculum Skills -->
+          <div style="margin-bottom:var(--space-20);">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:var(--space-12);">
+              <h3 class="text-dense" style="font-size:16px; font-weight:600; color:var(--ink);">📚 Supporting Curriculum Skills</h3>
+              <span class="tag tag-neutral" style="font-size:11px;">Degree Requirements</span>
+            </div>
+            <div class="skills-matrix-grid" id="supporting-skills-grid">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+
+          <!-- Section 3: Not Assessed Skills (Collapsed Expander) -->
+          <div style="margin-bottom:var(--space-20);">
+            <details id="not-assessed-expander" style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-12) var(--space-16);">
+              <summary style="font-weight:600; cursor:pointer; color:var(--ink-2); font-size:14px;" id="not-assessed-summary">
+                Not yet assessed (0 skills)
+              </summary>
+              <div id="not-assessed-skills-list" style="margin-top:var(--space-12); display:flex; flex-direction:column; gap:var(--space-8);">
+                <!-- Populated via JS with Quick Check buttons -->
+              </div>
+            </details>
+          </div>
+
+          <!-- Section 4: Recent Evidence Audit Trail -->
+          <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
+            <div class="overline" style="margin-bottom:var(--space-8);">Audit Trail &bull; Recent Evidence Events</div>
+            <div id="recent-evidence-list" style="display:flex; flex-direction:column; gap:var(--space-8); max-height:280px; overflow-y:auto;">
+              <!-- Populated via JS -->
+            </div>
           </div>
         </section>
 

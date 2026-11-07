@@ -244,5 +244,57 @@ def is_palindrome(s: str) -> bool:
         missing_titles = [m["title"] for m in report["whats_missing"]]
         self.assertTrue(any("Data Structures" in t or "Algorithm" in t or "Operating" in t or "Database" in t or "Software" in t for t in missing_titles))
 
+    def test_exercise_skill_mapping_and_evidence_attribution(self):
+        """
+        Phase 5 Acceptance Test (PDF §2.4, §3 UX):
+        1. Asserts every single exercise maps to a valid registered skill in skills.json.
+        2. Asserts querying exercises by skill returns only exercises belonging to that skill.
+        3. Asserts Theory of Computation questions credit 'theory_computation', NOT 'programming_fundamentals'.
+        """
+        from backend.api.practice import list_exercises
+        all_skills = set(exercise_runner.skills.keys())
+
+        # 1. Check all exercises map to valid skills
+        for ex_id, ex in exercise_runner.exercises.items():
+            self.assertIn(
+                ex.get("skill_id"),
+                all_skills,
+                f"Exercise '{ex_id}' has invalid skill_id '{ex.get('skill_id')}'"
+            )
+
+        # 2. Check skill filter isolation
+        for skill_id in all_skills:
+            filtered = list_exercises(skill_id=skill_id)
+            for ex in filtered:
+                self.assertEqual(
+                    ex["skill_id"],
+                    skill_id,
+                    f"Exercise '{ex['exercise_id']}' under filter '{skill_id}' had mismatched skill_id '{ex['skill_id']}'"
+                )
+
+        # 3. Test TOC evidence attribution specifically
+        toc_ex = exercise_runner.exercises.get("ex_toc_01")
+        self.assertIsNotNone(toc_ex, "ex_toc_01 missing from seed exercises")
+        self.assertEqual(toc_ex["skill_id"], "theory_computation")
+
+        # Evaluate submission for student BH-SW-001
+        res = exercise_runner.evaluate_submission(
+            student_id="BH-SW-001",
+            exercise_id="ex_toc_01",
+            submission={"selected_option": toc_ex["answer_key"]["correct"]}
+        )
+
+        self.assertEqual(res["skill_id"], "theory_computation")
+        self.assertEqual(res["skill_name"], "Theory of computation")
+        self.assertNotEqual(res["skill_id"], "programming_fundamentals")
+        self.assertIn("Theory of computation", res["mastery_change_text"])
+
+        # Check DB evidence records
+        recent_ev = StudentStore.get_evidence_for_student("BH-SW-001", skill_id="theory_computation")
+        toc_evidence = [e for e in recent_ev if e.get("item_ref") == "ex_toc_01"]
+        self.assertGreater(len(toc_evidence), 0, "No evidence recorded for ex_toc_01 in DB")
+        self.assertEqual(toc_evidence[-1]["skill_id"], "theory_computation")
+        self.assertNotEqual(toc_evidence[-1]["skill_id"], "programming_fundamentals")
+
 if __name__ == "__main__":
     unittest.main()

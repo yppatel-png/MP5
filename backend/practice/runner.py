@@ -86,7 +86,12 @@ class ExerciseRunner:
                 json.dumps(grade_res)
             ))
 
-        # Automatically update student BKT evidence
+        # Measure pre-submission mastery for evidence attribution
+        from backend.student.diagnostic import diagnostic_engine
+        matrix_before = diagnostic_engine.get_full_skill_matrix(student_id)
+        prev_p = float(matrix_before.get(skill_id, {}).get("p_mastery", 0.1))
+
+        # Automatically update student BKT evidence strictly attributed to exercise skill_id
         source_type = "quiz" if ex_type == "mcq" else ("timed_project" if ex_type == "project" else "exercise")
         ev = EvidenceEvent(
             student_id=student_id,
@@ -98,15 +103,26 @@ class ExerciseRunner:
         )
         StudentStore.add_evidence(ev)
 
+        # Recalibrate post-submission mastery
+        matrix_after = diagnostic_engine.get_full_skill_matrix(student_id)
+        new_p = float(matrix_after.get(skill_id, {}).get("p_mastery", prev_p))
+
+        skill_name = self.skills.get(skill_id, {}).get("name", skill_id)
+        change_text = f"{skill_name} {round(prev_p * 100)}% to {round(new_p * 100)}%"
+
         return {
             "exercise_id": exercise_id,
             "exercise_type": ex_type,
             "skill_id": skill_id,
-            "skill_name": self.skills.get(skill_id, {}).get("name", skill_id),
+            "skill_name": skill_name,
             "score": score,
             "is_correct": is_correct,
             "feedback": grade_res.get("feedback", ""),
             "explanation": answer_key.get("explanation", ""),
+            "correct_answer": answer_key.get("correct", ""),
+            "prev_mastery": round(prev_p, 3),
+            "new_mastery": round(new_p, 3),
+            "mastery_change_text": change_text,
             "details": grade_res
         }
 

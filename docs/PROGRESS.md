@@ -113,3 +113,16 @@
   - `backend/student/bkt.py`: Implemented difficulty-weighted Bayesian Knowledge Tracing adjusting slip $p_s$, guess $p_g$, and transition learning rate by item difficulty.
 - **Human Review Audit**: Exported 20 randomly sampled items to `data/exercise_audit_sample.md` and `data/exercise_audit_sample.json`.
 - **Validation**: All tests in `tests/test_practice_mastery.py` and `tests/test_student_diagnostic.py` passed (9/9). `scripts/validate_kb.py` passed with 0 errors.
+
+### Review Fix 2: PostgreSQL as Single Production Database & Adminer Students View (Item 2)
+- **Database Architecture**: Standardized on PostgreSQL via SQLAlchemy 2.0 and psycopg2 as the single primary production database.
+- **Docker Compose Configuration**: Updated `docker-compose.yml` to remove the unused SQLite path and configure `DATABASE_URL=postgresql://buddy_user:buddy_pass@db:5432/buddy_db` pointing to the healthy `db` service.
+- **Adminer Students View**: Added `CREATE OR REPLACE VIEW students AS SELECT * FROM student_profiles;` into schema initialization. When Adminer or external inspection tools open the database, `students` is directly visible alongside the tables.
+- **DDL and DML Dialect Translation**: Implemented automatic query adaptation in `backend/db/database.py`:
+  - Translates `?` parameter placeholders to `%s`.
+  - Translates `INSERT OR REPLACE INTO` to `INSERT INTO ... ON CONFLICT (...) DO UPDATE SET ...` for all entity tables.
+  - Translates `INTEGER PRIMARY KEY AUTOINCREMENT` to `SERIAL PRIMARY KEY`.
+  - Translates `DROP TABLE` to include `CASCADE` on PostgreSQL.
+- **Admin Grade Mutation & Real-Time Plan Re-synthesis**: Verified that `POST /api/admin/grade` edits the student's grade/CGPA in `student_profiles`, immediately reflects in the `students` view, and recomputes the active multi-semester plan without requiring a server restart.
+- **Make Reset Support**: Ensured `make reset` (`python -m backend.db.seed_loader --reset`) drops all tables cleanly and reloads clean institutional seed data into the configured database.
+- **Validation**: Added `tests/test_database_postgres_adapter.py`; all 4 tests passed (19/19 in full test suite).

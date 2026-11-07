@@ -27,23 +27,25 @@ def load_json(filename: str):
 def reset_database():
     """Drops existing user and knowledge base data for a clean reset."""
     logger.info("Resetting database state...")
-    db_path = get_db_path()
-    if db_path.exists():
-        try:
-            # We can clear all tables transactionally
-            with get_db_cursor() as cur:
-                tables = [
-                    "chat_memory", "adaptation_events", "exercise_attempts",
-                    "plan_versions", "evidence_events", "student_profiles",
-                    "exercises", "modules", "resources", "course_skills", "prerequisites",
-                    "skills", "courses", "programmes", "academic_rules", "goal_templates",
-                    "seed_provenance",
-                ]
-                for tbl in tables:
-                    cur.execute(f"DROP TABLE IF EXISTS {tbl};")
-            logger.info("All existing tables dropped.")
-        except Exception as e:
-            logger.warning(f"Could not drop tables cleanly: {e}")
+    try:
+        with get_db_cursor() as cur:
+            tables = [
+                "chat_memory", "adaptation_events", "exercise_attempts",
+                "plan_versions", "evidence_events", "study_sessions", "student_profiles",
+                "exercises", "modules", "resources", "course_skills", "prerequisites",
+                "skills", "courses", "programmes", "academic_rules", "goal_templates",
+                "seed_provenance",
+            ]
+            # Drop view if exists
+            try:
+                cur.execute("DROP VIEW IF EXISTS students;")
+            except Exception:
+                pass
+            for tbl in tables:
+                cur.execute(f"DROP TABLE IF EXISTS {tbl};")
+        logger.info("All existing tables dropped.")
+    except Exception as e:
+        logger.warning(f"Could not drop tables cleanly: {e}")
             
     # Re-initialize clean schema
     init_db()

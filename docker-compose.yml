@@ -11,7 +11,7 @@ services:
     environment:
       - APP_ENV=production
       - INSTITUTE_PROFILE=iit_bhilai
-      - DATABASE_URL=sqlite:////app/data/buddy_bhilai.db
+      - DATABASE_URL=postgresql://buddy_user:buddy_pass@db:5432/buddy_db
       - LLM_MODEL=${LLM_MODEL:-}
       - LLM_API_KEY=${LLM_API_KEY:-}
       - LLM_API_BASE=${LLM_API_BASE:-}

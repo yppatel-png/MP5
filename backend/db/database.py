@@ -1,23 +1,164 @@
 """
 Database Connection and Session Management.
-Supports native SQLite with JSON support and relational foreign keys enabled,
-with transparent connection management.
+Supports PostgreSQL as the single primary production database (via SQLAlchemy and psycopg2)
+with full DDL/query translation and seed management, plus transparent local SQLite fallback.
 """
 
-import sqlite3
 import os
+import re
+import sqlite3
+import logging
 from pathlib import Path
 from contextlib import contextmanager
+from typing import Optional, Any, List, Dict
 from backend.config import settings
 
-DB_PATH = Path(settings.DATABASE_URL.replace("sqlite:///", ""))
+logger = logging.getLogger("learning_buddy.database")
+
+TABLE_CONFLICT_KEYS = {
+    "programmes": ["code"],
+    "courses": ["code"],
+    "prerequisites": ["course_code", "requires_code"],
+    "skills": ["skill_id"],
+    "course_skills": ["course_code", "skill_id"],
+    "modules": ["module_id"],
+    "resources": ["resource_id"],
+    "exercises": ["exercise_id"],
+    "academic_rules": ["rule_id"],
+    "goal_templates": ["goal_id"],
+    "student_profiles": ["student_id"],
+    "seed_provenance": ["entity_type", "entity_id"],
+}
+
+_engine = None
+_engine_initialized = False
+_is_postgres = False
 
 def get_db_path() -> Path:
-    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
-    return DB_PATH
+    raw_url = settings.DATABASE_URL
+    if raw_url.startswith("sqlite:///"):
+        path_str = raw_url.replace("sqlite:///", "", 1)
+    else:
+        from backend.config import BASE_DIR, DEFAULT_DATABASE_NAME
+        path_str = str(BASE_DIR / "data" / DEFAULT_DATABASE_NAME)
+    path = Path(path_str)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    return path
 
-def get_connection() -> sqlite3.Connection:
-    """Returns a SQLite connection with row_factory as dict and foreign keys enabled."""
+def _get_engine():
+    global _engine, _engine_initialized, _is_postgres
+    if _engine_initialized:
+        return _engine
+
+    url = (settings.DATABASE_URL or "").strip()
+    if url.startswith("postgres://"):
+        url = "postgresql://" + url[len("postgres://"):]
+
+    if url.startswith("postgresql://") or url.startswith("postgresql+psycopg2://"):
+        try:
+            from sqlalchemy import create_engine
+            engine = create_engine(url, pool_pre_ping=True, future=True)
+            with engine.connect() as test_conn:
+                pass
+            _engine = engine
+            _is_postgres = True
+            logger.info("Connected to PostgreSQL database at %s", url.split("@")[-1])
+        except Exception as exc:
+            logger.warning(
+                "PostgreSQL database not reachable (%s); using local SQLite fallback for development/testing.",
+                exc
+            )
+            _engine = None
+            _is_postgres = False
+    else:
+        _engine = None
+        _is_postgres = False
+
+    _engine_initialized = True
+    return _engine
+
+def is_postgres() -> bool:
+    _get_engine()
+    return _is_postgres
+
+def adapt_sql_for_postgres(sql: str) -> str:
+    cleaned = sql.strip()
+
+    # Adapt DROP TABLE IF EXISTS <tbl> [CASCADE]
+    m_drop = re.match(r"^DROP\s+TABLE\s+IF\s+EXISTS\s+([a-zA-Z0-9_]+)\s*;?$", cleaned, re.IGNORECASE)
+    if m_drop:
+        tbl = m_drop.group(1)
+        return f"DROP TABLE IF EXISTS {tbl} CASCADE;"
+
+    # Adapt INSERT OR REPLACE INTO <tbl> (<cols>) VALUES (...)
+    m_insert = re.match(r"^\s*INSERT\s+OR\s+REPLACE\s+INTO\s+([a-zA-Z0-9_]+)\s*\(([^)]+)\)", cleaned, re.IGNORECASE)
+    if m_insert:
+        tbl = m_insert.group(1).lower()
+        cols = [c.strip() for c in m_insert.group(2).split(",")]
+        keys = TABLE_CONFLICT_KEYS.get(tbl, [])
+        update_cols = [c for c in cols if c not in keys]
+        sql_base = re.sub(r"^\s*INSERT\s+OR\s+REPLACE\s+INTO", "INSERT INTO", cleaned, flags=re.IGNORECASE)
+        sql_base = sql_base.rstrip().rstrip(";")
+        if keys and update_cols:
+            conflict_clause = f" ON CONFLICT ({', '.join(keys)}) DO UPDATE SET " + ", ".join(f"{c} = EXCLUDED.{c}" for c in update_cols)
+            sql_base += conflict_clause
+        elif keys:
+            sql_base += f" ON CONFLICT ({', '.join(keys)}) DO NOTHING"
+        cleaned = sql_base + ";"
+
+    # Adapt CREATE TABLE auto-increment
+    cleaned = re.sub(r"INTEGER\s+PRIMARY\s+KEY\s+AUTOINCREMENT", "SERIAL PRIMARY KEY", cleaned, flags=re.IGNORECASE)
+    # Adapt CREATE VIEW
+    cleaned = re.sub(r"CREATE\s+VIEW\s+IF\s+NOT\s+EXISTS", "CREATE OR REPLACE VIEW", cleaned, flags=re.IGNORECASE)
+
+    # Convert parameter placeholders from ? to %s
+    return cleaned.replace("?", "%s")
+
+class PostgresCursorWrapper:
+    """Wraps a psycopg2 DictCursor to provide seamless parameter conversion and dict row mapping."""
+    def __init__(self, raw_cursor):
+        self._cur = raw_cursor
+
+    def execute(self, query: str, params: Optional[Any] = None):
+        adapted = adapt_sql_for_postgres(query)
+        if params is not None:
+            if isinstance(params, (list, tuple)):
+                return self._cur.execute(adapted, params)
+            elif isinstance(params, dict):
+                return self._cur.execute(adapted, params)
+            else:
+                return self._cur.execute(adapted, (params,))
+        return self._cur.execute(adapted)
+
+    def executemany(self, query: str, seq_of_params):
+        adapted = adapt_sql_for_postgres(query)
+        return self._cur.executemany(adapted, seq_of_params)
+
+    def fetchone(self):
+        return self._cur.fetchone()
+
+    def fetchall(self):
+        return self._cur.fetchall()
+
+    def fetchmany(self, size=None):
+        return self._cur.fetchmany(size) if size else self._cur.fetchmany()
+
+    @property
+    def rowcount(self):
+        return self._cur.rowcount
+
+    @property
+    def description(self):
+        return self._cur.description
+
+    def __iter__(self):
+        return iter(self._cur)
+
+def get_connection():
+    """Returns a database connection (PostgreSQL raw connection or SQLite connection)."""
+    engine = _get_engine()
+    if _is_postgres and engine is not None:
+        return engine.raw_connection()
     path = get_db_path()
     conn = sqlite3.connect(str(path), timeout=30.0)
     conn.row_factory = sqlite3.Row
@@ -27,9 +168,15 @@ def get_connection() -> sqlite3.Connection:
 
 @contextmanager
 def get_db_cursor():
-    """Context manager for transactional database operations."""
+    """Context manager for transactional database operations across PostgreSQL and SQLite."""
     conn = get_connection()
-    cursor = conn.cursor()
+    if _is_postgres:
+        import psycopg2.extras
+        raw_cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cursor = PostgresCursorWrapper(raw_cur)
+    else:
+        cursor = conn.cursor()
+
     try:
         yield cursor
         conn.commit()
@@ -40,7 +187,8 @@ def get_db_cursor():
         conn.close()
 
 def init_db():
-    """Initializes all database tables if they do not exist."""
+    """Initializes all database tables and views if they do not exist."""
+    _get_engine()
     with get_db_cursor() as cur:
         # 1. Programmes
         cur.execute("""
@@ -227,6 +375,9 @@ def init_db():
         );
         """)
 
+        # 12. Students View (ensures Adminer and external tooling view seeded students directly)
+        cur.execute("CREATE VIEW IF NOT EXISTS students AS SELECT * FROM student_profiles;")
+
         cur.execute("""
         CREATE TABLE IF NOT EXISTS evidence_events (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -300,3 +451,17 @@ def init_db():
         );
         """)
 
+        # 13. Study Sessions Table (Item 6 activity log)
+        cur.execute("""
+        CREATE TABLE IF NOT EXISTS study_sessions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            student_id TEXT NOT NULL,
+            course_code TEXT NOT NULL,
+            module_id TEXT,
+            duration_minutes INTEGER NOT NULL,
+            notes TEXT,
+            session_date DATE NOT NULL DEFAULT CURRENT_DATE,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (student_id) REFERENCES student_profiles (student_id) ON DELETE CASCADE
+        );
+        """)

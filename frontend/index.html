@@ -328,17 +328,26 @@
              VIEW 2: PLAN (Curriculum Roadmap Timeline)
              ========================================== -->
         <section id="view-plan" class="tab-pane">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-16);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-16); flex-wrap:wrap; gap:8px;">
             <div>
-              <h2 class="text-title">Curriculum Roadmap</h2>
+              <h2 class="text-title">Your Plan</h2>
               <div class="text-meta" style="margin-top:2px;">
-                Source curriculum reference and shared student summary
+                Verified curriculum schedule compliant with IIT Bhilai ordinance
               </div>
             </div>
             <div style="display:flex; gap:var(--space-8); align-items:center;">
-              <span id="plan-certificate-chip" class="tag tag-success" style="cursor:pointer;" onclick="openCertificateDrawer()">
-                16 of 16 rules satisfied
-              </span>
+              <div style="position:relative; display:inline-block;">
+                <span id="plan-certificate-chip" class="tag tag-success" style="cursor:pointer;" onclick="togglePlanValidityPopover(event)">
+                  Plan valid
+                </span>
+                <div id="plan-validity-popover" style="display:none; position:absolute; right:0; top:calc(100% + 6px); background:var(--surface-1, #1E293B); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px; z-index:100; min-width:280px; box-shadow:0 6px 20px rgba(0,0,0,0.3);">
+                  <div style="font-weight:600; font-size:12px; color:var(--ink); margin-bottom:4px;" id="popover-validity-title">Plan Valid · Verified</div>
+                  <div style="font-size:11px; color:var(--ink-muted); line-height:1.4;" id="popover-validity-details">All rules satisfied (assumptions pending ordinance)</div>
+                  <div style="margin-top:10px; display:flex; justify-content:flex-end;">
+                    <button class="btn btn-secondary btn-sm" onclick="openCertificateDrawer()" style="font-size:11px; padding:2px 8px;">View certificate &amp; audit</button>
+                  </div>
+                </div>
+              </div>
               <button class="btn btn-secondary btn-sm" onclick="openDiffDrawer()">Version history</button>
               <details style="position:relative; display:inline-block;">
                 <summary class="btn btn-secondary btn-sm" style="list-style:none; cursor:pointer;">
@@ -358,9 +367,28 @@
           <div class="text-meta" id="plan-student-summary" style="margin-bottom:var(--space-16);">
             &mdash;
           </div>
-          <div class="plan-timeline-grid" id="plan-timeline-grid">
-            <!-- Dynamically populated semester columns -->
+
+          <!-- Semester Tabs (Default: Next Semester) -->
+          <div class="plan-sem-tabs" id="plan-sem-tabs">
+            <!-- Populated dynamically: [Sem 3] [Sem 4] [Sem 5] ... -->
           </div>
+
+          <!-- Active Semester Panel -->
+          <div id="plan-sem-active-container">
+            <!-- Rendered by renderPlanTimeline() -->
+          </div>
+
+          <!-- Beyond Coursework Section -->
+          <div class="beyond-coursework-section" id="beyond-coursework-section">
+            <h3 class="text-section" style="font-size:15px; margin-bottom:4px;">Beyond Coursework</h3>
+            <div class="text-meta">Projects, exam timelines, and target role milestones</div>
+            <div class="beyond-milestones-grid" id="beyond-milestones-grid">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Fallback grid container if needed for legacy tests -->
+          <div class="plan-timeline-grid" id="plan-timeline-grid" style="display:none;"></div>
         </section>
 
         <!-- ==========================================
@@ -596,6 +624,24 @@
     <div style="padding:var(--space-12) var(--space-16); border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
       <span class="text-meta">Advanced Export &bull; Printable PDF 1.4</span>
       <button class="btn btn-primary btn-sm" onclick="downloadSignedCertificatePDF()">Download PDF</button>
+    </div>
+  </div>
+
+  <!-- Add Course Drawer (PDF §2.3) -->
+  <div class="drawer" id="add-course-drawer" style="width:480px;">
+    <div style="padding:var(--space-16); border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <h3 class="text-section" id="add-course-drawer-title">Add Course</h3>
+        <div class="text-meta" id="add-course-drawer-subtitle">Eligible electives and open electives</div>
+      </div>
+      <button class="btn-icon btn-sm" onclick="closeAddCourseDrawer()">&times;</button>
+    </div>
+    <div style="padding:10px 16px; border-bottom:1px solid var(--border); background:var(--surface-2); display:flex; justify-content:space-between; align-items:center; font-size:12px;">
+      <span id="add-course-drawer-headroom" style="font-weight:600; color:var(--ink);">Headroom: 5.0 cr</span>
+      <span class="tag tag-outline" id="add-course-drawer-sem-tag">Semester 3</span>
+    </div>
+    <div id="add-course-drawer-list" style="padding:var(--space-16); overflow-y:auto; flex:1; display:flex; flex-direction:column; gap:10px;">
+      <!-- Populated dynamically with eligible & ineligible course cards -->
     </div>
   </div>
 

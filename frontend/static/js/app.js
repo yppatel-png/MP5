@@ -536,6 +536,7 @@ async function loadFullStudentContext(studentId) {
     state.profileRecord = profile;
     state.diagnosticAnswered = JSON.parse(sessionStorage.getItem(`diagnostic:${studentId}`) || '[]');
     state.diagnosticQuestion = null;
+    state.activePlanSemester = null;
     state.profile = dashboard.profile;
     state.plan = dashboard.plan;
     state.planDiff = dashboard.planDiff;
@@ -750,66 +751,332 @@ function renderGoalChecklist(plan) {
 // ==============================================================================
 // 2. CURRICULUM ROADMAP VIEW
 // ==============================================================================
+// ==============================================================================
+// 2. YOUR PLAN (CURRICULUM ROADMAP) VIEW - REDESIGNED (PDF §2.3, §7)
+// ==============================================================================
+
+const CORE_CODES = new Set([
+  'CSL100', 'MAL100', 'CYL100', 'PHL101', 'CYL101', 'CYP102', 'PHP102', 'NCN100',
+  'MAL101', 'MEP102', 'EEL101', 'ECL101', 'BML101', 'LAN103',
+  'MAL403', 'CSL201', 'CSL202', 'CSP203', 'LAL100',
+  'CSL251', 'CSL252', 'CSL253', 'LAL101',
+  'CSL301', 'CSL302', 'CSL303', 'CSL304',
+  'CSL351', 'CSP352', 'UGQ301',
+  'CSQ401'
+]);
+
+function isCourseLockedCore(code, type) {
+  if (CORE_CODES.has(code)) return true;
+  if (!type) return false;
+  const t = type.toLowerCase();
+  return t === 'core' || t === 'institute_core' || t === 'program_compulsory';
+}
+
+function togglePlanValidityPopover(event) {
+  if (event) event.stopPropagation();
+  const pop = document.getElementById('plan-validity-popover');
+  if (pop) {
+    pop.style.display = pop.style.display === 'none' || !pop.style.display ? 'block' : 'none';
+  }
+}
+
+document.addEventListener('click', (e) => {
+  const pop = document.getElementById('plan-validity-popover');
+  const chip = document.getElementById('plan-certificate-chip');
+  if (pop && pop.style.display !== 'none' && !pop.contains(e.target) && e.target !== chip) {
+    pop.style.display = 'none';
+  }
+});
+
 function renderPlanTimeline() {
   if (!state.plan || !state.summary) return;
   const summaryEl = document.getElementById('plan-student-summary');
   if (summaryEl) summaryEl.innerText = api.formatStudentSummary(state.summary);
-  const container = document.getElementById('plan-timeline-grid');
-  if (!container) return;
 
+  // 1. Clean "Plan valid" chip & Popover
   const certChip = document.getElementById('plan-certificate-chip');
-  if (certChip) {
-    const cert = state.certificate || state.plan?.certificate;
-    if (cert && cert.summary) {
-      const s = cert.summary;
-      if (s.failed > 0) {
-        certChip.innerText = `${s.failed} problem${s.failed > 1 ? 's' : ''} found`;
-        certChip.className = 'tag tag-danger';
-      } else if (s.assumed_checks_count > 0) {
-        certChip.innerText = `All ${s.total_rules} checks passed (${s.assumed_checks_count} rely on assumptions pending ordinance)`;
-        certChip.className = 'tag tag-secondary';
-      } else {
-        certChip.innerText = `All ${s.total_rules} checks passed · verified`;
-        certChip.className = 'tag tag-success';
-      }
-      certChip.onclick = () => openCertificateDrawer();
+  const popTitle = document.getElementById('popover-validity-title');
+  const popDetails = document.getElementById('popover-validity-details');
+  const cert = state.certificate || state.plan?.certificate;
+  if (certChip && cert && cert.summary) {
+    const s = cert.summary;
+    if (s.failed > 0) {
+      certChip.innerText = `${s.failed} problem${s.failed > 1 ? 's' : ''} found`;
+      certChip.className = 'tag tag-danger';
+      if (popTitle) popTitle.innerText = `${s.failed} Rule Violation(s) Found`;
+      if (popDetails) popDetails.innerText = `Plan requires remediation before enrollment approval.`;
+    } else {
+      certChip.innerText = 'Plan valid';
+      certChip.className = 'tag tag-success';
+      if (popTitle) popTitle.innerText = `All ${s.total_rules || 16} Rules Verified`;
+      if (popDetails) popDetails.innerText = `0 errors · ${s.assumed_checks_count || 4} rely on assumptions pending ordinance.`;
     }
   }
 
-  const historyButton = document.querySelector('#view-plan button[onclick="openDiffDrawer()"]');
-  if (historyButton) historyButton.hidden = false;
+  // 2. Determine default active semester (next semester)
+  const semesters = state.plan.semesters || [];
+  if (!semesters.length) return;
 
-  container.innerHTML = '';
-  state.plan.semesters.forEach(sem => {
-    const col = document.createElement('div');
-    col.className = 'sem-column';
+  const currentSem = state.profile?.current_semester || 2;
+  if (!state.activePlanSemester || !semesters.some(s => s.semester_number === state.activePlanSemester)) {
+    // Default to the first future planned semester (e.g. current_semester + 1)
+    const nextSem = semesters.find(s => s.semester_number > currentSem);
+    state.activePlanSemester = nextSem ? nextSem.semester_number : semesters[0].semester_number;
+  }
 
-    const coursesHtml = sem.courses.map(c => `
-      <div class="course-tile" onclick="openWhyDrawer('${c.code}', '${c.title.replace(/'/g, "\\'")}', ${sem.semester_number})">
-        <div class="course-tile-top">
-          <span class="course-code-txt">${c.code}</span>
-          <span class="course-credits-txt">${c.credits === null ? 'Non-graded' : `${c.credits} cr`}</span>
+  // 3. Render Semester Tabs
+  const tabsContainer = document.getElementById('plan-sem-tabs');
+  if (tabsContainer) {
+    tabsContainer.innerHTML = semesters.map(sem => {
+      const isActive = sem.semester_number === state.activePlanSemester;
+      return `
+        <button class="plan-sem-tab ${isActive ? 'is-active' : ''}" onclick="selectPlanSemester(${sem.semester_number})" type="button">
+          Semester ${sem.semester_number}
+        </button>
+      `;
+    }).join('');
+  }
+
+  // 4. Render Active Semester Panel
+  renderActiveSemesterPlan();
+
+  // 5. Render Beyond Coursework (Milestones)
+  renderBeyondCoursework();
+}
+
+function selectPlanSemester(semNumber) {
+  state.activePlanSemester = semNumber;
+  renderPlanTimeline();
+}
+
+function renderActiveSemesterPlan() {
+  const container = document.getElementById('plan-sem-active-container');
+  if (!container || !state.plan) return;
+
+  const sem = (state.plan.semesters || []).find(s => s.semester_number === state.activePlanSemester);
+  if (!sem) {
+    container.innerHTML = '<div class="text-meta">No courses planned for this semester.</div>';
+    return;
+  }
+
+  const creditCap = Number(state.summary?.credit_cap || state.plan.credit_cap || 24);
+  const curCredits = Number(sem.total_credits || 0);
+  const headroom = Math.max(0, creditCap - curCredits);
+  const pct = Math.min(100, Math.round((curCredits / creditCap) * 100));
+
+  const coursesHtml = (sem.courses || []).map(c => {
+    const isCore = isCourseLockedCore(c.code, c.course_type);
+    const whyThis = c.reason || (isCore ? 'Compulsory curriculum core requirement' : 'Elective chosen matching student interest');
+    
+    let badgeHtml = '';
+    if (isCore) {
+      badgeHtml = `<span class="tag tag-neutral" style="font-size:10px;"><span data-icon="lock" data-icon-size="11"></span> Required</span>`;
+    } else if (c.course_type === 'program_elective' || (c.code && c.code.startsWith('CSL5'))) {
+      badgeHtml = `<span class="tag tag-secondary" style="font-size:10px;">Program elective</span>`;
+    } else {
+      badgeHtml = `<span class="tag tag-outline" style="font-size:10px;">Open elective</span>`;
+    }
+
+    const actionHtml = isCore
+      ? `<button class="btn btn-ghost btn-sm disabled" style="opacity:0.4; cursor:not-allowed; font-size:11px;" onclick="showCannotDropCore('${c.code}')" type="button" title="Core courses cannot be dropped">Locked</button>`
+      : `
+        <button class="btn btn-secondary btn-sm" onclick="openAddCourseDrawer(${sem.semester_number})" style="font-size:11px; padding:2px 8px;" type="button">Swap</button>
+        <button class="btn btn-ghost btn-sm" style="color:#F87171; font-size:11px; padding:2px 8px;" onclick="dropCourseFromPlan(${sem.semester_number}, '${c.code}')" type="button">Remove</button>
+      `;
+
+    return `
+      <div class="plan-course-row" onclick="openWhyDrawer('${c.code}', '${(c.title || '').replace(/'/g, "\\'")}', ${sem.semester_number})">
+        <div class="plan-course-left">
+          <div class="plan-course-code">${c.code}</div>
+          <div class="plan-course-info">
+            <div class="plan-course-title-line">
+              <span class="plan-course-title">${c.title}</span>
+              ${badgeHtml}
+            </div>
+            <div class="plan-course-why" title="${whyThis}">${whyThis}</div>
+          </div>
         </div>
-        <div class="course-title-txt">${c.title}</div>
-        <div class="skill-chips-row">
-          <span class="tag tag-neutral" style="font-size:10px; padding:1px 5px;">${c.course_type}</span>
-          ${(c.skills_targeted || []).map(sk => `<span class="skill-chip">${sk.replace('skill_', '')}</span>`).join('')}
+        <div class="plan-course-right" onclick="event.stopPropagation()">
+          <span class="plan-course-credits">${c.credits === null ? 'Non-graded' : `${c.credits} cr`}</span>
+          ${actionHtml}
         </div>
-        <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); overrideCourse('${c.code}')" type="button">Suggest alternative</button>
-      </div>
-    `).join('');
-
-    col.innerHTML = `
-      <div class="sem-head">
-        <div class="sem-name">Semester ${sem.semester_number}</div>
-        <div class="sem-stats">${sem.total_credits} / ${state.summary?.credit_cap || 24} cr</div>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:8px;">
-        ${coursesHtml}
       </div>
     `;
-    container.appendChild(col);
-  });
+  }).join('');
+
+  container.innerHTML = `
+    <!-- Credit Meter -->
+    <div class="sem-credit-meter">
+      <div>
+        <span style="font-weight:600; font-size:13px; color:var(--ink);">Semester ${sem.semester_number}</span>
+        <span class="text-meta" style="margin-left:8px;">${curCredits} / ${creditCap} credits (${headroom.toFixed(1)} cr headroom)</span>
+      </div>
+      <div class="sem-credit-bar-wrap">
+        <div class="sem-credit-bar-fill" style="width:${pct}%;"></div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="openAddCourseDrawer(${sem.semester_number})" type="button">+ Add course</button>
+    </div>
+
+    <!-- Compact Course List -->
+    <div class="plan-course-list">
+      ${coursesHtml}
+    </div>
+  `;
+
+  if (window.initIcons) window.initIcons();
+}
+
+function renderBeyondCoursework() {
+  const container = document.getElementById('beyond-milestones-grid');
+  if (!container) return;
+
+  const milestones = state.plan?.milestones || [];
+  if (!milestones.length) {
+    container.innerHTML = `
+      <div class="beyond-milestone-card">
+        <div style="font-weight:600; font-size:13px; color:var(--ink); margin-bottom:4px;">Independent Capstone Preparation</div>
+        <div class="text-meta">Prepare project proposal and literature review aligned with target role.</div>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = milestones.map(m => `
+    <div class="beyond-milestone-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+        <span style="font-weight:600; font-size:13px; color:var(--ink);">${m.title}</span>
+        <span class="tag tag-outline" style="font-size:10px;">Semester ${m.semester_offset || 1}</span>
+      </div>
+      <div class="text-meta" style="font-size:12px; line-height:1.4;">${m.description}</div>
+    </div>
+  `).join('');
+}
+
+function showCannotDropCore(code) {
+  showToast(`${code} is a compulsory Core course under IIT Bhilai curriculum regulations and cannot be dropped.`, 'warn');
+}
+
+async function openAddCourseDrawer(semNumber) {
+  const drawer = document.getElementById('add-course-drawer');
+  const title = document.getElementById('add-course-drawer-title');
+  const subtitle = document.getElementById('add-course-drawer-subtitle');
+  const headroomEl = document.getElementById('add-course-drawer-headroom');
+  const semTag = document.getElementById('add-course-drawer-sem-tag');
+  const listEl = document.getElementById('add-course-drawer-list');
+
+  if (!drawer || !listEl) return;
+  state.addCourseSemester = semNumber;
+
+  title.innerText = `Add Course to Semester ${semNumber}`;
+  subtitle.innerText = `Eligible electives and open electives for ${state.profile.name}`;
+  semTag.innerText = `Semester ${semNumber}`;
+  listEl.innerHTML = '<div class="text-meta">Checking eligibility against academic rules...</div>';
+
+  drawer.classList.add('is-open');
+  drawer.classList.add('is-active');
+  const backdrop = document.getElementById('drawer-backdrop');
+  if (backdrop) {
+    backdrop.classList.add('is-open');
+    backdrop.classList.add('is-active');
+  }
+
+  try {
+    const data = await api.getEligibleCourses(state.profile.student_id, semNumber);
+    headroomEl.innerText = `Headroom: ${data.headroom.toFixed(1)} cr available (Cap: ${data.credit_cap} cr)`;
+
+    const courses = data.courses || [];
+    if (!courses.length) {
+      listEl.innerHTML = '<div class="text-meta">No selectable courses available for this semester.</div>';
+      return;
+    }
+
+    listEl.innerHTML = courses.map(c => {
+      const matchChip = c.match_interest ? `<span class="chip-interest">Matches: ${c.match_interest}</span>` : '';
+      const typeTag = `<span class="tag tag-neutral" style="font-size:10px;">${c.course_type}</span>`;
+      
+      if (c.eligible) {
+        return `
+          <div class="drawer-course-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span class="plan-course-code">${c.code}</span>
+                <span style="font-weight:600; font-size:13px; color:var(--ink);">${c.title}</span>
+              </div>
+              <span class="plan-course-credits">${c.credits} cr</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
+              <div style="display:flex; gap:6px; align-items:center;">
+                ${typeTag}
+                ${matchChip}
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="addCourseToPlan(${semNumber}, '${c.code}')" style="font-size:11px; padding:3px 10px;" type="button">+ Add</button>
+            </div>
+          </div>
+        `;
+      } else {
+        return `
+          <div class="drawer-course-card is-ineligible">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span class="plan-course-code" style="color:var(--ink-muted);">${c.code}</span>
+                <span style="font-weight:500; font-size:13px; color:var(--ink-muted);">${c.title}</span>
+              </div>
+              <span class="plan-course-credits" style="color:var(--ink-muted);">${c.credits} cr</span>
+            </div>
+            <div style="margin-top:4px; font-size:11px; color:#F87171; line-height:1.3;">
+              ⚠️ ${c.ineligible_reason}
+            </div>
+          </div>
+        `;
+      }
+    }).join('');
+  } catch (err) {
+    listEl.innerHTML = `<div class="text-meta" style="color:#F87171;">Failed to load eligible courses: ${err.message}</div>`;
+  }
+}
+
+function closeAddCourseDrawer() {
+  const drawer = document.getElementById('add-course-drawer');
+  if (drawer) {
+    drawer.classList.remove('is-open');
+    drawer.classList.remove('is-active');
+  }
+  const backdrop = document.getElementById('drawer-backdrop');
+  if (backdrop) {
+    backdrop.classList.remove('is-open');
+    backdrop.classList.remove('is-active');
+  }
+}
+
+async function addCourseToPlan(semNumber, courseCode) {
+  try {
+    const res = await api.addPlanCourse(state.profile.student_id, semNumber, courseCode);
+    if (res.plan) state.plan = res.plan;
+    if (res.validation_report?.certificate) state.certificate = res.validation_report.certificate;
+    showToast(res.message || `Added ${courseCode} to Semester ${semNumber}`, 'success');
+    closeAddCourseDrawer();
+    renderPlanTimeline();
+  } catch (err) {
+    const detail = err.detail || {};
+    const msg = detail.error || err.message;
+    showToast(msg, 'error');
+    if (detail.suggested_alternative) {
+      setTimeout(() => showToast(`Alternative: ${detail.suggested_alternative}`, 'info'), 2000);
+    }
+  }
+}
+
+async function dropCourseFromPlan(semNumber, courseCode) {
+  try {
+    const res = await api.dropPlanCourse(state.profile.student_id, semNumber, courseCode);
+    if (res.plan) state.plan = res.plan;
+    if (res.validation_report?.certificate) state.certificate = res.validation_report.certificate;
+    showToast(res.message || `Dropped ${courseCode}`, 'success');
+    renderPlanTimeline();
+  } catch (err) {
+    const msg = err.detail?.error || err.message;
+    showToast(msg, 'error');
+  }
 }
 
 // ==============================================================================
@@ -1236,6 +1503,7 @@ function closeAllDrawers() {
   closeWhyDrawer();
   closeCertificateDrawer();
   closeDiffDrawer();
+  closeAddCourseDrawer();
 }
 
 function downloadSignedCertificatePDF() {

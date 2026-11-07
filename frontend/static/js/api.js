@@ -226,6 +226,27 @@ const client = {
     getSeedConsistency(signal) {
         return request('/api/admin/seed-consistency', {}, signal);
     },
+    getEligibleCourses(studentId, semester, signal) {
+        return request(`/api/plans/${encodeURIComponent(studentId)}/eligible?semester=${encodeURIComponent(semester)}`, {}, signal);
+    },
+    addPlanCourse(studentId, semester, courseCode) {
+        return request(`/api/plans/${encodeURIComponent(studentId)}/courses/add`, {
+            method: 'POST',
+            body: JSON.stringify({ semester: Number(semester), course_code: courseCode })
+        });
+    },
+    dropPlanCourse(studentId, semester, courseCode) {
+        return request(`/api/plans/${encodeURIComponent(studentId)}/courses/drop`, {
+            method: 'POST',
+            body: JSON.stringify({ semester: Number(semester), course_code: courseCode })
+        });
+    },
+    swapPlanCourse(studentId, semester, dropCode, addCode) {
+        return request(`/api/plans/${encodeURIComponent(studentId)}/courses/swap`, {
+            method: 'POST',
+            body: JSON.stringify({ semester: Number(semester), drop_code: dropCode, add_code: addCode })
+        });
+    },
     toDashboardData,
     sendChat(body, signal) {
         return request('/api/buddy/chat', { method: 'POST', body: JSON.stringify(body) }, signal);

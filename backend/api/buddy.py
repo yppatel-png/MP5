@@ -23,6 +23,7 @@ class ChatResponse(BaseModel):
     facts_used: Optional[Dict[str, Any]] = None
     model: Optional[str] = None
     fallback_used: bool = True
+    proposal: Optional[Dict[str, Any]] = None
 
 @router.post("/chat", response_model=ChatResponse)
 def send_chat_message(req: ChatRequest) -> Dict[str, Any]:

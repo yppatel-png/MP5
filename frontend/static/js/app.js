@@ -89,18 +89,20 @@ async function loadBuddyMemory() {
       const memory = await api.getBuddyMemory(requestedStudent);
       if (state.studentId !== memory.student_id) return;
       stream.replaceChildren();
-      const intro = document.createElement('div');
-      intro.className = 'chat-msg assistant';
-      intro.innerText = memory.memory_summary?.summary
-        ? `I remember your learning context: ${memory.memory_summary.summary}`
-        : 'Hello! I can help review your plan, recorded skills, and current status.';
-      stream.appendChild(intro);
-      (memory.recent_history || []).forEach(turn => {
-        const message = document.createElement('div');
-        message.className = `chat-msg ${turn.role === 'user' ? 'user' : 'assistant'}`;
-        message.innerText = turn.content;
-        stream.appendChild(message);
-      });
+      const history = memory.recent_history || [];
+      if (!history.length) {
+        const intro = document.createElement('div');
+        intro.className = 'chat-msg assistant';
+        intro.innerText = 'I can help with your semester plan, electives, prerequisites, or study goals. Ask me anything about your curriculum.';
+        stream.appendChild(intro);
+      } else {
+        history.forEach(turn => {
+          const message = document.createElement('div');
+          message.className = `chat-msg ${turn.role === 'user' ? 'user' : 'assistant'}`;
+          message.innerText = turn.content;
+          stream.appendChild(message);
+        });
+      }
       state.buddyLoadedFor = requestedStudent;
     } catch (error) {
       const notice = document.createElement('div');
@@ -465,8 +467,15 @@ async function renderHealthStatus(health) {
     scopeNotice.innerText = '';
   }
   if (pill) {
-    pill.className = isLive ? 'tag tag-success' : 'tag tag-neutral';
-    pill.innerText = isLive ? '• Live assistance available' : '• Offline (Deterministic)';
+    if (isLive) {
+      pill.className = 'tag tag-success';
+      pill.innerText = '• Live assistance available';
+      pill.title = `Model: ${health?.llm?.model || 'active'}`;
+    } else {
+      pill.className = 'tag tag-warn';
+      pill.innerText = '• Offline (Deterministic)';
+      pill.title = health?.llm?.error_reason || 'Grounded deterministic mode active';
+    }
   }
 
   // Build stamp and database sync badge in footer
@@ -973,12 +982,8 @@ async function openAddCourseDrawer(semNumber) {
   listEl.innerHTML = '<div class="text-meta">Checking eligibility against academic rules...</div>';
 
   drawer.classList.add('is-open');
-  drawer.classList.add('is-active');
   const backdrop = document.getElementById('drawer-backdrop');
-  if (backdrop) {
-    backdrop.classList.add('is-open');
-    backdrop.classList.add('is-active');
-  }
+  if (backdrop) backdrop.classList.add('is-open');
 
   try {
     const data = await api.getEligibleCourses(state.profile.student_id, semNumber);
@@ -1037,15 +1042,9 @@ async function openAddCourseDrawer(semNumber) {
 
 function closeAddCourseDrawer() {
   const drawer = document.getElementById('add-course-drawer');
-  if (drawer) {
-    drawer.classList.remove('is-open');
-    drawer.classList.remove('is-active');
-  }
+  if (drawer) drawer.classList.remove('is-open');
   const backdrop = document.getElementById('drawer-backdrop');
-  if (backdrop) {
-    backdrop.classList.remove('is-open');
-    backdrop.classList.remove('is-active');
-  }
+  if (backdrop) backdrop.classList.remove('is-open');
 }
 
 async function addCourseToPlan(semNumber, courseCode) {
@@ -1320,16 +1319,71 @@ async function sendBuddyChat() {
       message: q
     });
     const reply = document.createElement('div');
-    reply.innerText = res.reply || 'No response was returned.';
+    reply.innerHTML = (res.reply || 'No response was returned.')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/### (.*?)\n/g, '<h4 style="margin:6px 0 4px 0; font-size:13px; font-weight:600; color:var(--ink);">$1</h4>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/\n\n/g, '<div style="height:6px;"></div>')
+      .replace(/\n/g, '<br/>');
+
     const grounding = document.createElement('div');
     grounding.className = 'chat-grounding-line';
-    grounding.style.marginTop = '4px';
+    grounding.style.marginTop = '6px';
     grounding.innerText = res.facts_used?.student_summary
       ? api.formatStudentSummary(res.facts_used.student_summary)
-      : 'Student summary is unavailable for this response.';
+      : (res.tools_used && res.tools_used.length ? `Tools used: ${res.tools_used.join(', ')}` : 'Grounded in active student context.');
     respDiv.replaceChildren(reply, grounding);
+
+    if (res.proposal) {
+      const propDiv = document.createElement('div');
+      propDiv.className = 'buddy-proposal-box';
+      propDiv.style.marginTop = '10px';
+      propDiv.style.padding = '8px 12px';
+      propDiv.style.border = '1px solid var(--border)';
+      propDiv.style.borderRadius = 'var(--radius-sm)';
+      propDiv.style.background = 'var(--surface-2)';
+      propDiv.style.display = 'flex';
+      propDiv.style.justifyContent = 'space-between';
+      propDiv.style.alignItems = 'center';
+
+      const propText = document.createElement('span');
+      propText.style.fontSize = '12px';
+      propText.style.fontWeight = '500';
+      propText.innerText = `Proposed: ${res.proposal.action === 'add' ? 'Add' : 'Drop'} ${res.proposal.course_code} (Semester ${res.proposal.semester})`;
+
+      const applyBtn = document.createElement('button');
+      applyBtn.className = 'btn btn-primary btn-sm';
+      applyBtn.style.fontSize = '11px';
+      applyBtn.style.padding = '3px 12px';
+      applyBtn.innerText = 'Apply';
+      applyBtn.onclick = async () => {
+        applyBtn.disabled = true;
+        applyBtn.innerText = 'Applying...';
+        try {
+          if (res.proposal.action === 'add') {
+            await addCourseToPlan(res.proposal.semester, res.proposal.course_code);
+          } else {
+            await dropCourseFromPlan(res.proposal.semester, res.proposal.course_code);
+          }
+          propText.innerText = `Applied: ${res.proposal.course_code} to Semester ${res.proposal.semester}`;
+          applyBtn.replaceWith(document.createTextNode('✓ Applied'));
+        } catch (e) {
+          showToast(`Failed to apply proposal: ${e.message}`, 'error');
+          applyBtn.disabled = false;
+          applyBtn.innerText = 'Apply';
+        }
+      };
+
+      propDiv.append(propText, applyBtn);
+      respDiv.appendChild(propDiv);
+    }
+
     const mode = document.createElement('div');
     mode.className = 'text-meta';
+    mode.style.marginTop = '4px';
     mode.innerText = res.fallback_used ? 'Grounded offline response' : `AI-assisted response · ${res.model || 'configured model'}`;
     respDiv.appendChild(mode);
   } catch (err) {

@@ -13,6 +13,20 @@ from backend.db.database import get_db_cursor
 from backend.student.model import StudentStore
 
 class BuddyMemory:
+    _pending_proposals: Dict[str, Dict[str, Any]] = {}
+
+    @classmethod
+    def set_pending_proposal(cls, student_id: str, proposal: Dict[str, Any]) -> None:
+        cls._pending_proposals[student_id] = proposal
+
+    @classmethod
+    def get_pending_proposal(cls, student_id: str) -> Optional[Dict[str, Any]]:
+        return cls._pending_proposals.get(student_id)
+
+    @classmethod
+    def clear_pending_proposal(cls, student_id: str) -> None:
+        cls._pending_proposals.pop(student_id, None)
+
     @staticmethod
     def record_turn(
         student_id: str,

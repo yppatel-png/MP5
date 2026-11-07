@@ -32,6 +32,7 @@ class HealthLLMStatus(BaseModel):
     key_configured: bool
     is_live: bool
     offline_mode: bool
+    error_reason: Optional[str] = None
 
 class HealthDatabaseStatus(BaseModel):
     type: str
@@ -50,6 +51,7 @@ class HealthResponse(BaseModel):
 def health_check() -> HealthResponse:
     stamp = get_build_stamp()
     status_str = "healthy" if stamp["seed_match"] else "degraded"
+    probe = llm_client.probe_live_status()
     return {
         "status": status_str,
         "service": "Adobe Personalised Learning Buddy",
@@ -57,8 +59,9 @@ def health_check() -> HealthResponse:
         "llm": {
             "model": settings.LLM_MODEL,
             "key_configured": bool(settings.LLM_API_KEY),
-            "is_live": llm_client.is_live(),
-            "offline_mode": settings.OFFLINE_MODE
+            "is_live": probe.get("is_live", False),
+            "offline_mode": settings.OFFLINE_MODE,
+            "error_reason": probe.get("reason"),
         },
         "database": {
             "type": stamp["database_type"],

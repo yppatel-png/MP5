@@ -78,10 +78,56 @@ class LiteLLMClient:
         self.api_key = settings.LLM_API_KEY
         self.api_base = settings.LLM_API_BASE
         self.offline = settings.OFFLINE_MODE or not self.api_key or not self.model or not LITELLM_AVAILABLE
-        
+        self._last_probe_time = 0.0
+        self._cached_probe_result = None
+
+    def probe_live_status(self, force: bool = False) -> Dict[str, Any]:
+        """
+        Runs a lightweight cached probe call to verify live model connectivity.
+        Cached for 60 seconds to avoid latency overhead on frequent health checks (PDF §7).
+        """
+        now = time.time()
+        if not force and self._cached_probe_result and (now - self._last_probe_time < 60.0):
+            return self._cached_probe_result
+
+        if settings.OFFLINE_MODE:
+            res = {"is_live": False, "reason": "Offline mode active (OFFLINE_MODE=true)", "model": self.model}
+            self._cached_probe_result = res
+            self._last_probe_time = now
+            return res
+
+        if not self.api_key:
+            res = {"is_live": False, "reason": "No LLM_API_KEY configured in environment", "model": self.model}
+            self._cached_probe_result = res
+            self._last_probe_time = now
+            return res
+
+        if not LITELLM_AVAILABLE:
+            res = {"is_live": False, "reason": "litellm package not installed", "model": self.model}
+            self._cached_probe_result = res
+            self._last_probe_time = now
+            return res
+
+        try:
+            import litellm
+            litellm.completion(
+                model=self.model,
+                messages=[{"role": "user", "content": "ping"}],
+                api_key=self.api_key,
+                timeout=4.0,
+                max_tokens=2
+            )
+            res = {"is_live": True, "reason": None, "model": self.model}
+        except Exception as e:
+            res = {"is_live": False, "reason": f"Probe error: {str(e)[:120]}", "model": self.model}
+
+        self._cached_probe_result = res
+        self._last_probe_time = now
+        return res
+
     def is_live(self) -> bool:
-        """Returns True if the client is armed with an active model key."""
-        return not self.offline and LITELLM_AVAILABLE and bool(self.api_key) and bool(self.model)
+        """Returns True if the client is armed with an active model key and probe succeeds."""
+        return self.probe_live_status().get("is_live", False)
 
     def generate(
         self,

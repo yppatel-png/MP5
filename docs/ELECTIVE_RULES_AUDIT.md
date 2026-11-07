@@ -151,3 +151,4 @@ To maintain 100% compliance with Ground Rule 2 ("No fabrication"), the following
 1. **Open Electives Scope:** B.Tech CSE students require **15 credits** of Open Electives across Semesters VI (3 credits), VII (6 credits), and VIII (6 credits).
 2. **Eligible Offerings:** High-value electives from `DS` (Data Science), `EC` (Electronics), `EE` (Electrical), `ME`/`MT` (Mechanical/Robotics), `BM` (Bioengineering), `MA` (Mathematics), and `LA` (Liberal Arts/Economics) can be ingested as Tier 2 ("catalogue info only") courses.
 3. **No Fabrication of Modules/Exercises:** In strict adherence to the prompt, these non-CSE open electives will be parsed for catalogue metadata only (code, title, department, credits, type, semester, prerequisites, 2-3 line summary, interest tags, source page), without creating dummy modules or exercises.
+

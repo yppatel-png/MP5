@@ -17,14 +17,45 @@
 const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
+const http = require('http');
 
 const BASE_URL = 'http://127.0.0.1:8000';
 const SCREENSHOT_DIR = path.resolve(__dirname, '../../docs/screenshots/phase3');
+
+function postApi(endpoint, body) {
+  return new Promise((resolve, reject) => {
+    const data = JSON.stringify(body);
+    const u = new URL(endpoint, BASE_URL);
+    const req = http.request({
+      hostname: u.hostname,
+      port: u.port,
+      path: u.pathname,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(data)
+      }
+    }, res => {
+      let raw = '';
+      res.on('data', chunk => raw += chunk);
+      res.on('end', () => {
+        try { resolve({ status: res.statusCode, body: JSON.parse(raw) }); }
+        catch (e) { resolve({ status: res.statusCode, body: raw }); }
+      });
+    });
+    req.on('error', reject);
+    req.write(data);
+    req.end();
+  });
+}
 
 async function run() {
   if (!fs.existsSync(SCREENSHOT_DIR)) {
     fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
   }
+
+  // Ensure clean baseline plan for Tara Rao
+  await postApi('/api/plans/generate', { student_id: 'BH-UP-001' });
 
   console.log('[PHASE 3 ACCEPTANCE] Starting Phase 3 Buddy verification...');
   const browser = await chromium.launch({ headless: true });

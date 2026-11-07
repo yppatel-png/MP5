@@ -20,7 +20,7 @@ from backend.db.seed_loader import load_seed_data
 from backend.planner.solver import multi_semester_planner
 from backend.rules import rule_registry
 from backend.student.diagnostic import diagnostic_engine
-from backend.student.model import StudentStore
+from backend.student.model import StudentStore, StudentProfile
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 SEED_DIR = ROOT_DIR / "data" / "seed_bhilai"
@@ -188,12 +188,13 @@ class TestPlanValidityIndependent(unittest.TestCase):
         for sid in synthetic_ids:
             profile = StudentStore.get_profile(sid)
             if not profile:
-                eval_file = PROJECT_ROOT / "data" / "eval" / "synthetic_profiles.json"
+                eval_file = ROOT_DIR / "data" / "eval" / "synthetic_profiles.json"
                 if eval_file.exists():
                     with open(eval_file, "r", encoding="utf-8") as f:
                         for sp in json.load(f):
                             if sp["student_id"] == sid:
-                                profile = StudentStore.save_profile(sp)
+                                profile = StudentProfile(**sp)
+                                StudentStore.save_profile(profile)
                                 break
             if not profile:
                 continue
@@ -272,7 +273,7 @@ class TestPlanValidityIndependent(unittest.TestCase):
         )
 
         mutated_plan = copy.deepcopy(plan)
-        # Add 7 courses totaling 28.0 credits to semester 1, pushing it well above the 24.0 cap
+        # Add 10 courses totaling 35+ credits to semester 1, pushing it well above any cap
         mutated_plan["semesters"][0]["courses"] = [
             {"code": "CSL301", "title": "Operating Systems", "credits": 4.0},
             {"code": "CSL302", "title": "Computer Networks", "credits": 4.0},
@@ -281,15 +282,19 @@ class TestPlanValidityIndependent(unittest.TestCase):
             {"code": "CSL510", "title": "Advanced Operating Systems", "credits": 4.0},
             {"code": "CSL511", "title": "Distributed Algorithms", "credits": 4.0},
             {"code": "CSL512", "title": "Advanced Database Systems", "credits": 4.0},
+            {"code": "CSL515", "title": "Advanced Computer Networks", "credits": 4.0},
+            {"code": "CSL518", "title": "Deep Learning", "credits": 4.0},
+            {"code": "CSL559", "title": "Machine Learning", "credits": 4.0},
         ]
         mutated_plan["semesters"][0]["total_credits"] = sum(
             c.get("credits", 0.0) for c in mutated_plan["semesters"][0]["courses"]
         )
 
+        profile_data = {**profile.model_dump(), "cgpa": 7.0}
         indep = validate_plan_independently(
-            mutated_plan, profile.model_dump(), self.catalog, self.prereq_map
+            mutated_plan, profile_data, self.catalog, self.prereq_map
         )
-        cert = rule_registry.generate_certificate(mutated_plan, profile.model_dump())
+        cert = rule_registry.generate_certificate(mutated_plan, profile_data)
 
         self.assertFalse(indep["is_valid"], "Independent validator must catch credit overload.")
         self.assertFalse(cert.is_valid, "Rule Registry must catch credit overload.")

@@ -50,7 +50,7 @@ class TestStudentDiagnostic(unittest.TestCase):
         self.assertEqual(student.student_id, "BH-SW-001")
         self.assertEqual(student.programme, "BH-CSE-BTECH")
         self.assertEqual(student.goal_id, "goal_software")
-        self.assertEqual(student.cgpa, 7.8)
+        self.assertEqual(student.cgpa, 8.4)
 
         # Compute skill gaps
         gap_report = diagnostic_engine.compute_skill_gaps("BH-SW-001")

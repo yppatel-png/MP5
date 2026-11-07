@@ -136,7 +136,7 @@ async function run() {
     await page.click('#wizard-submit-btn');
 
     // Wait for redirect/landing on 'Your Plan' tab (#view-plan)
-    await page.waitForSelector('#view-plan.is-active, #view-plan:not([style*="display: none"])', { timeout: 15000 });
+    await page.waitForSelector('#view-plan.active', { timeout: 15000 });
     await page.waitForTimeout(1000);
 
     // Assert landed on valid plan

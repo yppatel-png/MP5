@@ -46,7 +46,10 @@ class BuddyRouter:
         ]):
             return "RECOMMEND_ELECTIVES"
 
-        # 4. Check dropping
+        # 4. Check dropping / Overrides
+        if any(w in msg for w in ["don't want to take", "dont want to take", "do not want to take", "exclude course", "reject course"]):
+            return "OVERRIDE_COURSE"
+
         if any(w in msg for w in ["drop", "remove course", "can i drop", "exclude"]):
             return "CHECK_DROP"
 
@@ -63,7 +66,7 @@ class BuddyRouter:
 
         # 6. Next steps / actions
         if any(w in msg for w in ["what next", "next step", "what should i do next", "where to start", "next action", "next milestone"]):
-            return "NEXT_ACTIONS"
+            return "NEXT_STEPS"
 
         # 7. What if / simulation
         if any(w in msg for w in ["what if", "simulate", "strong study week", "weak study week", "study-week simulation"]):
@@ -73,7 +76,11 @@ class BuddyRouter:
         if any(w in msg for w in ["improve", "lagging", "weakness", "gaps", "what should i improve", "need to learn", "where am i lagging"]):
             return "SKILL_GAPS"
 
-        # 9. What I know / Mastery
+        # 9. Mastery Status / Readiness
+        if any(w in msg for w in ["what's missing", "whats missing", "placement readiness", "mastery status", "readiness status"]):
+            return "MASTERY_STATUS"
+
+        # 10. What I know / Mastery
         if any(w in msg for w in ["what i know", "my skills", "strengths", "what do i know", "my background", "mastered", "readiness", "placement ready"]):
             return "WHAT_I_KNOW"
 
@@ -140,6 +147,31 @@ class BuddyRouter:
         tools_called = []
         factual_context: Dict[str, Any] = {}
         proposal: Optional[Dict[str, Any]] = None
+
+        # Always attach current student summary into factual grounding context
+        try:
+            from backend.student.summary import build_student_summary
+            from backend.student.diagnostic import diagnostic_engine
+            from backend.db.database import get_db_cursor
+            with get_db_cursor() as cur:
+                cur.execute(
+                    "SELECT plan_json FROM plan_versions WHERE student_id = ? ORDER BY version_number DESC LIMIT 1",
+                    (student_id,)
+                )
+                plan_row = cur.fetchone()
+            plan_obj = json.loads(plan_row["plan_json"]) if plan_row else None
+            active_goal = (plan_obj or {}).get("goal_id", profile.goal_id)
+            gaps = diagnostic_engine.compute_skill_gaps(student_id, goal_id=active_goal)
+            factual_context["student_summary"] = build_student_summary(
+                profile=profile,
+                plan=plan_obj,
+                readiness_percentage=gaps.get("readiness_percentage"),
+                priority_gap_count=gaps.get("critical_gap_count", 0),
+                goal_name=gaps.get("goal_name"),
+                credit_cap=(plan_obj or {}).get("credit_cap"),
+            ).model_dump()
+        except Exception:
+            pass
 
         # Handle Intent Execution
         if intent == "APPLY_PROPOSAL":
@@ -264,15 +296,17 @@ class BuddyRouter:
             else:
                 prereq_str = ", ".join(exp["prerequisites"]) if exp.get("prerequisites") else "None"
                 citation_str = f"{exp['source_citation']}" + (f", Page {exp['source_page']}" if exp.get("source_page") else "")
+                syl = exp.get("syllabus") or "Comprehensive coursework and practical curriculum covering foundational concepts."
+                syl_preview = syl[:280] + "..." if len(syl) > 280 else syl
                 deterministic_reply = (
                     f"### **{exp['course_code']} — {exp['title']}**\n"
                     f"• **Credits**: {exp['credits']} cr ({exp['course_type']})\n"
                     f"• **Prerequisites**: {prereq_str}\n"
-                    f"• **Syllabus / Scope**: {exp['syllabus'][:280]}...\n\n"
+                    f"• **Syllabus / Scope**: {syl_preview}\n\n"
                     f"**Official Source Citation:** {citation_str}"
                 )
 
-        elif intent == "NEXT_ACTIONS":
+        elif intent in ("NEXT_STEPS", "NEXT_ACTIONS"):
             tools_called.append("tools.next_actions")
             actions_data = tools.next_actions(student_id)
             factual_context["next_actions"] = actions_data
@@ -308,6 +342,16 @@ class BuddyRouter:
                     lines.append(f"• **{g.get('skill_name', 'Skill')}**: Current {int(g.get('current_level', 0)*100)}% → Target {int(g.get('target_level', 1)*100)}% (Gap: {int(g.get('gap', 0)*100)}%)")
                 lines.append("\nYour semester plan has been sequenced to address these gaps.")
             deterministic_reply = "\n".join(lines)
+
+        elif intent == "MASTERY_STATUS":
+            tools_called.append("tools.get_gaps")
+            gaps_data = tools.get_gaps(student_id)
+            factual_context["goal_readiness"] = gaps_data
+            deterministic_reply = (
+                f"For your target ambition ({profile.target_role or profile.goal_id}), "
+                f"your overall goal readiness is currently **{gaps_data.get('readiness_percentage', 0)}%**.\n"
+                f"Remaining priority gaps to achieve placement readiness: **{gaps_data.get('critical_gap_count', 0)} skills**."
+            )
 
         elif intent == "WHAT_I_KNOW":
             tools_called.append("tools.get_plan")

@@ -45,19 +45,23 @@ class SkillEstimate(BaseModel):
     evidence_count: int
     evidence_trail: List[str]
 
+HERO_PERSONA_ORDER = ["BH-SW-001", "BH-HS-001", "BH-UP-001", "BH-ST-001"]
+
 @router.get("")
 def list_students() -> List[StudentListEntry]:
     """Lists available student personas for the frontend selector."""
+    all_profiles = {p.student_id: p for p in StudentStore.get_all_profiles()}
     return [
         StudentListEntry(
-            student_id=profile.student_id,
-            name=profile.name,
-            programme=profile.programme,
-            goal_id=profile.goal_id,
-            target_role=profile.target_role,
-            current_semester=profile.current_semester,
+            student_id=all_profiles[sid].student_id,
+            name=all_profiles[sid].name,
+            programme=all_profiles[sid].programme,
+            goal_id=all_profiles[sid].goal_id,
+            target_role=all_profiles[sid].target_role,
+            current_semester=all_profiles[sid].current_semester,
         )
-        for profile in StudentStore.get_all_profiles()
+        for sid in HERO_PERSONA_ORDER
+        if sid in all_profiles
     ]
 
 @router.post("", response_model=Dict[str, Any])

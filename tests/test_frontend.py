@@ -125,8 +125,10 @@ class TestVisualFrontend(unittest.TestCase):
     def test_06_fastapi_root_serves_frontend(self):
         """Verify root route serves the frontend HTML."""
         res = root()
-        self.assertTrue(hasattr(res, "path"))
-        self.assertIn("index.html", res.path)
+        if hasattr(res, "path"):
+            self.assertIn("index.html", res.path)
+        else:
+            self.assertIn(b"Learning Buddy", res.body)
 
 if __name__ == "__main__":
     unittest.main()

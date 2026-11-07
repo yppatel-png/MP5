@@ -213,7 +213,8 @@ class MultiSemesterPlanner:
             min_credits=min_credits,
             no_co_pairs=all_no_co_pairs,
             is_minor_eligible=is_minor_eligible,
-            goal_id=goal_id
+            goal_id=goal_id,
+            excluded_set=excluded_set
         )
 
         # Fill non-credit layers (OERs and goal milestones)
@@ -258,7 +259,8 @@ class MultiSemesterPlanner:
         min_credits: float,
         no_co_pairs: List[List[str]],
         is_minor_eligible: bool,
-        goal_id: str = "goal_software"
+        goal_id: str = "goal_software",
+        excluded_set: Optional[Set[str]] = None
     ) -> Tuple[List[Dict[str, Any]], str]:
         """
         Deterministic, provably valid curriculum-aware constraint satisfaction solver.
@@ -298,7 +300,7 @@ class MultiSemesterPlanner:
                 code = c_entry.get("code")
                 if not code or c_entry.get("placeholder"):
                     continue
-                if code in scheduled_so_far or code in already_scheduled_codes:
+                if code in scheduled_so_far or code in already_scheduled_codes or (excluded_set and code.upper() in excluded_set):
                     continue
                 if code not in self.courses:
                     continue
@@ -358,6 +360,7 @@ class MultiSemesterPlanner:
                     if (
                         la_code not in scheduled_so_far
                         and la_code not in already_scheduled_codes
+                        and (not excluded_set or la_code.upper() not in excluded_set)
                         and la_code in self.courses
                     ):
                         la_meta = self.courses[la_code]
@@ -405,7 +408,7 @@ class MultiSemesterPlanner:
                     break
                 if sem_credits >= typical_cr or sem_credits >= credit_cap:
                     break
-                if code in scheduled_so_far or code in already_scheduled_codes:
+                if code in scheduled_so_far or code in already_scheduled_codes or (excluded_set and code.upper() in excluded_set):
                     continue
                 if code not in self.courses:
                     continue
@@ -484,6 +487,7 @@ class MultiSemesterPlanner:
                     if (
                         la_code not in scheduled_so_far
                         and la_code not in already_scheduled_codes
+                        and (not excluded_set or la_code.upper() not in excluded_set)
                         and la_code in self.courses
                     ):
                         la_meta = self.courses[la_code]

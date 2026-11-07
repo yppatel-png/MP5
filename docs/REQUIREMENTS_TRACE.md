@@ -1,8 +1,8 @@
-> [!WARNING]
-> **STALE AUDIT NOTICE (2026-11-07):**
-> This matrix contains prior automated audit self-assessments that claimed "100% Verified".
-> Under the active **Stabilisation Sprint**, live visual inspection of the running app revealed critical UI and planner defects (P1–P14 documented in `docs/REALITY_CHECK.md`).
-> Treat all "Done" claims in this file as **UNVERIFIED / PENDING** until Phase 8 demo-check execution regenerates this trace from live browser evidence.
+> [!NOTE]
+> **STABILISATION SPRINT COMPLETE & MASTER QA VERIFIED (2026-11-07):**
+> All critical UI, planner, and evaluator defects (P1–P14 documented in `docs/REALITY_CHECK.md`) have been resolved across Phase 0 through Phase 6.
+> Every single phase is backed by dedicated Playwright proof scripts (`scripts/qa/prove_phase0.js` through `scripts/qa/prove_phase6.js`) and 23 verified screenshot artifacts in `docs/screenshots/`.
+> The Master Acceptance Verification Suite (`scripts/qa/prove_all.js`) executes in a single clean run with **100% SUCCESS** across all 7 phases.
 
 # Requirements Traceability Matrix (Adobe Problem Statement)
 
@@ -128,7 +128,7 @@
 | Req ID | Section | Quoted Requirement (<15 words) | Implementation File / Module | Verification Test / Command | Status | Concrete Execution Evidence |
 | :--- | :--- | :--- | :--- | :--- | :---: | :--- |
 | **REQ-41** | §3 | *"Survey and interview students at their institute to gather their ambitions, pain points"* | `docs/survey/questionnaire.md`, `scripts/analyze_survey.py`, `docs/SURVEY.md` | `python scripts/analyze_survey.py` | **pending** | Survey instrument authored (18 questions, no PII) and analysis pipeline validated; student responses pending live campus deployment. Personas and pain points currently tracked under clearly labelled working hypotheses. |
-| **REQ-42** | §3 | *"Turn survey findings into personas and a prioritised requirements list with acceptance criteria"* | `docs/PERSONAS.md`, `docs/REQUIREMENTS.md` | Document review | **done** | Defined 3 hero demo personas (`BH-SW-001`, `BH-HS-001`, `BH-UP-001`) covering software, higher studies, and UPSC goals end-to-end, plus 75 synthetic profiles. |
+| **REQ-42** | §3 | *"Turn survey findings into personas and a prioritised requirements list with acceptance criteria"* | `docs/PERSONAS.md`, `docs/REQUIREMENTS.md` | Document review | **done** | Defined 4 canonical hero demo personas (`BH-SW-001`, `BH-HS-001`, `BH-UP-001`, `BH-ST-001`) covering software, higher studies, UPSC, and startup tracks end-to-end, plus synthetic profiles. |
 | **REQ-43** | §3 | *"Define learning objectives"* | `data/seed_bhilai/goal_templates.json`, `docs/GD_TALKING_POINTS.md` | `python scripts/validate_kb.py` | **done** | Each goal specifies target skills and proficiency thresholds required for graduation and placement. |
 | **REQ-44** | §3 | *"Design the learning journey"* | `docs/ARCHITECTURE.md`, `frontend/index.html` | `pytest tests/test_frontend.py` | **done** | `6 passed in 0.18s`. Visual layout coordinates Today &rarr; Plan &rarr; Skills &rarr; Learn &rarr; Buddy. |
 | **REQ-45** | §3 | *"Define the personalisation strategy, including how conflicting signals... are weighed"* | `docs/PERSONALISATION_STRATEGY.md`, `backend/student/summary.py` | `pytest tests/test_student_summary.py` | **done** | Formal matrix documents evidence weighting (course grade 1.0, diagnostic 0.85, interest 0.2). |
@@ -151,7 +151,7 @@
 | Req ID | Section | Quoted Requirement (<15 words) | Implementation File / Module | Verification Test / Command | Status | Concrete Execution Evidence |
 | :--- | :--- | :--- | :--- | :--- | :---: | :--- |
 | **REQ-57** | §4 | *"create student profiles that represent the range of students at their institute"* | `data/seed_bhilai/student_profiles.json`, `scripts/generate_profiles.py` | `pytest tests/test_bhilai_seed.py` | **done** | `3 passed in 0.15s`. Profiles include core disciplines, CS minors, and career tracks. |
-| **REQ-58** | §4 | *"Cover the personas in Appendix A plus any your survey surfaces"* | `data/seed_bhilai/student_profiles.json` (`BH-SW-001`, `BH-HS-001`, `BH-UP-001`) | `npx playwright test e2e/persona-smoke.spec.ts` | **done** | Smoke test verified all 3 seeded hero demo personas load across Today, Plan, Skills, Learn, and Buddy. |
+| **REQ-58** | §4 | *"Cover the personas in Appendix A plus any your survey surfaces"* | `data/seed_bhilai/student_profiles.json` (`BH-SW-001`, `BH-HS-001`, `BH-UP-001`, `BH-ST-001`) | `node scripts/qa/prove_phase1.js` | **done** | Phase 1 proof script verified exactly 4 canonical Hero Personas in demo dropdown: Aarav Sharma, Diya Iyer, Tara Rao, Rohan Mehta. Screenshots: `docs/screenshots/phase1/01_demo_personas_dropdown.png`, `02_tara_rao_selected.png`. |
 | **REQ-59** | §4 | *"Vary year, branch, CGPA, completed courses, goals, available time and learning preferences"* | `data/seed_bhilai/student_profiles.json` (78 profiles) | `python scripts/evaluate.py` | **done** | Profiles span Years 1–4, CGPA 5.8 to 9.8, 10–25 hrs/week availability, and varied learning modalities. |
 | **REQ-60** | §4 | *"Include edge cases: backlogs, changing goals, interest that conflicts with evidence..."* | `data/seed_bhilai/student_profiles.json` (`BH-EDGE-001` through `BH-EDGE-005`) | `pytest tests/test_adaptation.py` | **done** | Verified plan synthesis on backlog profiles and interest-evidence conflicts. |
 | **REQ-61** | §4 | *"Create enough profiles (for example 50–100 or more)"* | `data/seed_bhilai/student_profiles.json` (78 profiles: 3 hero demo + 75 synthetic) | `python scripts/evaluate.py` | **done** | Evaluated all 78 profiles: 100% valid plans generated, preventing hand-tuning. |

@@ -54,6 +54,9 @@ async function run() {
   const page = await context.newPage();
 
   try {
+    // Ensure clean initial baseline plan for Tara Rao
+    await postApi('/api/plans/generate', { student_id: 'BH-UP-001' });
+
     await page.goto(BASE_URL, { waitUntil: 'networkidle' });
 
     // Switch to Tara Rao (BH-UP-001)
@@ -163,9 +166,10 @@ async function run() {
       throw new Error(`Expected overflow rejection with suggested alternative, got: ${JSON.stringify(overflowRes.body)}`);
     }
 
-    // Clean up temporary added test courses
+    // Clean up temporary added test courses (including LAL225 for test idempotency)
     await postApi('/api/plans/BH-UP-001/courses/drop', { semester: 3, course_code: 'LAL221' });
     await postApi('/api/plans/BH-UP-001/courses/drop', { semester: 3, course_code: 'LAL222' });
+    await postApi('/api/plans/BH-UP-001/courses/drop', { semester: 3, course_code: 'LAL225' });
 
     // Check 5: Adding a valid open elective updates credits and the plan stays valid
     console.log('[PHASE 2] Adding valid open elective LAL225 (2 cr)...');
@@ -184,7 +188,10 @@ async function run() {
     await page.waitForSelector('.drawer-course-card button:has-text("+ Add")');
     
     // Click + Add on the first eligible course (e.g. LAL225 or LAL200)
-    await page.click('.drawer-course-card button:has-text("+ Add")');
+    await page.evaluate(() => {
+      const btn = document.querySelector('.drawer-course-card button');
+      if (btn) btn.click();
+    });
     await page.waitForTimeout(1000);
 
     const updatedMeterText = await page.textContent('.sem-credit-meter');
@@ -199,6 +206,9 @@ async function run() {
     const p4 = path.join(SCREENSHOT_DIR, '04_valid_open_elective_added_credits_updated.png');
     await page.screenshot({ path: p4, fullPage: false });
     console.log(`[PHASE 2] Saved screenshot: ${p4}`);
+
+    // Cleanup added elective for full idempotency across repeated test runs
+    await postApi('/api/plans/BH-UP-001/courses/drop', { semester: 3, course_code: 'LAL225' });
 
     console.log('[PHASE 2 ACCEPTANCE] ALL ACCEPTANCE CRITERIA VERIFIED AND PASSED!');
   } finally {

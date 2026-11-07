@@ -558,7 +558,13 @@ async function submitWizardOnboarding() {
     // Reload student dropdown and switch active context to newly created student
     await loadStudentList();
     const sel = document.getElementById('persona-select');
-    if (sel) {
+    if (sel && newStudentId) {
+      if (!Array.from(sel.options).some(o => o.value === newStudentId)) {
+        const opt = document.createElement('option');
+        opt.value = newStudentId;
+        opt.text = `${wizardState.name} (New student)`;
+        sel.appendChild(opt);
+      }
       sel.value = newStudentId;
     }
     await loadFullStudentContext(newStudentId);

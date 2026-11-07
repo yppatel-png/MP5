@@ -209,7 +209,9 @@
 }
 
 .drawer.is-open, .drawer.is-active {
+  transform: translateX(0) !important;
   right: 0 !important;
+  z-index: 600 !important;
 }
 
 .drawer-backdrop.is-open, .drawer-backdrop.is-active {

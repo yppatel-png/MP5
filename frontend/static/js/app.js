@@ -140,7 +140,7 @@ function switchTab(target) {
     practice: 'Practise',
     mastery: 'Progress',
     diagnostic: 'Skill check',
-    admin: 'Administrative Console',
+    admin: 'Evaluator tools',
     setup: 'Set up profile'
   };
   const topTitle = document.getElementById('topbar-section-title');
@@ -151,7 +151,7 @@ function switchTab(target) {
   if (target === 'practice') renderPracticeSandbox();
   if (target === 'diagnostic') renderDiagnosticView();
   if (target === 'setup') renderOnboardingForm();
-  if (target === 'admin') loadSimulationScenarios();
+  if (target === 'admin') renderEvaluatorTools();
 }
 
 function renderDiagnosticView() {
@@ -2281,34 +2281,184 @@ async function overrideCourse(code) {
   }
 }
 
-async function saveAdminStudentProfile() {
-  const token = prompt('Enter the ADMIN_API_TOKEN configured for this service. It is not saved in the browser.');
-  if (!token) return;
+// ==============================================================================
+// 6. EVALUATOR TOOLS CONTROLLER (PDF §6.1, §7)
+// ==============================================================================
+
+function getAdminToken() {
+  let token = sessionStorage.getItem('admin_token');
+  if (!token) {
+    token = prompt('Enter ADMIN_API_TOKEN from your .env file (default: buddy-admin-dev-token):', 'buddy-admin-dev-token');
+    if (token) sessionStorage.setItem('admin_token', token);
+  }
+  return token;
+}
+
+function switchEvalTab(tabId) {
+  document.querySelectorAll('.eval-subtab-btn').forEach(btn => {
+    btn.classList.toggle('is-active', btn.id === `tab-btn-${tabId}`);
+    btn.classList.toggle('btn-secondary', btn.id === `tab-btn-${tabId}`);
+    btn.classList.toggle('btn-ghost', btn.id !== `tab-btn-${tabId}`);
+  });
+  document.querySelectorAll('.eval-pane').forEach(pane => {
+    pane.style.display = pane.id === `eval-pane-${tabId}` ? 'block' : 'none';
+  });
+
+  if (tabId === 'students') loadEvaluatorStudents();
+  if (tabId === 'courses') loadEvaluatorCourses();
+  if (tabId === 'adaptation') loadSimulationScenarios();
+}
+
+async function renderEvaluatorTools() {
+  await loadEvaluatorStudents();
+  await loadSimulationScenarios();
+}
+
+async function loadEvaluatorStudents() {
+  const tbody = document.getElementById('eval-students-table-body');
+  if (!tbody) return;
   try {
-    const cgpa = parseFloat(document.getElementById('admin-edit-cgpa').value);
-    const hours = parseFloat(document.getElementById('admin-edit-hours').value);
-    await api.updateConstraints({
-      student_id: state.studentId,
-      constraints: { cgpa, available_hours_per_week: hours }
-    }, token);
-    showToast('Student constraints updated & plan recomputed.', 'success');
-    await loadFullStudentContext(state.studentId);
+    const students = await api.getStudents();
+    state.evaluatorStudents = students || [];
+    tbody.innerHTML = (students || []).map(s => `
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+        <td style="padding:8px 10px; font-family:var(--font-mono);">${escapeHtml(s.student_id)}</td>
+        <td style="padding:8px 10px; font-weight:600; color:var(--ink);">${escapeHtml(s.name)}</td>
+        <td style="padding:8px 10px; color:var(--ink-2);">${escapeHtml(s.target_role || s.goal_id)}</td>
+        <td style="padding:8px 10px;">Sem ${s.current_semester}</td>
+        <td style="padding:8px 10px; font-weight:600;">${s.cgpa ? s.cgpa.toFixed(2) : '\u2014'}</td>
+        <td style="padding:8px 10px;">${s.available_hours_per_week || 20} h/wk</td>
+        <td style="padding:8px 10px; text-align:right;">
+          <button class="btn btn-secondary btn-sm" onclick="openStudentEdit('${escapeHtml(s.student_id)}')">Edit & re-run</button>
+        </td>
+      </tr>
+    `).join('');
   } catch (err) {
-    showToast(`Error: ${err.message} Request ID: ${err.requestId || 'unavailable'}`, 'danger');
+    tbody.innerHTML = `<tr><td colspan="7" class="text-meta" style="padding:12px;">Could not load students: ${err.message}</td></tr>`;
   }
 }
 
-async function resetDatabasePrompt() {
-  if (confirm('Restore database to clean seed state?')) {
-    const token = prompt('Enter the ADMIN_API_TOKEN configured for this service. It is not saved in the browser.');
-    if (!token) return;
-    try {
-      await api.resetDatabase(token);
-      showToast('Database reset to clean state.', 'success');
-      await loadFullStudentContext(state.studentId);
-    } catch (err) {
-      showToast(`Reset error: ${err.message} Request ID: ${err.requestId || 'unavailable'}`, 'danger');
+function openStudentEdit(studentId) {
+  const s = (state.evaluatorStudents || []).find(st => st.student_id === studentId);
+  if (!s) return;
+  state.editingStudentId = studentId;
+
+  document.getElementById('eval-edit-student-title').innerText = `Edit ${s.name} (${s.student_id})`;
+  document.getElementById('admin-edit-cgpa').value = s.cgpa || 8.0;
+  document.getElementById('admin-edit-hours').value = s.available_hours_per_week || 20;
+
+  const box = document.getElementById('eval-student-edit-box');
+  if (box) box.style.display = 'block';
+  box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function closeStudentEdit() {
+  const box = document.getElementById('eval-student-edit-box');
+  if (box) box.style.display = 'none';
+}
+
+async function saveAdminStudentProfile() {
+  const token = getAdminToken();
+  if (!token) return;
+
+  const studentId = state.editingStudentId || state.studentId;
+  const cgpa = parseFloat(document.getElementById('admin-edit-cgpa').value);
+  const hours = parseFloat(document.getElementById('admin-edit-hours').value);
+
+  try {
+    const res = await api.updateConstraints({
+      student_id: studentId,
+      constraints: { cgpa, available_hours_per_week: hours }
+    }, token);
+
+    showToast(`Updated ${studentId} standing & re-synthesized plan.`, 'success');
+    closeStudentEdit();
+
+    const diffPane = document.getElementById('eval-student-plan-diff');
+    const diffContent = document.getElementById('eval-student-diff-content');
+    if (diffPane && diffContent) {
+      diffPane.style.display = 'block';
+      diffContent.innerHTML = `
+        <strong>Plan Version:</strong> ${res.new_plan_version} &bull; <strong>Validation:</strong> ${res.plan_valid ? '<span class="tag tag-success">Valid</span>' : '<span class="tag tag-danger">Invalid</span>'}<br>
+        <strong>Recomputed Standing:</strong> CGPA ${res.updated_constraints?.cgpa?.toFixed(2)} &bull; ${res.updated_constraints?.available_hours_per_week} hours/week available study budget<br>
+        <span style="color:#10b981;">✓ Multi-semester solver re-executed without application restart.</span>
+      `;
     }
+
+    await loadEvaluatorStudents();
+    if (studentId === state.studentId) {
+      await loadFullStudentContext(studentId);
+    }
+  } catch (err) {
+    showToast(`Error: ${err.message}`, 'danger');
+  }
+}
+
+async function loadEvaluatorCourses() {
+  const tbody = document.getElementById('eval-courses-table-body');
+  if (!tbody) return;
+  try {
+    const courses = await api.getCourses();
+    state.evaluatorCourses = courses || [];
+    tbody.innerHTML = (courses || []).map(c => `
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+        <td style="padding:8px 10px; font-family:var(--font-mono); font-weight:600; color:var(--ink);">${escapeHtml(c.code)}</td>
+        <td style="padding:8px 10px;">${escapeHtml(c.title)}</td>
+        <td style="padding:8px 10px; font-weight:600;">${c.credits} cr</td>
+        <td style="padding:8px 10px;">${escapeHtml(c.semester_offered || 'both')}</td>
+        <td style="padding:8px 10px;">${c.workload_hours_per_week || 8} h/wk</td>
+        <td style="padding:8px 10px; text-align:right;">
+          <button class="btn btn-secondary btn-sm" onclick="openCourseEdit('${escapeHtml(c.code)}')">Edit</button>
+        </td>
+      </tr>
+    `).join('');
+  } catch (err) {
+    tbody.innerHTML = `<tr><td colspan="6" class="text-meta" style="padding:12px;">Could not load courses: ${err.message}</td></tr>`;
+  }
+}
+
+function openCourseEdit(code) {
+  const c = (state.evaluatorCourses || []).find(crs => crs.code === code);
+  if (!c) return;
+
+  document.getElementById('admin-course-code').value = c.code;
+  document.getElementById('eval-edit-course-title').innerText = `Edit Course: ${c.code} — ${c.title}`;
+  document.getElementById('admin-course-credits').value = c.credits;
+  document.getElementById('admin-course-sem').value = (c.semester_offered && c.semester_offered.includes('autumn')) ? 'autumn' : (c.semester_offered && c.semester_offered.includes('spring')) ? 'spring' : 'both';
+  document.getElementById('admin-course-workload').value = c.workload_hours_per_week || 8;
+
+  const box = document.getElementById('eval-course-edit-box');
+  if (box) box.style.display = 'block';
+  box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function closeCourseEdit() {
+  const box = document.getElementById('eval-course-edit-box');
+  if (box) box.style.display = 'none';
+}
+
+async function saveAdminCourse() {
+  const token = getAdminToken();
+  if (!token) return;
+
+  const code = document.getElementById('admin-course-code').value;
+  const credits = parseFloat(document.getElementById('admin-course-credits').value);
+  const semester_offered = document.getElementById('admin-course-sem').value;
+  const workload_hours_per_week = parseFloat(document.getElementById('admin-course-workload').value);
+
+  try {
+    const res = await api.editCourse({
+      code,
+      credits,
+      semester_offered,
+      workload_hours_per_week
+    }, token);
+
+    showToast(res.message || `Course ${code} updated.`, 'success');
+    closeCourseEdit();
+    await loadEvaluatorCourses();
+  } catch (err) {
+    showToast(`Error: ${err.message}`, 'danger');
   }
 }
 
@@ -2325,31 +2475,56 @@ async function loadSimulationScenarios() {
       option.innerText = scenario.name;
       select.appendChild(option);
     });
-    document.getElementById('simulation-description').innerText =
-      response.scenarios[0]?.description || 'No scripted scenarios are available.';
+    const desc = document.getElementById('simulation-description');
+    if (desc) desc.innerText = response.scenarios[0]?.description || 'No scripted scenarios are available.';
   } catch (error) {
-    document.getElementById('simulation-description').innerText =
-      `${error.message || 'Could not load scenarios.'} Request ID: ${error.requestId || 'unavailable'}`;
+    const desc = document.getElementById('simulation-description');
+    if (desc) desc.innerText = `${error.message || 'Could not load scenarios.'}`;
   }
 }
 
 function updateScenarioDescription() {
-  const selected = document.getElementById('simulation-scenario').value;
-  const scenario = state.simulationScenarios.find(item => item.id === selected);
-  document.getElementById('simulation-description').innerText =
-    scenario?.description || 'No description available.';
+  const selected = document.getElementById('simulation-scenario')?.value;
+  const scenario = state.simulationScenarios?.find(item => item.id === selected);
+  const desc = document.getElementById('simulation-description');
+  if (desc) desc.innerText = scenario?.description || 'No description available.';
 }
 
 async function runSelectedScenario() {
-  const scenarioId = document.getElementById('simulation-scenario').value;
+  const scenarioId = document.getElementById('simulation-scenario')?.value;
+  const resultCard = document.getElementById('simulation-result-card');
   const output = document.getElementById('simulation-result');
-  output.innerText = 'Running scenario and validating the resulting plan...';
+  if (resultCard) resultCard.style.display = 'block';
+  if (output) output.innerText = 'Executing "What if..." scenario and solving multi-semester plan...';
+
   try {
     const result = await api.simulateScenario({ scenario_id: scenarioId, student_id: state.studentId, params: {} });
     await loadFullStudentContext(state.studentId);
     const diff = result.plan_diff || {};
-    output.innerText = `${result.explanation || result.status || 'Scenario complete.'}\n\nAdded: ${(diff.added_courses || []).join(', ') || 'none'}\nRemoved/deferred: ${(diff.removed_courses || []).join(', ') || 'none'}\nValidation: ${result.validation?.is_valid === false ? 'failed' : 'passed'}`;
+    const added = (diff.added_courses || []).join(', ') || 'None';
+    const removed = (diff.removed_courses || []).join(', ') || 'None';
+    const isValid = result.validation?.is_valid !== false;
+
+    if (output) {
+      output.innerText = `Scenario: ${result.scenario_name || scenarioId}\n\nOutcome Rationale:\n${result.explanation || result.status || 'Scenario executed successfully.'}\n\nBefore vs After Plan Diff:\n+ Added Courses: ${added}\n- Deferred / Excluded: ${removed}\nValidation Status: ${isValid ? 'PASSED (Compliant with Degree Ordinances)' : 'FAILED'}`;
+    }
   } catch (error) {
-    output.innerText = `${error.message || 'Scenario failed.'} Request ID: ${error.requestId || 'unavailable'}`;
+    if (output) output.innerText = `Simulation failed: ${error.message || 'Unknown error'}`;
+  }
+}
+
+async function resetDatabasePrompt() {
+  if (confirm('Restore database to clean seed state? This resets all student edits, course mutations, and test attempts.')) {
+    const token = getAdminToken();
+    if (!token) return;
+    try {
+      await api.resetDatabase(token);
+      showToast('Database restored to clean seed state.', 'success');
+      await loadFullStudentContext(state.studentId);
+      await loadEvaluatorStudents();
+      await loadEvaluatorCourses();
+    } catch (err) {
+      showToast(`Reset error: ${err.message}`, 'danger');
+    }
   }
 }

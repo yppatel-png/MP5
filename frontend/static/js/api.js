@@ -261,6 +261,26 @@ const client = {
     sendChat(body, signal) {
         return request('/api/buddy/chat', { method: 'POST', body: JSON.stringify(body) }, signal);
     },
+    getStudents(signal) {
+        return request('/api/students', {}, signal);
+    },
+    getCourses(signal) {
+        return request('/api/courses', {}, signal);
+    },
+    editCourse(body, token) {
+        return request('/api/admin/course', {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: { 'X-Admin-Token': token },
+        });
+    },
+    editGrade(body, token) {
+        return request('/api/admin/grade', {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: { 'X-Admin-Token': token },
+        });
+    },
     updateConstraints(body, token) {
         return request('/api/admin/constraint', {
             method: 'POST',

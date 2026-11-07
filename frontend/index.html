@@ -72,8 +72,8 @@
       <div class="sidebar-footer">
         <div class="nav-item" data-target="admin" onclick="switchTab('admin')">
           <span class="nav-item-icon" data-icon="shield" data-icon-size="16"></span>
-          <span class="nav-item-label">Admin</span>
-          <span class="tag tag-neutral" style="font-size:10px; padding:0 4px;">Console</span>
+          <span class="nav-item-label">Evaluator tools</span>
+          <span class="tag tag-neutral" style="font-size:10px; padding:0 4px;">Eval</span>
         </div>
       </div>
     </aside>
@@ -741,54 +741,183 @@
         </section>
 
         <!-- ==========================================
-             VIEW 6: ADMIN & SIMULATION
+             VIEW 6: EVALUATOR TOOLS (PDF §6.1, §7)
              ========================================== -->
         <section id="view-admin" class="tab-pane">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-16);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:var(--space-16);">
             <div>
-              <h2 class="text-title">Administrative Console</h2>
-              <div class="text-meta" style="margin-top:2px;">
-                Dynamic parameter recomputation & zero-restart solver cache sync
+              <h2 class="text-title">Evaluator tools</h2>
+              <div class="text-meta" style="margin-top:4px; max-width:820px; line-height:1.5;">
+                Inspection and evaluation suite for testing curriculum adaptations, student profiles, and course catalog data. Use these tools to simulate edge cases and verify plan solver behaviors under varied academic conditions.
               </div>
             </div>
             <button class="btn btn-danger btn-sm" onclick="resetDatabasePrompt()">Restore clean seed state</button>
           </div>
 
-          <div class="guide-grid-2">
-            <div class="admin-seed-warning" id="admin-seed-warning" role="alert" hidden></div>
-            <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
-              <div class="overline" style="margin-bottom:var(--space-8);">Student Parameter Mutation</div>
-              <p class="text-meta">Protected action. You will be asked for the service's ADMIN_API_TOKEN; it is sent only with this request.</p>
-              <div style="display:flex; flex-direction:column; gap:var(--space-12);">
-                <div>
-                  <label class="text-dense">Current CGPA</label>
-                  <input type="number" step="0.1" id="admin-edit-cgpa" class="input" style="margin-top:4px;">
+          <!-- Evaluator Subtabs -->
+          <div class="eval-subtabs" style="display:flex; gap:8px; border-bottom:1px solid var(--border); margin-bottom:var(--space-16); padding-bottom:8px;">
+            <button class="btn btn-secondary btn-sm eval-subtab-btn is-active" id="tab-btn-students" onclick="switchEvalTab('students')">Students</button>
+            <button class="btn btn-ghost btn-sm eval-subtab-btn" id="tab-btn-courses" onclick="switchEvalTab('courses')">Courses</button>
+            <button class="btn btn-ghost btn-sm eval-subtab-btn" id="tab-btn-adaptation" onclick="switchEvalTab('adaptation')">What if... (Adaptation)</button>
+            <button class="btn btn-ghost btn-sm eval-subtab-btn" id="tab-btn-database" onclick="switchEvalTab('database')">Database</button>
+          </div>
+
+          <!-- Subtab 1: Students -->
+          <div id="eval-pane-students" class="eval-pane">
+            <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16); margin-bottom:var(--space-16);">
+              <div class="overline" style="margin-bottom:var(--space-4);">Edit student standing</div>
+              <p class="text-meta" style="margin-bottom:var(--space-12);">Modify student parameters (CGPA, weekly study hours) to trigger automatic multi-semester plan re-synthesis without server restart. Requires ADMIN_API_TOKEN from your .env.</p>
+              
+              <div style="overflow-x:auto;">
+                <table class="data-table" style="width:100%; border-collapse:collapse; font-size:13px;">
+                  <thead>
+                    <tr style="border-bottom:1px solid var(--border); text-align:left; color:var(--ink-2);">
+                      <th style="padding:8px 10px;">ID</th>
+                      <th style="padding:8px 10px;">Name</th>
+                      <th style="padding:8px 10px;">Goal</th>
+                      <th style="padding:8px 10px;">Semester</th>
+                      <th style="padding:8px 10px;">CGPA</th>
+                      <th style="padding:8px 10px;">Hours/wk</th>
+                      <th style="padding:8px 10px; text-align:right;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="eval-students-table-body">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Inline Student Edit Drawer/Card -->
+              <div id="eval-student-edit-box" style="display:none; margin-top:var(--space-16); padding:var(--space-16); background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-12);">
+                  <span style="font-weight:600; color:var(--ink);" id="eval-edit-student-title">Edit Student</span>
+                  <button class="btn-icon btn-sm" onclick="closeStudentEdit()">&times;</button>
                 </div>
-                <div>
-                  <label class="text-dense">Weekly Study Budget (hours)</label>
-                  <input type="number" step="1" id="admin-edit-hours" class="input" style="margin-top:4px;">
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:var(--space-12); margin-bottom:var(--space-12);">
+                  <div>
+                    <label class="text-dense">Current CGPA (0.0 - 10.0)</label>
+                    <input type="number" step="0.1" min="0" max="10" id="admin-edit-cgpa" class="input" style="margin-top:4px;">
+                  </div>
+                  <div>
+                    <label class="text-dense">Weekly Study Budget (hours)</label>
+                    <input type="number" step="1" min="1" max="80" id="admin-edit-hours" class="input" style="margin-top:4px;">
+                  </div>
                 </div>
-                <button class="btn btn-secondary btn-sm" onclick="saveAdminStudentProfile()">Apply & re-synthesize plan</button>
+                <div style="display:flex; justify-content:flex-end; gap:8px;">
+                  <button class="btn btn-secondary btn-sm" onclick="closeStudentEdit()">Cancel</button>
+                  <button class="btn btn-primary btn-sm" onclick="saveAdminStudentProfile()">Apply & re-synthesize plan</button>
+                </div>
+              </div>
+
+              <!-- Re-synthesis Plan Diff Output -->
+              <div id="eval-student-plan-diff" style="display:none; margin-top:var(--space-16); padding:var(--space-12) var(--space-16); background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm);">
+                <div class="overline" style="margin-bottom:4px; color:var(--accent);">Plan Re-synthesis Diff</div>
+                <div id="eval-student-diff-content" class="text-dense" style="line-height:1.5;"></div>
               </div>
             </div>
+          </div>
 
+          <!-- Subtab 2: Courses -->
+          <div id="eval-pane-courses" class="eval-pane" style="display:none;">
             <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
-              <div class="overline" style="margin-bottom:var(--space-8);">Live adaptation simulator</div>
-              <label class="text-dense" for="simulation-scenario">Choose a judge demo</label>
-              <select id="simulation-scenario" class="input" onchange="updateScenarioDescription()"></select>
-              <p id="simulation-description" class="text-meta"></p>
-              <button class="btn btn-primary btn-sm" onclick="runSelectedScenario()">Run scenario</button>
-              <div id="simulation-result" class="text-dense" role="status" aria-live="polite"></div>
+              <div class="overline" style="margin-bottom:var(--space-4);">Course Catalogue Data</div>
+              <p class="text-meta" style="margin-bottom:var(--space-12);">View and modify course metadata (credits, semester offering, workload). Changes re-index solver and validator memory without a server restart. Requires ADMIN_API_TOKEN from your .env.</p>
+              
+              <div style="overflow-x:auto; max-height:480px;">
+                <table class="data-table" style="width:100%; border-collapse:collapse; font-size:13px;">
+                  <thead>
+                    <tr style="border-bottom:1px solid var(--border); text-align:left; color:var(--ink-2); position:sticky; top:0; background:var(--surface);">
+                      <th style="padding:8px 10px;">Code</th>
+                      <th style="padding:8px 10px;">Title</th>
+                      <th style="padding:8px 10px;">Credits</th>
+                      <th style="padding:8px 10px;">Semester</th>
+                      <th style="padding:8px 10px;">Workload</th>
+                      <th style="padding:8px 10px; text-align:right;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="eval-courses-table-body">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Course Edit Box -->
+              <div id="eval-course-edit-box" style="display:none; margin-top:var(--space-16); padding:var(--space-16); background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-12);">
+                  <span style="font-weight:600; color:var(--ink);" id="eval-edit-course-title">Edit Course</span>
+                  <button class="btn-icon btn-sm" onclick="closeCourseEdit()">&times;</button>
+                </div>
+                <input type="hidden" id="admin-course-code">
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:var(--space-12); margin-bottom:var(--space-12);">
+                  <div>
+                    <label class="text-dense">Credits</label>
+                    <input type="number" step="0.5" min="1" max="10" id="admin-course-credits" class="input" style="margin-top:4px;">
+                  </div>
+                  <div>
+                    <label class="text-dense">Semester Offered</label>
+                    <select id="admin-course-sem" class="input" style="margin-top:4px;">
+                      <option value="autumn">Autumn (Odd Semesters)</option>
+                      <option value="spring">Spring (Even Semesters)</option>
+                      <option value="both">Both (Autumn & Spring)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="text-dense">Workload (hrs/wk)</label>
+                    <input type="number" step="1" min="1" max="30" id="admin-course-workload" class="input" style="margin-top:4px;">
+                  </div>
+                </div>
+                <div style="display:flex; justify-content:flex-end; gap:8px;">
+                  <button class="btn btn-secondary btn-sm" onclick="closeCourseEdit()">Cancel</button>
+                  <button class="btn btn-primary btn-sm" onclick="saveAdminCourse()">Save course & re-index</button>
+                </div>
+              </div>
             </div>
+          </div>
 
+          <!-- Subtab 3: What if... (Adaptation Demo) -->
+          <div id="eval-pane-adaptation" class="eval-pane" style="display:none;">
             <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
-              <div class="overline" style="margin-bottom:var(--space-8);">Database & Bundled Viewer</div>
-              <p class="text-dense" style="margin-bottom:var(--space-12);">
-                Adminer is bundled on port <strong>8080</strong> for direct SQL inspection.
-              </p>
-              <a href="http://localhost:8080" target="_blank" class="btn btn-secondary btn-sm">
-                Open Adminer DB viewer &rarr;
-              </a>
+              <div class="overline" style="margin-bottom:var(--space-4);">What if... Live Adaptation Simulator</div>
+              <p class="text-meta" style="margin-bottom:var(--space-12);">Simulate live student signals to demonstrate deterministic policy triggers, plan solver adaptations, and before/after plan diffs without restarting the application.</p>
+              
+              <div style="margin-bottom:var(--space-12);">
+                <label class="text-dense" for="simulation-scenario" style="font-weight:600;">Choose a "What if..." scenario:</label>
+                <select id="simulation-scenario" class="input" onchange="updateScenarioDescription()" style="margin-top:4px; margin-bottom:8px;"></select>
+                <p id="simulation-description" class="text-meta" style="font-size:13px;"></p>
+              </div>
+
+              <div style="display:flex; gap:var(--space-12); align-items:center; margin-bottom:var(--space-16);">
+                <button class="btn btn-primary btn-md" onclick="runSelectedScenario()">Run "What if..." scenario</button>
+              </div>
+
+              <!-- Before/After Diff & Explanation Display -->
+              <div id="simulation-result-card" style="display:none; background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm); padding:var(--space-16);">
+                <div class="overline" style="margin-bottom:8px; color:var(--accent);">Simulation Output & Plan Diff</div>
+                <div id="simulation-result" class="text-dense" style="white-space:pre-wrap; line-height:1.6; font-size:13px;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subtab 4: Database -->
+          <div id="eval-pane-database" class="eval-pane" style="display:none;">
+            <div class="guide-grid-2">
+              <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
+                <div class="overline" style="margin-bottom:var(--space-8);">Database & Bundled Viewer</div>
+                <p class="text-dense" style="margin-bottom:var(--space-12);">
+                  Adminer is bundled on port <strong>8080</strong> for direct SQL inspection and query execution across all tables (courses, prerequisites, student_profiles, plan_versions, evidence_events).
+                </p>
+                <a href="http://localhost:8080" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                  Open Adminer DB viewer &rarr;
+                </a>
+              </div>
+
+              <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
+                <div class="overline" style="margin-bottom:var(--space-8);">Restore Clean Seed State</div>
+                <p class="text-meta" style="margin-bottom:var(--space-12);">
+                  Resets the database back to clean baseline state (4 canonical Hero Personas, 34 courses, 112 modules, and verified prerequisites from Courses of Study PDF).
+                </p>
+                <button class="btn btn-danger btn-sm" onclick="resetDatabasePrompt()">Restore clean seed state</button>
+              </div>
             </div>
           </div>
         </section>

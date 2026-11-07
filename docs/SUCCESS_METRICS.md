@@ -1,5 +1,5 @@
 # Success Metrics & Pilot Key Performance Indicators (KPIs)
-Quantitative benchmarks and measurement methodology for the Adobe Personalised Learning Buddy pilot at IIT Delhi.
+Quantitative benchmarks and measurement methodology for the Adobe Personalised Learning Buddy pilot at IIT Bhilai.
 
 ---
 

@@ -89,7 +89,7 @@ class MultiSemesterPlanner:
         is_minor_eligible = cgpa >= minor_threshold
 
         # Format no-co-taking pairs
-        all_no_co_pairs = [] if get_institute_profile() == "iit_bhilai" else [["COL351", "COL352"]]
+        all_no_co_pairs = []
         if no_co_taking_pairs:
             all_no_co_pairs.extend(no_co_taking_pairs)
 
@@ -200,7 +200,7 @@ class MultiSemesterPlanner:
                 if not prereqs_satisfied:
                     continue
 
-                # 4. Check Minor eligibility (COL courses for non-CS students require CGPA >= 7.5)
+                # 4. Check Minor eligibility (CS courses for non-CS students require CGPA >= 7.5)
                 if cand.get("department") == "Computer Science and Engineering" and not is_minor_eligible:
                     if cand.get("course_type") in ["elective", "minor"]:
                         continue

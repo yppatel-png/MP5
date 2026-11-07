@@ -211,13 +211,13 @@ class IndependentPlanValidator:
         # Rule 6: Minor in CSE Eligibility
         # -------------------------------------------------------------------
         minor_violations = []
-        is_chemical = (student_profile.get("programme") == "CH1")
-        has_col_electives = any(
+        is_non_cse = "cse" not in str(student_profile.get("programme", "")).lower()
+        has_cs_electives = any(
             self.courses.get(c, {}).get("department") == "Computer Science and Engineering" and
             self.courses.get(c, {}).get("course_type") in ["elective", "minor"]
             for c in all_scheduled_codes
         )
-        if is_chemical and has_col_electives and cgpa < 7.5:
+        if is_non_cse and has_cs_electives and cgpa < 7.5:
             minor_violations.append(f"Student CGPA is {cgpa}, which is below the 7.5 cutoff required for CS Minor electives.")
 
         passed_r6 = len(minor_violations) == 0

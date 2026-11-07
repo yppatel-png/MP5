@@ -36,7 +36,7 @@ class MasteryEngine:
         """
         profile = StudentStore.get_profile(student_id)
         if not profile:
-            profile = StudentProfile(student_id=student_id, name="Student", programme="CH1")
+            profile = StudentProfile(student_id=student_id, name="Student", programme="iit_bhilai_btech_cse_2023")
 
         # Check if taught by any completed course
         completed_course_codes = set(c.course_code.upper() for c in profile.completed_courses)

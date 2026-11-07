@@ -110,7 +110,7 @@ class RuleRegistry:
         return {
             "student_id": student_profile.get("id", student_profile.get("student_id", "STU001")),
             "cgpa": float(student_profile.get("cgpa", 8.0)),
-            "programme": student_profile.get("programme", "CS1"),
+            "programme": student_profile.get("programme", "iit_bhilai_btech_cse_2023"),
             "completed_courses": clean_completed,
             "backlogs": student_profile.get("backlogs", []),
             "constraints": student_profile.get("constraints", {}),
@@ -203,6 +203,7 @@ class RuleRegistry:
 
         return {
             "tampered": is_tampered,
+            "is_tamper_free": not is_tampered,
             "is_valid": fresh_cert.is_valid,
             "certificate_hash": fresh_cert.certificate_hash,
             "expected_hash": expected_certificate_hash,

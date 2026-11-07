@@ -94,7 +94,7 @@ Each LLM call receives only the minimal structured facts necessary, bound by a s
 ## 4. Grounding & Hallucination Defense
 
 1. **Course Code Integrity Verifier:**
-   Every LLM response is post-processed via an interceptor that scans for course code tokens (e.g., `COL106`, `ELL100`). Any course code not present in the database course catalogue is flagged and replaced with valid retrieved options or stripped.
+   Every LLM response is post-processed via an interceptor that scans for course code tokens (e.g., `CSL202`, `ECL101`). Any course code not present in the database course catalogue is flagged and replaced with valid retrieved options or stripped.
 2. **Deterministic Tool Grounding:**
    The conversational buddy answers factual academic questions exclusively through tool outputs (`get_plan`, `get_gaps`, `check_course_eligibility`, `search_courses`). The prompt strictly instructs the model never to assert facts beyond the tool return payloads.
 3. **Prompt Injection Mitigation:**

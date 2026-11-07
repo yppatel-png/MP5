@@ -35,7 +35,7 @@ class RuleResult(BaseModel):
     rule_title: str
     category: RuleCategory
     scope: RuleScope
-    scope_ref: str = "plan"                 # e.g. "semester:5" or "course:COL351"
+    scope_ref: str = "plan"                 # e.g. "semester:5" or "course:CSL202"
     status: RuleStatus
     observed: Any
     limit: Any

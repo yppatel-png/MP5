@@ -1,22 +1,18 @@
 {
-  "timestamp": "2026-11-06T17:45:29Z",
+  "timestamp": "2026-11-07T09:23:50Z",
   "profiles_evaluated_count": 50,
   "plan_validity": {
     "total_plans": 50,
     "valid_plans": 50,
-    "failed_plans": 0,
-    "violations_by_rule": {
-      "RULE_1": 0,
-      "RULE_2": 0,
-      "RULE_3": 0,
-      "RULE_4": 0,
-      "RULE_5": 0,
-      "RULE_6": 0,
-      "RULE_7": 0,
-      "RULE_8": 0,
-      "RULE_9": 0
-    },
-    "pass_rate_pct": 100.0
+    "pass_rate_pct": 100.0,
+    "rule_breakdown": {
+      "prerequisite_dag": 50,
+      "semester_parity": 50,
+      "credit_min_max": 50,
+      "catalogue_existence": 50,
+      "degree_structure": 50,
+      "workload_hours": 50
+    }
   },
   "determinism": {
     "profiles_tested": 10,
@@ -27,7 +23,6 @@
     "strong_quiz_tested": true,
     "weak_quiz_tested": true,
     "diff_detected": true,
-    "remediation_verified": false,
     "remedial_resources_verified": true
   },
   "mastery": {
@@ -40,18 +35,15 @@
     "hallucinations_intercepted": 2
   },
   "plan_certificate": {
-    "certificates_generated": 20,
+    "plans_certified": 20,
     "seals_verified_pct": 100.0,
-    "tamper_detection_rate_pct": 100.0,
-    "pdf_exports_tested": 3,
-    "avg_cert_generation_ms": 2.8
+    "tamper_detection_rate_pct": 90.0,
+    "avg_cert_generation_ms": 2.35,
+    "pdf_exports_successful": 0
   },
   "latency_and_telemetry": {
-    "total_test_duration_seconds": 1.85,
-    "total_llm_calls": 0,
-    "cached_calls": 0,
-    "fallback_calls": 0,
-    "p50_latency_ms": 0.0,
-    "p95_latency_ms": 0.0
+    "total_test_duration_seconds": 1.7,
+    "avg_plan_solve_time_ms": 0.2,
+    "avg_validation_time_ms": 2.91
   }
 }

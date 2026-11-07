@@ -27,15 +27,15 @@ P*(E) = P(E) * w_i
 ## 2. Resolving Conflicting Signals
 
 ### Conflict Scenario A: High Interest vs. Low Baseline Grade
-- **Context**: A student self-declares high passion for "Machine Learning" (interest prior = 0.8), but earned a Grade D in prerequisite Linear Algebra (`MTL101`).
+- **Context**: A student self-declares high passion for "Machine Learning" (interest prior = 0.8), but earned a Grade D in prerequisite Mathematics (`MAL403`).
 - **Resolution Policy**:
   1. The system **never dismisses** the student's career aspiration.
-  2. The system **never immediately schedules** advanced machine learning (`COL770`), as doing so violates prerequisite readiness and risks a failing grade.
-  3. Action: The planner inserts a foundational bridge module (e.g., NPTEL Linear Algebra refresher) and schedules the core mathematics prerequisite before advancing to the elective.
-  4. Explanation: *"We honored your goal for Machine Learning by scheduling the exact sequence needed to master foundational Linear Algebra first, ensuring your CGPA is protected."*
+  2. The system **never immediately schedules** advanced machine learning (`CSL304`), as doing so violates prerequisite readiness and risks a failing grade.
+  3. Action: The planner inserts a foundational bridge module (e.g., NPTEL Mathematics refresher) and schedules the core mathematics prerequisite before advancing to the elective.
+  4. Explanation: *"We honored your goal for Machine Learning by scheduling the exact sequence needed to master foundational Mathematics first, ensuring your CGPA is protected."*
 
 ### Conflict Scenario B: Accredited Course Completed vs. Weak Diagnostic Test
-- **Context**: Student passed `COL106` (Data Structures) with Grade B- two semesters ago, but scored 25% on the diagnostic tree traversal drill.
+- **Context**: Student passed `CSL202` (Data Structures) with Grade B- two semesters ago, but scored 25% on the diagnostic tree traversal drill.
 - **Resolution Policy**:
   1. Distinguish *Accredited Completion* from *Current Operational Proficiency*.
   2. Course completion satisfies the formal administrative prerequisite check (the student is not barred from taking advanced electives).

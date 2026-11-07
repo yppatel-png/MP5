@@ -46,7 +46,7 @@ Every multi-semester schedule produced by the planning engine is independently a
    - Computer Science minor courses for non-CS students require CGPA $\ge 7.5$.
 
 6. **Rule 6 (No-Co-Taking Mutex Pairs)**:
-   - Mutually exclusive courses (e.g., `COL351` Analysis & Design of Algorithms and `COL352` Introduction to Automata) cannot be taken concurrently in the same semester.
+   - Mutually exclusive courses (e.g., `CSL201` Discrete Mathematics and `CSL202` Data Structures) cannot be taken concurrently in the same semester if specified by student preference.
 
 7. **Rule 7 (Duplicate Course Prevention)**:
    - No course code may appear more than once across completed and scheduled semesters.

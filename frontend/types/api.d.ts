@@ -1135,7 +1135,7 @@ export interface components {
         ChatRequest: {
             /**
              * Student Id
-             * @default S1024
+             * @default BH-SW-001
              */
             student_id: string;
             /** Message */
@@ -1150,7 +1150,7 @@ export interface components {
             /** Tools Used */
             tools_used: string[];
             /** Turn Id */
-            turn_id?: number | null;
+            turn_id?: number | string | null;
             /** Facts Used */
             facts_used?: {
                 [key: string]: unknown;
@@ -1198,12 +1198,12 @@ export interface components {
         CourseOverrideRequest: {
             /**
              * Student Id
-             * @default S1024
+             * @default BH-SW-001
              */
             student_id: string;
             /**
              * Rejected Course
-             * @default COL362
+             * @default CSL303
              */
             rejected_course: string;
             /**
@@ -1359,7 +1359,10 @@ export interface components {
             title?: string | null;
             /** Prompt */
             prompt: string;
-            /** Difficulty */
+            /**
+             * Difficulty
+             * @default 2
+             */
             difficulty: number;
             /** Type */
             type: string;
@@ -1414,7 +1417,7 @@ export interface components {
         /** HealthLLMStatus */
         HealthLLMStatus: {
             /** Model */
-            model: string;
+            model?: string | null;
             /** Key Configured */
             key_configured: boolean;
             /** Is Live */
@@ -1640,6 +1643,15 @@ export interface components {
             section_title?: string | null;
             /** Source Url */
             source_url?: string | null;
+            /**
+             * Provenance
+             * @default verified
+             */
+            provenance: string;
+            /** Reason */
+            reason?: string | null;
+            /** Source Page */
+            source_page?: number | null;
         };
         /**
          * RuleScope
@@ -1671,7 +1683,7 @@ export interface components {
         SignalEvaluationRequest: {
             /**
              * Student Id
-             * @default S1024
+             * @default BH-SW-001
              */
             student_id: string;
             /** Signals */
@@ -1685,7 +1697,7 @@ export interface components {
             scenario_id: string;
             /**
              * Student Id
-             * @default S1024
+             * @default BH-SW-001
              */
             student_id: string | null;
             /** Params */

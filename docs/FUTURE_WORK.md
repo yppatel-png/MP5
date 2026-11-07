@@ -7,7 +7,7 @@ In accordance with QA Rule 1 ("No new features. Only bug fixes, hardening, tests
 ## Backlog Items
 
 ### 1. Multi-Campus Federated Ordinance Synchronization
-* **Description:** Support dynamic multi-institute academic rule namespaces beyond IIT Delhi (e.g., IIT Bombay, IIT Madras).
+* **Description:** Support dynamic multi-institute academic rule namespaces beyond IIT Bhilai (e.g., IIT Bombay, IIT Madras).
 * **Rationale:** The current RuleRegistry supports extensible rule classes, but multi-campus tenancy is out of scope for the single-institution demo.
 
 ### 2. Multi-Language Audio Synthesis for Voice Explanations

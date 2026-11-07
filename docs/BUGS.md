@@ -59,7 +59,7 @@ This log records every defect, security issue, reliability flaw, or packaging vu
 ### BUG-005: AttributeError on `c.credits` during Admin Grade Modification
 * **Severity**: P1
 * **Component**: `backend/api/admin.py`
-* **Reproduction**: Call `edit_student_grade(EditGradeRequest(student_id="S1024", course_code="COL106", new_grade="A"))`. Raised `AttributeError: 'CompletedCourse' object has no attribute 'credits'`.
+* **Reproduction**: Call `edit_student_grade(EditGradeRequest(student_id="BH-SW-001", course_code="CSL202", new_grade="A"))`. Raised `AttributeError: 'CompletedCourse' object has no attribute 'credits'`.
 * **Root Cause**: `CompletedCourse` model in `backend/student/model.py` only defines `course_code`, `grade`, and `semester_completed`. Course credit weightings belong to the course catalogue schema.
 * **Fix**: In `backend/api/admin.py`, queried credit weights from `multi_semester_planner.courses[c.course_code]["credits"]` with a safe default of 4.0.
 * **Verification Test**: `tests/test_phase1_audit.py::test_06_admin_grade_edit_triggers_recomputation`.

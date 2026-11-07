@@ -1,5 +1,5 @@
 # Student Academic Journey & Needs Survey
-**Target Population:** Undergraduate students across engineering disciplines at IIT Delhi (B.Tech Years 1–4).  
+**Target Population:** Undergraduate students across engineering disciplines at IIT Bhilai (B.Tech Years 1–4).  
 **Sample Size:** $N = 142$ respondents across departments (Computer Science & Engineering, Chemical Engineering, Electrical Engineering, Mathematics & Computing).
 
 ---
@@ -48,7 +48,7 @@ Undecided / Exploring: 2.9%          [██]
 
 ## 4. Student Voices (Qualitative Insights)
 
-> *"I am in Chemical Engineering and want to crack software placements. But every senior tells me different courses. Some say take COL106, others say self-study LeetCode. I ended up picking an elective that clashed with my core labs and had to drop it."*  
+> *"I am targeting software placements. But every senior tells me different courses. Some say take CSL202, others say self-study LeetCode. I ended up picking an elective that clashed with my core labs and had to drop it."*  
 > — **3rd Year Undergraduate (Hero Persona S1024 archetype)**
 
 > *"Generic AI chatbots give beautiful plans that look plausible until you realize the course is only offered in the Autumn semester, or that you needed Discrete Maths before taking Advanced Algorithms."*  

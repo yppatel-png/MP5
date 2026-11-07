@@ -9,7 +9,7 @@ This glossary governs all customer- and student-facing language across the Adobe
 | Internal / Implementation Term | Approved Student-Facing Term | Tone & Usage Guidelines | Example in Context |
 | :--- | :--- | :--- | :--- |
 | **BKT (Bayesian Knowledge Tracing)** | **Skill estimate** / **Demonstrated proficiency** | Never show "BKT Monitored" to students. State the concrete mastery or estimate level. | "Your skill estimate in Linear Data Structures is 88% based on recent exercises." |
-| **Mutex / Incompatibility / Conflict** | **Courses you asked to keep apart** | Calm, non-alarmist phrasing. Avoid computer science synchronization jargon. | "You asked to keep COL351 and COL352 apart so your workload remains balanced." |
+| **Mutex / Incompatibility / Conflict** | **Courses you asked to keep apart** | Calm, non-alarmist phrasing. Avoid computer science synchronization jargon. | "You asked to keep CSL201 and CSL202 apart so your workload remains balanced." |
 | **Prerequisite DAG / Directed Graph** | **Preparation path** / **Prerequisite chain** | Emphasize academic sequence rather than graph data structures. | "Your preparation path for Operating Systems begins with Computer Architecture." |
 | **CP-SAT / Solver / Constraint Engine** | **Verified roadmap** / **Degree planner** | Students care about validity and graduation, not the constraint programming library. | "Your degree roadmap satisfies all graduation and prerequisite ordinances." |
 | **LiteLLM / Model Provider / Endpoint** | *Admin only* (Quiet degraded banner if offline) | Never show "LiteLLM Online" in student UI. If offline, display quiet reassurance. | *"Operating in simplified mode. Your degree plan remains fully verified."* |

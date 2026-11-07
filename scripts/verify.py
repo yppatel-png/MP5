@@ -45,10 +45,14 @@ VERIFICATION_STEPS = [
         "command": [sys.executable, str(ROOT_DIR / "scripts" / "run_smoke.py")]
     },
     {
+        "name": "Institutional Purity & Legacy String Gate",
+        "command": [sys.executable, str(ROOT_DIR / "scripts" / "qa" / "delhi_gate.py")]
+    },
+    {
         "name": "End-to-End Evaluation Harness Benchmark",
         "command": [sys.executable, str(ROOT_DIR / "scripts" / "evaluate.py")],
         "environment": {
-            "INSTITUTE_PROFILE": "legacy",
+            "INSTITUTE_PROFILE": "iit_bhilai",
             "OFFLINE_MODE": "true",
         },
     }

@@ -2754,7 +2754,7 @@
           "student_id": {
             "type": "string",
             "title": "Student Id",
-            "default": "S1024"
+            "default": "BH-SW-001"
           },
           "message": {
             "type": "string",
@@ -2788,6 +2788,9 @@
             "anyOf": [
               {
                 "type": "integer"
+              },
+              {
+                "type": "string"
               },
               {
                 "type": "null"
@@ -2910,12 +2913,12 @@
           "student_id": {
             "type": "string",
             "title": "Student Id",
-            "default": "S1024"
+            "default": "BH-SW-001"
           },
           "rejected_course": {
             "type": "string",
             "title": "Rejected Course",
-            "default": "COL362"
+            "default": "CSL303"
           },
           "reason": {
             "anyOf": [
@@ -3382,7 +3385,8 @@
           },
           "difficulty": {
             "type": "integer",
-            "title": "Difficulty"
+            "title": "Difficulty",
+            "default": 2
           },
           "type": {
             "type": "string",
@@ -3416,7 +3420,6 @@
         "required": [
           "exercise_id",
           "prompt",
-          "difficulty",
           "type",
           "skill_id"
         ],
@@ -3547,7 +3550,14 @@
       "HealthLLMStatus": {
         "properties": {
           "model": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Model"
           },
           "key_configured": {
@@ -3565,7 +3575,6 @@
         },
         "type": "object",
         "required": [
-          "model",
           "key_configured",
           "is_live",
           "offline_mode"
@@ -4200,6 +4209,33 @@
               }
             ],
             "title": "Source Url"
+          },
+          "provenance": {
+            "type": "string",
+            "title": "Provenance",
+            "default": "verified"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "source_page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Page"
           }
         },
         "type": "object",
@@ -4290,7 +4326,7 @@
           "student_id": {
             "type": "string",
             "title": "Student Id",
-            "default": "S1024"
+            "default": "BH-SW-001"
           },
           "signals": {
             "additionalProperties": true,
@@ -4320,7 +4356,7 @@
               }
             ],
             "title": "Student Id",
-            "default": "S1024"
+            "default": "BH-SW-001"
           },
           "params": {
             "anyOf": [

@@ -58,7 +58,7 @@ class DiagnosticEngine:
         """
         profile = StudentStore.get_profile(student_id)
         if not profile:
-            profile = StudentProfile(student_id=student_id, name="Student", programme="CH1")
+            profile = StudentProfile(student_id=student_id, name="Student", programme="iit_bhilai_btech_cse_2023")
 
         priors = self.get_course_priors(profile)
         all_evidence = StudentStore.get_evidence_for_student(student_id)

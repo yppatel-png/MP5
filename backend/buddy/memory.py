@@ -95,7 +95,7 @@ class BuddyMemory:
 
         completed_codes = [c.course_code for c in profile.completed_courses]
         top_interests = profile.interests[:3]
-        prog_name = "Chemical Engineering" if profile.programme == "CH1" else "Computer Science and Engineering"
+        prog_name = "Computer Science and Engineering" if "cse" in profile.programme.lower() else profile.programme
 
         facts = [
             f"Programme: {profile.programme} ({prog_name}, Year {profile.year}, Current Semester {profile.current_semester})",

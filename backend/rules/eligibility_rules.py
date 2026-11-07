@@ -17,7 +17,7 @@ class MinorEligibilityRule(Rule):
     source_url = "https://home.iitbhilai.ac.in/academic-rules/minor-guidelines-2023"
 
     def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
-        programme = ctx.get("programme", "CS1")
+        programme = ctx.get("programme", "iit_bhilai_btech_cse_2023")
         cgpa = float(ctx.get("cgpa", 8.0))
         courses_db = ctx.get("courses_db", {})
         cutoff = 7.5
@@ -38,7 +38,7 @@ class MinorEligibilityRule(Rule):
         margin = round(cgpa - cutoff, 2)
 
         # If student is CS major, minor in CS is not applicable
-        if programme in ["CS1", "CS5"]:
+        if "cse" in programme.lower() or "cs" in programme.lower():
             return [RuleResult(
                 rule_id=self.id,
                 rule_title=self.title,

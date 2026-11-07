@@ -18,7 +18,7 @@ class CompletedCourse(BaseModel):
 class StudentProfile(BaseModel):
     student_id: str
     name: str
-    programme: str  # e.g. "CH1", "CS1"
+    programme: str  # e.g. "iit_bhilai_btech_cse_2023"
     year: int = 2
     current_semester: int = 4
     cgpa: float = Field(default=8.0, ge=0.0, le=10.0)

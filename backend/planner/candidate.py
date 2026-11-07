@@ -36,7 +36,7 @@ class CandidateRetriever:
         self,
         skill_gaps: List[Dict[str, Any]],
         completed_course_codes: Set[str],
-        programme_code: str = "CH1",
+        programme_code: str = "iit_bhilai_btech_cse_2023",
         cgpa: float = 8.0
     ) -> List[Dict[str, Any]]:
         """

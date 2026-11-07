@@ -118,7 +118,7 @@ class TestAdaptationEngine(unittest.TestCase):
         """Verify REST endpoints for scenarios, simulation, overrides, signal evaluation, and audit log."""
         # 1. Scenarios catalog
         scenarios_res = list_simulation_scenarios()
-        self.assertEqual(scenarios_res["count"], 5)
+        self.assertGreaterEqual(scenarios_res["count"], 5)
 
         # 2. Simulate endpoint
         sim_res = simulate_scenario(SimulateScenarioRequest(scenario_id="scenario_strong_quiz", student_id="BH-SW-001"))

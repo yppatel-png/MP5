@@ -45,6 +45,8 @@ def get_db_path() -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     return path
 
+DB_PATH: Optional[Path] = get_db_path()
+
 def _get_engine():
     global _engine, _engine_initialized, _is_postgres
     if _engine_initialized:
@@ -156,10 +158,21 @@ class PostgresCursorWrapper:
 
 def get_connection():
     """Returns a database connection (PostgreSQL raw connection or SQLite connection)."""
+    global DB_PATH
+    default_path = get_db_path()
+    if DB_PATH is not None and DB_PATH != default_path:
+        DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+        conn = sqlite3.connect(str(DB_PATH), timeout=30.0)
+        conn.row_factory = sqlite3.Row
+        conn.execute("PRAGMA foreign_keys = ON;")
+        conn.execute("PRAGMA journal_mode = WAL;")
+        return conn
+
     engine = _get_engine()
     if _is_postgres and engine is not None:
         return engine.raw_connection()
-    path = get_db_path()
+    path = DB_PATH or default_path
+    path.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(str(path), timeout=30.0)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON;")

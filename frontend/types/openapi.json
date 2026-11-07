@@ -732,6 +732,107 @@
         }
       }
     },
+    "/api/students/{student_id}/study-sessions": {
+      "post": {
+        "tags": [
+          "Student Management & Diagnostic"
+        ],
+        "summary": "Log Student Study Session",
+        "description": "Logs a study session and recalculates weekly study metrics and student adherence.",
+        "operationId": "log_student_study_session_api_students__student_id__study_sessions_post",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudySessionCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Log Student Study Session Api Students  Student Id  Study Sessions Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Student Management & Diagnostic"
+        ],
+        "summary": "Get Student Study Sessions",
+        "description": "Returns chronological list of all study sessions logged by the student.",
+        "operationId": "get_student_study_sessions_api_students__student_id__study_sessions_get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  },
+                  "title": "Response Get Student Study Sessions Api Students  Student Id  Study Sessions Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/plans/generate": {
       "post": {
         "tags": [
@@ -2711,6 +2812,31 @@
           "failed": {
             "type": "integer",
             "title": "Failed"
+          },
+          "assumed_checks_count": {
+            "type": "integer",
+            "title": "Assumed Checks Count",
+            "default": 0
+          },
+          "verified_checks_count": {
+            "type": "integer",
+            "title": "Verified Checks Count",
+            "default": 0
+          },
+          "assumed_rules_count": {
+            "type": "integer",
+            "title": "Assumed Rules Count",
+            "default": 0
+          },
+          "verified_rules_count": {
+            "type": "integer",
+            "title": "Verified Rules Count",
+            "default": 0
+          },
+          "assumptions_statement": {
+            "type": "string",
+            "title": "Assumptions Statement",
+            "default": ""
           },
           "tightest_margin": {
             "anyOf": [
@@ -4716,6 +4842,59 @@
           "status_message"
         ],
         "title": "StudentSummary"
+      },
+      "StudySessionCreate": {
+        "properties": {
+          "course_code": {
+            "type": "string",
+            "title": "Course Code"
+          },
+          "duration_minutes": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Duration Minutes",
+            "description": "Duration in minutes"
+          },
+          "module_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Module Id"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "session_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Date"
+          }
+        },
+        "type": "object",
+        "required": [
+          "course_code",
+          "duration_minutes"
+        ],
+        "title": "StudySessionCreate"
       },
       "TightestMargin": {
         "properties": {

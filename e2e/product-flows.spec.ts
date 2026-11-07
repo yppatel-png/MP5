@@ -34,16 +34,22 @@ test('judge-facing personalization, diagnostic, learning, history, certificate, 
   }
   await page.locator('#diagnostic-submit-btn').click();
   await expect(page.locator('#diagnostic-feedback')).toContainText(/Correct|Answer recorded/, { timeout: 5_000 });
+  await expect(page.locator('#app-content')).toBeVisible({ timeout: 10_000 });
 
   // 2. Practice Flow
   console.log('[STEP 3] practice flow');
   await page.locator('.app-sidebar .nav-item[data-target="practice"]').click();
-  await expect(page.locator('#practice-prompt')).not.toBeEmpty({ timeout: 5_000 });
-  const practiceAnswer = page.locator('#practice-answer-controls input[type="radio"]').first();
-  if (await practiceAnswer.count()) {
-    await practiceAnswer.check();
-  } else {
-    await page.locator('#practice-text-answer').fill('A practice response with a reasoned explanation.');
+  await expect(page.locator('#practice-submit-btn')).toBeEnabled({ timeout: 10_000 });
+  await expect(page.locator('#practice-prompt')).not.toContainText('Select a different skill filter', { timeout: 10_000 });
+  const radio = page.locator('#practice-answer-controls input[type="radio"]').first();
+  const textInput = page.locator('#practice-text-answer');
+  const codeArea = page.locator('#practice-code-area');
+  if (await radio.count() > 0) {
+    await radio.check();
+  } else if ((await textInput.count()) > 0 && (await textInput.isVisible())) {
+    await textInput.fill('A practice response with a reasoned explanation.');
+  } else if (await codeArea.isVisible()) {
+    await codeArea.fill('def solution(): return True');
   }
   await page.locator('#practice-submit-btn').click();
   await expect(page.locator('#sandbox-output')).toContainText('Score:', { timeout: 10_000 });

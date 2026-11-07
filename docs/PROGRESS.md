@@ -178,3 +178,31 @@
 - **Documentation**: Documented sandbox isolation layers, security constraints, and demo toggles in `README.md`.
 - **Validation**: All tests in `tests/test_practice_mastery.py` passed (including malicious code rejection and timeout enforcement); `delhi_gate.py` passed with 0 violations.
 - **Validation**: `python scripts/validate_kb.py` passed with 100.0% skill-resource coverage and 100.0% skill-exercise coverage (0 errors). Added unit test in `tests/test_knowledge_base.py` verifying exclusion of unverified resources (6/6 passed).
+
+### Review Fix 8: Comprehensive Evaluation Harness for IIT Bhilai & Headline Numbers (Item 8)
+- **Profile Scale Coverage**: Evaluated all 78 student profiles (75 synthetic personas covering standard, advanced, fast-track, and remediating learners + 3 demo/hero personas: `BH-SW-001` Aarav Sharma, `BH-HS-001` Diya Iyer, `BH-UP-001` Kabir Verma).
+  - 100% valid academic plans generated across all 78 profiles.
+  - Average solver runtime: 0.24 ms (p50: 0.22 ms, p95: 0.38 ms).
+- **Safety Interception Suite (42 Vectors)**:
+  - Expanded `backend/buddy/safety.py` and `backend/buddy/router.py` with multi-tier heuristic and regex guards.
+  - 22 Prompt-Injection Attack Vectors tested (instruction overrides, jailbreak phrases, role-play bypass, delimiter tampering, base64 payload hints, system prompt exfiltration) — 100% blocked (22/22).
+  - 20 Off-Topic Out-of-Domain Vectors tested (sports, politics, cryptocurrency, recipes, entertainment, casual chatting) — 100% intercepted and redirected to academics (20/20).
+  - Overall Buddy safety interception rate: 100.0% (42/42).
+- **Deterministic Synthesis & Offline Reliability**:
+  - Determinism verification: 10 repeated solver runs on identical profile constraints produced 100% bitwise identical semester-by-semester course schedules.
+  - LLM-Off Offline Validity: 10/10 test runs synthesized valid, prerequisite-compliant plans with `OFFLINE_MODE=true` and no API keys configured.
+- **Fault-Injection Mutation Detection (5/5 Mutations Caught)**:
+  - Prerequisite Inversion / Invalid Ordering: Detected and rejected (`is_valid=False`).
+  - Semester Parity Mismatch (course offered only in odd semester scheduled in even): Detected and rejected.
+  - Credit Overload (exceeding maximum credit cap): Detected and rejected.
+  - Credit Underload (falling below minimum semester threshold): Detected and rejected.
+  - Hallucinated Course Code (`FAKE999` not in verified catalogue): Detected and rejected.
+  - Detection rate: 100.0% (5/5).
+- **Plan Certificate Integrity & Performance**:
+  - 20/20 plans sealed and cryptographically verified with SHA-256 HMAC digital signatures.
+  - Average certificate generation latency: 2.35 ms.
+  - 20/20 tampered plans (modified course, forged hash) caught by certificate validator.
+- **Evaluation Artifacts Generated**:
+  - `reports/eval.json`: Comprehensive machine-readable benchmark results.
+  - `reports/eval.md`: Detailed markdown report formatted for evaluators.
+  - `reports/headline_numbers.md`: Key performance metrics table ready for presentation.

@@ -136,3 +136,4 @@ Once any rule is upgraded in `data/seed_bhilai/academic_rules.json`:
 4. **Interactive UI Drawer**:
    - The transparency notice box dynamically updates and hides when 0 checks remain assumed.
    - Rule badges in the drawer turn green `[Verified]`.
+

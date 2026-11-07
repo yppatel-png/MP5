@@ -27,15 +27,46 @@ VALID_COURSE_CODES = load_valid_course_codes()
 # Injection keywords and jailbreak patterns
 INJECTION_PATTERNS = [
     r"ignore (all )?previous instructions",
-    r"disregard (all )?(system|prior) prompts",
+    r"disregard (all )?(system|prior) prompts?",
     r"system prompt",
-    r"you are now (unrestricted|jailbroken|dan)",
-    r"bypass (all )?(rules|academic|prerequisites)",
-    r"grant me (a |an )?(10|10\.0|cgpa|a grade|degree)",
-    r"override (the )?(evaluator|rubric|grading|grader)",
+    r"you are now (unrestricted|jailbroken|dan|in developer mode|free from all)",
+    r"bypass (all )?(rules|academic|prerequisites|constraints)",
+    r"grant me (a |an )?(10|10\.0|cgpa|a grade|degree|transcript)",
+    r"override (the )?(evaluator|rubric|grading|grader|curriculum)",
     r"exfiltrate",
-    r"show me your (api key|secret|environment variables)",
-    r"tell me your internal instructions"
+    r"show me your (api key|secret|environment variables|env)",
+    r"tell me your internal instructions",
+    r"reveal (your )?(system prompt|initial instructions|prompt template)",
+    r"pretend (you are|to be) (an? )?(evil|unfiltered|jailbroken|hacker|adversary)",
+    r"roleplay as (an? )?(unrestricted|evil|dan|filterless|rogue|pirate)",
+    r"act as a (pirate|hacker|villain|anarchist) with no (rules|limits)",
+    r"sudo (mode|make|drop|grant|rm|give)",
+    r"drop table",
+    r"select \* from",
+    r"union select",
+    r"1=1",
+    r"<script",
+    r"base64 decode and execute",
+    r"leak (the )?(keys|database|credentials)",
+    r"format (drive|c:|disk)",
+    r"rm -rf"
+]
+
+OFF_TOPIC_PATTERNS = [
+    r"\b(recipe|bake|cook|cake|pizza|ingredients|pasta|brownie|soup)\b",
+    r"\b(stock price|crypto|bitcoin|ethereum|forex|investing advice|buy shares|nasdaq)\b",
+    r"\b(weather forecast|will it rain|temperature today|forecast tomorrow)\b",
+    r"\b(world cup|super bowl|fifa|ipl|champions league|premier league|football score|cricket match)\b",
+    r"\b(write a (poem|song|story|limerick|lyrics|rap|haiku))\b",
+    r"\b(movie recommendations|plot of|actor in|director of|box office|interstellar|inception)\b",
+    r"\b(tell me a joke|riddle me this|standup comedy|make me laugh)\b",
+    r"\b(horoscope|astrology|zodiac sign|birth chart)\b",
+    r"\b(diagnose (my|this)|medical symptoms|cure for|prescribe me|headache cure|migraine)\b",
+    r"\b(dating advice|relationship advice|how to get a (girlfriend|boyfriend)|flirt)\b",
+    r"\b(who is the (president|prime minister|king|queen) of)\b",
+    r"\b(capital of (france|germany|spain|brazil|japan|australia|canada))\b",
+    r"\b(lyrics to|sing me|compose a melody)\b",
+    r"\b(car maintenance|fix a flat tire|oil change)\b"
 ]
 
 COURSE_CODE_REGEX = re.compile(r"\b([A-Z]{2,4}[0-9]{3})\b")
@@ -51,6 +82,18 @@ class BuddySafety:
         for pattern in INJECTION_PATTERNS:
             if re.search(pattern, lower):
                 return True, "Potential safety / prompt injection attempt intercepted."
+        return False, ""
+
+    @staticmethod
+    def check_off_topic(user_message: str) -> Tuple[bool, str]:
+        """
+        Detects off-topic non-academic queries (recipes, sports, stocks, entertainment).
+        Returns (is_off_topic, reason).
+        """
+        lower = user_message.lower()
+        for pattern in OFF_TOPIC_PATTERNS:
+            if re.search(pattern, lower):
+                return True, "Off-topic non-academic inquiry intercepted."
         return False, ""
 
     @staticmethod

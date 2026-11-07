@@ -76,6 +76,25 @@ class BuddyRouter:
                 "fallback_used": False
             }
 
+        # 2. Off-Topic Query Interception
+        is_off_topic, off_reason = BuddySafety.check_off_topic(message)
+        if is_off_topic:
+            safe_reply = (
+                "I am your IIT Bhilai academic advising assistant. I can only assist with academic course planning, "
+                "prerequisite roadmaps, skill gap analysis, and study tracking. Please ask an academic or curriculum question."
+            )
+            buddy_memory.record_turn(student_id, "user", message)
+            buddy_memory.record_turn(student_id, "assistant", safe_reply, turn_id=turn_id, tools_used=["safety_interceptor"])
+            return {
+                "reply": safe_reply,
+                "intent": "OFF_TOPIC_INTERCEPT",
+                "tools_used": ["safety_interceptor"],
+                "turn_id": turn_id,
+                "facts_used": {},
+                "model": "rule_interceptor",
+                "fallback_used": False
+            }
+
         profile = StudentStore.get_profile(student_id)
         if not profile:
             return {

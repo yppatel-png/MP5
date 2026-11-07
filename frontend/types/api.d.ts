@@ -327,6 +327,30 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/students/{student_id}/study-sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Student Study Sessions
+         * @description Returns chronological list of all study sessions logged by the student.
+         */
+        get: operations["get_student_study_sessions_api_students__student_id__study_sessions_get"];
+        put?: never;
+        /**
+         * Log Student Study Session
+         * @description Logs a study session and recalculates weekly study metrics and student adherence.
+         */
+        post: operations["log_student_study_session_api_students__student_id__study_sessions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/plans/generate": {
         parameters: {
             query?: never;
@@ -1124,6 +1148,31 @@ export interface components {
             warned: number;
             /** Failed */
             failed: number;
+            /**
+             * Assumed Checks Count
+             * @default 0
+             */
+            assumed_checks_count: number;
+            /**
+             * Verified Checks Count
+             * @default 0
+             */
+            verified_checks_count: number;
+            /**
+             * Assumed Rules Count
+             * @default 0
+             */
+            assumed_rules_count: number;
+            /**
+             * Verified Rules Count
+             * @default 0
+             */
+            verified_rules_count: number;
+            /**
+             * Assumptions Statement
+             * @default
+             */
+            assumptions_statement: string;
             tightest_margin?: components["schemas"]["TightestMargin"] | null;
         };
         /** CertificateVerifyRequest */
@@ -1834,6 +1883,22 @@ export interface components {
             /** Status Message */
             status_message: string;
         };
+        /** StudySessionCreate */
+        StudySessionCreate: {
+            /** Course Code */
+            course_code: string;
+            /**
+             * Duration Minutes
+             * @description Duration in minutes
+             */
+            duration_minutes: number;
+            /** Module Id */
+            module_id?: string | null;
+            /** Notes */
+            notes?: string | null;
+            /** Session Date */
+            session_date?: string | null;
+        };
         /** TightestMargin */
         TightestMargin: {
             /** Rule Id */
@@ -2355,6 +2420,76 @@ export interface operations {
                     "application/json": {
                         [key: string]: unknown;
                     }[];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_student_study_sessions_api_students__student_id__study_sessions_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                student_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    }[];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    log_student_study_session_api_students__student_id__study_sessions_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                student_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StudySessionCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
                 };
             };
             /** @description Validation Error */

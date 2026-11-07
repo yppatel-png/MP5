@@ -325,7 +325,7 @@ class AdaptationSimulator:
         self.persist_adapted_plan(student_id, new_plan, diff, val)
 
         explanation = (
-            f"Mid-Semester quiz indicates a critical foundational gap in Data Structures (25% score). "
+            f"Mid-Semester quiz Assessment indicates a critical foundational gap in Data Structures (25% score). "
             f"To protect your academic standing, the planner has lightened next semester's credit load to 18 credits, "
             f"deferred heavy systems electives, and scheduled targeted remedial practice exercises."
         )

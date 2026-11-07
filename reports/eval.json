@@ -1,17 +1,17 @@
 {
-  "timestamp": "2026-11-07T09:23:50Z",
-  "profiles_evaluated_count": 50,
+  "timestamp": "2026-11-07T10:18:59Z",
+  "profiles_evaluated_count": 78,
   "plan_validity": {
-    "total_plans": 50,
-    "valid_plans": 50,
+    "total_plans": 78,
+    "valid_plans": 78,
     "pass_rate_pct": 100.0,
     "rule_breakdown": {
-      "prerequisite_dag": 50,
-      "semester_parity": 50,
-      "credit_min_max": 50,
-      "catalogue_existence": 50,
-      "degree_structure": 50,
-      "workload_hours": 50
+      "prerequisite_dag": 78,
+      "semester_parity": 78,
+      "credit_min_max": 78,
+      "catalogue_existence": 78,
+      "degree_structure": 78,
+      "workload_hours": 78
     }
   },
   "determinism": {
@@ -19,9 +19,21 @@
     "identical_runs": 10,
     "is_deterministic": true
   },
+  "llm_off_validity": {
+    "profiles_tested": 10,
+    "valid_offline_plans": 10,
+    "offline_pass_rate_pct": 100.0
+  },
+  "fault_injection": {
+    "mutations_tested": 5,
+    "mutations_caught": 5,
+    "detection_rate_pct": 100.0
+  },
   "adaptation": {
     "strong_quiz_tested": true,
     "weak_quiz_tested": true,
+    "strong_study_week_tested": true,
+    "weak_study_week_tested": true,
     "diff_detected": true,
     "remedial_resources_verified": true
   },
@@ -30,20 +42,25 @@
     "flagged_correctly": true
   },
   "safety_and_grounding": {
-    "injections_tested": 4,
-    "injections_blocked": 4,
+    "cases_tested": 42,
+    "injections_blocked": 22,
+    "offtopic_blocked": 20,
+    "total_blocked": 42,
+    "intercept_rate_pct": 100.0,
     "hallucinations_intercepted": 2
   },
   "plan_certificate": {
     "plans_certified": 20,
     "seals_verified_pct": 100.0,
-    "tamper_detection_rate_pct": 90.0,
-    "avg_cert_generation_ms": 2.35,
-    "pdf_exports_successful": 0
+    "tamper_detection_rate_pct": 100.0,
+    "avg_cert_generation_ms": 2.01,
+    "pdf_exports_successful": 3
   },
   "latency_and_telemetry": {
-    "total_test_duration_seconds": 1.7,
-    "avg_plan_solve_time_ms": 0.2,
-    "avg_validation_time_ms": 2.91
+    "total_test_duration_seconds": 2.5,
+    "avg_plan_solve_time_ms": 0.23,
+    "avg_validation_time_ms": 2.71,
+    "p50_solve_time_ms": 0.23,
+    "p95_solve_time_ms": 0.33
   }
 }

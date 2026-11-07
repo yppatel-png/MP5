@@ -40,6 +40,37 @@ seed_consistency_report = {
     "failures": [{"student_id": None, "message": "Startup check has not run."}],
 }
 
+def validate_llm_configuration() -> None:
+    """
+    Validates LLM_MODEL identifier format at startup (§5).
+    LiteLLM requires provider prefix (e.g. 'gemini/', 'openai/', 'anthropic/', 'azure/', 'ollama/').
+    If in live mode with an invalid identifier, raises a clear diagnostic ValueError.
+    """
+    if settings.OFFLINE_MODE:
+        logger.info("[STARTUP] Running in deterministic OFFLINE_MODE (zero external model calls).")
+        return
+
+    model = settings.LLM_MODEL
+    if not model:
+        logger.info("[STARTUP] LLM_MODEL unset; defaulting to deterministic offline advisor.")
+        return
+
+    KNOWN_PREFIXES = (
+        "gemini/", "openai/", "anthropic/", "azure/", "ollama/",
+        "bedrock/", "groq/", "openrouter/", "cohere/", "vertex_ai/"
+    )
+    if not any(model.startswith(p) for p in KNOWN_PREFIXES):
+        msg = (
+            f"[CONFIG ERROR] Invalid LLM_MODEL identifier: '{model}'. "
+            f"LiteLLM requires a valid provider prefix (e.g. 'gemini/gemini-3.5-flash-lite', "
+            f"'openai/gpt-4o-mini', 'anthropic/claude-3-5-sonnet-20241022', 'ollama/llama3'). "
+            f"Please update LLM_MODEL in .env or environment variables."
+        )
+        logger.error(msg)
+        raise ValueError(msg)
+
+    logger.info(f"[STARTUP] Verified valid LiteLLM model identifier: {model}")
+
 class SeedConsistencyFailure(BaseModel):
     student_id: Optional[str]
     message: str
@@ -89,6 +120,7 @@ async def add_request_id(request: Request, call_next):
 def verify_seeded_student_summaries() -> None:
     """Verify every persisted student profile can produce the shared summary."""
     global seed_consistency_report
+    validate_llm_configuration()
     init_db()
     init_onboarding_store()
     if get_institute_profile() == "iit_bhilai":

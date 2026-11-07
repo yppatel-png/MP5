@@ -105,6 +105,14 @@ cp .env.example .env
 python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
+### AI Model Configuration (§5)
+
+All LLM and embedding operations are strictly mediated through LiteLLM (`backend/llm/client.py`):
+- `LLM_MODEL`: Standard LiteLLM model identifier with provider prefix (recommended: `gemini/gemini-3.5-flash-lite`, or `openai/gpt-4o-mini`, `anthropic/claude-3-5-sonnet-20241022`). Startup checks validate this syntax.
+- `LLM_API_KEY`: API key for the chosen provider.
+- `EMBEDDING_MODEL`: Optional dense vector model for Courses of Study semantic hybrid retrieval (`gemini/text-embedding-004`).
+- `OFFLINE_MODE`: When set to `true` (or if `LLM_MODEL`/`LLM_API_KEY` are unset), the system operates 100% offline via the CP-SAT solver, BM25 knowledge retriever, and grounded templates with zero outbound network calls.
+
 ---
 
 ## Verification & Testing

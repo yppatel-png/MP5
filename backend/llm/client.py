@@ -257,4 +257,46 @@ class LiteLLMClient:
                 content = content.replace(c, f"{c} (Note: Unverified course code)")
         return content
 
+    def embed(
+        self,
+        texts: List[str],
+        model: Optional[str] = None
+    ) -> List[List[float]]:
+        """
+        Generates dense vector embeddings using LiteLLM (mediated through wrapper).
+        Uses settings.EMBEDDING_MODEL by default.
+        """
+        emb_model = model or settings.EMBEDDING_MODEL
+        if not emb_model or self.offline or not LITELLM_AVAILABLE:
+            return [self._offline_hash_embedding(t) for t in texts]
+
+        try:
+            kwargs: Dict[str, Any] = {
+                "model": emb_model,
+                "input": texts,
+                "api_key": self.api_key
+            }
+            if self.api_base:
+                kwargs["api_base"] = self.api_base
+            response = litellm.embedding(**kwargs)
+            return [d["embedding"] for d in response.data]
+        except Exception as e:
+            logger.warning(f"Embedding via LiteLLM failed ({e}); using offline fallback embedding.")
+            return [self._offline_hash_embedding(t) for t in texts]
+
+    def _offline_hash_embedding(self, text: str, dim: int = 64) -> List[float]:
+        """Deterministic 64-dim unit vector generated via sha256 for offline testing."""
+        import hashlib
+        import struct
+        h = hashlib.sha256(text.encode("utf-8")).digest()
+        vec = []
+        for i in range(dim):
+            byte_idx = (i * 4) % len(h)
+            val = struct.unpack_from(">f", (h + h + h + h), byte_idx)[0]
+            if not (-1e6 < val < 1e6):
+                val = float(h[byte_idx % len(h)]) / 255.0
+            vec.append(val)
+        norm = sum(x * x for x in vec) ** 0.5 or 1.0
+        return [round(x / norm, 5) for x in vec]
+
 llm_client = LiteLLMClient()

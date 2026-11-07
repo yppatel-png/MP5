@@ -57,6 +57,7 @@ class BuddyRouter:
         from backend.buddy.memory import buddy_memory
         from backend.buddy.safety import BuddySafety
         from backend.llm.client import llm_client
+        from backend.retrieval.indexer import retriever
 
         turn_id = str(uuid.uuid4())[:8]
 
@@ -130,6 +131,20 @@ class BuddyRouter:
             credit_cap=(active_plan or {}).get("credit_cap"),
         )
         factual_context["student_summary"] = student_summary.model_dump()
+
+        # Retrieve relevant grounded chunks from IIT Bhilai Courses of Study
+        retrieved_docs = retriever.search(message, top_k=2)
+        if retrieved_docs:
+            tools_called.append("retriever.search_courses_of_study")
+            factual_context["retrieved_chunks"] = [
+                {
+                    "source_page": c["source_page"],
+                    "source_citation": c["source_citation"],
+                    "course_code": c.get("course_code"),
+                    "snippet": c["text"][:240].replace("\n", " ")
+                }
+                for c in retrieved_docs
+            ]
 
         # 3. Dynamic Tool Execution based on Intent
         if intent == "WHAT_I_KNOW":
@@ -214,6 +229,13 @@ class BuddyRouter:
                     "not_found": True,
                     "course_code": None,
                 }
+
+            course_lookup_code = target_code or (scheduled_course.get("code") if scheduled_course else None)
+            if course_lookup_code:
+                c_chunk = retriever.lookup_course(course_lookup_code)
+                if c_chunk:
+                    factual_context["course_citation"] = c_chunk["source_citation"]
+                    factual_context["course_page"] = c_chunk["source_page"]
 
         elif intent == "PLAN_DIFF":
             tools_called.append("plan_versions.get_latest_diff")
@@ -354,6 +376,7 @@ class BuddyRouter:
 
         elif intent == "EXPLAIN_COURSE":
             exp = context.get("course_explanation", {})
+            citation = context.get("course_citation") or exp.get("source") or retriever.get_citation_for_course(exp.get("course_code", ""))
             if exp.get("not_found"):
                 requested_code = exp.get("course_code") or "that course"
                 return f"I can't find {requested_code} in the active curriculum catalogue, so I don't have a recorded course rationale to show."
@@ -361,12 +384,14 @@ class BuddyRouter:
                 return (
                     f"**{exp['course_code']} — {exp['course_title']}** is scheduled for Semester "
                     f"{exp['semester_scheduled']} ({exp['credits']} credits) in the IIT Bhilai curriculum. "
-                    "It forms a core requirement in the programme sequence."
+                    f"It forms a core requirement in the programme sequence.\n\n"
+                    f"**Official Source Citation:** {citation}"
                 )
             if not exp.get("reason"):
                 return (
                     f"{exp.get('course_code')} is planned for Semester {exp.get('semester_scheduled')}, "
-                    f"targeting foundational skills for your goal."
+                    f"targeting foundational skills for your goal.\n\n"
+                    f"**Official Source Citation:** {citation}"
                 )
             evidence_lines = [
                 f"• {item['name']}: {item['evidence_count']} recorded evidence item(s)"
@@ -378,6 +403,8 @@ class BuddyRouter:
             )
             if evidence_lines:
                 res += "\n• **Supporting skill evidence**:\n" + "\n".join(evidence_lines)
+            if citation:
+                res += f"\n\n**Official Source Citation:** {citation}"
             return res
 
         elif intent == "PLAN_DIFF":
@@ -450,10 +477,18 @@ class BuddyRouter:
 
         else:
             summary = context["student_summary"]
-            return (
+            res = (
                 f"Hello {profile.name}! You are currently in Year {profile.year}, Semester {profile.current_semester} of "
                 f"{profile.programme}. Your active goal is **{profile.target_role or 'Software Engineering'}**. "
                 f"Status: {summary['status_message']}"
             )
+            retrieved = context.get("retrieved_chunks", [])
+            if retrieved:
+                top_doc = retrieved[0]
+                res += (
+                    f"\n\n**Official Document Citation ({top_doc['source_citation']}):**\n"
+                    f"> {top_doc['snippet']}..."
+                )
+            return res
 
 buddy_router = BuddyRouter()

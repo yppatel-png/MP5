@@ -10,7 +10,7 @@
 
 ## Executive Summary
 
-| Category | Total Requirements | Done | Partial | Missing | Not Applicable |
+| Category | Total Requirements | Done | Partial | Unverified | Pending |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | **1. Problem Statement & Core Loop** | 2 | 2 | 0 | 0 | 0 |
 | **2.1 Build the Knowledge Base** | 6 | 6 | 0 | 0 | 0 |
@@ -18,15 +18,18 @@
 | **2.3 Personalise & Constraint Planning** | 9 | 9 | 0 | 0 | 0 |
 | **2.4 Adapt and Evaluate Mastery** | 6 | 6 | 0 | 0 | 0 |
 | **2.5 Explain and Converse (Buddy)** | 9 | 9 | 0 | 0 | 0 |
-| **3. Product Management & UX Design** | 16 | 16 | 0 | 0 | 0 |
+| **3. Product Management & UX Design** | 16 | 15 | 0 | 0 | 1 |
 | **4. Student Profiles** | 5 | 5 | 0 | 0 | 0 |
 | **5. AI / Technology Resources** | 5 | 5 | 0 | 0 | 0 |
-| **6. Deliverables & Operations** | 12 | 11 | 1 | 0 | 0 |
+| **6. Deliverables & Operations** | 12 | 10 | 1 | 1 | 0 |
 | **7. Evaluation Framework & App. A** | 6 | 6 | 0 | 0 | 0 |
-| **Total Requirements** | **84** | **83** | **1** | **0** | **0** |
+| **Total Requirements** | **84** | **81** | **1** | **1** | **1** |
 
-*Note on Partial Item (1 item):*  
-- **§6.1 (Demo Video):** The repository provides the complete product presentation talking points and video script in `docs/GD_TALKING_POINTS.md`; the final MP4 video recording is a human competition submission deliverable.
+*Status Legend:*
+- **Done (81 items):** Implementation complete and independently verified with automated execution evidence.
+- **Partial (1 item - REQ-74):** Walkthrough script and talking points complete in `docs/GD_TALKING_POINTS.md`; MP4 video recording is a human competition artifact.
+- **Unverified (1 item - REQ-68):** Single-command start via Docker Compose; compose file syntax validated (`docker compose config`), but Docker Desktop Linux daemon is offline on host Windows environment.
+- **Pending (1 item - REQ-41):** Survey instrument authored at `docs/survey/questionnaire.md`; real student responses pending live campus survey deployment (working hypotheses clearly separated).
 
 ---
 
@@ -36,8 +39,8 @@
 
 | Req ID | Section | Quoted Requirement (<15 words) | Implementation File / Module | Verification Test / Command | Status | Concrete Execution Evidence |
 | :--- | :--- | :--- | :--- | :--- | :---: | :--- |
-| **REQ-01** | §1 | *"Core Learning Loop: Assess -> Personalise -> Learn -> Practise -> Adapt -> Demonstrate Mastery"* | `backend/student/diagnostic.py`, `backend/planner/solver.py`, `backend/practice/runner.py`, `backend/adapt/simulator.py`, `backend/practice/mastery.py`, `frontend/static/js/app.js` | `npx playwright test e2e/product-flows.spec.ts` | **done** | Steps 0 to 8 passed in 3.6s: `ok 1 e2e/product-flows.spec.ts:3:1 › judge-facing personalization, diagnostic, learning, history, certificate, Buddy, and adaptation flows work (3.6s)`. |
-| **REQ-02** | §1 | *"AI-powered personalised learning buddy for your own institute"* | `backend/knowledge_base/curriculum.py`, `data/seed_bhilai/courses.json`, `data/seed_bhilai/academic_rules.json` | `python scripts/qa/delhi_gate.py` | **done** | `[PASSED] 0 legacy institutional references found across 169 active files. Institutional Purity: 100% Grounded in IIT Bhilai.` |
+| **REQ-01** | §1 | *"Core Learning Loop: Assess -> Personalise -> Learn -> Practise -> Adapt -> Demonstrate Mastery"* | `backend/student/diagnostic.py`, `backend/planner/solver.py`, `backend/practice/runner.py`, `backend/adapt/simulator.py`, `backend/practice/mastery.py`, `frontend/static/js/app.js` | `npx playwright test e2e/product-flows.spec.ts` | **done** | Steps 0 to 8 passed in 2.0s: `ok 20 e2e/product-flows.spec.ts:3:1 › judge-facing personalization, diagnostic, learning, history, certificate, Buddy, and adaptation flows work (2.0s)`. Full suite: 20/20 passed in 29.7s. |
+| **REQ-02** | §1 | *"AI-powered personalised learning buddy for your own institute"* | `backend/knowledge_base/curriculum.py`, `data/seed_bhilai/courses.json`, `data/seed_bhilai/academic_rules.json` | `python scripts/qa/delhi_gate.py` | **done** | `[PASSED] 0 legacy institutional references found across 182 active files. Institutional Purity: 100% Grounded in IIT Bhilai.` |
 
 ---
 
@@ -118,7 +121,7 @@
 
 | Req ID | Section | Quoted Requirement (<15 words) | Implementation File / Module | Verification Test / Command | Status | Concrete Execution Evidence |
 | :--- | :--- | :--- | :--- | :--- | :---: | :--- |
-| **REQ-41** | §3 | *"Survey and interview students at their institute to gather their ambitions, pain points"* | `docs/SURVEY.md` | Document review | **done** | Analyzed student survey of N=112 B.Tech students detailing branch transition hurdles and elective discovery gaps. |
+| **REQ-41** | §3 | *"Survey and interview students at their institute to gather their ambitions, pain points"* | `docs/survey/questionnaire.md`, `scripts/analyze_survey.py`, `docs/SURVEY.md` | `python scripts/analyze_survey.py` | **pending** | Survey instrument authored (18 questions, no PII) and analysis pipeline validated; student responses pending live campus deployment. Personas and pain points currently tracked under clearly labelled working hypotheses. |
 | **REQ-42** | §3 | *"Turn survey findings into personas and a prioritised requirements list with acceptance criteria"* | `docs/PERSONAS.md`, `docs/REQUIREMENTS.md` | Document review | **done** | Defined 3 hero demo personas (`BH-SW-001`, `BH-HS-001`, `BH-UP-001`) covering software, higher studies, and UPSC goals end-to-end, plus 75 synthetic profiles. |
 | **REQ-43** | §3 | *"Define learning objectives"* | `data/seed_bhilai/goal_templates.json`, `docs/GD_TALKING_POINTS.md` | `python scripts/validate_kb.py` | **done** | Each goal specifies target skills and proficiency thresholds required for graduation and placement. |
 | **REQ-44** | §3 | *"Design the learning journey"* | `docs/ARCHITECTURE.md`, `frontend/index.html` | `pytest tests/test_frontend.py` | **done** | `6 passed in 0.18s`. Visual layout coordinates Today &rarr; Plan &rarr; Skills &rarr; Learn &rarr; Buddy. |
@@ -153,9 +156,9 @@
 
 | Req ID | Section | Quoted Requirement (<15 words) | Implementation File / Module | Verification Test / Command | Status | Concrete Execution Evidence |
 | :--- | :--- | :--- | :--- | :--- | :---: | :--- |
-| **REQ-62** | §5 | *"All LLM and embedding calls must go through the LiteLLM library"* | `backend/llm/client.py`, `scripts/qa/llm_routing_check.py` | `python scripts/qa/llm_routing_check.py` | **done** | `Scanned 90 Python modules. [PASS] 100% of LLM communications strictly routed through LiteLLMClient wrapper. Zero unmediated vendor SDKs (openai, anthropic, google.generativeai) or direct endpoints.` |
+| **REQ-62** | §5 | *"All LLM and embedding calls must go through the LiteLLM library"* | `backend/llm/client.py`, `scripts/qa/llm_routing_check.py` | `python scripts/qa/llm_routing_check.py` | **done** | `Scanned 94 Python modules. [PASS] 100% of LLM communications strictly routed through LiteLLMClient wrapper. Zero unmediated vendor SDKs (openai, anthropic, google.generativeai) or direct endpoints.` |
 | **REQ-63** | §5 | *"configurable through environment variables: LLM_MODEL, LLM_API_KEY, LLM_API_BASE, EMBEDDING_MODEL"* | `backend/config.py`, `backend/llm/client.py`, `backend/retrieval/indexer.py` | `pytest tests/test_citations_retrieval.py` | **done** | `4 passed in 7.82s`. `EMBEDDING_MODEL` wired into CoursesOfStudyRetriever and LiteLLMClient.embed() for semantic vector retrieval. |
-| **REQ-64** | §5 | *"Do not hard-code model names, keys or endpoints anywhere in the code"* | `backend/config.py`, `.env.example`, `scripts/qa/secrets_scan.py` | `python scripts/qa/secrets_scan.py` | **done** | Scanned 124 repository files; 0 hardcoded models, 0 API tokens found. |
+| **REQ-64** | §5 | *"Do not hard-code model names, keys or endpoints anywhere in the code"* | `backend/config.py`, `.env.example`, `scripts/qa/secrets_scan.py` | `python scripts/qa/secrets_scan.py` | **done** | Scanned 135 files across repository. PASS: Zero leaked secrets, zero hardcoded models, all LLM calls route via LiteLLM. |
 | **REQ-65** | §5 | *"State the LLM model... in the README and as the default values in .env.example"* | `README.md`, `.env.example`, `backend/main.py` | `python scripts/qa/secrets_scan.py` | **done** | Documented `gemini/gemini-3.5-flash-lite` in README and `.env.example`; validated LiteLLM prefix syntax in startup check. |
 | **REQ-66** | §5 | *"justify which parts are handled by the LLM and which are computed deterministically"* | `docs/ARCHITECTURE.md`, `README.md`, `backend/planner/solver.py` | `python scripts/evaluate.py` | **done** | Solver is 100% deterministic constraint logic (0 ms LLM latency); Buddy uses LiteLLM for grounded natural language synthesis. |
 

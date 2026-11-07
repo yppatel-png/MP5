@@ -1,5 +1,5 @@
 # System Evaluation & Benchmark Report
-**Generated:** 2026-11-07T13:40:11Z  
+**Generated:** 2026-11-07T13:49:54Z  
 **Target Institute:** Indian Institute of Technology Bhilai (IIT Bhilai)  
 **Evaluation Scope:** All 78 Student Profiles across BTech CSE (`BH-CSE-BTECH`)  
 
@@ -14,14 +14,14 @@
 | **Schedule Determinism** | 10/10 bitwise identical runs | **10/10** Identical | **PASSED** |
 | **LLM-Off Offline Validity** | 100% valid plans without external LLM | **100.0%** (10/10) | **PASSED** |
 | **Fault-Injection Robustness** | 100% synthetic mutations caught | **100.0%** (5/5) | **PASSED** |
-| **Plan Certificate (Feature A)** | Academic rules + canonical SHA-256 seal | **100.0% Verified** (2.84ms) | **PASSED** |
+| **Plan Certificate (Feature A)** | Academic rules + canonical SHA-256 seal | **100.0% Verified** (2.69ms) | **PASSED** |
 | **Tamper Detection (Feature A)** | Immediate hash mismatch on modified plans | **100.0% Detected** | **PASSED** |
 | **Dynamic Adaptation** | Quiz & study week signals generate valid diffs | **Verified** (Accelerate vs Remediate) | **PASSED** |
 | **Mastery Distinction** | *Completed* vs. *Demonstrated Proficiency* | **Verified** (Flagged correctly) | **PASSED** |
 | **Safety & Anti-Jailbreak** | &ge;40 prompt injection and off-topic cases | **100.0%** (42/42 Blocked) | **PASSED** |
 | **Benign Query False-Positive Rate** | 0% over-blocking on legitimate queries | **0.0%** (0/32 Blocked) | **PASSED** |
 | **Zero Hallucination** | Non-existent course codes intercepted | **100% Intercepted** (zero leakage) | **PASSED** |
-| **Benchmark Runtime** | Full test suite execution | **7.21s** | **PASSED** |
+| **Benchmark Runtime** | Full test suite execution | **7.19s** | **PASSED** |
 
 ---
 

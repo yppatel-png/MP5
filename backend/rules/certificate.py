@@ -125,7 +125,7 @@ def build_certificate(
     if total == 0:
         assumptions_statement = "0 rule checks evaluated"
     else:
-        assumptions_statement = f"{assumed_checks} of {total} rule checks use assumptions pending the ordinance"
+        assumptions_statement = f"{assumed_rules} rules are assumptions, pending ordinance ({assumed_checks} of {total} checks use assumptions pending the ordinance)"
 
     # Calculate tightest margin
     tightest: Optional[TightestMargin] = None

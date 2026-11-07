@@ -5,6 +5,10 @@ Articulates the core product philosophy, technical trade-offs, and design ration
 
 ## 1. Product Philosophy: Useful & Understandable Personalisation
 
+> [!NOTE]
+> **Survey & User Need Calibration**:
+> User pain points and persona requirements are currently grounded in the official Adobe Problem Statement (§1–§3, Appendix A) and formulated as working product design hypotheses. The formal survey instrument is detailed in `docs/survey/questionnaire.md` and will populate empirical metrics into `docs/survey/results.md` once responses are gathered.
+
 Personalisation in higher education is often reduced to opaque "AI black-box recommendations" that students and faculty distrust. Our guiding principle is:
 > **Personalisation must be useful, verifiable, and understandable.**
 

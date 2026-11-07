@@ -1,0 +1,8 @@
+# SYNTHETIC TEST FIXTURE ONLY - NOT REAL SURVEY DATA
+year,department,current_cgpa_band,primary_goal,weekly_study_hours,top_pain_points
+3rd Year (B.Tech),Computer Science & Engineering (CSE),7.0 – 7.99,Software Development / Tech Industry role,8.5,Prerequisite conflicts;Workload underestimation
+2nd Year (B.Tech),Data Science & Artificial Intelligence (DSAI),8.0 – 8.99,AI / Data Science / Machine Learning Specialist role,12.0,Generic AI Hallucinations;Prerequisite conflicts
+4th Year (B.Tech),Electrical Engineering (EE),8.0 – 8.99,Higher Studies abroad or in India,10.0,Finding verifiable prerequisites;Workload underestimation
+3rd Year (B.Tech),Mechanical Engineering (ME),7.0 – 7.99,Civil Services / Public Administration,15.0,Workload underestimation;Avoiding burnout
+2nd Year (B.Tech),Computer Science & Engineering (CSE),8.0 – 8.99,Venture Creation / Startup Founder,9.0,Balancing CGPA preservation vs ambitious electives
+

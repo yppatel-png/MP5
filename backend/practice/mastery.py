@@ -205,4 +205,7 @@ class MasteryEngine:
             "whats_missing": whats_missing
         }
 
+    # Backward-compatible alias
+    evaluate_goal_readiness = compute_goal_readiness
+
 mastery_engine = MasteryEngine()

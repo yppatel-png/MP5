@@ -2,7 +2,7 @@
 
 **Institution:** Indian Institute of Technology Bhilai (IIT Bhilai)  
 **Curriculum Track:** B.Tech in Computer Science and Engineering (`BH-CSE-BTECH`)  
-**Evaluation Date:** 2026-11-07T10:18:59Z  
+**Evaluation Date:** 2026-11-07T11:37:10Z  
 **Architecture:** 3 Provenance Tiers | Single PostgreSQL 16 DB | Zero Invented Institutional Facts | Offline Deterministic Solver  
 
 ---
@@ -12,18 +12,20 @@
 | Evaluation Dimension | Target Metric | Verified Benchmark Result | Status |
 | :--- | :--- | :--- | :---: |
 | **Plan Validity (All Profiles)** | 100% compliance across academic rules | **100.0%** (78/78 profiles) | **PASS** |
+| **Infeasible Request Rejection** | Rejection with closest valid alternative | **100.0%** (10/10 impossible constraints) | **PASS** |
 | **Bitwise Determinism** | 100% identical outputs on re-run | **100.0%** (10/10 identical schedules) | **PASS** |
 | **Offline Mode Planning Parity** | 100% valid plans without LLM | **100.0%** (10/10 valid) | **PASS** |
 | **Fault-Injection Interception** | 100% mutated invalid plans rejected | **100.0%** (5/5 caught) | **PASS** |
 | **Safety & Anti-Jailbreak Defense** | &ge;40 attack vectors neutralized | **100.0%** (42/42 blocked) | **PASS** |
+| **Benign Safety Over-Blocking** | 0% false positives on legitimate queries | **0.0%** (0/32 blocked) | **PASS** |
 | **Zero Course Hallucination** | 0 invented course codes permitted | **100.0% Intercepted** (zero leakage) | **PASS** |
-| **Plan Certificate Sealing** | Canonical SHA-256 cryptographic seal | **100.0% Verified** (2.01 ms/cert) | **PASS** |
+| **Plan Certificate Sealing** | Canonical SHA-256 cryptographic seal | **100.0% Verified** (2.7 ms/cert) | **PASS** |
 | **Tamper Detection Sensitivity** | Immediate hash mismatch on change | **100.0% Detected** (20/20) | **PASS** |
 | **Assessment Item Bank** | &ge;10 items/skill across 24 skills | **240 Real Items** (difficulties 1–4, 100% grounded) | **PASS** |
 | **Verified Open Resources** | &ge;90% official skill coverage | **100.0%** (24/24 skills covered, NPTEL/SWAYAM/MIT/NCERT) | **PASS** |
-| **Solver Speed (p50 / p95)** | < 100 ms per multi-semester plan | **p50 = 0.23 ms / p95 = 0.33 ms** | **PASS** |
-| **Validator Speed (Average)** | < 50 ms per plan verification | **2.71 ms / plan** | **PASS** |
-| **Total Evaluation Duration** | Full 78-profile test suite execution | **2.5 seconds** | **PASS** |
+| **Solver Speed (p50 / p95)** | < 100 ms per multi-semester plan | **p50 = 0.21 ms / p95 = 0.35 ms** | **PASS** |
+| **Validator Speed (Average)** | < 50 ms per plan verification | **2.78 ms / plan** | **PASS** |
+| **Total Evaluation Duration** | Full 78-profile test suite execution | **5.96 seconds** | **PASS** |
 
 ---
 

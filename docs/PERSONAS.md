@@ -1,5 +1,9 @@
 # Student Persona Specifications
-Comprehensive profiles mapping diverse academic goals, survey insights, constraints, and learning trajectories across IIT Bhilai.
+Comprehensive profiles mapping diverse academic goals, design hypotheses, constraints, and learning trajectories across IIT Bhilai.
+
+> [!NOTE]
+> **Data Provenance & Survey Calibration Notice**:
+> These student personas are synthesized as **working product design hypotheses** aligned directly with the illustrative archetypes in the Adobe Problem Statement (Appendix A) and initial qualitative interviews. They will be quantitatively re-calibrated against empirical student responses once the survey instrument (`docs/survey/questionnaire.md`) is deployed and analyzed via `scripts/analyze_survey.py`.
 
 ---
 
@@ -8,7 +12,7 @@ Comprehensive profiles mapping diverse academic goals, survey insights, constrai
 | Dimension | Specification |
 | :--- | :--- |
 | **Persona** | **Aryan Sharma (`BH-SW-001`)**, B.Tech CSE, Year 3, Semester 5. Current CGPA: 7.8. |
-| **Survey Insight** | Students seeking top-tier software engineering roles require rigorous sequence planning through algorithms, operating systems, and distributed backends. |
+| **Design Hypothesis** | Students seeking top-tier software engineering roles require rigorous sequence planning through algorithms, operating systems, and distributed backends. |
 | **Learning Objective** | Secure a tier-1 Software Development Engineer (SDE) placement by building verified core algorithmic problem-solving and systems knowledge. |
 | **Mastery Criteria** | BKT $P(L_t) \ge 0.85$ across `data_structures`, `algorithms`, and `operating_systems`; verified completion of coding exercises. |
 | **Success Metrics** | Placement readiness score $\ge 85\%$; successful completion of core requirements while preserving CGPA ($> 7.5$). |
@@ -22,7 +26,7 @@ Comprehensive profiles mapping diverse academic goals, survey insights, constrai
 | Dimension | Specification |
 | :--- | :--- |
 | **Persona** | **Priya Nair (`BH-RES-001`)**, B.Tech CSE, Year 2, Semester 3. Current CGPA: 9.4. |
-| **Survey Insight** | High-CGPA students seek academic acceleration (credit overload) and research electives, but risk violating semester offering parity or clash rules. |
+| **Design Hypothesis** | High-CGPA students seek academic acceleration (credit overload) and research electives, but risk violating semester offering parity or clash rules. |
 | **Learning Objective** | Fast-track core prerequisites to unlock advanced machine learning (`CSL304`) and generative AI (`CSP352`) in Year 3. |
 | **Mastery Criteria** | BKT $P(L_t) \ge 0.90$ across `artificial_intelligence`, `operating_systems`, and `discrete_mathematics`. |
 | **Success Metrics** | 24-credit overload approval without clashes; reservation of final year slots for capstone research thesis. |
@@ -36,7 +40,7 @@ Comprehensive profiles mapping diverse academic goals, survey insights, constrai
 | Dimension | Specification |
 | :--- | :--- |
 | **Persona** | **Rohan Verma (`BH-UPSC-001`)**, B.Tech CSE, Year 3, Semester 5. Current CGPA: 7.2. |
-| **Survey Insight** | Civil services aspirants need predictable, well-paced elective schedules that satisfy graduation credits without heavy lab overload. |
+| **Design Hypothesis** | Civil services aspirants need predictable, well-paced elective schedules that satisfy graduation credits without heavy lab overload. |
 | **Learning Objective** | Complete degree requirements while allocating 15+ hours/week to General Studies, policy, and public administration prep. |
 | **Mastery Criteria** | Satisfy all degree credit requirements with sustained CGPA $\ge 7.0$; no remedial coursework needed. |
 | **Success Metrics** | Semester course contact hours kept strictly balanced; zero lab overruns or unplanned overload. |
@@ -50,7 +54,7 @@ Comprehensive profiles mapping diverse academic goals, survey insights, constrai
 | Dimension | Specification |
 | :--- | :--- |
 | **Persona** | **Devansh Kulkarni (`BH-ST-001`)**, B.Tech CSE, Year 3, Semester 5. Current CGPA: 8.1. |
-| **Survey Insight** | Student founders struggle to bridge deep technical prototyping skills with commercial product design and team building. |
+| **Design Hypothesis** | Student founders struggle to bridge deep technical prototyping skills with commercial product design and team building. |
 | **Learning Objective** | Pair software engineering and cloud systems with entrepreneurship and financial management electives (`LAL101`). |
 | **Mastery Criteria** | Complete end-to-end deployed software prototype; demonstrate proficiency in relational data modeling and API architectures. |
 | **Success Metrics** | Functional MVP launched; graduation requirements completed with $\ge 8.0$ CGPA. |
@@ -64,7 +68,7 @@ Comprehensive profiles mapping diverse academic goals, survey insights, constrai
 | Dimension | Specification |
 | :--- | :--- |
 | **Persona** | **Siddharth Roy (`BH-REC-001`)**, B.Tech CSE, Year 2, Semester 3. Current CGPA: 6.4. |
-| **Survey Insight** | Students on academic warning or with sub-7.0 CGPA suffer from compounded prerequisite gaps and demoralization. |
+| **Design Hypothesis** | Students on academic warning or with sub-7.0 CGPA suffer from compounded prerequisite gaps and demoralization. |
 | **Learning Objective** | Rebuild academic momentum, remediate foundational calculus and programming gaps, and lift CGPA safely above 7.0. |
 | **Mastery Criteria** | BKT $P(L_t) \ge 0.75$ on remedial mathematics; pass all semester courses with minimum grade B. |
 | **Success Metrics** | Academic warning lifted; zero repeat courses; cumulative CGPA improvement of +0.6 across two semesters. |
@@ -78,7 +82,7 @@ Comprehensive profiles mapping diverse academic goals, survey insights, constrai
 | Dimension | Specification |
 | :--- | :--- |
 | **Persona** | **Kavita Menon (`BH-GRAD-001`)**, B.Tech CSE, Year 4, Semester 7. Current CGPA: 8.9. |
-| **Survey Insight** | Graduate school applicants require advanced electives and faculty project credits to secure strong recommendation letters. |
+| **Design Hypothesis** | Graduate school applicants require advanced electives and faculty project credits to secure strong recommendation letters. |
 | **Learning Objective** | Complete advanced machine learning and algorithm design coursework (`CSL304`, `CSP352`) while preserving high GPA for graduate admissions. |
 | **Mastery Criteria** | High BKT mastery ($> 0.90$) in algorithmic complexity; submission of conference-track research paper. |
 | **Success Metrics** | Standardized test prep time protected; GPA sustained above 3.8/4.0 equivalent ($> 8.8$). |

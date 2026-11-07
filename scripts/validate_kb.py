@@ -160,15 +160,27 @@ def run_validation():
         if missing_diffs:
             errors.append(f"Skill '{sk}' is missing difficulty levels {sorted(missing_diffs)}.")
 
-    # Check resources and license verification
+    # Check resources and license metadata
+    # NOTE ON VERIFICATION DECISION:
+    # Under offline / zero-egress compliance (§6.1: no outbound network calls), the validator does
+    # NOT perform live HTTP network requests to external domains at runtime.
+    # A resource is considered "source_recorded" if:
+    # 1. It provides provider, title, url, license, and last_verified date metadata in schema.
+    # 2. It is marked status="source_recorded" or status="verified" (not "needs_verification").
+    # External links cannot be verified from local institutional files in data/raw/ and require
+    # manual external verification when connected to the internet.
     skill_resource_counts = {sk: 0 for sk in skill_ids}
     verified_resources_count = 0
     unverified_resources_count = 0
 
     for r in resources:
         r_id = r.get("resource_id", "unknown")
-        is_verified = (r.get("status") == "verified" or r.get("license_verified") is True) and r.get("status") != "needs_verification"
-        if not is_verified:
+        is_recorded = (
+            r.get("status") in ("source_recorded", "verified")
+            or r.get("license_verified") is True
+        ) and r.get("status") != "needs_verification"
+
+        if not is_recorded:
             unverified_resources_count += 1
             warnings.append(f"Resource '{r_id}' is marked '{r.get('status', 'needs_verification')}' and will be excluded from student plans.")
             continue

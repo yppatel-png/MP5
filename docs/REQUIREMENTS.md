@@ -1,6 +1,10 @@
 # System Requirements Specification (MoSCoW Prioritisation)
 Functional and technical requirements for the Adobe Personalised Learning Buddy, categorized by MoSCoW prioritization with verifiable acceptance criteria.
 
+> [!NOTE]
+> **Hypothesis-Based Prioritization**:
+> User-facing requirements and elective pain points are prioritized based on the problem statement requirements (§1–§3) and working product design hypotheses pending empirical survey results (`docs/survey/questionnaire.md`).
+
 ---
 
 ## 1. Must Have (P0 - Mission Critical for Pilot Launch)

@@ -229,8 +229,8 @@ class BuddyRouter:
                     factual_context["plan_diff"] = {"reason": "Initial baseline plan active"}
 
         elif intent == "MASTERY_STATUS":
-            tools_called.append("mastery_engine.evaluate_goal_readiness")
-            readiness = mastery_engine.evaluate_goal_readiness(student_id, goal_id=profile.goal_id)
+            tools_called.append("mastery_engine.compute_goal_readiness")
+            readiness = mastery_engine.compute_goal_readiness(student_id, goal_id=profile.goal_id)
             factual_context["readiness"] = readiness
 
         elif intent == "NEXT_STEPS":

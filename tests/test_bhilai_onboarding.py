@@ -75,10 +75,15 @@ class TestBhilaiOnboarding(unittest.TestCase):
         loaded = self.client.get(f"/api/onboarding/profiles/{profile['student_id']}")
         self.assertEqual(loaded.status_code, 200, loaded.text)
         self.assertEqual(loaded.json(), profile)
-        persona_ids = {
+        demo_persona_ids = {
+            item["student_id"] for item in self.client.get("/api/students").json()
+            if item.get("is_demo")
+        }
+        self.assertNotIn(profile["student_id"], demo_persona_ids)
+        all_student_ids = {
             item["student_id"] for item in self.client.get("/api/students").json()
         }
-        self.assertNotIn(profile["student_id"], persona_ids)
+        self.assertIn(profile["student_id"], all_student_ids)
 
     def test_update_changes_saved_profile_and_revalidates_course_choices(self):
         created = self.client.post(

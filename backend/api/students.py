@@ -34,6 +34,8 @@ class StudentListEntry(BaseModel):
     goal_id: str
     target_role: Optional[str] = None
     current_semester: Optional[int] = 1
+    is_demo: bool = False
+    created_at: Optional[str] = None
 
 class SkillEstimate(BaseModel):
     skill_id: str
@@ -45,24 +47,95 @@ class SkillEstimate(BaseModel):
     evidence_count: int
     evidence_trail: List[str]
 
+class RenameStudentRequest(BaseModel):
+    name: str
+
 HERO_PERSONA_ORDER = ["BH-SW-001", "BH-HS-001", "BH-UP-001", "BH-ST-001"]
 
 @router.get("")
 def list_students() -> List[StudentListEntry]:
-    """Lists available student personas for the frontend selector."""
-    all_profiles = {p.student_id: p for p in StudentStore.get_all_profiles()}
-    return [
+    """Lists available student personas for the frontend selector.
+    Returns user-created profiles newest first, followed by the 4 canonical demo personas.
+    """
+    all_meta = StudentStore.get_profiles_summary()
+    meta_by_id = {p["student_id"]: p for p in all_meta}
+
+    # 1. User-created profiles (newest first, not in HERO_PERSONA_ORDER)
+    user_profiles = [
         StudentListEntry(
-            student_id=all_profiles[sid].student_id,
-            name=all_profiles[sid].name,
-            programme=all_profiles[sid].programme,
-            goal_id=all_profiles[sid].goal_id,
-            target_role=all_profiles[sid].target_role,
-            current_semester=all_profiles[sid].current_semester,
+            student_id=p["student_id"],
+            name=p["name"],
+            programme=p["programme"],
+            goal_id=p["goal_id"],
+            target_role=p.get("target_role"),
+            current_semester=p.get("current_semester") or 1,
+            is_demo=False,
+            created_at=str(p.get("created_at") or ""),
+        )
+        for p in all_meta
+        if p["student_id"] not in HERO_PERSONA_ORDER
+    ]
+
+    # 2. Canonical Demo Personas (Appendix A) in fixed canonical order
+    demo_profiles = [
+        StudentListEntry(
+            student_id=meta_by_id[sid]["student_id"],
+            name=meta_by_id[sid]["name"],
+            programme=meta_by_id[sid]["programme"],
+            goal_id=meta_by_id[sid]["goal_id"],
+            target_role=meta_by_id[sid].get("target_role"),
+            current_semester=meta_by_id[sid].get("current_semester") or 1,
+            is_demo=True,
+            created_at=str(meta_by_id[sid].get("created_at") or ""),
         )
         for sid in HERO_PERSONA_ORDER
-        if sid in all_profiles
+        if sid in meta_by_id
     ]
+
+    return user_profiles + demo_profiles
+
+@router.patch("/{student_id}/rename", response_model=Dict[str, Any])
+def rename_student(student_id: str, payload: RenameStudentRequest) -> Dict[str, Any]:
+    """Renames a user-created profile. Rejects attempts to rename canonical demo personas."""
+    if student_id in HERO_PERSONA_ORDER:
+        raise HTTPException(
+            status_code=403,
+            detail="Cannot rename canonical demo personas (Appendix A)."
+        )
+    existing = StudentStore.get_profile(student_id)
+    if not existing:
+        raise HTTPException(status_code=404, detail=f"Student ID '{student_id}' not found.")
+    
+    clean_name = payload.name.strip()
+    if not clean_name:
+        raise HTTPException(status_code=422, detail="Profile name cannot be empty.")
+
+    success = StudentStore.rename_profile(student_id, clean_name)
+    if not success:
+        raise HTTPException(status_code=500, detail="Failed to update profile name.")
+    return {
+        "message": f"Profile '{student_id}' renamed to '{clean_name}'.",
+        "student_id": student_id,
+        "name": clean_name,
+    }
+
+@router.delete("/{student_id}", response_model=Dict[str, Any])
+def delete_student(student_id: str) -> Dict[str, Any]:
+    """Deletes a user-created profile. Rejects attempts to delete canonical demo personas."""
+    if student_id in HERO_PERSONA_ORDER:
+        raise HTTPException(
+            status_code=403,
+            detail="Cannot delete canonical demo personas (Appendix A)."
+        )
+    existing = StudentStore.get_profile(student_id)
+    if not existing:
+        raise HTTPException(status_code=404, detail=f"Student ID '{student_id}' not found.")
+
+    StudentStore.delete_profile(student_id)
+    return {
+        "message": f"Student profile '{student_id}' deleted successfully.",
+        "student_id": student_id,
+    }
 
 @router.post("", response_model=Dict[str, Any])
 def create_or_update_student(profile: StudentProfile) -> Dict[str, Any]:

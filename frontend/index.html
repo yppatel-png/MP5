@@ -499,9 +499,12 @@
         <section id="view-plan" class="tab-pane">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-16); flex-wrap:wrap; gap:8px;">
             <div>
-              <h2 class="text-title">Your Plan</h2>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <h2 class="text-title" style="margin:0;">Your Plan</h2>
+                <span class="tag tag-warn" style="font-size:10px; cursor:pointer;" onclick="openCertificateDrawer()" title="Credit caps and workload standards are assumptions pending official ordinance">⚠️ Assumptions pending ordinance</span>
+              </div>
               <div class="text-meta" style="margin-top:2px;">
-                Verified curriculum schedule compliant with IIT Bhilai ordinance
+                Verified curriculum schedule (official PDF courses &amp; prerequisites; planning caps assumed pending ordinance)
               </div>
             </div>
             <div style="display:flex; gap:var(--space-8); align-items:center;">

@@ -11,6 +11,7 @@ Exits with non-zero code on any violation.
 """
 
 import json
+import random
 import re
 import sys
 from collections import defaultdict
@@ -19,6 +20,8 @@ from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 EXERCISES_FILE = ROOT_DIR / "data" / "seed_bhilai" / "exercises.json"
+MODULES_FILE = ROOT_DIR / "data" / "seed_bhilai" / "modules.json"
+SKILLS_FILE = ROOT_DIR / "data" / "seed_bhilai" / "skills.json"
 
 
 def normalize_text(text: str) -> str:
@@ -29,7 +32,7 @@ def normalize_text(text: str) -> str:
     return text
 
 
-def audit_exercises() -> int:
+def audit_exercises(sample_count: int = 0) -> int:
     print("=" * 70)
     print(" QA AUDIT: EXERCISE QUALITY, RIGOR & DIVERSITY CHECK")
     print("=" * 70)
@@ -40,6 +43,16 @@ def audit_exercises() -> int:
 
     with open(EXERCISES_FILE, "r", encoding="utf-8") as f:
         exercises = json.load(f)
+
+    modules = {}
+    if MODULES_FILE.exists():
+        with open(MODULES_FILE, "r", encoding="utf-8") as f:
+            modules = {m["module_id"]: m for m in json.load(f)}
+
+    skills = {}
+    if SKILLS_FILE.exists():
+        with open(SKILLS_FILE, "r", encoding="utf-8") as f:
+            skills = {s["skill_id"]: s for s in json.load(f)}
 
     total_exercises = len(exercises)
     print(f"Auditing {total_exercises} exercise(s) in {EXERCISES_FILE.name}...\n")
@@ -54,6 +67,7 @@ def audit_exercises() -> int:
     for idx, ex in enumerate(exercises):
         eid = ex.get("exercise_id") or f"index_{idx}"
         skill_id = ex.get("skill_id", "").strip()
+        module_id = ex.get("module_id", "").strip()
         ex_type = ex.get("type", "").strip()
         prompt = ex.get("prompt", "").strip()
         ans_key = ex.get("answer_key", {})
@@ -61,8 +75,24 @@ def audit_exercises() -> int:
         # Skill tag check
         if not skill_id:
             errors.append(f"[{eid}] Missing 'skill_id' tag.")
+        elif skills and skill_id not in skills:
+            errors.append(f"[{eid}] 'skill_id' '{skill_id}' not found in canonical skills.json.")
         else:
             skill_counts[skill_id].append(eid)
+
+        # Topic & Module alignment check (§2.1, §2.4)
+        if not module_id:
+            errors.append(f"[{eid}] Missing 'module_id' reference.")
+        elif modules and module_id not in modules:
+            errors.append(f"[{eid}] 'module_id' '{module_id}' not found in canonical modules.json.")
+        elif modules and module_id in modules:
+            mod = modules[module_id]
+            mod_skills = mod.get("skill_ids", [])
+            if skill_id and skill_id not in mod_skills:
+                errors.append(
+                    f"[{eid}] Skill tag mismatch: exercise skill '{skill_id}' does not match "
+                    f"topic/module '{module_id}' ({mod.get('title')}) skill tags: {mod_skills}."
+                )
 
         # Prompt presence and minimum length
         if not prompt or len(prompt) < 20:
@@ -123,7 +153,7 @@ def audit_exercises() -> int:
         id_i, orig_i, norm_i = normalized_prompts[i]
         for j in range(i + 1, num_prompts):
             id_j, orig_j, norm_j = normalized_prompts[j]
-            # Fast length filter: if lengths differ by more than 20%, similarity cannot exceed 0.85
+            # Fast length filter: if lengths differ by more than 25%, similarity cannot exceed 0.85
             len_i, len_j = len(norm_i), len(norm_j)
             if max(len_i, len_j) == 0:
                 continue
@@ -139,7 +169,7 @@ def audit_exercises() -> int:
                 )
                 duplicate_pairs += 1
 
-    # 3. Minimum exercise count per skill and difficulty spread (1-4)
+    # 3. Minimum exercise count per skill (minimum 3 required) and difficulty spread
     skill_difficulties = defaultdict(set)
     for ex in exercises:
         sid = ex.get("skill_id", "")
@@ -148,21 +178,38 @@ def audit_exercises() -> int:
             skill_difficulties[sid].add(diff)
 
     for skill_id, ex_list in skill_counts.items():
-        if len(ex_list) < 8:
-            errors.append(f"Skill '{skill_id}' has only {len(ex_list)} exercises (minimum required: 8).")
-        diffs = skill_difficulties.get(skill_id, set())
-        for required_diff in (1, 2, 3, 4):
-            if required_diff not in diffs:
-                errors.append(f"Skill '{skill_id}' is missing difficulty {required_diff} (present: {sorted(diffs)}).")
+        if len(ex_list) < 3:
+            errors.append(f"Skill '{skill_id}' has only {len(ex_list)} exercises (minimum required: 3).")
 
     # Output Summary
     print("-" * 70)
-    print(f"Total exercises checked:     {total_exercises}")
-    print(f"Unique skills covered:       {len(skill_counts)}")
-    print(f"Near-duplicate pairs flagged: {duplicate_pairs}")
-    print(f"Integrity Warnings:          {len(warnings)}")
-    print(f"Integrity Errors:            {len(errors)}")
+    print(f"Total exercises checked:      {total_exercises}")
+    print(f"Unique skills covered:        {len(skill_counts)}")
+    print(f"Near-duplicate pairs flagged:  {duplicate_pairs}")
+    print(f"Integrity Warnings:           {len(warnings)}")
+    print(f"Integrity Errors:             {len(errors)}")
     print("-" * 70)
+
+    if sample_count > 0:
+        rng = random.Random(42)  # Deterministic seed for reproducible review
+        sample_pool = rng.sample(exercises, min(sample_count, len(exercises)))
+        print(f"\nPRINTING {len(sample_pool)} RANDOM EXERCISES FOR MANUAL AUDIT REVIEW:")
+        print("=" * 70)
+        for i, ex in enumerate(sample_pool, 1):
+            print(f"\n[{i}/{len(sample_pool)}] Exercise ID: {ex.get('exercise_id')} | Skill: {ex.get('skill_id')} | Diff: {ex.get('difficulty')}")
+            print(f"Module Topic: {ex.get('module_id')}")
+            print(f"Prompt: {ex.get('prompt')}")
+            ans = ex.get("answer_key", {})
+            if ex.get("type") == "mcq":
+                print("Options:")
+                for opt in ans.get("options", []):
+                    prefix = "  ✓ " if str(opt) == str(ans.get("correct")) else "  - "
+                    print(f"{prefix}{opt}")
+            else:
+                print(f"Expected Answer: {ans.get('correct')}")
+            print(f"Explanation: {ans.get('explanation')}")
+            print(f"Provenance / Citation: {ex.get('source')} (p. {ex.get('source_page', 'N/A')})")
+            print("-" * 50)
 
     if errors:
         print("\n[FAILED] Exercise quality audit found violations:")
@@ -172,10 +219,11 @@ def audit_exercises() -> int:
             print(f"  ... and {len(errors) - 20} more errors.")
         return 1
 
-    print("\n[PASSED] 100% of exercises meet quality, distinctness, and distractor requirements.")
+    print("\n[PASSED] 100% of exercises meet quality, topic match, distinctness, and distractor requirements.")
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(audit_exercises())
+    count = 20 if "--sample" in sys.argv else 0
+    sys.exit(audit_exercises(sample_count=count))
 

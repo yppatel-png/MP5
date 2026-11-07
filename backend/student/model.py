@@ -64,11 +64,25 @@ class StudentStore:
     def save_profile(profile: StudentProfile) -> None:
         with get_db_cursor() as cur:
             cur.execute("""
-            INSERT OR REPLACE INTO student_profiles (
+            INSERT INTO student_profiles (
                 student_id, name, programme, year, current_semester, cgpa,
                 goal_id, target_role, available_hours_per_week, remaining_elective_slots,
                 completed_courses_json, constraints_json, preferences_json, updated_at
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+            ON CONFLICT(student_id) DO UPDATE SET
+                name = excluded.name,
+                programme = excluded.programme,
+                year = excluded.year,
+                current_semester = excluded.current_semester,
+                cgpa = excluded.cgpa,
+                goal_id = excluded.goal_id,
+                target_role = excluded.target_role,
+                available_hours_per_week = excluded.available_hours_per_week,
+                remaining_elective_slots = excluded.remaining_elective_slots,
+                completed_courses_json = excluded.completed_courses_json,
+                constraints_json = excluded.constraints_json,
+                preferences_json = excluded.preferences_json,
+                updated_at = CURRENT_TIMESTAMP;
             """, (
                 profile.student_id,
                 profile.name,
@@ -87,6 +101,64 @@ class StudentStore:
                     **profile.preferences
                 })
             ))
+
+    @staticmethod
+    def rename_profile(student_id: str, new_name: str) -> bool:
+        """Renames a student profile in persistent storage."""
+        with get_db_cursor() as cur:
+            cur.execute(
+                "UPDATE student_profiles SET name = ?, updated_at = CURRENT_TIMESTAMP WHERE student_id = ?",
+                (new_name.strip(), student_id)
+            )
+            updated = cur.rowcount > 0
+            try:
+                cur.execute("SELECT profile_json FROM onboarding_profiles WHERE student_id = ?", (student_id,))
+                row = cur.fetchone()
+                if row:
+                    p = json.loads(row["profile_json"])
+                    p["name"] = new_name.strip()
+                    cur.execute(
+                        "UPDATE onboarding_profiles SET profile_json = ?, updated_at = CURRENT_TIMESTAMP WHERE student_id = ?",
+                        (json.dumps(p), student_id)
+                    )
+            except Exception:
+                pass
+            return updated
+
+    @staticmethod
+    def delete_profile(student_id: str) -> bool:
+        """Deletes a student profile and cascading records across all related tables."""
+        with get_db_cursor() as cur:
+            for table in [
+                "plan_versions",
+                "evidence_events",
+                "chat_memory",
+                "exercise_attempts",
+                "adaptation_events",
+                "study_sessions"
+            ]:
+                try:
+                    cur.execute(f"DELETE FROM {table} WHERE student_id = ?", (student_id,))
+                except Exception:
+                    pass
+            try:
+                cur.execute("DELETE FROM onboarding_profiles WHERE student_id = ?", (student_id,))
+            except Exception:
+                pass
+            cur.execute("DELETE FROM student_profiles WHERE student_id = ?", (student_id,))
+            return cur.rowcount > 0
+
+    @staticmethod
+    def get_profiles_summary() -> List[Dict[str, Any]]:
+        """Returns lightweight profile metadata ordered by creation date (newest first)."""
+        with get_db_cursor() as cur:
+            cur.execute("""
+                SELECT student_id, name, programme, goal_id, target_role, current_semester, created_at
+                FROM student_profiles
+                ORDER BY created_at DESC, rowid DESC
+            """)
+            rows = cur.fetchall()
+            return [dict(r) for r in rows]
 
     @staticmethod
     def get_profile(student_id: str) -> Optional[StudentProfile]:

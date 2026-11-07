@@ -2172,12 +2172,10 @@ function openCertificateDrawer() {
     
     const noticeEl = document.getElementById('cert-assumptions-notice');
     if (noticeEl) {
-      if (cert.summary && cert.summary.assumptions_statement) {
-        noticeEl.innerText = `Transparency Note: ${cert.summary.assumptions_statement}`;
-        noticeEl.style.display = 'block';
-      } else {
-        noticeEl.style.display = 'none';
-      }
+      const statement = (cert.summary && cert.summary.assumptions_statement) ||
+        'Transparency Note: Degree planning thresholds (e.g. 24 credit maximum, 12 credit floor, 27 overload cap) are working assumptions pending official IIT Bhilai ordinance.';
+      noticeEl.innerText = statement;
+      noticeEl.style.display = 'block';
     }
 
     const rulesList = document.getElementById('cert-rules-accordion-list');

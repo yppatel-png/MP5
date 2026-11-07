@@ -206,3 +206,27 @@
   - `reports/eval.json`: Comprehensive machine-readable benchmark results.
   - `reports/eval.md`: Detailed markdown report formatted for evaluators.
   - `reports/headline_numbers.md`: Key performance metrics table ready for presentation.
+
+---
+
+### Phase 4 Audit & Hardening: Deployment & Consistency
+- **4A. Docker & Database**:
+  - Verified Docker CLI presence; confirmed Windows host Docker Desktop daemon was offline.
+  - Validated compose syntax with `docker compose config` (exited 0).
+  - Marked `REQ-68` as `unverified` in `docs/REQUIREMENTS_TRACE.md` citing offline daemon.
+  - Verified standalone seed loader reset (`python -m backend.db.seed_loader --reset`): drops all tables, applies clean schema, reloads 1 programme, 34 courses, 17 prerequisites, 24 skills, 112 modules, 25 resources, 240 exercises, 7 academic rules, 4 goal templates, 78 student profiles, and 504 provenance records with 0 errors.
+- **4B. Persona Count Reconciliation**:
+  - Reconciled persona counts across docs, seed data, and tests: 3 hero demo personas (`BH-SW-001` Software Engineer, `BH-HS-001` Higher Studies, `BH-UP-001` UPSC) + 75 synthetic profiles = 78 total profiles.
+  - Updated `docs/REQUIREMENTS_TRACE.md` (REQ-42, REQ-58, REQ-84).
+- **4C. Extra Features & Security Freeze**:
+  - Moved Plan Certificate and PDF export triggers behind an "Advanced" collapsible details section and drawer header badges in `frontend/index.html`.
+  - Added `DISABLE_CODE_EXERCISES` configuration flag in `backend/config.py` defaulting to safe mode (`true`).
+  - Handled safe mode in `backend/api/practice.py` and `backend/practice/runner.py` returning an informative advisory directing students to conceptual MCQs, trace-the-output, and rubric exercises.
+  - Replaced all "secure sandbox" phrasing with "restricted execution (AST-filtered, not a full security boundary)" across `README.md`.
+  - Confirmed `delhi_gate.py` is absent from judge-facing documentation (`README.md`, `docs/PRODUCT_RATIONALE.md`, `docs/GD_TALKING_POINTS.md`) and maintained solely as an internal CI gate.
+- **4D. Demo Usability & Complete Verification**:
+  - Added synchronous theme initializer in `<head>` of `frontend/index.html` eliminating dark theme FOUC and race conditions.
+  - Aligned dark theme contrast tokens (`--border-strong: #A8A398`, `:root[data-theme="dark"] .nav-item.is-active`).
+  - All 20 Playwright E2E tests passed in 29.7s (`contrast.spec.ts`, `new-student.spec.ts`, `no-external-requests.spec.ts`, `persona-smoke.spec.ts`, `product-flows.spec.ts`).
+  - All 113 Python unit/integration tests passed in 50.8s (`python -m pytest`).
+  - Full verification harness passed (`scripts/qa/exercise_quality.py`, `scripts/qa/llm_routing_check.py`, `scripts/qa/secrets_scan.py`, `scripts/qa/delhi_gate.py`, `scripts/validate_kb.py`, `scripts/evaluate.py`).

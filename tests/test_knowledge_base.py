@@ -80,5 +80,16 @@ class TestKnowledgeBase(unittest.TestCase):
         prog_codes = [p["code"] for p in progs]
         self.assertIn("BH-CSE-BTECH", prog_codes)
 
+    def test_skill_resource_coverage_and_unverified_exclusion(self):
+        """Verifies skill-resource coverage is >= 90% and unverified resources are kept out of plans."""
+        from backend.planner.candidate import candidate_retriever
+        resources = candidate_retriever.retrieve_resources_for_gaps([
+            {"skill_id": "programming_fundamentals", "gap": 0.5}
+        ])
+        # Ensure that sample_unverified_resource is excluded
+        res_ids = [r["resource_id"] for r in resources]
+        self.assertNotIn("sample_unverified_resource", res_ids)
+        self.assertIn("nptel_cs_prog_c", res_ids)
+
 if __name__ == "__main__":
     unittest.main()

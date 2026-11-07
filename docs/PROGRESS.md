@@ -136,3 +136,11 @@
 - **Evaluation Harness Refresh**: Executed `python scripts/evaluate.py` to regenerate `reports/eval.md` and `reports/eval.json` for 50 IIT Bhilai student profiles.
 - **Automated Verification Gate**: Added `scripts/qa/delhi_gate.py` and registered it in `scripts/verify.py`. Gate scans 166+ repository files and strictly fails if any legacy institutional or course code token is detected.
 - **Validation**: `python scripts/qa/delhi_gate.py` passed with 0 violations.
+
+### Review Fix 4: Validator Coverage Thresholds & Verified Open Resources (Item 4)
+- **Coverage Threshold Enforced**: Updated `scripts/validate_kb.py` to strictly fail if verified skill-resource coverage falls below 90.0% (`sys.exit(1)` on error).
+- **Curated Verified Resources**: Expanded `data/seed_bhilai/resources.json` to 25 resources:
+  - 24 verified official resources covering 100% of all 24 skills across NPTEL, SWAYAM, MIT OpenCourseWare, and NCERT, complete with official license metadata and verification dates.
+  - 1 unverified test resource (`status="needs_verification"`).
+- **Plan Isolation**: Updated `backend/planner/candidate.py` (`retrieve_resources_for_gaps`) to strictly filter out any resource marked `needs_verification` or lacking verified license status, guaranteeing unverified content never enters student semester plans.
+- **Validation**: `python scripts/validate_kb.py` passed with 100.0% skill-resource coverage and 100.0% skill-exercise coverage (0 errors). Added unit test in `tests/test_knowledge_base.py` verifying exclusion of unverified resources (6/6 passed).

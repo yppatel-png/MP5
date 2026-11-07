@@ -1,6 +1,6 @@
 # Knowledge Base Quality & Verification Audit
 
-**Generated:** 2026-11-07 09:06:28  
+**Generated:** 2026-11-07 09:32:34  
 **Target Institute:** Indian Institute of Technology Bhilai (IIT Bhilai)  
 **Programmes Covered:** B.Tech Computer Science and Engineering (`BH-CSE-BTECH`)  
 **Overall Validation Status:** `PASSED (100% Valid)`  
@@ -16,10 +16,10 @@
 | **Modules / Lessons** | 100 to 300 modules | **112 modules** | `PASSED` |
 | **Skill Nodes** | 20 to 30 skills | **24 skills** | `PASSED` |
 | **Assessment Exercises**| 100+ exercises | **240 exercises** (all validated single correct answer) | `PASSED` |
-| **Curated OERs** | At least 1 per core skill | **6 resources** (NPTEL, SWAYAM, MIT OCW, NCERT) | `PASSED` |
+| **Curated OERs** | At least 1 per core skill | **25 resources** (NPTEL, SWAYAM, MIT OCW, NCERT) | `PASSED` |
 | **Prerequisite Graph** | Strictly Acyclic (DAG) | **Zero cycles (18 directed edges, 17 catalogue-resolved)** | `PASSED` |
 | **Referential Integrity**| 100% Foreign Key match | **0 orphan records / 0 missing references** | `PASSED` |
-| **Skill Resource Coverage**| >= 90% | **33.3%** | `PASSED` |
+| **Skill Resource Coverage**| >= 90% | **100.0%** | `PASSED` |
 | **Skill Exercise Coverage**| >= 90% | **100.0%** | `PASSED` |
 | **Rule Engine Integrity** | Valid JSON parameters | **7 rules configured with visible reasons** | `PASSED` |
 
@@ -55,7 +55,7 @@ Every piece of institutional and pedagogical knowledge is partitioned into three
 ## 3. Prerequisite Graph Topological Ordering
 
 The prerequisite structure forms a strictly acyclic directed graph (DAG). The topological order of course levels is:
-`CSL504, LAL202, CSL505, LAL201, CSL303, LAL101, CSL351, ECL101, LAL224, CSL511, CSQ401, LAL100, CSP352, CSL304, LAL222... and 19 more.`
+`CSL304, CSL351, LAL202, LAL201, CSL559, CSL505, CSL504, CSP352, LAL100, ECL101, CSL511, LAL221, CSL201, CSL303, LAL225... and 19 more.`
 
 ---
 

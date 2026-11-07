@@ -160,13 +160,25 @@ def run_validation():
         if missing_diffs:
             errors.append(f"Skill '{sk}' is missing difficulty levels {sorted(missing_diffs)}.")
 
+    # Check resources and license verification
     skill_resource_counts = {sk: 0 for sk in skill_ids}
+    verified_resources_count = 0
+    unverified_resources_count = 0
+
     for r in resources:
+        r_id = r.get("resource_id", "unknown")
+        is_verified = (r.get("status") == "verified" or r.get("license_verified") is True) and r.get("status") != "needs_verification"
+        if not is_verified:
+            unverified_resources_count += 1
+            warnings.append(f"Resource '{r_id}' is marked '{r.get('status', 'needs_verification')}' and will be excluded from student plans.")
+            continue
+
+        verified_resources_count += 1
         for sk in (r.get("skill_ids") or r.get("skills_covered", [])):
             if sk in skill_resource_counts:
                 skill_resource_counts[sk] += 1
             else:
-                warnings.append(f"Resource '{r.get('resource_id')}' maps to unknown skill '{sk}'.")
+                warnings.append(f"Resource '{r_id}' maps to unknown skill '{sk}'.")
 
     # 3. Prerequisite DAG Validation (Topological Sort)
     adj: Dict[str, List[str]] = {c: [] for c in course_codes}
@@ -230,12 +242,24 @@ def run_validation():
             "status": "PASSED" if c.get("source") and c.get("last_verified") else "FAILED",
         })
 
-    is_valid = len(errors) == 0
-
     skills_with_resources = sum(1 for c in skill_resource_counts.values() if c >= 1)
     skills_with_exercises = sum(1 for c in skill_exercise_counts.values() if c >= 3)
     resource_cov_pct = round((skills_with_resources / len(skills)) * 100, 1)
     exercise_cov_pct = round((skills_with_exercises / len(skills)) * 100, 1)
+
+    if resource_cov_pct < 90.0:
+        errors.append(
+            f"Skill Resource Coverage is {resource_cov_pct}% ({skills_with_resources}/{len(skills)} skills covered by verified OERs), "
+            f"which is below the mandatory 90.0% threshold."
+        )
+
+    if exercise_cov_pct < 90.0:
+        errors.append(
+            f"Skill Exercise Coverage is {exercise_cov_pct}% ({skills_with_exercises}/{len(skills)} skills covered by exercises), "
+            f"which is below the mandatory 90.0% threshold."
+        )
+
+    is_valid = len(errors) == 0
 
     print("=" * 60)
     print(" KNOWLEDGE BASE VALIDATION SUMMARY — IIT BHILAI")

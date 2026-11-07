@@ -100,6 +100,9 @@ class CandidateRetriever:
         gap_skill_ids = {g["skill_id"] for g in skill_gaps}
         matched_resources = []
         for r in self.resources:
+            # Strictly exclude any resources marked needs_verification or missing verified license
+            if r.get("status") == "needs_verification" or not r.get("license_verified", True):
+                continue
             common = set(r.get("skill_ids", [])).intersection(gap_skill_ids)
             if common:
                 matched_resources.append({

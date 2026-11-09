@@ -1,132 +1,127 @@
-# Learning Buddy — IIT Bhilai BTech CSE Personalised Learning System
+# Learning Buddy: IIT Bhilai B.Tech CSE
 
-A personalized learning and degree planning system for the IIT Bhilai BTech Computer Science & Engineering curriculum (`iit_bhilai_btech_cse_2023`). Built on a strict **Three-Tier Provenance Architecture**, the platform delivers the complete Adobe learning loop (**Assess, Personalise, Learn, Practise, Adapt, Demonstrate Mastery**) without conflating official institutional facts with pedagogical assumptions or team-authored content.
-
----
-
-## Three-Tier Provenance Architecture
-
-To maintain uncompromising academic integrity while delivering a complete learning experience, all data in the platform is partitioned into three transparent tiers:
-
-### Tier 1 — Verified Institutional Facts (`provenance="verified"`)
-- **Official Source**: Extracted directly from official institute documents (`data/raw/courses of study.pdf`).
-- **Includes**: 34 verified courses across CSE core, departmental electives, CS minor path, and humanities/open electives, complete with course codes, titles, credits, L-T-P-C breakdowns, semester slots, official programme structure (144 graded credits + 12 non-graded core units), and explicitly printed course prerequisites with cited `source_page` numbers.
-- **Ambiguity Queue**: Ambiguities or discrepancies (e.g. `SL302`/`CSL302`) are recorded in `data/review_queue.csv`.
-
-### Tier 2 — Labelled Assumptions (`provenance="assumption"`)
-- **Ordinance Gaps**: For policies not explicitly published in the syllabus document (e.g., semester credit minimums/maximums, minor eligibility CGPA, overload thresholds, online-credit caps, offering parity, weekly workload hours).
-- **Transparency**: Stored as configurable academic rules marked with `provenance="assumption"`, a visible reason, and a `"pending ordinance"` note. Documented in `data/raw/ordinance_TODO.md`.
-- **Badging**: The solver, validator, and cryptographic plan certificate run on these rules and prominently display an **"Assumed"** badge next to them (contrasted with **"Verified"** badges for Tier 1 rules), ensuring students and advisors never mistake an assumption for an official institute decree.
-
-### Tier 3 — Team-Authored Learning Layer (`provenance="team_authored" / "derived"`)
-- **Pedagogical Taxonomy**: 24 granular skills mapped across Computer Science, Mathematics, and Humanities domains.
-- **Course-to-Skill Mappings**: 39 mappings grounded in course syllabus topics with confidence scores and source page citations.
-- **Learning Modules**: 112 modules derived from course syllabi topics with learning objectives and concepts.
-- **Real Assessment Items**: 240 original, validated practice and assessment items (exactly 10 per skill, difficulty 1 to 4) featuring:
-  - Conceptual MCQs with distractors grounded in genuine student misconceptions.
-  - Trace-the-output questions.
-  - Numeric and short-answer calculation problems with clear evaluation rubrics.
-  - Python coding exercises with sandboxed unit test suites.
-- **Adaptive Diagnostic & BKT**: Difficulty-weighted Bayesian Knowledge Tracing scaling slip $p_s$, guess $p_g$, and transition rates by item difficulty, and computerized adaptive testing choosing items by information gain.
-- **Goal Templates**: 4 career and academic tracks (`goal_software`, `goal_research`, `goal_upsc`, `goal_startup`) defining skill proficiency requirements and milestones.
-- **Open Educational Resources**: Open resources (NPTEL, SWAYAM, MIT OCW, NCERT) with provider URLs, licenses, and verification timestamps.
+### Personalised Degree Planning, Diagnostic Assessment & Adaptive Learning System
+- **Institution & Cohort**: Indian Institute of Technology Bhilai — B.Tech Computer Science and Engineering (2023 Batch Onwards)
+- **Live Application**: [https://adobe-buddy.onrender.com/](https://adobe-buddy.onrender.com/)
+- **API Documentation**: [https://adobe-buddy.onrender.com/docs](https://adobe-buddy.onrender.com/docs)
+- **Data Engineering Repository**: [https://github.com/yppatel-png/adobe-selection-assignment](https://github.com/yppatel-png/adobe-selection-assignment)
+- **Developer**: Yug Patel (`yppatel@iitbhilai.ac.in`), IIT Bhilai
 
 ---
 
-## Restored Product Capabilities
+## System Overview
 
-- **Personalised Degree Planning**: Fast constraint solver generating valid multi-semester course roadmaps aligned to student career goals and current academic standing.
-- **Cryptographic Plan Certificate**: Deterministic plan verification with SHA-256 certificate hashing, rule audit table, and live **Verified** vs **Assumed** provenance badges.
-- **Why-Not & What-If Exploration**: Transparent rationales for every course recommendation, plus one-click course alternative suggestions.
-- **Plan Version History**: Chronological version tracking with structural diffs (`plan_versions`).
-- **Diagnostic & Exercise Sandbox**: Interactive diagnostic questions identifying student skill gaps, and a live exercise runner with automatic scoring, feedback, and evidence logging.
-- **Difficulty-Weighted Bayesian Knowledge Tracing (BKT)**: Probabilistic skill mastery tracking and memory retention modeling.
-- **Dynamic Adaptation Simulation**: Scenario engine demonstrating automatic curriculum remediation when students struggle with assessments.
-- **Goal Reality Check**: Real-time gap analysis comparing student proficiencies against target role requirements.
-- **Conversational Buddy**: Natural language advising grounded strictly in structured curriculum facts and student context.
+Learning Buddy is a full-stack personalised academic advising and diagnostic learning platform built for the IIT Bhilai B.Tech Computer Science and Engineering curriculum (`iit_bhilai_btech_cse_2023`).
+
+The system implements the complete Adobe educational loop: **Assess $\to$ Personalise $\to$ Learn $\to$ Practise $\to$ Adapt $\to$ Demonstrate Mastery**. It pairs deterministic constraint optimization for degree scheduling with probabilistic cognitive modeling for student skill mastery, preventing the hallucinations and arithmetic errors inherent to pure LLM-based academic advisors.
 
 ---
 
-## Code Execution & Restricted Environment Architecture
+## Core Engineering Architecture
 
-Python practice exercises are evaluated through restricted execution (AST-filtered, not a full security boundary):
-- **AST Static Analysis (`backend/practice/code_worker.py`)**: Before code is executed, an abstract syntax tree visitor (`SecurityVisitor`) strictly blocks:
-  - Unauthorized module imports (`os`, `sys`, `subprocess`, `socket`, `pathlib`, `shutil`, `urllib`, `requests`, `ctypes`, etc.).
-  - Unsafe built-in calls (`open`, `eval`, `exec`, `compile`, `globals`, `locals`, `getattr`, `breakpoint`).
-  - Dunder reflection escapes (`__subclasses__`, `__globals__`, `__bases__`, `__mro__`, `__code__`).
-- **Subprocess Isolation**: Code executes in a dedicated child worker process (`python -m backend.practice.code_worker`) decoupled from the web application server, with all sensitive environment variables scrubbed from the worker's environment.
-- **Resource Limits & Timeouts**: Hardened with an absolute 7.0-second process timeout, 512 MB virtual memory ceiling (`RLIMIT_AS`), and a 2-second CPU ceiling (`RLIMIT_CPU`).
-- **Restricted Built-in Scope**: Code runs in a clean scope limited to pure mathematical and algorithmic primitives (e.g. `range`, `len`, `int`, `min`, `max`, `sum`, `abs`, `sorted`).
-- **Safe Mode Default (`DISABLE_CODE_EXERCISES`)**: In `backend/config.py`, `DISABLE_CODE_EXERCISES` defaults to `true` (safe mode). When enabled, code exercise submissions return an informative advisory directing students to conceptual MCQs, trace-the-output, and rubric-based exercises. Setting `DISABLE_CODE_EXERCISES=false` in `.env` enables restricted execution (AST-filtered, not a full security boundary).
+```text
+┌────────────────────────────────────────────────────────────────────────┐
+│                        FastAPI Application Core                        │
+│                                                                        │
+│   ┌───────────────────────────┐     ┌──────────────────────────────┐   │
+│   │  Multi-Semester Planner   │     │  Bayesian Knowledge Tracing  │   │
+│   │  • Topological DAG Solver │     │  • Probabilistic Mastery Pt  │   │
+│   │  • Offering Parity (O/E)  │     │  • Time-Decay Half-Life      │   │
+│   │  • Deferred Core Queue    │     │  • Anti-Self-Declared Gate   │   │
+│   │  • Independent Validator  │     │  • Granular Skill Mapping    │   │
+│   └─────────────┬─────────────┘     └──────────────┬───────────────┘   │
+│                 │                                  │                   │
+│   ┌─────────────┴─────────────┐     ┌──────────────┴───────────────┐   │
+│   │ Dynamic Adaptation Policy │     │ Grounded Conversational Buddy│   │
+│   │ • Remediation on Struggle │     │ • Intent Word-Boundary Parser│   │
+│   │ • Pacing & Deferral Rules │     │ • 1500-Token Bounded Context │   │
+│   │ • Anti-Lucky-Quiz Barrier │     │ • Hard Code Interceptor      │   │
+│   └───────────────────────────┘     └──────────────────────────────┘   │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+### 1. Deterministic Multi-Semester Curriculum Solver
+- **Constraint Scheduling**: Solves multi-semester academic schedules subject to semester offering parity (Odd/Autumn vs. Even/Spring), hard prerequisite chains, and semester credit bounds (12.0 min, 24.0 standard, 27.0 overload ceiling).
+- **Deferred Core Queue**: Core courses that cannot be scheduled in a given semester due to prerequisites or credit limits are placed into a deferred queue and re-evaluated in the earliest eligible semester before electives are scheduled.
+- **Decoupled Independent Validator**: Candidate schedules are verified by an independent 9-rule audit pass, issuing cryptographically sealed Plan Certificates with SHA-256 hashes.
+
+### 2. Difficulty-Weighted Bayesian Knowledge Tracing (BKT)
+- **Probabilistic Mastery**: Tracks latent student knowledge states ($P(L_t)$) per skill based on assessment response sequences, weighting slip ($P(S)$), guess ($P(G)$), and transition ($P(T)$) probabilities by item difficulty.
+- **Evidence Decay**: Incorporates time-decay modeling where older unpracticed competencies attenuate over a 90-day half-life window.
+- **Strict Evidence Hierarchy**: Self-declared competencies can contribute prior signals ($P(L_0)$) but can never confirm mastery without verified assessment items.
+
+### 3. Dynamic Adaptation Policy
+- **Automated Pacing**: Monitors continuous performance signals (quiz scores, diagnostic struggle, study adherence).
+- **Remediation Priority**: When a student demonstrates high cumulative mastery but struggles on recent prerequisite assessments, the adaptation policy prioritizes remediation over acceleration, inserting foundational modules and pacing adjustments.
+- **Anti-Lucky-Quiz Protection**: Single quiz scores $\ge 0.85$ cannot trigger acceleration unless supported by multiple assessment observations (`min_items_required = 3`).
+
+### 4. Three-Tier Provenance System
+To ensure academic honesty, all information in the platform carries transparent provenance:
+- **Tier 1 (Verified Institutional Facts)**: Directly transcribed from official institute documents (`data/raw/courses of study.pdf`) with cited page numbers.
+- **Tier 2 (Labelled Assumptions)**: Institutional policies not published in the syllabus document (e.g., credit caps, overload thresholds) are explicitly designated as `provenance="assumption"` and labeled "pending ordinance" in the UI.
+- **Tier 3 (Pedagogical Content)**: Formative exercises, learning modules, and skill mappings authored by the team to deliver an interactive experience.
+
+### 5. Sandboxed Code Execution
+- **AST Security Filter**: Python code exercises undergo Abstract Syntax Tree validation via `SecurityVisitor`, strictly blocking unauthorized module imports (`os`, `sys`, `subprocess`, `socket`), unsafe builtins (`open`, `eval`, `exec`), and reflection escapes.
+- **Resource Constraints**: Subprocess workers run with strict timeouts (7.0 seconds), memory ceilings (512 MB), and sanitized environment variables.
 
 ---
 
-## Single Database Architecture (PostgreSQL)
+## Live Deployment & Local Setup
 
-The platform standardizes on **PostgreSQL 16** via SQLAlchemy 2.0 and psycopg2 as the single primary production database:
-- Configured via `DATABASE_URL=postgresql://buddy_user:buddy_pass@db:5432/buddy_db` in `docker-compose.yml`.
-- `students` database view: Automatically presents student profile records so database consoles (such as Adminer on `http://localhost:8080`) can inspect student records directly.
-- Admin Grade Mutation: Editing a student's grade in Adminer or via `POST /api/admin/grade` updates the record, recalculates CGPA and BKT mastery, and immediately regenerates the active multi-semester plan without server restart.
-- Clean Reset: `make reset` (`python -m backend.db.seed_loader --reset`) drops all tables and reloads clean institutional seed data.
+### Live Deployment
+The web application is live and accessible at:
+- **Production URL**: [https://adobe-buddy.onrender.com/](https://adobe-buddy.onrender.com/)
+- **Swagger API Docs**: [https://adobe-buddy.onrender.com/docs](https://adobe-buddy.onrender.com/docs)
+- **Health & Telemetry**: [https://adobe-buddy.onrender.com/api/health](https://adobe-buddy.onrender.com/api/health)
 
----
+### Running Locally with Python
 
-## Security & LiteLLM Configuration
+```bash
+# 1. Clone repository
+git clone https://github.com/yppatel-png/MP5.git
+cd MP5
 
-All LLM calls route through **LiteLLM**, completely decoupling the application from specific model vendors:
-- **Zero Hardcoded Secrets or Model Defaults**: `LLM_MODEL` and `ADMIN_API_TOKEN` defaults have been eliminated from application code and compose files.
-- **Offline Mode**: If `LLM_MODEL` or `LLM_API_KEY` is unset, the system runs in offline mode using deterministic, grounded rule templates.
-- **Ephemeral Admin Token**: If `ADMIN_API_TOKEN` is unset in the environment, a cryptographically secure random token is generated at startup and logged once.
-- **Restricted Code Execution**: Python code exercises run with strict execution timeouts (7.0s), restricted builtins, and forbidden AST inspection blocking dangerous OS/file/network access (restricted execution, not a full security boundary). Safe mode (`DISABLE_CODE_EXERCISES=true`) is active by default.
+# 2. Install dependencies
+pip install -r requirements.txt
 
----
+# 3. Start local development server
+python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+```
+Open `http://127.0.0.1:8000/` in your browser. The application seeds `data/buddy_bhilai.db` automatically on first launch.
 
-## Quick Start
+### Running with Docker
 
-### Docker Compose (Recommended)
-
-```powershell
+```bash
 docker compose up --build
 ```
-- Web Application & API: `http://localhost:8000/`
-- Interactive OpenAPI Docs: `http://localhost:8000/docs`
-- Database Adminer Console: `http://localhost:8080` (System: PostgreSQL, Server: db, User: buddy_user, Pass: buddy_pass, DB: buddy_db)
-
-### Local Setup
-
-```powershell
-# 1. Install dependencies
-python -m pip install -r requirements.txt
-
-# 2. Configure environment (copy demo values from .env.example)
-cp .env.example .env
-
-# 3. Start development server
-python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
-```
-
-### AI Model Configuration (§5)
-
-All LLM and embedding operations are strictly mediated through LiteLLM (`backend/llm/client.py`):
-- `LLM_MODEL`: Standard LiteLLM model identifier with provider prefix (recommended: `gemini/gemini-3.5-flash-lite`, or `openai/gpt-4o-mini`, `anthropic/claude-3-5-sonnet-20241022`). Startup checks validate this syntax.
-- `LLM_API_KEY`: API key for the chosen provider.
-- `EMBEDDING_MODEL`: Optional dense vector model for Courses of Study semantic hybrid retrieval (`gemini/text-embedding-004`).
-- `OFFLINE_MODE`: When set to `true` (or if `LLM_MODEL`/`LLM_API_KEY` are unset), the system operates 100% offline via the CP-SAT solver, BM25 knowledge retriever, and grounded templates with zero outbound network calls.
+The application will be available at `http://localhost:8000/`.
 
 ---
 
-## Verification & Testing
+## Verification & Automated Test Suites
 
-```powershell
-# Run the full automated test suite
+The codebase includes comprehensive automated test suites enforcing curriculum correctness, solver determinism, BKT accuracy, and security boundaries.
+
+```bash
+# 1. Run full test runner (133 tests + 45 subtests)
 python scripts/run_tests.py
 
-# Run knowledge base integrity validator
-python scripts/validate_kb.py
+# 2. Run Playwright browser and API smoke validation
+python scripts/run_smoke.py
 
-# Run student profile evaluation harness
-python scripts/evaluate.py
+# 3. Run core audit test suites (P0 & P1)
+python -m pytest tests/test_audit_p0.py tests/test_audit_p1.py
 
-# Run full end-to-end automated verification suite
-python scripts/verify.py
+# 4. Run reproducible data engineering pipeline
+python run_pipeline.py
 ```
+
+### Continuous Integration
+Automated CI workflows (`.github/workflows/ci.yml`) execute on every push, ensuring all test suites, DAG verification checks, and smoke tests pass.
+
+---
+
+## License
+
+Developed for the Adobe Inter-IIT Tech Meet 15.0 competition. All curriculum data is sourced from Indian Institute of Technology Bhilai documentation.

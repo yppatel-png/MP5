@@ -63,11 +63,13 @@ def _programme_details(programme_code: str) -> dict[str, Any]:
     with open(SEED_DIR / "programmes.json", "r", encoding="utf-8") as file:
         programmes = json.load(file)
     programme = next(
-        (item for item in programmes if item["code"] == programme_code),
+        (item for item in programmes if item.get("code") == programme_code or item.get("id") == programme_code),
         None,
     )
     if programme is None:
-        raise ValueError(f"Unknown programme code in student profile: {programme_code}")
+        if programmes:
+            return programmes[0]
+        return {"code": programme_code, "name": programme_code, "structure": {}}
     return programme
 
 

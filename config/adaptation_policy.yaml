@@ -15,6 +15,7 @@ adaptation_policy:
       parameters:
         mastery_threshold: 0.85
         score_threshold: 0.85
+        min_items_required: 3
         credit_boost_max: 4.0
 
     - id: "RULE_REMEDIATE"

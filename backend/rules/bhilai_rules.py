@@ -105,7 +105,7 @@ class BhilaiPrerequisiteRule(Rule):
         completed = {}
         for item in ctx.get("completed_courses", []):
             if isinstance(item, dict):
-                completed[str(item.get("course_code", "")).upper()] = str(item.get("grade", "")).upper()
+                completed[str(item.get("course_code", "")).upper()] = str(item.get("grade") or "B").upper()
             else:
                 completed[str(item).upper()] = "B"
         course_semesters = {
@@ -212,17 +212,32 @@ class BhilaiAssumptionRules(Rule):
         schedule_rule = self._rule("rule_semester_parity")
         for semester in planned_semesters:
             number = int(semester.get("semester_number", 0))
+            is_odd = (number % 2 == 1)
             for course in semester.get("courses", []):
                 metadata = self.courses.get(course.get("code", ""), {})
                 slot = metadata.get("semester_offered", "catalogue_unscheduled")
-                matches = slot == "catalogue_unscheduled" or slot == f"semester_{number}"
+                if slot in ("catalogue_unscheduled", "both", "all", "") or not slot:
+                    matches = True
+                elif slot == "odd":
+                    matches = is_odd
+                elif slot == "even":
+                    matches = not is_odd
+                elif slot.startswith("semester_"):
+                    try:
+                        source_sem = int(slot.split("_")[1])
+                        matches = (source_sem % 2 == 1) == is_odd
+                    except (ValueError, IndexError):
+                        matches = (slot == f"semester_{number}")
+                else:
+                    matches = (slot == f"semester_{number}")
+
                 checks.append(result(
                     schedule_rule["rule_id"], schedule_rule["name"], RuleCategory.OFFERING,
                     RuleScope.COURSE, f"course:{course.get('code')}", RuleStatus.PASS if matches else RuleStatus.FAIL,
                     number, slot,
                     f"{course.get('code')} uses the assumed catalogue availability."
-                    if slot == "catalogue_unscheduled" and matches else
-                    f"{course.get('code')} is scheduled in its source-listed semester {number}."
+                    if slot in ("catalogue_unscheduled", "both", "all") and matches else
+                    f"{course.get('code')} aligns with annual offering schedule (source: {slot}, scheduled: semester {number})."
                     if matches else f"{course.get('code')} is listed for {slot}, not semester {number}.",
                     "assumption", reason=schedule_rule["reason"],
                 ))
@@ -275,5 +290,42 @@ class BhilaiAssumptionRules(Rule):
         return checks
 
 
+class BhilaiNoDuplicateRule(Rule):
+    id = "rule_no_duplicate_courses"
+    title = "Zero Duplicate Course Registrations"
+    category = RuleCategory.REDUNDANCY
+    scope = RuleScope.PLAN
+
+    def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
+        completed_past = set(
+            (c if isinstance(c, str) else c.get("course_code", "")).upper()
+            for c in ctx.get("completed_courses", [])
+            if (isinstance(c, dict) and c.get("grade") not in ["F", "E"]) or isinstance(c, str)
+        )
+        seen_in_plan = set()
+        duplicates = []
+
+        for sem in plan.get("semesters", []):
+            s_num = sem.get("semester_number", 0)
+            for c in sem.get("courses", []):
+                code = (c if isinstance(c, str) else c.get("code", "")).upper()
+                if not code:
+                    continue
+                if code in completed_past:
+                    duplicates.append(f"{code} (Semester {s_num}) was already completed with a passing grade in prior terms.")
+                if code in seen_in_plan:
+                    duplicates.append(f"{code} is scheduled multiple times in the academic plan.")
+                seen_in_plan.add(code)
+
+        status = RuleStatus.FAIL if duplicates else RuleStatus.PASS
+        msg = f"Zero course duplication verified across {len(seen_in_plan)} planned courses." if not duplicates else f"Duplication violation: {'; '.join(duplicates)}"
+
+        return [result(
+            self.id, self.title, self.category, self.scope, "plan:duplication",
+            status, len(duplicates), 0,
+            msg, "assumption", reason="Students cannot re-register for courses already passed or duplicate in a single plan. Assumed, pending ordinance.",
+        )]
+
+
 def build_bhilai_rules() -> list[Rule]:
-    return [BhilaiCatalogueRule(), BhilaiPrerequisiteRule(), BhilaiAssumptionRules()]
+    return [BhilaiCatalogueRule(), BhilaiPrerequisiteRule(), BhilaiAssumptionRules(), BhilaiNoDuplicateRule()]

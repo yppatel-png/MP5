@@ -99,5 +99,48 @@
     "provenance": "assumption",
     "reason": "Planning estimate approved by the project owner; not an IIT Bhilai workload standard. Pending ordinance.",
     "last_verified": "2026-11-06"
+  },
+  {
+    "rule_id": "rule_prerequisite_strict_pass",
+    "name": "Strict Prerequisite Enrolment Rule",
+    "type": "eligibility",
+    "parameters": {
+      "min_grade": "D",
+      "strict_enforcement": true
+    },
+    "source_text": "A student may not register for a course without having passed all the hard prerequisites specified in the Courses of Study.",
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "clause_id": "Cos2023-General-Prereq",
+    "provenance": "verified",
+    "reason": "Ensures students have foundational concepts before entering advanced courses.",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "rule_id": "rule_liberal_arts_requirement",
+    "name": "Liberal Arts HSS Credit Requirement",
+    "type": "degree_audit",
+    "parameters": {
+      "min_hss_credits": 6.0
+    },
+    "source_text": "All B.Tech students are required to complete a minimum of 6 credits from the designated Liberal Arts / Humanities and Social Sciences basket.",
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "clause_id": "Cos2023-LA-Basket-p9",
+    "provenance": "verified",
+    "reason": "Broadens engineering perspectives with humanities and social sciences.",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "rule_id": "rule_degree_total_credits",
+    "name": "B.Tech CSE Minimum Degree Credits",
+    "type": "degree_audit",
+    "parameters": {
+      "min_total_credits": 136.0
+    },
+    "source_text": "The minimum credit requirement for the award of the B.Tech degree in Computer Science and Engineering is 136-140 credits.",
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "clause_id": "Cos2023-CSE-Credits-p21",
+    "provenance": "verified",
+    "reason": "Defines the total curriculum graduation threshold.",
+    "last_verified": "2026-11-06"
   }
 ]

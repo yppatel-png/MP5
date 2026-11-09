@@ -1,0 +1,156 @@
+[
+  {
+    "id": "rule_sem_min_credits",
+    "category": "credit_min",
+    "name": "Minimum recommended semester credits",
+    "text": "Demo planning floor; no semester minimum was found in the supplied PDF. Pending ordinance.",
+    "numeric_limit": 12.0,
+    "applies_to": "iit_bhilai_btech_cse",
+    "parameters": {
+      "min_credits": 12.0
+    },
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "manual",
+    "provenance": "assumption"
+  },
+  {
+    "id": "rule_sem_max_credits",
+    "category": "credit_cap_max",
+    "name": "Standard semester credit cap",
+    "text": "Demo planning cap; no semester maximum was found in the supplied PDF. Pending ordinance.",
+    "numeric_limit": 24.0,
+    "applies_to": "iit_bhilai_btech_cse",
+    "parameters": {
+      "max_credits": 24.0
+    },
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "manual",
+    "provenance": "assumption"
+  },
+  {
+    "id": "rule_credit_overload_cap",
+    "category": "credit_overload_max",
+    "name": "Overload credit cap",
+    "text": "Demo overload threshold approved by the project owner; not an IIT Bhilai rule. Pending ordinance.",
+    "numeric_limit": null,
+    "applies_to": "iit_bhilai_btech_cse",
+    "parameters": {
+      "max_overload_credits": 27.0,
+      "min_cgpa_required": 8.0
+    },
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "manual",
+    "provenance": "assumption"
+  },
+  {
+    "id": "rule_minor_cse_eligibility",
+    "category": "minor_eligibility",
+    "name": "CS minor eligibility",
+    "text": "Illustrative threshold only. The supplied PDF contains no CS minor pathway or eligibility policy. Pending ordinance; this does not establish a credential.",
+    "numeric_limit": null,
+    "applies_to": "iit_bhilai_btech_cse",
+    "parameters": {
+      "min_cgpa_cutoff": 7.0
+    },
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "manual",
+    "provenance": "assumption"
+  },
+  {
+    "id": "rule_online_credit_transfer_limit",
+    "category": "online_credit_limit",
+    "name": "Online credit planning cap",
+    "text": "Demo planning limit approved by the project owner; no online-credit policy was found in the supplied PDF. Pending ordinance.",
+    "numeric_limit": null,
+    "applies_to": "iit_bhilai_btech_cse",
+    "parameters": {
+      "max_online_credits_total": 25,
+      "max_online_courses_per_semester": 1
+    },
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "manual",
+    "provenance": "assumption"
+  },
+  {
+    "id": "rule_semester_parity",
+    "category": "semester_parity",
+    "name": "Annual catalogue offering assumption",
+    "text": "Scheduled courses are assumed to run in the semester printed in the curriculum; catalogue-only electives are assumed selectable for demo planning. Neither availability nor elective eligibility is guaranteed by the PDF. Pending ordinance.",
+    "numeric_limit": null,
+    "applies_to": "iit_bhilai_btech_cse",
+    "parameters": {
+      "assume_annual_scheduled_offering": true,
+      "catalogue_electives_selectable": true
+    },
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "manual",
+    "provenance": "assumption"
+  },
+  {
+    "id": "rule_workload_hours",
+    "category": "workload_hours",
+    "name": "Independent study workload estimate",
+    "text": "Planning estimate approved by the project owner; not an IIT Bhilai workload standard. Pending ordinance.",
+    "numeric_limit": null,
+    "applies_to": "iit_bhilai_btech_cse",
+    "parameters": {
+      "hours_per_credit_week": 2
+    },
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "manual",
+    "provenance": "assumption"
+  },
+  {
+    "id": "rule_prerequisite_strict_pass",
+    "category": "eligibility",
+    "name": "Strict Prerequisite Enrolment Rule",
+    "text": "A student may not register for a course without having passed all the hard prerequisites specified in the Courses of Study.",
+    "numeric_limit": "D",
+    "applies_to": "iit_bhilai_btech_cse",
+    "parameters": {
+      "min_grade": "D",
+      "strict_enforcement": true
+    },
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official",
+    "provenance": "verified"
+  },
+  {
+    "id": "rule_liberal_arts_requirement",
+    "category": "degree_audit",
+    "name": "Liberal Arts HSS Credit Requirement",
+    "text": "All B.Tech students are required to complete a minimum of 6 credits from the designated Liberal Arts / Humanities and Social Sciences basket.",
+    "numeric_limit": null,
+    "applies_to": "iit_bhilai_btech_cse",
+    "parameters": {
+      "min_hss_credits": 6.0
+    },
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official",
+    "provenance": "verified"
+  },
+  {
+    "id": "rule_degree_total_credits",
+    "category": "degree_audit",
+    "name": "B.Tech CSE Minimum Degree Credits",
+    "text": "The minimum credit requirement for the award of the B.Tech degree in Computer Science and Engineering is 136-140 credits.",
+    "numeric_limit": null,
+    "applies_to": "iit_bhilai_btech_cse",
+    "parameters": {
+      "min_total_credits": 136.0
+    },
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official",
+    "provenance": "verified"
+  }
+]

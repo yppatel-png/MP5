@@ -15,41 +15,52 @@ SEED_DIR = get_seed_dir()
 
 # Load official course codes
 def load_valid_course_codes() -> Set[str]:
+    codes = set()
     try:
         with open(SEED_DIR / "courses.json", "r", encoding="utf-8") as f:
             courses = json.load(f)
-            return {c["code"].upper() for c in courses}
+            codes.update(c["code"].upper() for c in courses)
     except Exception:
-        return {"CSL100", "CSL201", "CSL202", "CSP203", "CSL251", "CSL252", "CSL253", "CSL301", "CSL302", "CSL304"}
+        pass
+    try:
+        with open(SEED_DIR / "iit_bhilai_cse_curricula.json", "r", encoding="utf-8") as f:
+            curricula = json.load(f)
+            for p in curricula.get("programmes", []):
+                for s in p.get("semesters", []):
+                    for c in s.get("courses", []):
+                        if c.get("code") and not c.get("placeholder"):
+                            codes.add(c["code"].upper())
+    except Exception:
+        pass
+    if not codes:
+        codes = {"CSL100", "CSL201", "CSL202", "CSP203", "CSL251", "CSL252", "CSL253", "CSL301", "CSL302", "CSL304", "MAL201", "MAL403", "UGQ301"}
+    return codes
 
-VALID_COURSE_CODES = load_valid_course_codes()
-
-# Injection keywords and jailbreak patterns
+# Injection keywords and jailbreak patterns (tightened to prevent false-positive blocks on coursework queries)
 INJECTION_PATTERNS = [
     r"ignore (all )?previous instructions",
     r"disregard (all )?(system|prior) prompts?",
-    r"system prompt",
+    r"\b(reveal|show|print|leak|output)\s+.*system\s+prompt\b",
     r"you are now (unrestricted|jailbroken|dan|in developer mode|free from all)",
     r"bypass (all )?(rules|academic|prerequisites|constraints)",
     r"grant me (a |an )?(10|10\.0|cgpa|a grade|degree|transcript)",
-    r"override (the )?(evaluator|rubric|grading|grader|curriculum)",
-    r"exfiltrate",
+    r"\b(bypass|hack|exploit)\s+(evaluator|rubric|grading)\b",
+    r"\bexfiltrate\b",
     r"show me your (api key|secret|environment variables|env)",
     r"tell me your internal instructions",
     r"reveal (your )?(system prompt|initial instructions|prompt template)",
     r"pretend (you are|to be) (an? )?(evil|unfiltered|jailbroken|hacker|adversary)",
     r"roleplay as (an? )?(unrestricted|evil|dan|filterless|rogue|pirate)",
     r"act as a (pirate|hacker|villain|anarchist) with no (rules|limits)",
-    r"sudo (mode|make|drop|grant|rm|give)",
-    r"drop table",
-    r"select \* from",
-    r"union select",
-    r"1=1",
-    r"<script",
+    r"\bsudo (mode|make|drop|grant|rm|give)\b",
+    r";\s*drop\s+table\b",
+    r"'\s*or\s+'?1'?\s*=\s*'?1",
+    r"\bunion\s+select\b",
+    r"<script\b",
     r"base64 decode and execute",
     r"leak (the )?(keys|database|credentials)",
     r"format (drive|c:|disk)",
-    r"rm -rf"
+    r"\brm\s+-rf\b"
 ]
 
 OFF_TOPIC_PATTERNS = [
@@ -100,12 +111,13 @@ class BuddySafety:
     def intercept_and_verify_course_codes(text: str) -> str:
         """
         Detects any course codes in output text (e.g. CSL999, ABC123).
-        If a code is not in the configured institute catalogue, strips or flags it.
+        If a code is not in the configured institute catalogue, replaces it with verified notice.
         Guarantees zero invented course codes.
         """
+        valid_codes = load_valid_course_codes()
         def replace_code(match):
             code = match.group(1).upper()
-            if code in VALID_COURSE_CODES:
+            if code in valid_codes:
                 return code
             else:
                 return "[Unverified Course Code Intercepted]"

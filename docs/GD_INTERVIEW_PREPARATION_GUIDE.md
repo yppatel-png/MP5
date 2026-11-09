@@ -152,3 +152,4 @@ Give a crisp, 5-stage walkthrough of the student journey:
 
 ## 6. One-Minute Closing Summary for Judges
 > *"In summary, our Learning Buddy solves the core problem of university advising: it bridges rigid institute constraints with personal student ambitions. We achieve this not with another fragile chatbot, but with an accredited, deterministic-first academic instrument that pairs Bayesian mastery modeling with verifiable ordinance compliance."*
+

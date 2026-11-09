@@ -110,12 +110,29 @@ def validate_plan_independently(
                 violations.append(f"Unknown or hallucinated course in Semester {sem_num}: {code}.")
                 continue
 
-            # Check semester offering slot
+            # Check semester offering slot / annual parity
             slot = cat_entry.get("semester_offered", "catalogue_unscheduled")
-            if slot != "catalogue_unscheduled" and slot != f"semester_{sem_num}":
-                violations.append(
-                    f"Semester offering slot clash in Semester {sem_num}: {code} is scheduled for {slot}."
-                )
+            if slot and slot != "catalogue_unscheduled":
+                is_sem_odd = (sem_num % 2 == 1)
+                slot_clean = str(slot).lower().strip()
+                if slot_clean in ["both", "all", "any", "either", "any_semester"]:
+                    slot_matches = True
+                elif slot_clean in ["odd", "autumn", "monsoon"]:
+                    slot_matches = is_sem_odd
+                elif slot_clean in ["even", "spring", "winter"]:
+                    slot_matches = not is_sem_odd
+                elif slot_clean.startswith("semester_"):
+                    try:
+                        orig_sem = int(slot_clean.split("_")[1])
+                        slot_matches = ((orig_sem % 2 == 1) == is_sem_odd)
+                    except (ValueError, IndexError):
+                        slot_matches = (slot == f"semester_{sem_num}")
+                else:
+                    slot_matches = (slot == f"semester_{sem_num}")
+                if not slot_matches:
+                    violations.append(
+                        f"Semester offering slot clash in Semester {sem_num}: {code} is scheduled for {slot}."
+                    )
 
             # Check prerequisite satisfaction (must be completed strictly prior to current semester)
             for req in prereq_map.get(code, []):

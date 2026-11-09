@@ -388,5 +388,25 @@
     "provenance": "derived",
     "source": "Derived from syllabus page 139",
     "source_page": 139
+  },
+  {
+    "course_code": "MAL201",
+    "skill_id": "probability_statistics",
+    "depth": "intermediate",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 88",
+    "source_page": 88
+  },
+  {
+    "course_code": "MAL201",
+    "skill_id": "discrete_mathematics",
+    "depth": "intermediate",
+    "weight": 0.75,
+    "confidence": 0.75,
+    "provenance": "derived",
+    "source": "Derived from syllabus page 88",
+    "source_page": 88
   }
 ]

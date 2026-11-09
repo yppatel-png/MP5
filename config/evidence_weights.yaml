@@ -37,4 +37,28 @@ bkt_parameters:
   min_items_required: 3
   # Minimum sessions required
   min_sessions_required: 2
+  # Half life in days for Bayesian Knowledge Tracing time decay
+  decay_half_life_days: 60.0
+
+grade_scale:
+  A: 0.90
+  A-: 0.85
+  B: 0.75
+  B-: 0.68
+  C: 0.52
+  C-: 0.45
+  D: 0.35
+  E: 0.20
+  F: 0.10
+  provenance: "assumption"
+  provenance_note: "assumed, pending ordinance"
+
+diagnostic_parameters:
+  max_diagnostic_questions: 12
+  gap_threshold: 0.10
+  critical_gap_threshold: 0.35
+  fallback_current_level: 0.10
+  unknown_grade_fallback: 0.50
+  decay_half_life_days: 60.0
+
 

@@ -478,3 +478,13 @@ def init_db():
             FOREIGN KEY (student_id) REFERENCES student_profiles (student_id) ON DELETE CASCADE
         );
         """)
+
+        # 14. Pending Proposals Table (survives restart, TTL-based expiration)
+        cur.execute("""
+        CREATE TABLE IF NOT EXISTS pending_proposals (
+            student_id TEXT PRIMARY KEY,
+            payload_json TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            expires_at TIMESTAMP NOT NULL
+        );
+        """)

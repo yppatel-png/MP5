@@ -1,0 +1,548 @@
+[
+  {
+    "id": "nptel_cs_prog_c",
+    "title": "Problem Solving through Programming in C",
+    "provider": "NPTEL",
+    "license": "CC BY-NC-SA 4.0 (NPTEL Open Access Terms)",
+    "format": "Video Lectures & Lecture Notes",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://nptel.ac.in/courses/106105171",
+    "source_url": "https://nptel.ac.in/courses/106105171",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "programming_fundamentals"
+    ]
+  },
+  {
+    "id": "mit_missing_semester",
+    "title": "The Missing Semester of Your CS Education",
+    "provider": "MIT OpenCourseWare",
+    "license": "CC BY-NC-SA 4.0",
+    "format": "Open Course Notes & Shell Exercises",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://missing.csail.mit.edu/",
+    "source_url": "https://missing.csail.mit.edu/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "software_tools"
+    ]
+  },
+  {
+    "id": "mit_6042",
+    "title": "Mathematics for Computer Science",
+    "provider": "MIT OpenCourseWare",
+    "license": "CC BY-NC-SA 4.0 (course page structured metadata)",
+    "format": "Open course materials & Problem Sets",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/",
+    "source_url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "discrete_mathematics"
+    ]
+  },
+  {
+    "id": "mit_6006",
+    "title": "Introduction to Algorithms",
+    "provider": "MIT OpenCourseWare",
+    "license": "CC BY-NC-SA 4.0 (course page structured metadata)",
+    "format": "Open course materials & Problem Sets",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+    "source_url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "data_structures",
+      "algorithms"
+    ]
+  },
+  {
+    "id": "nptel_algo_design",
+    "title": "Design and Analysis of Algorithms",
+    "provider": "NPTEL",
+    "license": "CC BY-NC-SA 4.0 (NPTEL Open Access Terms)",
+    "format": "Video Lectures & Problem Sets",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://nptel.ac.in/courses/106106131",
+    "source_url": "https://nptel.ac.in/courses/106106131",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "algorithms"
+    ]
+  },
+  {
+    "id": "mit_6004",
+    "title": "Computation Structures",
+    "provider": "MIT OpenCourseWare",
+    "license": "CC BY-NC-SA 4.0 (course page structured metadata)",
+    "format": "Open course materials & Hardware Labs",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+    "source_url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "computer_architecture"
+    ]
+  },
+  {
+    "id": "nptel_toc",
+    "title": "Theory of Computation",
+    "provider": "NPTEL",
+    "license": "CC BY-NC-SA 4.0 (NPTEL Open Access Terms)",
+    "format": "Video Lectures & Problem Sets",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://nptel.ac.in/courses/106104028",
+    "source_url": "https://nptel.ac.in/courses/106104028",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "theory_computation"
+    ]
+  },
+  {
+    "id": "mit_61810",
+    "title": "Operating System Engineering",
+    "provider": "MIT OpenCourseWare",
+    "license": "CC BY-NC-SA 4.0 (course page structured metadata)",
+    "format": "Open course materials & xv6 Kernel Labs",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://ocw.mit.edu/courses/6-1810-operating-system-engineering-fall-2023/",
+    "source_url": "https://ocw.mit.edu/courses/6-1810-operating-system-engineering-fall-2023/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "operating_systems"
+    ]
+  },
+  {
+    "id": "nptel_compiler_design",
+    "title": "Compiler Design",
+    "provider": "NPTEL",
+    "license": "CC BY-NC-SA 4.0 (NPTEL Open Access Terms)",
+    "format": "Video Lectures & Problem Sets",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://nptel.ac.in/courses/106105190",
+    "source_url": "https://nptel.ac.in/courses/106105190",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "compiler_design"
+    ]
+  },
+  {
+    "id": "mit_6830",
+    "title": "Database Systems",
+    "provider": "MIT OpenCourseWare",
+    "license": "CC BY-NC-SA 4.0 (course page structured metadata)",
+    "format": "Open course materials & Database Labs",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://ocw.mit.edu/courses/6-830-database-systems-fall-2010/",
+    "source_url": "https://ocw.mit.edu/courses/6-830-database-systems-fall-2010/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "database_systems"
+    ]
+  },
+  {
+    "id": "mit_6034",
+    "title": "Artificial Intelligence",
+    "provider": "MIT OpenCourseWare",
+    "license": "CC BY-NC-SA 4.0 (course page structured metadata)",
+    "format": "Open course materials & Problem Sets",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://ocw.mit.edu/courses/6-034-artificial-intelligence-fall-2010/",
+    "source_url": "https://ocw.mit.edu/courses/6-034-artificial-intelligence-fall-2010/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "artificial_intelligence"
+    ]
+  },
+  {
+    "id": "nptel_networks",
+    "title": "Computer Networks and Internet Protocol",
+    "provider": "NPTEL",
+    "license": "CC BY-NC-SA 4.0 (NPTEL Open Access Terms)",
+    "format": "Video Lectures & Protocol Analysis Labs",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://nptel.ac.in/courses/106105183",
+    "source_url": "https://nptel.ac.in/courses/106105183",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "computer_networks"
+    ]
+  },
+  {
+    "id": "nptel_se",
+    "title": "Software Engineering",
+    "provider": "NPTEL",
+    "license": "CC BY-NC-SA 4.0 (NPTEL Open Access Terms)",
+    "format": "Video Lectures & Architecture Case Studies",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://nptel.ac.in/courses/106105182",
+    "source_url": "https://nptel.ac.in/courses/106105182",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "software_engineering"
+    ]
+  },
+  {
+    "id": "mit_deep_learning",
+    "title": "Introduction to Deep Learning and Foundation Models",
+    "provider": "MIT OpenCourseWare",
+    "license": "CC BY-NC-SA 4.0",
+    "format": "Open Lectures & Transformer Software Labs",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://introtodeeplearning.com/",
+    "source_url": "https://introtodeeplearning.com/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "llm_software"
+    ]
+  },
+  {
+    "id": "swayam_research_methods",
+    "title": "Research Methodology",
+    "provider": "SWAYAM",
+    "license": "CC BY-NC-SA 4.0 (SWAYAM Open Educational Resource)",
+    "format": "Interactive Modules & Research Writing Guides",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://onlinecourses.swayam2.ac.in/cec21_ge01/preview",
+    "source_url": "https://onlinecourses.swayam2.ac.in/cec21_ge01/preview",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "research_methods"
+    ]
+  },
+  {
+    "id": "mit_1805",
+    "title": "Introduction to Probability and Statistics",
+    "provider": "MIT OpenCourseWare",
+    "license": "CC BY-NC-SA 4.0 (course page structured metadata)",
+    "format": "Open Course Notes & Problem Sets",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2014/",
+    "source_url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2014/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "probability_statistics"
+    ]
+  },
+  {
+    "id": "nptel_tech_comm",
+    "title": "Technical English for Engineers",
+    "provider": "NPTEL",
+    "license": "CC BY-NC-SA 4.0 (NPTEL Open Access Terms)",
+    "format": "Video Lectures & Technical Writing Case Studies",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://nptel.ac.in/courses/109106094",
+    "source_url": "https://nptel.ac.in/courses/109106094",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "communication"
+    ]
+  },
+  {
+    "id": "nptel_fin_mgmt",
+    "title": "Financial Management For Managers",
+    "provider": "NPTEL",
+    "license": "CC BY-NC-SA 4.0 (NPTEL Open Access Terms)",
+    "format": "Video Lectures & Corporate Valuation Problem Sets",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://nptel.ac.in/courses/110107144",
+    "source_url": "https://nptel.ac.in/courses/110107144",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "finance"
+    ]
+  },
+  {
+    "id": "ncert_macroeconomics",
+    "title": "Introductory Macroeconomics (NCERT Class XII)",
+    "provider": "NCERT",
+    "license": "NCERT Open Educational License (National Repository)",
+    "format": "Official Textbook Chapters & Policy Problem Sets",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://ncert.nic.in/textbook.php?lemh1=0-6",
+    "source_url": "https://ncert.nic.in/textbook.php?lemh1=0-6",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "macroeconomics"
+    ]
+  },
+  {
+    "id": "ncert_microeconomics",
+    "title": "Introductory Microeconomics (NCERT Class XII)",
+    "provider": "NCERT",
+    "license": "NCERT Open Educational License (National Repository)",
+    "format": "Official Textbook Chapters & Market Equilibrium Problems",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://ncert.nic.in/textbook.php?leec1=0-6",
+    "source_url": "https://ncert.nic.in/textbook.php?leec1=0-6",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "microeconomics"
+    ]
+  },
+  {
+    "id": "swayam_intl_trade",
+    "title": "International Economics and Trade Policy",
+    "provider": "SWAYAM",
+    "license": "CC BY-NC-SA 4.0 (SWAYAM Open Educational Resource)",
+    "format": "Interactive Video Modules & Trade Data Sets",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://onlinecourses.swayam2.ac.in/cec20_hs29/preview",
+    "source_url": "https://onlinecourses.swayam2.ac.in/cec20_hs29/preview",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "international_trade"
+    ]
+  },
+  {
+    "id": "ncert_indian_society",
+    "title": "Indian Society (NCERT Class XII)",
+    "provider": "NCERT",
+    "license": "NCERT Open Educational License (National Repository)",
+    "format": "Official Textbook Chapters & Institutional Analysis",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://ncert.nic.in/textbook.php?lesy1=0-7",
+    "source_url": "https://ncert.nic.in/textbook.php?lesy1=0-7",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "indian_society"
+    ]
+  },
+  {
+    "id": "mit_21l488",
+    "title": "Introduction to Literary Theory",
+    "provider": "MIT OpenCourseWare",
+    "license": "CC BY-NC-SA 4.0 (course page structured metadata)",
+    "format": "Open Course Notes & Critical Reading Guides",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://ocw.mit.edu/courses/21l-488-contemporary-literature-british-novels-now-fall-2007/",
+    "source_url": "https://ocw.mit.edu/courses/21l-488-contemporary-literature-british-novels-now-fall-2007/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "literary_analysis"
+    ]
+  },
+  {
+    "id": "nptel_formal_verification",
+    "title": "Model Checking and System Verification",
+    "provider": "NPTEL",
+    "license": "CC BY-NC-SA 4.0 (NPTEL Open Access Terms)",
+    "format": "Video Lectures & Temporal Logic Problem Sets",
+    "duration": "60 mins",
+    "est_minutes": 60,
+    "url": "https://nptel.ac.in/courses/106103019",
+    "source_url": "https://nptel.ac.in/courses/106103019",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "formal_verification"
+    ]
+  },
+  {
+    "id": "sample_unverified_resource",
+    "title": "Unverified Community Cheat Sheet",
+    "provider": "Community Blog",
+    "license": "Unknown / Unverified",
+    "format": "Web Page",
+    "duration": "15 mins",
+    "est_minutes": 15,
+    "url": "https://example.com/unverified-sheet",
+    "source_url": "https://example.com/unverified-sheet",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "programming_fundamentals"
+    ]
+  },
+  {
+    "id": "mit_1806_linear_algebra",
+    "title": "Linear Algebra (Gilbert Strang)",
+    "provider": "MIT OpenCourseWare",
+    "license": "CC BY-NC-SA 4.0",
+    "format": "Video Lectures & Problem Sets",
+    "duration": "2100 mins",
+    "est_minutes": 2100,
+    "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/",
+    "source_url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "probability_statistics",
+      "discrete_mathematics"
+    ]
+  },
+  {
+    "id": "nptel_comp_arch",
+    "title": "Computer Architecture and Organization",
+    "provider": "NPTEL",
+    "license": "CC BY-NC-SA 4.0 (NPTEL Open Access Terms)",
+    "format": "Video Lectures & Notes",
+    "duration": "1800 mins",
+    "est_minutes": 1800,
+    "url": "https://nptel.ac.in/courses/106105163",
+    "source_url": "https://nptel.ac.in/courses/106105163",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "computer_architecture"
+    ]
+  },
+  {
+    "id": "mit_6004_computation_structures",
+    "title": "Computation Structures",
+    "provider": "MIT OpenCourseWare",
+    "license": "CC BY-NC-SA 4.0",
+    "format": "Course Notes & Lab Assignments",
+    "duration": "1500 mins",
+    "est_minutes": 1500,
+    "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+    "source_url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "computer_architecture"
+    ]
+  },
+  {
+    "id": "nptel_computer_networks",
+    "title": "Data Communication and Computer Networks",
+    "provider": "NPTEL",
+    "license": "CC BY-NC-SA 4.0 (NPTEL Open Access Terms)",
+    "format": "Video Lectures",
+    "duration": "2400 mins",
+    "est_minutes": 2400,
+    "url": "https://nptel.ac.in/courses/106105081",
+    "source_url": "https://nptel.ac.in/courses/106105081",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "computer_networks"
+    ]
+  },
+  {
+    "id": "mit_602_digital_comm_networks",
+    "title": "Digital Communication Systems",
+    "provider": "MIT OpenCourseWare",
+    "license": "CC BY-NC-SA 4.0",
+    "format": "Lecture Notes & Python Labs",
+    "duration": "1800 mins",
+    "est_minutes": 1800,
+    "url": "https://ocw.mit.edu/courses/6-02-digital-communication-systems-fall-2012/",
+    "source_url": "https://ocw.mit.edu/courses/6-02-digital-communication-systems-fall-2012/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "computer_networks"
+    ]
+  },
+  {
+    "id": "nptel_software_eng",
+    "title": "Software Engineering",
+    "provider": "NPTEL",
+    "license": "CC BY-NC-SA 4.0 (NPTEL Open Access Terms)",
+    "format": "Video Lectures & Slides",
+    "duration": "1800 mins",
+    "est_minutes": 1800,
+    "url": "https://nptel.ac.in/courses/106105182",
+    "source_url": "https://nptel.ac.in/courses/106105182",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "software_engineering"
+    ]
+  },
+  {
+    "id": "mit_18404j_theory_computation",
+    "title": "Theory of Computation",
+    "provider": "MIT OpenCourseWare",
+    "license": "CC BY-NC-SA 4.0",
+    "format": "Video Lectures & Problem Sets",
+    "duration": "1800 mins",
+    "est_minutes": 1800,
+    "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/",
+    "source_url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "theory_computation"
+    ]
+  },
+  {
+    "id": "berkeley_cs188_ai",
+    "title": "Introduction to Artificial Intelligence",
+    "provider": "UC Berkeley Open Courseware",
+    "license": "CC BY-NC-SA 4.0",
+    "format": "Lecture Slides & Pacman Projects",
+    "duration": "1800 mins",
+    "est_minutes": 1800,
+    "url": "https://inst.eecs.berkeley.edu/~cs188/",
+    "source_url": "https://inst.eecs.berkeley.edu/~cs188/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "artificial_intelligence"
+    ]
+  },
+  {
+    "id": "mit_6s081_operating_systems",
+    "title": "Operating System Engineering (xv6)",
+    "provider": "MIT OpenCourseWare",
+    "license": "MIT Open Course License",
+    "format": "Lecture Notes & xv6 Kernel Labs",
+    "duration": "2400 mins",
+    "est_minutes": 2400,
+    "url": "https://pdos.csail.mit.edu/6.828/2021/",
+    "source_url": "https://pdos.csail.mit.edu/6.828/2021/",
+    "retrieved_on": "2026-11-06",
+    "source_type": "open-licence",
+    "skill_ids": [
+      "operating_systems"
+    ]
+  }
+]

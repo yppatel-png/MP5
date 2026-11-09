@@ -1,6 +1,6 @@
 # Knowledge Base Quality & Verification Audit
 
-**Generated:** 2026-11-07 22:32:13  
+**Generated:** 2026-11-09 21:44:50  
 **Target Institute:** Indian Institute of Technology Bhilai (IIT Bhilai)  
 **Programmes Covered:** B.Tech Computer Science and Engineering (`BH-CSE-BTECH`)  
 **Overall Validation Status:** `PASSED (100% Valid)`  
@@ -12,16 +12,16 @@
 
 | Dimension | Target Specification | Actual Count / Metric | Status |
 | :--- | :--- | :--- | :--- |
-| **Courses** | 20 to 40 courses | **34 courses** | `PASSED` |
+| **Courses** | 20 to 40 courses | **37 courses** | `PASSED` |
 | **Modules / Lessons** | 100 to 300 modules | **112 modules** | `PASSED` |
 | **Skill Nodes** | 20 to 30 skills | **24 skills** | `PASSED` |
 | **Assessment Exercises**| 100+ exercises | **240 exercises** (all validated single correct answer) | `PASSED` |
-| **Curated OERs** | At least 1 per core skill | **25 resources** (NPTEL, SWAYAM, MIT OCW, NCERT) | `PASSED` |
-| **Prerequisite Graph** | Strictly Acyclic (DAG) | **Zero cycles (18 directed edges, 17 catalogue-resolved)** | `PASSED` |
+| **Curated OERs** | At least 1 per core skill | **34 resources** (NPTEL, SWAYAM, MIT OCW, NCERT) | `PASSED` |
+| **Prerequisite Graph** | Strictly Acyclic (DAG) | **Zero cycles (18 directed edges, 18 catalogue-resolved)** | `PASSED` |
 | **Referential Integrity**| 100% Foreign Key match | **0 orphan records / 0 missing references** | `PASSED` |
 | **Skill Resource Coverage**| >= 90% | **100.0%** | `PASSED` |
 | **Skill Exercise Coverage**| >= 90% | **100.0%** | `PASSED` |
-| **Rule Engine Integrity** | Valid JSON parameters | **7 rules configured with visible reasons** | `PASSED` |
+| **Rule Engine Integrity** | Valid JSON parameters | **10 rules configured with visible reasons** | `PASSED` |
 
 ---
 
@@ -29,7 +29,7 @@
 
 Every piece of institutional and pedagogical knowledge is partitioned into three strictly audited tiers:
 
-### Tier 1 — Verified Institutional Facts (34 courses, 18 prerequisites, 1 programme)
+### Tier 1 — Verified Institutional Facts (35 courses, 18 prerequisites, 1 programme)
 * **Authority**: Official *IIT Bhilai Courses of Study (October 2026; applicable for 2023 batch onwards)* (`data/raw/courses of study.pdf`).
 * **Fields**: Course codes, exact course titles, credit values (L-T-P-C), semester slots, programme degree structure (144 graded credits + 12 non-graded core units), and all explicitly printed prerequisite / co-requisite clauses.
 * **Integrity**: Every record links to an exact PDF `source_page`. Ambiguities are routed to `data/review_queue.csv`.
@@ -39,7 +39,7 @@ Every piece of institutional and pedagogical knowledge is partitioned into three
 * **Marking**: Stored with `provenance="assumption"`, a visible rationale, and clause citation `"pending ordinance"`.
 * **Badge**: The planner, independent validator, and cryptographic PlanCertificate show an **"Assumed"** badge next to these checks, never silently presenting them as statutory IIT Bhilai ordinances.
 
-### Tier 3 — Team-Authored Learning Layer (24 skills, 112 modules, 240 exercises, 39 mappings)
+### Tier 3 — Team-Authored Learning Layer (24 skills, 112 modules, 240 exercises, 41 mappings)
 * **Authority**: Authored and validated curriculum breakdown based directly on cited syllabus topics.
 * **Contents**:
   * **24 Skill Nodes** spanning Computing, Mathematics, and Liberal Arts.
@@ -55,7 +55,7 @@ Every piece of institutional and pedagogical knowledge is partitioned into three
 ## 3. Prerequisite Graph Topological Ordering
 
 The prerequisite structure forms a strictly acyclic directed graph (DAG). The topological order of course levels is:
-`LAL100, LAL200, CSL504, ECL101, CSL351, LAL222, CSL201, CSL304, CSP352, MAL403, CSL100, CSL511, LAL223, CSL505, CSQ401... and 19 more.`
+`CSL304, LAL224, UGQ301, MAL201, LAL202, ECL101, IC100, CSL351, LAL101, CSL100, CSL511, LAL225, LAL221, CSL559, LAL222... and 22 more.`
 
 ---
 
@@ -68,33 +68,33 @@ A deterministic spot audit of 30 courses sampled across CSE core, electives, and
 | `CSL252` | Design and Analysis of Algorithms | 4 | 0-0-0 | p. 84 | Tier 1 (Verified) | `PASSED` |
 | `ECL101` | Basic Electronics Engineering | 4 | 0-0-0 | p. 21 | Tier 1 (Verified) | `PASSED` |
 | `LAL101` | Introduction to Finance | 1 | 0-0-0 | p. 136 | Tier 1 (Verified) | `PASSED` |
-| `LAL225` | Self and Society in Modern India | 2 | 0-0-0 | p. 139 | Tier 1 (Verified) | `PASSED` |
-| `LAL222` | City in Literature | 2 | 0-0-0 | p. 138 | Tier 1 (Verified) | `PASSED` |
-| `CSL202` | Data Structures | 4 | 0-0-0 | p. 83 | Tier 1 (Verified) | `PASSED` |
+| `CSQ401` | BTech Project-I | 3 | 0-0-0 | p. 87 | Tier 1 (Verified) | `PASSED` |
+| `CSP352` | AI-Augmented Software Development | 3 | 0-0-0 | p. 86 | Tier 1 (Verified) | `PASSED` |
+| `CSL253` | Theory of Computation | 4 | 0-0-0 | p. 84 | Tier 1 (Verified) | `PASSED` |
 | `CSL515` | Randomized Algorithms | 3 | 0-0-0 | p. 89 | Tier 1 (Verified) | `PASSED` |
 | `CSL201` | Discrete Mathematics | 4 | 0-0-0 | p. 83 | Tier 1 (Verified) | `PASSED` |
 | `CSL511` | Introduction to Formal Verification and its Applications | 3 | 0-0-0 | p. 89 | Tier 1 (Verified) | `PASSED` |
-| `LAL201` | Microeconomics | 1 | 0-0-0 | p. 137 | Tier 1 (Verified) | `PASSED` |
-| `LAL223` | Introduction to Partition Literature | 2 | 0-0-0 | p. 139 | Tier 1 (Verified) | `PASSED` |
+| `LAL222` | City in Literature | 2 | 0-0-0 | p. 138 | Tier 1 (Verified) | `PASSED` |
+| `MAL201` | Linear Algebra & Mathematical Foundations | 4 | 3-1-0 | p. 88 | Tier 2 (Assumption) | `PASSED` |
 | `MAL403` | Probability & Statistics | 4 | 0-0-0 | p. 21 | Tier 1 (Verified) | `PASSED` |
 | `CSL504` | Graph Theory and Applications | 3 | 0-0-0 | p. 88 | Tier 1 (Verified) | `PASSED` |
 | `CSL351` | Computer Networks | 4 | 0-0-0 | p. 85 | Tier 1 (Verified) | `PASSED` |
-| `LAL224` | Introduction to Postcolonial Literature | 2 | 0-0-0 | p. 139 | Tier 1 (Verified) | `PASSED` |
+| `IC100` | Introduction to Computing | 4.5 | 2-1-3 | p. 86 | Tier 2 (Assumption) | `PASSED` |
 | `CSL100` | Introduction to Programming | 4.5 | 0-0-0 | p. 83 | Tier 1 (Verified) | `PASSED` |
-| `CSL512` | Parallel Algorithms | 3 | 0-0-0 | p. 89 | Tier 1 (Verified) | `PASSED` |
-| `CSL251` | Computer Organization & Architecture | 4 | 0-0-0 | p. 83 | Tier 1 (Verified) | `PASSED` |
-| `LAL221` | Indian Writing in English | 2 | 0-0-0 | p. 138 | Tier 1 (Verified) | `PASSED` |
-| `CSL253` | Theory of Computation | 4 | 0-0-0 | p. 84 | Tier 1 (Verified) | `PASSED` |
-| `CSL301` | Operating Systems | 4 | 0-0-0 | p. 84 | Tier 1 (Verified) | `PASSED` |
 | `CSL559` | Computer Systems Design | 4 | 0-0-0 | p. 90 | Tier 1 (Verified) | `PASSED` |
-| `CSP352` | AI-Augmented Software Development | 3 | 0-0-0 | p. 86 | Tier 1 (Verified) | `PASSED` |
-| `LAL200` | Macroeconomics | 2 | 0-0-0 | p. 137 | Tier 1 (Verified) | `PASSED` |
-| `CSL303` | Database Management Systems | 4 | 0-0-0 | p. 85 | Tier 1 (Verified) | `PASSED` |
+| `CSL251` | Computer Organization & Architecture | 4 | 0-0-0 | p. 83 | Tier 1 (Verified) | `PASSED` |
+| `UGQ301` | Interdisciplinary Undergraduate Project | 3 | 0-0-0 | p. 22 | Tier 1 (Verified) | `PASSED` |
 | `LAL100` | Introduction to Communication Skills | 2 | 0-0-0 | p. 136 | Tier 1 (Verified) | `PASSED` |
-| `CSL302` | Compiler Design | 4 | 0-0-0 | p. 84 | Tier 1 (Verified) | `PASSED` |
-| `CSQ401` | BTech Project-I | 3 | 0-0-0 | p. 87 | Tier 1 (Verified) | `PASSED` |
 | `LAL202` | International Trade | 2 | 0-0-0 | p. 137 | Tier 1 (Verified) | `PASSED` |
+| `CSL505` | Cryptography | 3 | 0-0-0 | p. 88 | Tier 1 (Verified) | `PASSED` |
+| `CSL303` | Database Management Systems | 4 | 0-0-0 | p. 85 | Tier 1 (Verified) | `PASSED` |
+| `CSL302` | Compiler Design | 4 | 0-0-0 | p. 84 | Tier 1 (Verified) | `PASSED` |
+| `LAL224` | Introduction to Postcolonial Literature | 2 | 0-0-0 | p. 139 | Tier 1 (Verified) | `PASSED` |
+| `LAL223` | Introduction to Partition Literature | 2 | 0-0-0 | p. 139 | Tier 1 (Verified) | `PASSED` |
+| `LAL225` | Self and Society in Modern India | 2 | 0-0-0 | p. 139 | Tier 1 (Verified) | `PASSED` |
+| `LAL221` | Indian Writing in English | 2 | 0-0-0 | p. 138 | Tier 1 (Verified) | `PASSED` |
 | `CSL518` | Fundamentals of Distributed Algorithms | 3 | 0-0-0 | p. 90 | Tier 1 (Verified) | `PASSED` |
+| `CSL202` | Data Structures | 4 | 0-0-0 | p. 83 | Tier 1 (Verified) | `PASSED` |
 
 ---
 

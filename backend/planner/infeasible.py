@@ -18,6 +18,7 @@ from backend.planner.solver import multi_semester_planner
 from backend.planner.validator import independent_validator
 from backend.student.diagnostic import diagnostic_engine
 from backend.db.seed_profile import get_seed_dir
+from backend.rules.params import get_overload_cgpa_threshold, get_overload_credit_cap, get_standard_credit_cap
 
 
 class InfeasibleRequestHandler:
@@ -44,7 +45,10 @@ class InfeasibleRequestHandler:
         if not profile:
             return {"status": "error", "message": f"Student '{student_id}' not found."}
 
-        max_allowed = 24.0 if profile.cgpa >= 8.5 else 22.0
+        overload_thresh = get_overload_cgpa_threshold()
+        overload_cap = get_overload_credit_cap()
+        std_cap = get_standard_credit_cap()
+        max_allowed = overload_cap if profile.cgpa >= overload_thresh else std_cap
 
         if requested_credit_cap <= max_allowed:
             return {"status": "feasible", "message": "Request is within institute credit limits."}
@@ -77,7 +81,7 @@ class InfeasibleRequestHandler:
 
         explanation = (
             f"Request is not possible. You requested {requested_credit_cap} credits, but {blocking_rule['rule_name']} "
-            f"strictly caps your registration at {max_allowed} credits. "
+            f"caps your registration at {max_allowed} credits (working assumption pending official ordinance). "
             f"Here is the closest valid alternative capped at {max_allowed} credits, "
             f"prioritizing high-urgency degree requirements while passing all academic constraints."
         )
@@ -329,7 +333,8 @@ class InfeasibleRequestHandler:
         if not profile:
             return {"status": "error", "message": f"Student '{student_id}' not found."}
 
-        min_cgpa_for_overload = 8.0
+        min_cgpa_for_overload = get_overload_cgpa_threshold()
+        std_cap = get_standard_credit_cap()
         if profile.cgpa >= min_cgpa_for_overload:
             return {"status": "feasible", "message": "Eligible for credit overload."}
 
@@ -337,10 +342,10 @@ class InfeasibleRequestHandler:
             "rule_id": "rule_credit_overload_cap",
             "rule_name": "Credit Overload CGPA Requirement",
             "ordinance_clause": "IIT Bhilai Academic Regulations (Assumed overload policy pending ordinance)",
-            "explanation": f"Overload registration (> 22 credits) requires a minimum CGPA of {min_cgpa_for_overload}. Student's CGPA is {profile.cgpa}."
+            "explanation": f"Overload registration (> {std_cap:g} credits) requires a minimum CGPA of {min_cgpa_for_overload}. Student's CGPA is {profile.cgpa}."
         }
 
-        alt_summary = "Limit registration to the standard maximum of 22.0 credits for this semester."
+        alt_summary = f"Limit registration to the standard maximum of {std_cap:g} credits for this semester."
         explanation = (
             f"Request is not possible. Credit overload to {requested_credits} credits cannot be approved "
             f"because your CGPA ({profile.cgpa}) is below the required {min_cgpa_for_overload} overload threshold. {alt_summary}"
@@ -357,7 +362,7 @@ class InfeasibleRequestHandler:
             "explanation": explanation,
             "valid_alternative": {
                 "summary": alt_summary,
-                "credit_cap": 22.0
+                "credit_cap": std_cap
             }
         }
 

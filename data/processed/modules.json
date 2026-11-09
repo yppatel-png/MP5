@@ -1,0 +1,1570 @@
+[
+  {
+    "id": "mod_csl100_1",
+    "parent_course": "CSL100",
+    "order": 1,
+    "title": "C programming",
+    "summary": "The source syllabus covers programming using C and primitive data types.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "programming_fundamentals"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl100_2",
+    "parent_course": "CSL100",
+    "order": 2,
+    "title": "Control flow",
+    "summary": "The source syllabus covers conditional statements, loops, and functions.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "programming_fundamentals"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl100_3",
+    "parent_course": "CSL100",
+    "order": 3,
+    "title": "Memory and data",
+    "summary": "The source syllabus covers dynamic memory allocation, pointers, and complex data types.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "programming_fundamentals"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl100_4",
+    "parent_course": "CSL100",
+    "order": 4,
+    "title": "Program construction",
+    "summary": "The source syllabus covers recursion, file handling, linked lists, sorting, and searching.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "programming_fundamentals"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_ecl101_1",
+    "parent_course": "ECL101",
+    "order": 1,
+    "title": "Electronics foundations",
+    "summary": "This team-authored learning unit introduces basic electronics; the PDF verifies the course title, credits, and semester, not this unit syllabus.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "computer_architecture"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_ecl101_2",
+    "parent_course": "ECL101",
+    "order": 2,
+    "title": "Digital signals",
+    "summary": "This team-authored unit introduces digital-signal concepts for computing students.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "computer_architecture"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_ecl101_3",
+    "parent_course": "ECL101",
+    "order": 3,
+    "title": "Circuits and systems",
+    "summary": "This team-authored unit introduces circuit terminology; it is not an official course syllabus.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "computer_architecture"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_mal403_1",
+    "parent_course": "MAL403",
+    "order": 1,
+    "title": "Probability",
+    "summary": "This team-authored learning unit introduces probability vocabulary; the PDF verifies the course title and credit, not this unit syllabus.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "probability_statistics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_mal403_2",
+    "parent_course": "MAL403",
+    "order": 2,
+    "title": "Statistical reasoning",
+    "summary": "This team-authored unit introduces statistical reasoning; the PDF verifies the course title and credit, not this unit syllabus.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "probability_statistics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_mal403_3",
+    "parent_course": "MAL403",
+    "order": 3,
+    "title": "Uncertainty",
+    "summary": "This team-authored unit uses probability to reason about uncertainty; it is not an official course syllabus.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "probability_statistics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl201_1",
+    "parent_course": "CSL201",
+    "order": 1,
+    "title": "Sets and relations",
+    "summary": "The syllabus lists sets, relations, functions, equivalence, and partial orders.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "discrete_mathematics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl201_2",
+    "parent_course": "CSL201",
+    "order": 2,
+    "title": "Logic and proof",
+    "summary": "The syllabus lists propositional logic, predicates, proof techniques, and induction.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "discrete_mathematics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl201_3",
+    "parent_course": "CSL201",
+    "order": 3,
+    "title": "Counting and recurrence",
+    "summary": "The syllabus lists counting techniques, pigeonhole principle, and recurrence relations.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "discrete_mathematics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl201_4",
+    "parent_course": "CSL201",
+    "order": 4,
+    "title": "Graph and number theory",
+    "summary": "The syllabus lists graph theory, divisibility, Euclidean algorithm, and modular arithmetic.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "discrete_mathematics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl202_1",
+    "parent_course": "CSL202",
+    "order": 1,
+    "title": "Stacks and queues",
+    "summary": "The syllabus covers stacks, queues, and lists as data structures.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "data_structures"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl202_2",
+    "parent_course": "CSL202",
+    "order": 2,
+    "title": "Trees and traversals",
+    "summary": "The syllabus covers trees, tree traversals, heaps, and binary search trees.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "data_structures"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl202_3",
+    "parent_course": "CSL202",
+    "order": 3,
+    "title": "Graph traversal",
+    "summary": "The syllabus names graph representations, depth-first search, and breadth-first search.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "data_structures"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl202_4",
+    "parent_course": "CSL202",
+    "order": 4,
+    "title": "Sorting and searching",
+    "summary": "The syllabus includes sorting and searching techniques.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "algorithms"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csp203_1",
+    "parent_course": "CSP203",
+    "order": 1,
+    "title": "Linux commands",
+    "summary": "The syllabus identifies Linux fundamentals and Linux commands.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "software_tools"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csp203_2",
+    "parent_course": "CSP203",
+    "order": 2,
+    "title": "Development environment",
+    "summary": "This team-authored lab unit applies command-line tools to a small C project.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "software_tools"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csp203_3",
+    "parent_course": "CSP203",
+    "order": 3,
+    "title": "Versioned changes",
+    "summary": "This team-authored lab unit practices recording and reviewing source changes.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "software_tools"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl251_1",
+    "parent_course": "CSL251",
+    "order": 1,
+    "title": "Digital building blocks",
+    "summary": "The syllabus covers digital building blocks, truth tables, and number representation.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "computer_architecture"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl251_2",
+    "parent_course": "CSL251",
+    "order": 2,
+    "title": "Instruction execution",
+    "summary": "The syllabus covers machine instructions and assembly-language programming.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "computer_architecture"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl251_3",
+    "parent_course": "CSL251",
+    "order": 3,
+    "title": "Memory hierarchy",
+    "summary": "The syllabus covers ROM, RAM, cache memories, virtual memory, and secondary storage.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "computer_architecture"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl251_4",
+    "parent_course": "CSL251",
+    "order": 4,
+    "title": "Input and pipelining",
+    "summary": "The syllabus covers I/O, interrupts, DMA, instruction pipelines, and hazards.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "computer_architecture"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl252_1",
+    "parent_course": "CSL252",
+    "order": 1,
+    "title": "Algorithm analysis",
+    "summary": "The syllabus covers worst- and average-case analysis, recurrences, and asymptotes.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "algorithms"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl252_2",
+    "parent_course": "CSL252",
+    "order": 2,
+    "title": "Divide and conquer",
+    "summary": "The syllabus lists randomized techniques and divide-and-conquer algorithms.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "algorithms"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl252_3",
+    "parent_course": "CSL252",
+    "order": 3,
+    "title": "Greedy and dynamic programming",
+    "summary": "The syllabus covers dynamic programming and greedy algorithms.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "algorithms"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl252_4",
+    "parent_course": "CSL252",
+    "order": 4,
+    "title": "Graph algorithms and hardness",
+    "summary": "The syllabus covers graph algorithms, shortest paths, NP-completeness, and approximation.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "algorithms"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl253_1",
+    "parent_course": "CSL253",
+    "order": 1,
+    "title": "Finite-state machines",
+    "summary": "The syllabus covers alphabets, languages, and finite-state machines.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "theory_computation"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl253_2",
+    "parent_course": "CSL253",
+    "order": 2,
+    "title": "Context-free languages",
+    "summary": "The syllabus covers context-free grammars, parse trees, and pushdown automata.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "theory_computation"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl253_3",
+    "parent_course": "CSL253",
+    "order": 3,
+    "title": "Turing machines",
+    "summary": "The syllabus covers Turing machines and their variants.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "theory_computation"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl253_4",
+    "parent_course": "CSL253",
+    "order": 4,
+    "title": "Undecidability and complexity",
+    "summary": "The syllabus covers undecidability, space and time complexity, and NP-completeness.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "theory_computation"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl301_1",
+    "parent_course": "CSL301",
+    "order": 1,
+    "title": "Operating-system foundations",
+    "summary": "The syllabus introduces operating systems, virtualization, concurrency, and persistence.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "operating_systems"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl301_2",
+    "parent_course": "CSL301",
+    "order": 2,
+    "title": "Processes and scheduling",
+    "summary": "The syllabus covers processes, the process API, process control blocks, and CPU scheduling.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "operating_systems"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl301_3",
+    "parent_course": "CSL301",
+    "order": 3,
+    "title": "Memory virtualization",
+    "summary": "The syllabus covers virtual memory and memory management.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "operating_systems"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl302_1",
+    "parent_course": "CSL302",
+    "order": 1,
+    "title": "Compiler phases",
+    "summary": "The syllabus covers the analysis-synthesis model and phases of compiler construction.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "compiler_design"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl302_2",
+    "parent_course": "CSL302",
+    "order": 2,
+    "title": "Lexing and parsing",
+    "summary": "The syllabus names lexical analysis and syntax analysis.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "compiler_design"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl302_3",
+    "parent_course": "CSL302",
+    "order": 3,
+    "title": "Translation and checking",
+    "summary": "The syllabus covers syntax-directed translation and type checking.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "compiler_design"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl302_4",
+    "parent_course": "CSL302",
+    "order": 4,
+    "title": "Code generation",
+    "summary": "The syllabus covers intermediate code, optimization, and machine code generation.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "compiler_design"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl303_1",
+    "parent_course": "CSL303",
+    "order": 1,
+    "title": "Data models",
+    "summary": "The syllabus covers data models, schemas, instances, and database languages.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "database_systems"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl303_2",
+    "parent_course": "CSL303",
+    "order": 2,
+    "title": "Relational algebra",
+    "summary": "The syllabus names SELECT, PROJECT, set operations, JOIN, and DIVISION.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "database_systems"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl303_3",
+    "parent_course": "CSL303",
+    "order": 3,
+    "title": "Entity-relationship design",
+    "summary": "The syllabus covers entity-relationship models, keys, relationships, and mapping.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "database_systems"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl303_4",
+    "parent_course": "CSL303",
+    "order": 4,
+    "title": "Normalization and SQL",
+    "summary": "The syllabus covers functional dependencies, normal forms, and SQL programming.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "database_systems"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl304_1",
+    "parent_course": "CSL304",
+    "order": 1,
+    "title": "Search and problem solving",
+    "summary": "The syllabus covers state spaces, graph search, game playing, and constraint satisfaction.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "artificial_intelligence"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl304_2",
+    "parent_course": "CSL304",
+    "order": 2,
+    "title": "Automated reasoning",
+    "summary": "The syllabus covers propositional and first-order logic, inference, and knowledge-based systems.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "artificial_intelligence"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl304_3",
+    "parent_course": "CSL304",
+    "order": 3,
+    "title": "Planning",
+    "summary": "The syllabus covers state-space planning, plan-space planning, and planning algorithms.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "artificial_intelligence"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl304_4",
+    "parent_course": "CSL304",
+    "order": 4,
+    "title": "Uncertainty and learning",
+    "summary": "The syllabus covers probabilistic reasoning, belief networks, fuzzy logic, and reinforcement learning.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "artificial_intelligence"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl351_1",
+    "parent_course": "CSL351",
+    "order": 1,
+    "title": "Network architecture",
+    "summary": "The source syllabus covers network architecture and communication protocols.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "computer_networks"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl351_2",
+    "parent_course": "CSL351",
+    "order": 2,
+    "title": "Communication layers",
+    "summary": "This team-authored unit explains how layered protocols divide communication tasks.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "computer_networks"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl351_3",
+    "parent_course": "CSL351",
+    "order": 3,
+    "title": "Network reliability",
+    "summary": "This team-authored unit introduces fault handling and reliable data transfer.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "computer_networks"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csp352_1",
+    "parent_course": "CSP352",
+    "order": 1,
+    "title": "LLMs in software work",
+    "summary": "The syllabus covers coding assistants, testing, debugging, documentation, and review.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "llm_software"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csp352_2",
+    "parent_course": "CSP352",
+    "order": 2,
+    "title": "Structured prompts",
+    "summary": "The syllabus covers task specifications, constraints, acceptance criteria, and structured prompts.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "llm_software"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csp352_3",
+    "parent_course": "CSP352",
+    "order": 3,
+    "title": "Validated integration",
+    "summary": "The syllabus covers APIs, structured outputs, schema validation, and error handling.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "llm_software"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csp352_4",
+    "parent_course": "CSP352",
+    "order": 4,
+    "title": "Bounded agents",
+    "summary": "The syllabus covers tool permissions, bounded execution, evaluation, and human approval.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "llm_software"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csq401_1",
+    "parent_course": "CSQ401",
+    "order": 1,
+    "title": "Research question",
+    "summary": "The course description calls for research and development projects on practical and theoretical problems.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "research_methods"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csq401_2",
+    "parent_course": "CSQ401",
+    "order": 2,
+    "title": "Project goals",
+    "summary": "The description expects students to work toward goals set with a project supervisor.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "research_methods"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csq401_3",
+    "parent_course": "CSQ401",
+    "order": 3,
+    "title": "Presentations and reports",
+    "summary": "The description states that evaluation uses regular presentations and written reports.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "communication"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal100_1",
+    "parent_course": "LAL100",
+    "order": 1,
+    "title": "Audience and purpose",
+    "summary": "This team-authored communication unit develops audience-aware writing; the PDF verifies the course title and credit, not this unit syllabus.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "communication"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal100_2",
+    "parent_course": "LAL100",
+    "order": 2,
+    "title": "Clear explanations",
+    "summary": "This team-authored unit practices concise spoken and written explanations.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "communication"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal100_3",
+    "parent_course": "LAL100",
+    "order": 3,
+    "title": "Evidence and structure",
+    "summary": "This team-authored unit practices organizing claims and supporting evidence.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "communication"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal101_1",
+    "parent_course": "LAL101",
+    "order": 1,
+    "title": "Financial vocabulary",
+    "summary": "This team-authored finance unit introduces common financial terms; the PDF verifies the course title and credit, not this unit syllabus.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "finance"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal101_2",
+    "parent_course": "LAL101",
+    "order": 2,
+    "title": "Time and value",
+    "summary": "This team-authored unit introduces time value as a finance concept.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "finance"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal101_3",
+    "parent_course": "LAL101",
+    "order": 3,
+    "title": "Risk and return",
+    "summary": "This team-authored unit introduces the relationship between risk and return.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "finance"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl504_1",
+    "parent_course": "CSL504",
+    "order": 1,
+    "title": "Graph representations",
+    "summary": "The syllabus covers graphs, digraphs, representations, isomorphism, and graphic sequences.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "discrete_mathematics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl504_2",
+    "parent_course": "CSL504",
+    "order": 2,
+    "title": "Matchings and connectivity",
+    "summary": "The syllabus covers matchings, covers, Hall's theorem, connectivity, and Menger's theorem.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "discrete_mathematics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl504_3",
+    "parent_course": "CSL504",
+    "order": 3,
+    "title": "Coloring and planar graphs",
+    "summary": "The syllabus covers graph coloring, Eulerian and Hamiltonian graphs, and planar graphs.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "discrete_mathematics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl505_1",
+    "parent_course": "CSL505",
+    "order": 1,
+    "title": "Cryptographic notions",
+    "summary": "The syllabus begins with formal notions and a mathematics recap.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "theory_computation"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl505_2",
+    "parent_course": "CSL505",
+    "order": 2,
+    "title": "Historical ciphers",
+    "summary": "The syllabus includes historical ciphers as an introductory topic.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "theory_computation"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl505_3",
+    "parent_course": "CSL505",
+    "order": 3,
+    "title": "Security reasoning",
+    "summary": "This team-authored unit practices distinguishing a security claim from an implementation detail.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "theory_computation"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl510_1",
+    "parent_course": "CSL510",
+    "order": 1,
+    "title": "Approximation algorithms",
+    "summary": "The syllabus covers approximation algorithms and approximation hardness.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "algorithms"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl510_2",
+    "parent_course": "CSL510",
+    "order": 2,
+    "title": "Primal-dual method",
+    "summary": "The syllabus lists the primal-dual method.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "algorithms"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl510_3",
+    "parent_course": "CSL510",
+    "order": 3,
+    "title": "Metric rounding",
+    "summary": "The syllabus covers metric rounding of linear-program relaxations.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "algorithms"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl511_1",
+    "parent_course": "CSL511",
+    "order": 1,
+    "title": "Hoare logic",
+    "summary": "The syllabus covers axioms and rules of Floyd-Hoare logic.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "formal_verification"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl511_2",
+    "parent_course": "CSL511",
+    "order": 2,
+    "title": "Decision diagrams",
+    "summary": "The syllabus covers binary decision diagrams and reduced ordered binary decision diagrams.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "formal_verification"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl511_3",
+    "parent_course": "CSL511",
+    "order": 3,
+    "title": "Temporal logic",
+    "summary": "The syllabus covers linear- and branching-time temporal logic and CTL model checking.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "formal_verification"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl512_1",
+    "parent_course": "CSL512",
+    "order": 1,
+    "title": "Parallel models",
+    "summary": "The syllabus covers PRAM variants, interconnection networks, and synchronous and asynchronous models.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "algorithms"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl512_2",
+    "parent_course": "CSL512",
+    "order": 2,
+    "title": "Parallel techniques",
+    "summary": "The syllabus covers matrix multiplication, sorting, searching, partitioning, and pipelining.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "algorithms"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl512_3",
+    "parent_course": "CSL512",
+    "order": 3,
+    "title": "Parallel graph algorithms",
+    "summary": "The syllabus covers connected components, graph coloring, minimum spanning trees, and shortest paths.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "algorithms"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl515_1",
+    "parent_course": "CSL515",
+    "order": 1,
+    "title": "Randomized methods",
+    "summary": "The syllabus identifies randomized algorithms and their analysis.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "algorithms"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl515_2",
+    "parent_course": "CSL515",
+    "order": 2,
+    "title": "Probability in algorithms",
+    "summary": "This team-authored module uses probability to reason about randomized algorithm outcomes.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "probability_statistics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl515_3",
+    "parent_course": "CSL515",
+    "order": 3,
+    "title": "Algorithm guarantees",
+    "summary": "This team-authored module compares deterministic and probabilistic guarantees.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "algorithms"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl518_1",
+    "parent_course": "CSL518",
+    "order": 1,
+    "title": "Distributed computing models",
+    "summary": "The syllabus covers distributed computing models and challenges.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "computer_networks"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl518_2",
+    "parent_course": "CSL518",
+    "order": 2,
+    "title": "Broadcast and trees",
+    "summary": "The syllabus covers broadcast, convergecast, and breadth-first-search tree construction.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "algorithms"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl518_3",
+    "parent_course": "CSL518",
+    "order": 3,
+    "title": "Leader election",
+    "summary": "The syllabus covers leader election algorithms and lower bounds.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "algorithms"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl559_1",
+    "parent_course": "CSL559",
+    "order": 1,
+    "title": "System goals",
+    "summary": "The syllabus covers setting goals for a system and principles of good design.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "software_engineering"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl559_2",
+    "parent_course": "CSL559",
+    "order": 2,
+    "title": "Quantitative system models",
+    "summary": "The syllabus covers queuing systems, fundamental laws, and asymptotic bounds.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "software_engineering"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_csl559_3",
+    "parent_course": "CSL559",
+    "order": 3,
+    "title": "Resource management",
+    "summary": "The syllabus covers scheduling, load balancing, and TCP throughput models.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "computer_networks"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal200_1",
+    "parent_course": "LAL200",
+    "order": 1,
+    "title": "Aggregate economic activity",
+    "summary": "This team-authored introduction develops aggregate-economy vocabulary; the PDF verifies the course title and credit, not this unit syllabus.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "macroeconomics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal200_2",
+    "parent_course": "LAL200",
+    "order": 2,
+    "title": "Economic indicators",
+    "summary": "This team-authored unit practices reading common aggregate indicators.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "macroeconomics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal200_3",
+    "parent_course": "LAL200",
+    "order": 3,
+    "title": "Policy questions",
+    "summary": "This team-authored unit frames questions about economy-wide policy.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "macroeconomics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal201_1",
+    "parent_course": "LAL201",
+    "order": 1,
+    "title": "Choice and incentives",
+    "summary": "This team-authored microeconomics unit introduces individual choice and incentives; the PDF verifies the course title and credit, not this unit syllabus.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "microeconomics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal201_2",
+    "parent_course": "LAL201",
+    "order": 2,
+    "title": "Markets",
+    "summary": "This team-authored unit introduces supply, demand, and market interaction.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "microeconomics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal201_3",
+    "parent_course": "LAL201",
+    "order": 3,
+    "title": "Trade-offs",
+    "summary": "This team-authored unit practices identifying trade-offs in a simple choice.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "microeconomics"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal202_1",
+    "parent_course": "LAL202",
+    "order": 1,
+    "title": "Trade flows",
+    "summary": "This team-authored unit introduces the idea of cross-border trade flows; the PDF verifies the course title and credit, not this unit syllabus.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "international_trade"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal202_2",
+    "parent_course": "LAL202",
+    "order": 2,
+    "title": "Trade restrictions",
+    "summary": "This team-authored unit introduces tariff and non-tariff restrictions.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "international_trade"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal202_3",
+    "parent_course": "LAL202",
+    "order": 3,
+    "title": "Trade policy",
+    "summary": "This team-authored unit frames the role of international trade policy.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "international_trade"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal221_1",
+    "parent_course": "LAL221",
+    "order": 1,
+    "title": "Reading in context",
+    "summary": "This team-authored unit practices interpreting a text in its social and historical context; the PDF verifies course title and credit.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "literary_analysis"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal221_2",
+    "parent_course": "LAL221",
+    "order": 2,
+    "title": "Voice and perspective",
+    "summary": "This team-authored unit practices identifying narrative voice and perspective.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "literary_analysis"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal221_3",
+    "parent_course": "LAL221",
+    "order": 3,
+    "title": "Evidence-based interpretation",
+    "summary": "This team-authored unit practices supporting an interpretation with textual evidence.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "literary_analysis"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal222_1",
+    "parent_course": "LAL222",
+    "order": 1,
+    "title": "Literary representations of cities",
+    "summary": "This team-authored unit explores how a text represents urban settings; the PDF verifies course title and credit.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "literary_analysis"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal222_2",
+    "parent_course": "LAL222",
+    "order": 2,
+    "title": "Setting and character",
+    "summary": "This team-authored unit practices tracing how setting shapes a character's choices.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "literary_analysis"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal222_3",
+    "parent_course": "LAL222",
+    "order": 3,
+    "title": "Textual evidence",
+    "summary": "This team-authored unit practices citing textual details in an interpretation.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "literary_analysis"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal223_1",
+    "parent_course": "LAL223",
+    "order": 1,
+    "title": "Literature and historical context",
+    "summary": "This team-authored unit practices reading literature in historical context; the PDF verifies course title and credit.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "literary_analysis"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal223_2",
+    "parent_course": "LAL223",
+    "order": 2,
+    "title": "Narrative perspective",
+    "summary": "This team-authored unit practices comparing narrative perspectives.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "literary_analysis"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal223_3",
+    "parent_course": "LAL223",
+    "order": 3,
+    "title": "Memory and representation",
+    "summary": "This team-authored unit examines how texts represent memory and experience.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "literary_analysis"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal224_1",
+    "parent_course": "LAL224",
+    "order": 1,
+    "title": "Literature and power",
+    "summary": "This team-authored unit practices examining how literature represents power; the PDF verifies course title and credit.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "literary_analysis"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal224_2",
+    "parent_course": "LAL224",
+    "order": 2,
+    "title": "Voice and identity",
+    "summary": "This team-authored unit practices identifying voice and identity in a text.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "literary_analysis"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal224_3",
+    "parent_course": "LAL224",
+    "order": 3,
+    "title": "Close reading",
+    "summary": "This team-authored unit practices close reading with evidence.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "literary_analysis"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal225_1",
+    "parent_course": "LAL225",
+    "order": 1,
+    "title": "Self and society",
+    "summary": "This team-authored unit frames relationships between individual experience and social context; the PDF verifies course title and credit.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "indian_society"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal225_2",
+    "parent_course": "LAL225",
+    "order": 2,
+    "title": "Social institutions",
+    "summary": "This team-authored unit practices identifying how institutions shape social experience.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "indian_society"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  },
+  {
+    "id": "mod_lal225_3",
+    "parent_course": "LAL225",
+    "order": 3,
+    "title": "Evidence and interpretation",
+    "summary": "This team-authored unit practices supporting a social analysis with evidence.",
+    "est_minutes": 15,
+    "skill_ids": [
+      "indian_society"
+    ],
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "official"
+  }
+]

@@ -24,6 +24,13 @@ from backend.planner.schemas import ActivePlanResponse
 
 SEED_DIR = get_seed_dir()
 
+from backend.rules.params import (
+    get_standard_credit_cap,
+    get_min_semester_credits,
+    get_overload_credit_cap,
+    get_overload_cgpa_threshold,
+)
+
 router = APIRouter(prefix="/plans", tags=["Curriculum Planning & Verification"])
 
 class PlanGenerateRequest(BaseModel):
@@ -52,25 +59,22 @@ def generate_student_plan(req: PlanGenerateRequest) -> Dict[str, Any]:
         raise HTTPException(status_code=404, detail=f"Student ID '{req.student_id}' not found.")
 
     # Check for infeasible credit requests first
-    rules = multi_semester_planner.academic_rules
-    standard_cap = float(rules.get("rule_sem_max_credits", {}).get("parameters", {}).get("max_credits", 22.0))
-    overload_rule = rules.get("rule_credit_overload_cap", {}).get("parameters", {})
-    overload_cap = float(overload_rule.get("max_overload_credits", 24.0))
-    overload_threshold = float(overload_rule.get("min_cgpa_required", 8.5))
+    standard_cap = get_standard_credit_cap()
+    overload_cap = get_overload_credit_cap()
+    overload_threshold = get_overload_cgpa_threshold()
     maximum_cap = overload_cap if profile.cgpa >= overload_threshold else standard_cap
     if req.credit_cap_override and req.credit_cap_override > maximum_cap:
         return infeasible_handler.handle_excessive_credit_request(req.student_id, req.credit_cap_override)
 
     active_goal = req.goal_override or profile.goal_id
     credit_cap = req.credit_cap_override or standard_cap
-    minimum_credits = float(
-        rules.get("rule_sem_min_credits", {}).get("parameters", {}).get("min_credits", 14.0)
-    )
+    minimum_credits = get_min_semester_credits()
 
     # 1. Compute gaps
     gaps_data = diagnostic_engine.compute_skill_gaps(req.student_id, goal_id=active_goal)
 
     # 2. Plan curriculum via solver
+    skill_matrix = diagnostic_engine.get_full_skill_matrix(req.student_id)
     plan = multi_semester_planner.plan_curriculum(
         student_id=req.student_id,
         programme_code=profile.programme,
@@ -82,7 +86,10 @@ def generate_student_plan(req: PlanGenerateRequest) -> Dict[str, Any]:
         credit_cap=credit_cap,
         min_credits=minimum_credits,
         max_weekly_hours=profile.available_hours_per_week,
-        overload_allowed=(profile.cgpa >= overload_threshold)
+        overload_allowed=(profile.cgpa >= overload_threshold),
+        interests=profile.interests,
+        skill_matrix=skill_matrix,
+        preferences=profile.preferences
     )
     effective_credit_cap = req.credit_cap_override or maximum_cap
     plan["credit_cap"] = effective_credit_cap
@@ -350,7 +357,7 @@ def list_eligible_courses(student_id: str, semester: int) -> Dict[str, Any]:
 
     plan_data = get_active_plan(student_id)
     plan = plan_data.get("plan", {})
-    credit_cap = float(plan.get("credit_cap", 24.0))
+    credit_cap = float(plan.get("credit_cap") or get_standard_credit_cap())
 
     # Find target semester
     sem_obj = next((s for s in plan.get("semesters", []) if s["semester_number"] == semester), None)
@@ -463,7 +470,7 @@ def add_course_to_semester(student_id: str, req: PlanCourseAddRequest) -> Dict[s
 
     plan_data = get_active_plan(student_id)
     plan = plan_data.get("plan", {})
-    credit_cap = float(plan.get("credit_cap", 24.0))
+    credit_cap = float(plan.get("credit_cap") or get_standard_credit_cap())
 
     sem_obj = next((s for s in plan.get("semesters", []) if s["semester_number"] == req.semester), None)
     if not sem_obj:

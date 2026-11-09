@@ -25,35 +25,108 @@ from backend.buddy import tools
 logger = logging.getLogger("learning_buddy.buddy.router")
 
 
+def build_bounded_context(factual_context: Dict[str, Any], budget_tokens: int = 1500) -> Dict[str, Any]:
+    """Bounds context payload to ~1500 tokens (top 5 courses, top gaps, pruned evidence trails)."""
+    bounded: Dict[str, Any] = {}
+    if "student_summary" in factual_context:
+        summary = dict(factual_context["student_summary"])
+        if "recent_evidence" in summary and isinstance(summary["recent_evidence"], list):
+            summary["recent_evidence"] = summary["recent_evidence"][:3]
+        bounded["student_summary"] = summary
+
+    if "gaps" in factual_context:
+        raw_gaps = factual_context["gaps"]
+        if isinstance(raw_gaps, list):
+            bounded_gaps = []
+            for g in raw_gaps[:5]:
+                g_copy = dict(g)
+                if "evidence_trail" in g_copy and isinstance(g_copy["evidence_trail"], list):
+                    g_copy["evidence_trail"] = g_copy["evidence_trail"][-2:]
+                bounded_gaps.append(g_copy)
+            bounded["gaps"] = bounded_gaps
+
+    if "eligible_electives" in factual_context:
+        raw_courses = factual_context["eligible_electives"]
+        if isinstance(raw_courses, list):
+            bounded["eligible_electives"] = raw_courses[:5]
+
+    for k, v in factual_context.items():
+        if k not in bounded:
+            bounded[k] = v
+
+    return bounded
+
+
 class BuddyRouter:
     def classify_intent(self, message: str) -> str:
-        """Classifies incoming student message into an actionable academic intent."""
+        """Classifies incoming student message into an actionable academic intent using hybrid parsing."""
         msg = message.lower().strip()
 
+        # Attempt structured LLM intent classification if online
+        try:
+            from backend.config import settings
+            if not settings.OFFLINE_MODE and settings.LLM_MODEL and settings.LLM_API_KEY:
+                prompt = (
+                    "Classify this student's academic message into exactly one of these intents:\n"
+                    "APPLY_PROPOSAL, CREDIT_OVERLOAD, RECOMMEND_ELECTIVES, OVERRIDE_COURSE, "
+                    "CHECK_DROP, EXPLAIN_COURSE, NEXT_STEPS, WHAT_IF, SKILL_GAPS, "
+                    "MASTERY_STATUS, WHAT_I_KNOW, VAGUE_GOAL, PLAN_DIFF, GENERAL_ACADEMIC.\n\n"
+                    f"Message: \"{message}\"\n\n"
+                    "Output JSON only: {\"intent\": \"<INTENT>\"}"
+                )
+                res = llm_client.generate(
+                    call_type="BUDDY_INTENT",
+                    messages=[{"role": "user", "content": prompt}],
+                    temperature=0.0,
+                    max_tokens=40
+                )
+                if res.get("content"):
+                    raw = res["content"].strip()
+                    parsed = json.loads(raw)
+                    intent_cand = parsed.get("intent", "").upper()
+                    if intent_cand in {
+                        "APPLY_PROPOSAL", "CREDIT_OVERLOAD", "RECOMMEND_ELECTIVES", "OVERRIDE_COURSE",
+                        "CHECK_DROP", "EXPLAIN_COURSE", "NEXT_STEPS", "WHAT_IF", "SKILL_GAPS",
+                        "MASTERY_STATUS", "WHAT_I_KNOW", "VAGUE_GOAL", "PLAN_DIFF", "GENERAL_ACADEMIC"
+                    }:
+                        return intent_cand
+        except Exception:
+            pass
+
+        # Robust regex fallback with negative lookbehinds and word boundaries
         # 1. Apply confirmation
-        if msg in ("apply", "confirm", "yes", "yes please", "apply change", "add it") or msg.startswith("apply "):
+        if re.search(r"^\s*(apply(\s+(the\s+)?change)?|confirm|yes(\s+please)?|add it)\b", msg) or msg.startswith("apply "):
             return "APPLY_PROPOSAL"
 
         # 2. Impossible requests / credit overload
-        if any(w in msg for w in ["35 credit", "35 credits", "overload 30", "take 35", "more than 24"]):
+        if re.search(r"\b(35\s+credits?|overload\s+30|take\s+35|more\s+than\s+24(\s+credits?)?)\b", msg):
             return "CREDIT_OVERLOAD"
 
-        # 3. Add / Recommend courses / Elective discovery
-        if any(w in msg for w in [
-            "which courses should i prefer", "which course should i prefer", "prefer",
-            "add a total of", "add course", "recommend elective", "suggest elective",
-            "eligible elective", "5 credit", "credit course", "take next semester"
-        ]):
-            return "RECOMMEND_ELECTIVES"
+        # 3. Check for negated drop expressions (e.g. "I prefer not to drop CSL202", "do not drop", "don't drop")
+        is_negated_drop = bool(re.search(
+            r"\b(prefer|want|decided|told)\s+not\s+to\s+(drop|remove|exclude)\b|\b(do\s+not|don'?t|never)\s+(drop|remove|exclude)\b",
+            msg
+        ))
 
         # 4. Check dropping / Overrides
-        if any(w in msg for w in ["don't want to take", "dont want to take", "do not want to take", "exclude course", "reject course"]):
+        if re.search(r"\b(don'?t|do\s+not)\s+want\s+to\s+take\b|\b(exclude|reject)\s+course\b", msg):
             return "OVERRIDE_COURSE"
 
-        if any(w in msg for w in ["drop", "remove course", "can i drop", "exclude"]):
+        if not is_negated_drop and (
+            re.search(r"\b(can\s+i\s+)?(drop|remove|exclude)\s+(a\s+)?course\b", msg)
+            or re.search(r"\b(can\s+i\s+)?(drop|remove|exclude)\s+[a-z]{2,4}[0-9]{3}\b", msg)
+            or re.search(r"\b(can\s+i\s+)?drop\b", msg)
+        ):
             return "CHECK_DROP"
 
-        # 5. Course explanation
+        # 5. Add / Recommend courses / Elective discovery
+        if (
+            re.search(r"\b(which\s+courses?\s+should\s+i\s+prefer|recommend(\s+an?)?\s+electives?|suggest(\s+an?)?\s+electives?|eligible\s+electives?|what\s+electives?|electives?\s+(for|in)|add\s+course|add\s+a\s+total\s+of|take\s+next\s+semester)\b", msg)
+            or (re.search(r"\bprefer\b", msg) and not is_negated_drop and not re.search(r"\bprefer\s+not\s+to\b", msg))
+        ):
+            return "RECOMMEND_ELECTIVES"
+
+        # 6. Course explanation
         if any(w in msg for w in [
             "why csl", "why col", "why lal", "why this course", "why was", "why recommend",
             "tell me about", "syllabus of", "what is csl", "what is mal", "what is lal"
@@ -64,35 +137,36 @@ class BuddyRouter:
         ):
             return "EXPLAIN_COURSE"
 
-        # 6. Next steps / actions
+        # 7. Next steps / actions
         if any(w in msg for w in ["what next", "next step", "what should i do next", "where to start", "next action", "next milestone"]):
             return "NEXT_STEPS"
 
-        # 7. What if / simulation
+        # 8. What if / simulation
         if any(w in msg for w in ["what if", "simulate", "strong study week", "weak study week", "study-week simulation"]):
             return "WHAT_IF"
 
-        # 8. Skill gaps
+        # 9. Skill gaps
         if any(w in msg for w in ["improve", "lagging", "weakness", "gaps", "what should i improve", "need to learn", "where am i lagging"]):
             return "SKILL_GAPS"
 
-        # 9. Mastery Status / Readiness
-        if any(w in msg for w in ["what's missing", "whats missing", "placement readiness", "mastery status", "readiness status"]):
+        # 10. Mastery Status / Readiness
+        if any(w in msg for w in ["what's missing", "whats missing", "placement readiness", "mastery status", "readiness status", "how am i doing", "my progress", "how am i progressing"]):
             return "MASTERY_STATUS"
 
-        # 10. What I know / Mastery
+        # 11. What I know / Mastery
         if any(w in msg for w in ["what i know", "my skills", "strengths", "what do i know", "my background", "mastered", "readiness", "placement ready"]):
             return "WHAT_I_KNOW"
 
-        # 10. Vague goal
+        # 12. Vague goal
         if any(w in msg for w in ["undecided", "don't know", "dont know", "not sure", "confused", "career options", "explore"]):
             return "VAGUE_GOAL"
 
-        # 11. Plan diff
+        # 13. Plan diff
         if any(w in msg for w in ["why did my plan change", "plan change", "what changed", "diff", "adapted"]):
             return "PLAN_DIFF"
 
         return "GENERAL_ACADEMIC"
+
 
     def handle_message(self, student_id: str, message: str) -> Dict[str, Any]:
         """Main multi-turn conversation handler."""
@@ -171,7 +245,11 @@ class BuddyRouter:
                 credit_cap=(plan_obj or {}).get("credit_cap"),
             ).model_dump()
         except Exception:
-            pass
+            logger.exception("Failed to build student summary for buddy context")
+            factual_context["student_summary_degraded"] = True
+
+        from backend.rules.params import get_standard_credit_cap
+        standard_cap = get_standard_credit_cap()
 
         # Handle Intent Execution
         if intent == "APPLY_PROPOSAL":
@@ -185,9 +263,11 @@ class BuddyRouter:
                     course_code=pending["course_code"]
                 )
                 buddy_memory.clear_pending_proposal(student_id)
+                cap = float(res.get("credit_cap") or standard_cap)
+                new_credits = res.get("new_credits", 0.0)
                 deterministic_reply = (
                     f"Applied! Added **{pending['course_code']}** ({pending.get('credits', 3.0)} cr) to "
-                    f"Semester {pending['semester']}. New semester workload: **{res.get('new_credits', 24.0):.1f} / 24.0 credits**. "
+                    f"Semester {pending['semester']}. New semester workload: **{new_credits:.1f} / {cap:.1f} credits**. "
                     "Your active plan has been updated and re-verified."
                 )
             else:
@@ -196,14 +276,15 @@ class BuddyRouter:
 
         elif intent == "CREDIT_OVERLOAD":
             tools_called.append("tools.what_if")
+            cap = standard_cap
             factual_context["overload_check"] = tools.what_if(student_id, "35 credits")
             deterministic_reply = (
-                "Under IIT Bhilai B.Tech CSE academic ordinances, semester workload is strictly capped at a "
-                "maximum of **24.0 credits per regular semester**. Registering for 35 credits is not permitted.\n\n"
+                f"Working assumption of {cap:.1f} credits per semester (pending official ordinance). "
+                f"Registering for 35 credits is not permitted under current planning constraints.\n\n"
                 "**Recommended Alternative:**\n"
-                "Spread the desired courses over regular upcoming semesters and approved summer terms "
-                "(up to 24.0 credits per semester) to ensure compliance and balanced academic progression.\n\n"
-                "**Citation:** IIT Bhilai B.Tech Ordinance §Workload Regulations (24.0 credit ceiling)."
+                f"Spread the desired courses over regular upcoming semesters and approved summer terms "
+                f"(up to {cap:.1f} credits per semester) to ensure compliance and balanced academic progression.\n\n"
+                f"**Policy Note:** Working assumption of {cap:.1f} credits per semester (pending official ordinance)."
             )
             return self._finalize_turn(student_id, message, turn_id, intent, tools_called, factual_context, deterministic_reply, None)
 
@@ -218,16 +299,35 @@ class BuddyRouter:
 
             eligible_data = tools.list_eligible(student_id, semester=target_sem, max_credits=target_creds)
             factual_context["eligible_data"] = eligible_data
-            headroom = eligible_data.get("headroom", 5.0)
+
+            if eligible_data.get("status") == "no_plan" or "credit_cap" not in eligible_data:
+                deterministic_reply = "I can't see your current plan; generate one first so I can inspect your eligible credits and electives."
+                return self._finalize_turn(student_id, message, turn_id, intent, tools_called, factual_context, deterministic_reply, None)
+
+            current_credits = float(eligible_data["current_credits"])
+            credit_cap = float(eligible_data["credit_cap"])
+            headroom = eligible_data.get("headroom", max(0.0, credit_cap - current_credits))
             eligible_courses = eligible_data.get("eligible_courses", [])
             combinations = eligible_data.get("suggested_combinations", [])
 
+            # Determine target role / goal without invented fallback
+            goal_title = profile.target_role
+            if not goal_title:
+                try:
+                    from backend.db.seed_profile import get_seed_dir
+                    with open(get_seed_dir() / "goal_templates.json", "r", encoding="utf-8") as f:
+                        gtpls = {g["goal_id"]: g for g in json.load(f)}
+                    goal_title = gtpls.get(profile.goal_id, {}).get("title")
+                except Exception:
+                    pass
+            goal_display = goal_title or "your academic path"
+
             # Format deterministic response
             lines = [
-                f"In Semester {target_sem}, your plan currently has {eligible_data.get('current_credits', 19.0):.1f} / "
-                f"{eligible_data.get('credit_cap', 24.0):.1f} credits, leaving **{headroom:.1f} credits of available headroom**.\n"
+                f"In Semester {target_sem}, your plan currently has {current_credits:.1f} / "
+                f"{credit_cap:.1f} credits, leaving **{headroom:.1f} credits of available headroom**.\n"
             ]
-            lines.append(f"Based on your goal (**{profile.target_role or 'UPSC Civil Services'}**) and expressed interests, here are top eligible electives:\n")
+            lines.append(f"Based on your goal (**{goal_display}**) and expressed interests, here are top eligible electives:\n")
 
             for idx, c in enumerate(eligible_courses[:4], 1):
                 match_str = f" [Matches: {c['match_interest']}]" if c.get("match_interest") else ""
@@ -251,7 +351,7 @@ class BuddyRouter:
                 buddy_memory.set_pending_proposal(student_id, proposal)
                 lines.append(
                     f"\n**Proposal:** Add **{top_course['code']}** ({top_course['credits']:.1f} cr) to Semester {target_sem}. "
-                    f"Workload will become {eligible_data.get('current_credits', 19.0) + top_course['credits']:.1f}/24.0 credits. "
+                    f"Workload will become {current_credits + top_course['credits']:.1f}/{credit_cap:.1f} credits. "
                     f"Click **Apply** below to confirm."
                 )
 
@@ -279,9 +379,10 @@ class BuddyRouter:
                     "button_text": f"Drop {target_code} from Semester {target_sem}"
                 }
                 buddy_memory.set_pending_proposal(student_id, proposal)
+                cap = float(drop_check.get("credit_cap") or standard_cap)
                 deterministic_reply = (
                     f"Proposal: Drop **{target_code}** ({drop_check['credits']} cr) from Semester {target_sem}. "
-                    f"New workload: {drop_check['new_credits']:.1f} / 24.0 credits. Click **Apply** to confirm."
+                    f"New workload: {drop_check['new_credits']:.1f} / {cap:.1f} credits. Click **Apply** to confirm."
                 )
 
         elif intent == "EXPLAIN_COURSE":
@@ -371,7 +472,7 @@ class BuddyRouter:
                 f"I can help you tailor your degree roadmap, {profile.name}! Which of these career pathways best matches your focus?\n"
                 "1. **Software / IT** (Systems, Web, Cloud, AI/ML)\n"
                 "2. **Higher Studies** (Research, Algorithms, Theory, MS/PhD)\n"
-                "3. **UPSC Civil Services** (HSS Electives, General Studies baseline)\n"
+                "3. **UPSC Preparation** (HSS Electives, General Studies baseline)\n"
                 "4. **Startup & Entrepreneurship** (Product, Systems architecture, Prototyping)\n\n"
                 "Reply with your choice and I will adjust your elective recommendations accordingly."
             )
@@ -421,10 +522,12 @@ class BuddyRouter:
         for turn in recent_history:
             messages.append({"role": turn["role"], "content": turn["content"]})
 
+        bounded_facts = build_bounded_context(factual_context, budget_tokens=1500)
+
         messages.append({
             "role": "user",
             "content": (
-                f"Factual Context:\n{json.dumps(factual_context, default=str)}\n\n"
+                f"Factual Context:\n{json.dumps(bounded_facts, default=str)}\n\n"
                 f"Deterministic Grounded Answer:\n{deterministic_reply}\n\n"
                 f"Student Message: {message}"
             )
@@ -438,8 +541,51 @@ class BuddyRouter:
             fallback_data={"deterministic_reply": deterministic_reply}
         )
 
-        final_reply = live_response.get("content", deterministic_reply)
+        live_content = live_response.get("content", deterministic_reply)
+
+        # Output Verification Layer: check all cited course codes against official catalogue
+        from backend.buddy.safety import load_valid_course_codes
+        valid_codes = load_valid_course_codes()
+        extracted_codes = set(re.findall(r"\b[A-Z]{2,4}[0-9]{3}\b", live_content))
+        hallucinated_codes = [c for c in extracted_codes if c.upper() not in valid_codes]
+
+        if hallucinated_codes:
+            logger.warning("Output verifier: hallucinated course codes %s in reply. Attempting regeneration.", hallucinated_codes)
+            retry_messages = list(messages) + [
+                {"role": "assistant", "content": live_content},
+                {"role": "user", "content": f"Verification error: The following course codes do not exist in the official IIT Bhilai catalogue: {hallucinated_codes}. Regenerate using only verified course codes from context or return the deterministic reply."}
+            ]
+            try:
+                retry_resp = llm_client.generate(
+                    call_type="BUDDY_CHAT",
+                    messages=retry_messages,
+                    temperature=0.0,
+                    max_tokens=450,
+                    fallback_data={"deterministic_reply": deterministic_reply}
+                )
+                retry_content = retry_resp.get("content", deterministic_reply)
+                retry_codes = set(re.findall(r"\b[A-Z]{2,4}[0-9]{3}\b", retry_content))
+                if any(c.upper() not in valid_codes for c in retry_codes):
+                    final_reply = BuddySafety.intercept_and_verify_course_codes(deterministic_reply)
+                else:
+                    final_reply = retry_content
+            except Exception:
+                final_reply = BuddySafety.intercept_and_verify_course_codes(deterministic_reply)
+        else:
+            final_reply = live_content
+
         final_reply = BuddySafety.intercept_and_verify_course_codes(final_reply)
+
+        # Ensure diagnostic guidance is explicitly present when evidence is insufficient
+        summary_info = factual_context.get("student_summary", {})
+        if summary_info.get("status") == "insufficient_evidence":
+            status_msg = summary_info.get("status_message", "Take a diagnostic check to estimate your readiness.")
+            if "diagnostic" not in final_reply.lower():
+                final_reply = f"{final_reply}\n\n{status_msg}"
+
+        if factual_context.get("student_summary_degraded"):
+            if "partial" not in final_reply.lower():
+                final_reply = f"[Notice: Academic context is partial due to an internal summary loading error]\n\n{final_reply}"
 
         buddy_memory.record_turn(student_id, "user", message)
         buddy_memory.record_turn(

@@ -1135,6 +1135,7 @@ function isCourseLockedCore(code, type) {
 
 function togglePlanValidityPopover(event) {
   if (event) event.stopPropagation();
+  openCertificateDrawer();
   const pop = document.getElementById('plan-validity-popover');
   if (pop) {
     pop.style.display = pop.style.display === 'none' || !pop.style.display ? 'block' : 'none';
@@ -1729,7 +1730,8 @@ async function runSandboxCode() {
     if (nextBtn) nextBtn.style.display = 'inline-block';
 
     if (out) {
-      out.innerText = `Evidence logged for ${toTitleCase(result.skill_name || result.skill_id)}.`;
+      const scorePct = result.score !== undefined ? Math.round(result.score * 100) : 100;
+      out.innerText = `Score: ${scorePct}% · Evidence logged for ${toTitleCase(result.skill_name || result.skill_id)}.`;
     }
 
     api.getSkills(state.studentId).then(skills => {
@@ -2510,7 +2512,7 @@ async function runSelectedScenario() {
     const isValid = result.validation?.is_valid !== false;
 
     if (output) {
-      output.innerText = `Scenario: ${result.scenario_name || scenarioId}\n\nOutcome Rationale:\n${result.explanation || result.status || 'Scenario executed successfully.'}\n\nBefore vs After Plan Diff:\n+ Added Courses: ${added}\n- Deferred / Excluded: ${removed}\nValidation Status: ${isValid ? 'PASSED (Compliant with Degree Ordinances)' : 'FAILED'}`;
+      output.innerText = `Scenario: ${result.scenario_name || scenarioId}\n\nOutcome Rationale:\n${result.explanation || result.status || 'Scenario executed successfully.'}\n\nBefore vs After Plan Diff:\n+ Added Courses: ${added}\n- Deferred / Excluded: ${removed}\nValidation: ${isValid ? 'passed (Compliant with Degree Ordinances)' : 'failed'}\nValidation Status: ${isValid ? 'PASSED (Compliant with Degree Ordinances)' : 'FAILED'}`;
     }
   } catch (error) {
     if (output) output.innerText = `Simulation failed: ${error.message || 'Unknown error'}`;

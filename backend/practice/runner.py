@@ -173,6 +173,7 @@ class ExerciseRunner:
 
     def _grade_code(self, exercise: Dict[str, Any], code_str: str) -> Dict[str, Any]:
         import backend.config
+        import tempfile
         is_disabled = (
             os.getenv("DISABLE_CODE_EXERCISES", "").lower() in ("true", "1", "yes")
             if os.getenv("DISABLE_CODE_EXERCISES") is not None
@@ -192,35 +193,48 @@ class ExerciseRunner:
                 "disabled": True
             }
 
-        worker_path = Path(__file__).with_name("code_worker.py")
-        clean_env = {
-            "SYSTEMROOT": os.environ.get("SYSTEMROOT", ""),
-            "SYSTEMDRIVE": os.environ.get("SYSTEMDRIVE", ""),
-            "WINDIR": os.environ.get("WINDIR", ""),
-            "TEMP": os.environ.get("TEMP", ""),
-            "TMP": os.environ.get("TMP", ""),
-            "PATH": os.environ.get("PATH", ""),
-            "PYTHONPATH": str(worker_path.parents[2]),
-        }
-        try:
-            process = subprocess.run(
-                [sys.executable, "-m", "backend.practice.code_worker"],
-                input=json.dumps({"exercise": exercise, "code": code_str}),
-                capture_output=True,
-                text=True,
-                timeout=CODE_EXECUTION_TIMEOUT_SECONDS,
-                cwd=worker_path.parents[2],
-                env=clean_env,
-                check=False,
-            )
-        except subprocess.TimeoutExpired:
+        # Note: In production environments, wrap execution inside a containerized sandbox
+        # with `docker run --network none --security-opt no-new-privileges:true`.
+        worker_path = Path(__file__).with_name("code_worker.py").resolve()
+        with tempfile.TemporaryDirectory() as temp_dir:
+            clean_env = {
+                "SYSTEMROOT": os.environ.get("SYSTEMROOT", ""),
+                "SYSTEMDRIVE": os.environ.get("SYSTEMDRIVE", ""),
+                "WINDIR": os.environ.get("WINDIR", ""),
+                "TEMP": temp_dir,
+                "TMP": temp_dir,
+                "PATH": os.environ.get("PATH", ""),
+            }
+            try:
+                process = subprocess.run(
+                    [sys.executable, "-I", "-S", str(worker_path)],
+                    input=json.dumps({"exercise": exercise, "code": code_str}),
+                    capture_output=True,
+                    text=True,
+                    timeout=CODE_EXECUTION_TIMEOUT_SECONDS,
+                    cwd=temp_dir,
+                    env=clean_env,
+                    check=False,
+                )
+            except subprocess.TimeoutExpired:
+                return {
+                    "score": 0.0,
+                    "is_correct": False,
+                    "feedback": "Timeout: code execution exceeded the 3-second limit.",
+                    "passed_tests": 0,
+                    "total_tests": 0,
+                }
+
+        MAX_OUTPUT_CHARS = 65536
+        if len(process.stdout) > MAX_OUTPUT_CHARS:
             return {
                 "score": 0.0,
                 "is_correct": False,
-                "feedback": "Timeout: code execution exceeded the 3-second limit.",
+                "feedback": "Code execution failed: output limit exceeded.",
                 "passed_tests": 0,
                 "total_tests": 0,
             }
+
         if process.returncode == 0:
             try:
                 result = json.loads(process.stdout)

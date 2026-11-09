@@ -15,6 +15,11 @@ from backend.planner.explainer import plan_explainer
 from backend.adapt.policy import adaptation_policy_engine, AdaptationAction
 from backend.llm.client import llm_client
 from backend.rules import rule_registry
+from backend.rules.params import (
+    get_standard_credit_cap,
+    get_min_semester_credits,
+    get_overload_credit_cap,
+)
 
 SCRIPTED_SCENARIOS = [
     {
@@ -23,7 +28,6 @@ SCRIPTED_SCENARIOS = [
         "category": "Academic Performance",
         "description": "Student demonstrates mastery in Data Structures & Algorithms. Satisfies prerequisite hurdle early, advances higher-level systems electives, and compresses graduation pathway.",
         "icon": "zap",
-        "default_student_id": "BH-SW-001"
     },
     {
         "id": "scenario_weak_quiz",
@@ -31,7 +35,6 @@ SCRIPTED_SCENARIOS = [
         "category": "Academic Performance",
         "description": "Student struggles on DSA assessment. System diagnoses foundational gap, inserts targeted remedial practice drills, defers advanced courses to later semesters, and adjusts workload.",
         "icon": "alert-triangle",
-        "default_student_id": "BH-SW-001"
     },
     {
         "id": "scenario_course_override",
@@ -39,7 +42,6 @@ SCRIPTED_SCENARIOS = [
         "category": "Student Preference",
         "description": "Student overrides buddy recommendation by rejecting CSL303 (Database Management Systems). Planner re-solves with exclusion constraint, finds a valid alternative, and quantifies trade-offs.",
         "icon": "shield-off",
-        "default_student_id": "BH-SW-001"
     },
     {
         "id": "scenario_behavioural_drift",
@@ -47,7 +49,6 @@ SCRIPTED_SCENARIOS = [
         "category": "Engagement Drift",
         "description": "Logged study engagement drops to 3 hrs/week. System detects burnout risk (<60% target), sheds non-core elective load, and issues a supportive pacing notification.",
         "icon": "trending-down",
-        "default_student_id": "BH-SW-001"
     },
     {
         "id": "scenario_strong_study_week",
@@ -55,7 +56,6 @@ SCRIPTED_SCENARIOS = [
         "category": "Study Engagement",
         "description": "Student logs consistent daily study sessions totaling 20 hours (100% adherence). System confirms On Track status, detects strong momentum, and maintains full curriculum progression.",
         "icon": "award",
-        "default_student_id": "BH-SW-001"
     },
     {
         "id": "scenario_weak_study_week",
@@ -63,7 +63,6 @@ SCRIPTED_SCENARIOS = [
         "category": "Study Engagement",
         "description": "Student logs only 4 hours this week (<50% adherence). System flags Behind status, detects burnout or pacing drift, sheds upcoming elective load to 16 credits, and recommends load lightening.",
         "icon": "alert-circle",
-        "default_student_id": "BH-SW-001"
     },
     {
         "id": "scenario_fast_forward",
@@ -71,7 +70,6 @@ SCRIPTED_SCENARIOS = [
         "category": "Curriculum Simulation",
         "description": "Fast-forwards time by simulating Semester 4 completion with Grade A in CSL202. Recalculates Bayesian mastery and advances remaining curriculum to Semesters 5 & 6.",
         "icon": "fast-forward",
-        "default_student_id": "BH-SW-001"
     }
 ]
 
@@ -139,7 +137,7 @@ class AdaptationSimulator:
             completed_courses=[c.course_code for c in profile.completed_courses],
             skill_gaps=gaps_data.get("gaps", []),
             goal_id=profile.goal_id,
-            credit_cap=22.0
+            credit_cap=get_standard_credit_cap()
         )
         val = independent_validator.validate_plan(plan, profile.model_dump())
         diff = {"reason": "Initial baseline plan generation"}
@@ -173,7 +171,7 @@ class AdaptationSimulator:
                 explanation
             ))
 
-    def run_strong_quiz(self, student_id: str = "BH-SW-001") -> Dict[str, Any]:
+    def run_strong_quiz(self, student_id: str) -> Dict[str, Any]:
         """Simulates student acing DSA Mid-Semester Quiz (95%)."""
         old_plan = self.get_latest_or_initial_plan(student_id)
         profile = StudentStore.get_profile(student_id)
@@ -213,6 +211,7 @@ class AdaptationSimulator:
         gaps_data = diagnostic_engine.compute_skill_gaps(student_id, goal_id=profile.goal_id)
 
         # Allow overload / acceleration
+        strong_cap = get_overload_credit_cap() if profile.cgpa >= 8.0 else get_standard_credit_cap()
         new_plan = multi_semester_planner.plan_curriculum(
             student_id=student_id,
             programme_code=profile.programme,
@@ -221,7 +220,7 @@ class AdaptationSimulator:
             completed_courses=[c.course_code for c in profile.completed_courses],
             skill_gaps=gaps_data.get("gaps", []),
             goal_id=profile.goal_id,
-            credit_cap=24.0,
+            credit_cap=strong_cap,
             overload_allowed=True
         )
 
@@ -260,7 +259,7 @@ class AdaptationSimulator:
             "adapted_plan": new_plan
         }
 
-    def run_weak_quiz(self, student_id: str = "BH-SW-001") -> Dict[str, Any]:
+    def run_weak_quiz(self, student_id: str) -> Dict[str, Any]:
         """Simulates student struggling on DSA assessment (25%)."""
         old_plan = self.get_latest_or_initial_plan(student_id)
         profile = StudentStore.get_profile(student_id)
@@ -350,7 +349,7 @@ class AdaptationSimulator:
             "adapted_plan": new_plan
         }
 
-    def run_course_override(self, student_id: str = "BH-SW-001", rejected_course: str = "CSL303") -> Dict[str, Any]:
+    def run_course_override(self, student_id: str, rejected_course: str = "CSL303") -> Dict[str, Any]:
         """Simulates student rejecting a course (e.g., CSL303 Database Systems)."""
         old_plan = self.get_latest_or_initial_plan(student_id)
         profile = StudentStore.get_profile(student_id)
@@ -372,7 +371,7 @@ class AdaptationSimulator:
             completed_courses=[c.course_code for c in profile.completed_courses],
             skill_gaps=gaps_data.get("gaps", []),
             goal_id=profile.goal_id,
-            credit_cap=22.0,
+            credit_cap=get_standard_credit_cap(),
             excluded_courses=[rejected_course]
         )
 
@@ -420,7 +419,7 @@ class AdaptationSimulator:
             "adapted_plan": new_plan
         }
 
-    def run_behavioural_drift(self, student_id: str = "BH-SW-001", logged_weekly_hours: float = 3.0) -> Dict[str, Any]:
+    def run_behavioural_drift(self, student_id: str, logged_weekly_hours: float = 3.0) -> Dict[str, Any]:
         """Simulates engagement drop (< 60% of target weekly study hours)."""
         old_plan = self.get_latest_or_initial_plan(student_id)
         profile = StudentStore.get_profile(student_id)
@@ -432,8 +431,9 @@ class AdaptationSimulator:
             signals={"actual_weekly_hours": logged_weekly_hours, "target_weekly_hours": target_hours}
         )
 
-        # 2. Shed load: constrain semester to minimum viable load (e.g. 16 credits)
+        # 2. Shed load: constrain semester to minimum viable load (e.g. min_credits)
         gaps_data = diagnostic_engine.compute_skill_gaps(student_id, goal_id=profile.goal_id)
+        min_cap = get_min_semester_credits()
 
         new_plan = multi_semester_planner.plan_curriculum(
             student_id=student_id,
@@ -443,7 +443,7 @@ class AdaptationSimulator:
             completed_courses=[c.course_code for c in profile.completed_courses],
             skill_gaps=gaps_data.get("gaps", []),
             goal_id=profile.goal_id,
-            credit_cap=16.0,
+            credit_cap=min_cap,
             overload_allowed=False
         )
 
@@ -451,20 +451,20 @@ class AdaptationSimulator:
         diff = plan_explainer.generate_plan_diff(
             old_plan=old_plan,
             new_plan=new_plan,
-            reason_for_change=f"Behavioural Drift ({logged_weekly_hours} hrs/wk vs {target_hours} hrs/wk) - Load shed to 16 credits"
+            reason_for_change=f"Behavioural Drift ({logged_weekly_hours} hrs/wk vs {target_hours} hrs/wk) - Load shed to {min_cap} credits"
         )
         self.persist_adapted_plan(student_id, new_plan, diff, val)
 
         explanation = (
             f"We noticed your study engagement dropped to {logged_weekly_hours} hours/week "
             f"(target: {target_hours} hrs/wk). To prevent burnout, your upcoming semester has been "
-            f"lightened to 16 credits, deferring elective load to later terms."
+            f"lightened to {min_cap} credits, deferring elective load to later terms."
         )
 
         self.log_adaptation_event(
             student_id, f"Logged {logged_weekly_hours} hrs/wk", "LOAD_SHED",
             {"weekly_hours_target": target_hours},
-            {"weekly_hours_actual": logged_weekly_hours, "new_credit_cap": 16.0},
+            {"weekly_hours_actual": logged_weekly_hours, "new_credit_cap": min_cap},
             diff, explanation
         )
 
@@ -481,7 +481,7 @@ class AdaptationSimulator:
             "adapted_plan": new_plan
         }
 
-    def run_fast_forward(self, student_id: str = "BH-SW-001") -> Dict[str, Any]:
+    def run_fast_forward(self, student_id: str) -> Dict[str, Any]:
         """Simulates advancing from Semester 4 to Semester 5 with completed course progress."""
         profile = StudentStore.get_profile(student_id)
         if not profile:
@@ -528,7 +528,7 @@ class AdaptationSimulator:
             completed_courses=[c.course_code for c in profile.completed_courses],
             skill_gaps=gaps_data.get("gaps", []),
             goal_id=profile.goal_id,
-            credit_cap=22.0
+            credit_cap=get_standard_credit_cap()
         )
 
         val = independent_validator.validate_plan(new_plan, profile.model_dump())
@@ -565,7 +565,7 @@ class AdaptationSimulator:
 
     def run_study_week_simulation(
         self,
-        student_id: str = "BH-SW-001",
+        student_id: str,
         weekly_hours: float = 20.0,
         scenario_id: str = "scenario_strong_study_week",
     ) -> Dict[str, Any]:
@@ -600,7 +600,8 @@ class AdaptationSimulator:
             signals={"actual_weekly_hours": weekly_hours, "target_weekly_hours": target_hours}
         )
 
-        credit_cap = 24.0 if is_strong else 16.0
+        std_cap = get_standard_credit_cap()
+        credit_cap = std_cap if is_strong else 16.0
         gaps_data = diagnostic_engine.compute_skill_gaps(student_id, goal_id=profile.goal_id)
 
         new_plan = multi_semester_planner.plan_curriculum(
@@ -633,7 +634,7 @@ class AdaptationSimulator:
             explanation = (
                 f"Your study engagement dropped to {weekly_hours} hours this week "
                 f"({adherence}% adherence against your {target_hours}h target). Your status is flagged as Behind. "
-                f"To keep your academic load sustainable, upcoming semester credits have been capped at 16 credits."
+                f"To keep your academic load sustainable, upcoming semester credits have been capped at {credit_cap} credits."
             )
 
         status_after = "on_track" if is_strong else "behind"
@@ -662,7 +663,7 @@ class AdaptationSimulator:
             "adapted_plan": new_plan
         }
 
-    def execute_scenario(self, scenario_id: str, student_id: str = "BH-SW-001", params: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def execute_scenario(self, scenario_id: str, student_id: str, params: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Dispatches execution to the corresponding scenario simulation handler."""
         p = params or {}
         if scenario_id == "scenario_strong_quiz":

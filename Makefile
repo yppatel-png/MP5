@@ -1,7 +1,8 @@
-.PHONY: up down reset test eval validate clean help smoke verify
+.PHONY: up down reset test eval validate clean help smoke verify pipeline
 
 help:
 	@echo "Available commands:"
+	@echo "  make pipeline - Run automated data ingestion, validation, and chunking pipeline"
 	@echo "  make up       - Start all services with docker-compose"
 	@echo "  make down     - Stop all services"
 	@echo "  make seed     - Load seed data into database"
@@ -11,6 +12,9 @@ help:
 	@echo "  make eval     - Run student profile evaluation harness"
 	@echo "  make validate - Run knowledge base integrity validator"
 	@echo "  make verify   - Run full end-to-end automated verification suite"
+
+pipeline:
+	python run_pipeline.py
 
 up:
 	docker compose up --build

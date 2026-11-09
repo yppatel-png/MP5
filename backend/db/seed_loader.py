@@ -73,10 +73,15 @@ def load_seed_data(reset: bool = False):
         # 2. Courses
         courses = load_json("courses.json")
         for c in courses:
+            course_type = c.get("course_type") or c.get("type", "core")
+            source = c.get("source", "IIT Bhilai Courses of Study")
+            last_verified = c.get("last_verified", "2026-11-06")
+            syl = json.dumps(c.get("syllabus")) if isinstance(c.get("syllabus"), (list, dict)) else c.get("syllabus")
+            objs = json.dumps(c.get("learning_objectives")) if isinstance(c.get("learning_objectives"), (list, dict)) else c.get("learning_objectives")
             cur.execute("""
             INSERT OR REPLACE INTO courses (code, title, department, credits, semester_offered, course_type, mode, level, workload_hours_per_week, syllabus, learning_objectives, source, last_verified)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
-            """, (c["code"], c["title"], c["department"], c["credits"], c["semester_offered"], c["course_type"], c.get("mode", "offline"), c.get("level", "undergraduate"), c.get("workload_hours_per_week"), c.get("syllabus"), c.get("learning_objectives"), c["source"], c["last_verified"]))
+            """, (c["code"], c["title"], c["department"], c["credits"], c["semester_offered"], course_type, c.get("mode", "offline"), c.get("level", "undergraduate"), c.get("workload_hours_per_week"), syl, objs, source, last_verified))
         counts["courses"] = len(courses)
 
         # 3. Prerequisites

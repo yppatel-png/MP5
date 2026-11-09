@@ -10,6 +10,7 @@ from typing import List, Dict, Any, Set
 from pathlib import Path
 from backend.rules.base import RuleStatus
 from backend.rules.registry import rule_registry
+from backend.rules.params import get_overload_cgpa_threshold, get_overload_credit_cap, get_standard_credit_cap
 from backend.db.seed_profile import get_institute_profile, get_seed_dir
 
 SEED_DIR = get_seed_dir()
@@ -164,7 +165,8 @@ class IndependentPlanValidator:
         # Rule 4: Credit Ceiling (Max Credits per Semester)
         # -------------------------------------------------------------------
         credit_cap_violations = []
-        max_credit_allowed = 24.0 if cgpa >= 8.5 else 22.0
+        overload_thresh = get_overload_cgpa_threshold()
+        max_credit_allowed = get_overload_credit_cap() if cgpa >= overload_thresh else get_standard_credit_cap()
         for sem in semesters:
             s_num = sem["semester_number"]
             credits_in_sem = sum(c["credits"] for c in sem.get("courses", []))
@@ -265,7 +267,8 @@ class IndependentPlanValidator:
             s_num = sem["semester_number"]
             workload = sum(c.get("workload_hours_per_week", 10.0) for c in sem.get("courses", []))
             est_self_study = workload * 0.35
-            if workload > 48.0 or (est_self_study > max_allowed_hours * 2.0 and est_self_study > 22.0):
+            std_cap = get_standard_credit_cap()
+            if workload > 48.0 or (est_self_study > max_allowed_hours * 2.0 and est_self_study > std_cap):
                 weekly_violations.append(f"Semester {s_num} workload ({workload} hrs/wk) exceeds sustainable headroom.")
 
         passed_r8 = len(weekly_violations) == 0

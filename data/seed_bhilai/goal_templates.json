@@ -63,7 +63,71 @@
       }
     ],
     "source": "Team-authored development goal; not an IIT Bhilai academic requirement",
-    "provenance": "team_authored"
+    "provenance": "team_authored",
+    "preferred_electives": [
+      {
+        "code": "CSL559",
+        "reason": "Computer Systems Design builds industry-ready backend architecture skills.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL518",
+        "reason": "Distributed Algorithms provides foundational knowledge for scalable cloud microservices.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL512",
+        "reason": "Parallel Algorithms prepares for high-throughput computing workloads.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL505",
+        "reason": "Randomized Algorithms enhances algorithmic problem-solving for technical roles.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL504",
+        "reason": "Complexity Theory reinforces theoretical bounds for efficient algorithm design.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL515",
+        "reason": "Machine Learning equips software engineers with practical AI integration abilities.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL510",
+        "reason": "Approximation Algorithms provides heuristics for NP-hard optimization in production.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL511",
+        "reason": "Computer Architecture grounds software optimization in underlying hardware realities.",
+        "provenance": "team_authored"
+      }
+    ],
+    "preferred_liberal_arts": [
+      {
+        "code": "LAL201",
+        "reason": "Liberal Arts requirement: microeconomic principles of market dynamics, tech pricing, and cost structures.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "LAL225",
+        "reason": "Liberal Arts requirement: engineering ethics, algorithmic accountability, and public policy.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "LAL200",
+        "reason": "Liberal Arts requirement: macroeconomic perspectives on technological shifts and industrial growth.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "LAL224",
+        "reason": "Liberal Arts requirement: workplace psychology and engineering team collaboration.",
+        "provenance": "team_authored"
+      }
+    ]
   },
   {
     "goal_id": "goal_higher_studies",
@@ -124,7 +188,71 @@
       }
     ],
     "source": "Team-authored development goal; not an IIT Bhilai academic requirement",
-    "provenance": "team_authored"
+    "provenance": "team_authored",
+    "preferred_electives": [
+      {
+        "code": "CSL515",
+        "reason": "Machine Learning: essential core for modern computing research and graduate studies.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL510",
+        "reason": "Approximation Algorithms: rigorous theoretical foundation for research-level algorithmic problems.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL518",
+        "reason": "Distributed Algorithms: fundamental principles for distributed systems research.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL511",
+        "reason": "Computer Architecture: core systems research prerequisite for graduate programmes.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL504",
+        "reason": "Complexity Theory: mathematical foundation for computational complexity and theoretical CS.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL512",
+        "reason": "Parallel Algorithms: algorithmic design for modern multi-core and accelerator architectures.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL559",
+        "reason": "Computer Systems Design: systems prototyping and benchmarking for experimental research.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL505",
+        "reason": "Randomized Algorithms: probabilistic methods and randomized data structures for advanced research.",
+        "provenance": "team_authored"
+      }
+    ],
+    "preferred_liberal_arts": [
+      {
+        "code": "LAL225",
+        "reason": "Liberal Arts requirement: research ethics, data privacy, and academic integrity.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "LAL224",
+        "reason": "Liberal Arts requirement: cognitive resilience and graduate research productivity.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "LAL202",
+        "reason": "Liberal Arts requirement: quantitative econometric modeling supporting empirical research.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "LAL223",
+        "reason": "Liberal Arts requirement: social development frameworks for technology impact analysis.",
+        "provenance": "team_authored"
+      }
+    ]
   },
   {
     "goal_id": "goal_upsc",
@@ -196,7 +324,71 @@
       }
     ],
     "source": "Team-authored development goal; not an IIT Bhilai academic requirement",
-    "provenance": "team_authored"
+    "provenance": "team_authored",
+    "preferred_electives": [
+      {
+        "code": "CSL505",
+        "reason": "Randomized Algorithms: analytical reasoning and logical decision frameworks.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL504",
+        "reason": "Complexity Theory: analytical structure supporting quantitative evaluation.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL510",
+        "reason": "Approximation Algorithms: optimization strategies and quantitative modeling.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL518",
+        "reason": "Distributed Algorithms: large-scale distributed systems and national computing infrastructure.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL515",
+        "reason": "Machine Learning: technology policy and AI governance awareness.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL511",
+        "reason": "Computer Architecture: technology infrastructure fundamentals.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL512",
+        "reason": "Parallel Algorithms: high-performance computing concepts.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL559",
+        "reason": "Computer Systems Design: public sector IT systems design.",
+        "provenance": "team_authored"
+      }
+    ],
+    "preferred_liberal_arts": [
+      {
+        "code": "LAL222",
+        "reason": "Liberal Arts elective: Indian history and urban society literature.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "LAL225",
+        "reason": "Liberal Arts elective: ethics, social integrity, and public value governance.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "LAL200",
+        "reason": "Liberal Arts elective: macroeconomic policy, monetary systems, and economic growth in India.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "LAL221",
+        "reason": "Liberal Arts elective: world history, international developments, and diplomatic contexts.",
+        "provenance": "team_authored"
+      }
+    ]
   },
   {
     "goal_id": "goal_startup",
@@ -257,6 +449,70 @@
       }
     ],
     "source": "Team-authored development goal; not an IIT Bhilai academic requirement",
-    "provenance": "team_authored"
+    "provenance": "team_authored",
+    "preferred_electives": [
+      {
+        "code": "CSL559",
+        "reason": "Computer Systems Design: rapid technical prototyping and robust system design for startup products.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL518",
+        "reason": "Distributed Algorithms: scalable architecture fundamentals for growing web and mobile backends.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL505",
+        "reason": "Randomized Algorithms: efficient algorithms and data filtering for fast-moving products.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL504",
+        "reason": "Complexity Theory: foundational problem-solving and algorithmic feasibility analysis.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL512",
+        "reason": "Parallel Algorithms: data processing speed and multi-threaded performance optimization.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL515",
+        "reason": "Machine Learning: building AI-driven features and personalized user experiences.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL510",
+        "reason": "Approximation Algorithms: practical optimization for logistics and resource allocation.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "CSL511",
+        "reason": "Computer Architecture: hardware resource efficiency and cost-effective cloud scaling.",
+        "provenance": "team_authored"
+      }
+    ],
+    "preferred_liberal_arts": [
+      {
+        "code": "LAL200",
+        "reason": "Liberal Arts elective: macroeconomic analysis for venture market assessment and macro trends.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "LAL201",
+        "reason": "Liberal Arts elective: microeconomics of consumer pricing, elasticity, and platform scaling.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "LAL225",
+        "reason": "Liberal Arts elective: tech governance, regulatory compliance, and venture ethics.",
+        "provenance": "team_authored"
+      },
+      {
+        "code": "LAL224",
+        "reason": "Liberal Arts elective: founder mental resilience and organizational culture building.",
+        "provenance": "team_authored"
+      }
+    ]
   }
 ]

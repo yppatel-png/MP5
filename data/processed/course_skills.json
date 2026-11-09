@@ -1,0 +1,412 @@
+[
+  {
+    "course": "CSL100",
+    "skill": "programming_fundamentals",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 83
+  },
+  {
+    "course": "ECL101",
+    "skill": "computer_architecture",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 21
+  },
+  {
+    "course": "MAL403",
+    "skill": "probability_statistics",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 21
+  },
+  {
+    "course": "CSL201",
+    "skill": "discrete_mathematics",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 83
+  },
+  {
+    "course": "CSL202",
+    "skill": "data_structures",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 83
+  },
+  {
+    "course": "CSL202",
+    "skill": "algorithms",
+    "depth": "intermediate",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 83
+  },
+  {
+    "course": "CSP203",
+    "skill": "software_tools",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 83
+  },
+  {
+    "course": "CSL251",
+    "skill": "computer_architecture",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 83
+  },
+  {
+    "course": "CSL252",
+    "skill": "algorithms",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 84
+  },
+  {
+    "course": "CSL253",
+    "skill": "theory_computation",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 84
+  },
+  {
+    "course": "CSL301",
+    "skill": "operating_systems",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 84
+  },
+  {
+    "course": "CSL302",
+    "skill": "compiler_design",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 84
+  },
+  {
+    "course": "CSL303",
+    "skill": "database_systems",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 85
+  },
+  {
+    "course": "CSL304",
+    "skill": "artificial_intelligence",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 85
+  },
+  {
+    "course": "CSL351",
+    "skill": "computer_networks",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 85
+  },
+  {
+    "course": "CSP352",
+    "skill": "llm_software",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 86
+  },
+  {
+    "course": "CSQ401",
+    "skill": "research_methods",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 87
+  },
+  {
+    "course": "CSQ401",
+    "skill": "communication",
+    "depth": "intermediate",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 87
+  },
+  {
+    "course": "LAL100",
+    "skill": "communication",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 136
+  },
+  {
+    "course": "LAL101",
+    "skill": "finance",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 136
+  },
+  {
+    "course": "CSL504",
+    "skill": "discrete_mathematics",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 88
+  },
+  {
+    "course": "CSL505",
+    "skill": "theory_computation",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 88
+  },
+  {
+    "course": "CSL510",
+    "skill": "algorithms",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 88
+  },
+  {
+    "course": "CSL511",
+    "skill": "formal_verification",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 89
+  },
+  {
+    "course": "CSL512",
+    "skill": "algorithms",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 89
+  },
+  {
+    "course": "CSL515",
+    "skill": "algorithms",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 89
+  },
+  {
+    "course": "CSL515",
+    "skill": "probability_statistics",
+    "depth": "intermediate",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 89
+  },
+  {
+    "course": "CSL518",
+    "skill": "computer_networks",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 90
+  },
+  {
+    "course": "CSL518",
+    "skill": "algorithms",
+    "depth": "intermediate",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 90
+  },
+  {
+    "course": "CSL559",
+    "skill": "software_engineering",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 90
+  },
+  {
+    "course": "CSL559",
+    "skill": "computer_networks",
+    "depth": "intermediate",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 90
+  },
+  {
+    "course": "LAL200",
+    "skill": "macroeconomics",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 137
+  },
+  {
+    "course": "LAL201",
+    "skill": "microeconomics",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 137
+  },
+  {
+    "course": "LAL202",
+    "skill": "international_trade",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 137
+  },
+  {
+    "course": "LAL221",
+    "skill": "literary_analysis",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 138
+  },
+  {
+    "course": "LAL222",
+    "skill": "literary_analysis",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 138
+  },
+  {
+    "course": "LAL223",
+    "skill": "literary_analysis",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 139
+  },
+  {
+    "course": "LAL224",
+    "skill": "literary_analysis",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 139
+  },
+  {
+    "course": "LAL225",
+    "skill": "indian_society",
+    "depth": "intro",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 139
+  },
+  {
+    "course": "MAL201",
+    "skill": "probability_statistics",
+    "depth": "intermediate",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 88
+  },
+  {
+    "course": "MAL201",
+    "skill": "discrete_mathematics",
+    "depth": "intermediate",
+    "weight": 0.75,
+    "source_url": "https://www.iitbhilai.ac.in/index.php?pid=new_schedule_programs",
+    "retrieved_on": "2026-11-06",
+    "source_type": "derived",
+    "source_page": 88
+  }
+]

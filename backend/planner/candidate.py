@@ -5,7 +5,7 @@ the course_skills relational index and BM25 syllabus matching.
 """
 
 import json
-from typing import List, Dict, Any, Set
+from typing import List, Dict, Any, Set, Optional
 from pathlib import Path
 from backend.db.database import get_db_cursor
 from backend.db.seed_profile import get_seed_dir
@@ -37,13 +37,35 @@ class CandidateRetriever:
         skill_gaps: List[Dict[str, Any]],
         completed_course_codes: Set[str],
         programme_code: str = "iit_bhilai_btech_cse_2023",
-        cgpa: float = 8.0
+        cgpa: float = 8.0,
+        skill_matrix: Optional[Dict[str, Any]] = None,
+        interests: Optional[List[str]] = None
     ) -> List[Dict[str, Any]]:
         """
         Retrieves and ranks candidate courses based on skill gap coverage.
-        Filters out already completed courses and checks preliminary eligibility.
+        Filters out already completed courses, drops electives where all targeted skills
+        are already mastered, and integrates student interests.
         """
         scored_courses: Dict[str, Dict[str, Any]] = {}
+
+        # Determine mastered skills (must have real assessment evidence, not just course prior)
+        mastered_skill_ids: Set[str] = set()
+        if skill_matrix:
+            for sk_id, sk_data in skill_matrix.items():
+                ev_count = int(sk_data.get("evidence_count", 0))
+                ev_source = sk_data.get("evidence_source", "")
+                p_m = float(sk_data.get("p_mastery", 0.0))
+                is_mastered_status = bool(sk_data.get("mastered", False) or sk_data.get("status") == "mastered")
+                # Rule: Course grade prior alone is unverified and NOT mastered
+                if (is_mastered_status or p_m >= 0.85) and ev_count >= 2 and ev_source != "course_grade_prior":
+                    mastered_skill_ids.add(sk_id)
+
+        # Map student interests to skill ids
+        interest_skills: Set[str] = set()
+        if interests:
+            from backend.student.interests import INTEREST_TO_SKILLS_MAP
+            for interest in interests:
+                interest_skills.update(INTEREST_TO_SKILLS_MAP.get(interest, []))
 
         # Prioritize gaps with high magnitude and critical flag
         for gap in skill_gaps:
@@ -66,7 +88,7 @@ class CandidateRetriever:
                         "title": course_meta["title"],
                         "credits": course_meta["credits"],
                         "semester_offered": course_meta["semester_offered"],
-                        "course_type": course_meta["course_type"],
+                        "course_type": course_meta.get("course_type", "programme_elective"),
                         "department": course_meta["department"],
                         "level": course_meta.get("level", "undergraduate"),
                         "workload_hours_per_week": (
@@ -78,22 +100,80 @@ class CandidateRetriever:
                         "mode": course_meta.get("mode", "offline"),
                         "skills_targeted": [],
                         "score": 0.0,
-                        "reasons": []
+                        "reasons": [],
+                        "test_out_eligible": False
                     }
 
                 depth_weight = {"intro": 0.7, "intermediate": 1.0, "advanced": 1.2}.get(match.get("depth", "intermediate"), 1.0)
                 contribution = gap_weight * match.get("weight", 1.0) * depth_weight
                 
+                # Bonus if aligns with student declared canonical interests
+                if sk_id in interest_skills:
+                    contribution += 0.35
+
                 scored_courses[code]["score"] += contribution
                 scored_courses[code]["skills_targeted"].append(sk_id)
                 scored_courses[code]["reasons"].append(
                     f"Targets {round(gap.get('gap', 0.5)*100)}% gap in {self.skills.get(sk_id, {}).get('name', sk_id)}; mapping confidence {match.get('confidence', 0.5):.0%}."
                 )
 
-        # Sort candidates deterministically by score descending, then course code
-        ranked = list(scored_courses.values())
-        ranked.sort(key=lambda x: (x["score"], -x["credits"], x["code"]), reverse=True)
-        return ranked
+        # Include courses matching declared canonical interests even if explicit gap vector is empty
+        for sk_id in interest_skills:
+            matching_courses = self.skill_to_courses.get(sk_id, [])
+            for match in matching_courses:
+                code = match["course_code"]
+                if code in completed_course_codes:
+                    continue
+                course_meta = self.courses.get(code)
+                if not course_meta:
+                    continue
+                if code not in scored_courses:
+                    scored_courses[code] = {
+                        "code": code,
+                        "title": course_meta["title"],
+                        "credits": course_meta["credits"],
+                        "semester_offered": course_meta["semester_offered"],
+                        "course_type": course_meta.get("course_type", "programme_elective"),
+                        "department": course_meta["department"],
+                        "level": course_meta.get("level", "undergraduate"),
+                        "workload_hours_per_week": (
+                            course_meta.get("workload_hours_per_week")
+                            or float(course_meta["credits"]) * self.hours_per_credit
+                        ),
+                        "source_page": course_meta.get("source_page"),
+                        "provenance": course_meta.get("provenance", "verified"),
+                        "mode": course_meta.get("mode", "offline"),
+                        "skills_targeted": [sk_id],
+                        "score": 1.5 * match.get("weight", 1.0),
+                        "reasons": [f"Aligns with your declared interest in {self.skills.get(sk_id, {}).get('name', sk_id)}."],
+                        "test_out_eligible": False
+                    }
+                else:
+                    scored_courses[code]["score"] += 0.5 * match.get("weight", 1.0)
+                    if sk_id not in scored_courses[code]["skills_targeted"]:
+                        scored_courses[code]["skills_targeted"].append(sk_id)
+
+
+        final_candidates: List[Dict[str, Any]] = []
+        for code, c_entry in scored_courses.items():
+            c_type = (c_entry.get("course_type") or "").lower()
+            targeted = c_entry.get("skills_targeted", [])
+            all_skills_mastered = len(targeted) > 0 and all(sk in mastered_skill_ids for sk in targeted)
+
+            if all_skills_mastered:
+                # For core courses, retain in requirement structure but expose test_out_eligible
+                if c_type in ["core", "programme_core", "institute_core", "program_compulsory"]:
+                    c_entry["test_out_eligible"] = True
+                    final_candidates.append(c_entry)
+                else:
+                    # Drop elective candidates whose targeted skills are all mastered
+                    continue
+            else:
+                final_candidates.append(c_entry)
+
+        # Sort candidates deterministically by score descending, then -credits, then code
+        final_candidates.sort(key=lambda x: (x["score"], -x["credits"], x["code"]), reverse=True)
+        return final_candidates
 
     def retrieve_resources_for_gaps(self, skill_gaps: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """Retrieves supplementary open learning resources (NPTEL, MIT OCW) covering skill gaps."""
@@ -118,3 +198,8 @@ class CandidateRetriever:
         return matched_resources
 
 candidate_retriever = CandidateRetriever()
+
+def retrieve_candidates_for_gaps(*args, **kwargs):
+    """Module-level wrapper for CandidateRetriever.retrieve_candidates_for_gaps."""
+    return candidate_retriever.retrieve_candidates_for_gaps(*args, **kwargs)
+

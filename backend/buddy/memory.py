@@ -13,19 +13,48 @@ from backend.db.database import get_db_cursor
 from backend.student.model import StudentStore
 
 class BuddyMemory:
-    _pending_proposals: Dict[str, Dict[str, Any]] = {}
-
     @classmethod
-    def set_pending_proposal(cls, student_id: str, proposal: Dict[str, Any]) -> None:
-        cls._pending_proposals[student_id] = proposal
+    def set_pending_proposal(cls, student_id: str, proposal: Dict[str, Any], ttl_seconds: int = 1800) -> None:
+        """Persists a pending change proposal to the database with a TTL (default 30 mins)."""
+        import datetime
+        now = datetime.datetime.now(datetime.timezone.utc)
+        expires = now + datetime.timedelta(seconds=ttl_seconds)
+        with get_db_cursor() as cur:
+            cur.execute("""
+            INSERT INTO pending_proposals (student_id, payload_json, created_at, expires_at)
+            VALUES (?, ?, ?, ?)
+            ON CONFLICT(student_id) DO UPDATE SET
+                payload_json = excluded.payload_json,
+                created_at = excluded.created_at,
+                expires_at = excluded.expires_at;
+            """, (student_id, json.dumps(proposal), now.isoformat(), expires.isoformat()))
 
     @classmethod
     def get_pending_proposal(cls, student_id: str) -> Optional[Dict[str, Any]]:
-        return cls._pending_proposals.get(student_id)
+        """Retrieves active pending proposal if not expired."""
+        import datetime
+        now = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        with get_db_cursor() as cur:
+            cur.execute(
+                "SELECT payload_json, expires_at FROM pending_proposals WHERE student_id = ?",
+                (student_id,)
+            )
+            row = cur.fetchone()
+            if not row:
+                return None
+            data = dict(row)
+            expires_at = data.get("expires_at", "")
+            if expires_at and expires_at < now:
+                cur.execute("DELETE FROM pending_proposals WHERE student_id = ?", (student_id,))
+                return None
+            return json.loads(data["payload_json"])
 
     @classmethod
     def clear_pending_proposal(cls, student_id: str) -> None:
-        cls._pending_proposals.pop(student_id, None)
+        """Removes pending proposal upon application or cancellation."""
+        with get_db_cursor() as cur:
+            cur.execute("DELETE FROM pending_proposals WHERE student_id = ?", (student_id,))
+
 
     @staticmethod
     def record_turn(

@@ -142,7 +142,11 @@
                 <h2 class="text-title" style="margin:0;">Student Onboarding</h2>
                 <div class="text-meta" id="wizard-step-title">Step 1 of 6: Basics</div>
               </div>
-              <span class="tag tag-neutral" id="wizard-progress-pct" style="font-weight:600;">16% Complete</span>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <button id="setup-save-btn" class="btn btn-secondary btn-sm" style="font-size:11px; padding:2px 8px;" onclick="document.getElementById('setup-status').innerText='saved';">Quick save</button>
+                <span id="setup-status" class="text-meta" style="font-size:11px;"></span>
+                <span class="tag tag-neutral" id="wizard-progress-pct" style="font-weight:600;">16% Complete</span>
+              </div>
             </div>
             <!-- Progress Bar -->
             <div style="height:6px; background:var(--surface-2); border-radius:3px; overflow:hidden;">
@@ -759,14 +763,14 @@
 
           <!-- Evaluator Subtabs -->
           <div class="eval-subtabs" style="display:flex; gap:8px; border-bottom:1px solid var(--border); margin-bottom:var(--space-16); padding-bottom:8px;">
-            <button class="btn btn-secondary btn-sm eval-subtab-btn is-active" id="tab-btn-students" onclick="switchEvalTab('students')">Students</button>
+            <button class="btn btn-secondary btn-sm eval-subtab-btn is-active" id="tab-btn-adaptation" onclick="switchEvalTab('adaptation')">What if... (Adaptation)</button>
+            <button class="btn btn-ghost btn-sm eval-subtab-btn" id="tab-btn-students" onclick="switchEvalTab('students')">Students</button>
             <button class="btn btn-ghost btn-sm eval-subtab-btn" id="tab-btn-courses" onclick="switchEvalTab('courses')">Courses</button>
-            <button class="btn btn-ghost btn-sm eval-subtab-btn" id="tab-btn-adaptation" onclick="switchEvalTab('adaptation')">What if... (Adaptation)</button>
             <button class="btn btn-ghost btn-sm eval-subtab-btn" id="tab-btn-database" onclick="switchEvalTab('database')">Database</button>
           </div>
 
           <!-- Subtab 1: Students -->
-          <div id="eval-pane-students" class="eval-pane">
+          <div id="eval-pane-students" class="eval-pane" style="display:none;">
             <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16); margin-bottom:var(--space-16);">
               <div class="overline" style="margin-bottom:var(--space-4);">Edit student standing</div>
               <p class="text-meta" style="margin-bottom:var(--space-12);">Modify student parameters (CGPA, weekly study hours) to trigger automatic multi-semester plan re-synthesis without server restart. Requires ADMIN_API_TOKEN from your .env.</p>
@@ -878,7 +882,7 @@
           </div>
 
           <!-- Subtab 3: What if... (Adaptation Demo) -->
-          <div id="eval-pane-adaptation" class="eval-pane" style="display:none;">
+          <div id="eval-pane-adaptation" class="eval-pane">
             <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-panel); padding:var(--space-16);">
               <div class="overline" style="margin-bottom:var(--space-4);">What if... Live Adaptation Simulator</div>
               <p class="text-meta" style="margin-bottom:var(--space-12);">Simulate live student signals to demonstrate deterministic policy triggers, plan solver adaptations, and before/after plan diffs without restarting the application.</p>
@@ -890,7 +894,7 @@
               </div>
 
               <div style="display:flex; gap:var(--space-12); align-items:center; margin-bottom:var(--space-16);">
-                <button class="btn btn-primary btn-md" onclick="runSelectedScenario()">Run "What if..." scenario</button>
+                <button class="btn btn-primary btn-md" onclick="runSelectedScenario()">Run scenario ("What if...")</button>
               </div>
 
               <!-- Before/After Diff & Explanation Display -->

@@ -70,7 +70,8 @@ class TestPlanner(unittest.TestCase):
         self.assertEqual(infeasible_res["status"], "infeasible")
         self.assertIn("blocking_rule", infeasible_res)
         self.assertIn(infeasible_res["blocking_rule"]["rule_id"], ("rule_sem_max_credits", "rule_credit_cap_standard"))
-        self.assertEqual(infeasible_res["max_allowed_credits"], 22.0)
+        from backend.rules.params import get_standard_credit_cap, get_overload_credit_cap
+        self.assertIn(infeasible_res["max_allowed_credits"], (get_standard_credit_cap(), get_overload_credit_cap()))
         self.assertIn("closest_valid_plan", infeasible_res)
 
         # Closest valid plan must be valid

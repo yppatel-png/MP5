@@ -48,9 +48,11 @@ class ExerciseListItem(BaseModel):
 def list_exercises(
     skill_id: Optional[str] = None,
     module_id: Optional[str] = None,
-    exercise_type: Optional[str] = None
+    exercise_type: Optional[str] = None,
+    student_id: Optional[str] = None,
+    skip_mastered: bool = False
 ) -> List[Dict[str, Any]]:
-    """Lists practice exercises with optional filters."""
+    """Lists practice exercises with optional filters. Can skip mastered content for a student."""
     results = list(exercise_runner.exercises.values())
     if skill_id:
         results = [e for e in results if e["skill_id"] == skill_id]
@@ -58,6 +60,15 @@ def list_exercises(
         results = [e for e in results if e["module_id"] == module_id]
     if exercise_type:
         results = [e for e in results if e["type"] == exercise_type]
+
+    if student_id and skip_mastered:
+        from backend.student.diagnostic import diagnostic_engine
+        skill_matrix = diagnostic_engine.get_full_skill_matrix(student_id)
+        mastered_skills = {
+            sk for sk, d in skill_matrix.items()
+            if d.get("mastered", False) and d.get("evidence_source") == "assessed"
+        }
+        results = [e for e in results if e["skill_id"] not in mastered_skills]
     
     # Sanitize: don't reveal answer_key in exercise list!
     sanitized = []
@@ -74,6 +85,48 @@ def list_exercises(
             copy_ex["title"] = first_line
         sanitized.append(copy_ex)
     return sanitized
+
+@router.get("/assigned-content/{student_id}")
+def get_assigned_content(student_id: str) -> Dict[str, Any]:
+    """Returns recommended practice exercises for student, skipping mastered skills and reporting why."""
+    from backend.student.diagnostic import diagnostic_engine
+    skill_matrix = diagnostic_engine.get_full_skill_matrix(student_id)
+    mastered_skills = {
+        sk: d for sk, d in skill_matrix.items()
+        if d.get("mastered", False) and d.get("evidence_source") == "assessed"
+    }
+
+    all_exercises = list(exercise_runner.exercises.values())
+    assigned = []
+    skipped = []
+
+    for ex in all_exercises:
+        sk = ex.get("skill_id", "")
+        if sk in mastered_skills:
+            skipped.append({
+                "exercise_id": ex["exercise_id"],
+                "skill_id": sk,
+                "reason": f"Skipped: Skill '{sk}' is already verified as mastered by student ({mastered_skills[sk].get('evidence_count', 0)} assessed items)."
+            })
+        else:
+            assigned.append(ex)
+
+    return {
+        "student_id": student_id,
+        "assigned_exercises_count": len(assigned),
+        "skipped_mastered_count": len(skipped),
+        "skipped": skipped[:10],
+        "assigned": [
+            {
+                "exercise_id": e["exercise_id"],
+                "skill_id": e["skill_id"],
+                "title": e.get("title") or e["prompt"][:50],
+                "type": e["type"],
+                "difficulty": e.get("difficulty", 2)
+            }
+            for e in assigned[:20]
+        ]
+    }
 
 @router.get("/resources")
 def list_resources(skill_id: Optional[str] = None) -> List[Dict[str, Any]]:

@@ -250,6 +250,17 @@ class StudentStore:
             return [dict(r) for r in cur.fetchall()]
 
     @staticmethod
+    def get_answered_exercise_ids(student_id: str) -> List[str]:
+        """Retrieves list of exercise IDs already answered by student from evidence records."""
+        with get_db_cursor() as cur:
+            cur.execute(
+                "SELECT DISTINCT item_ref FROM evidence_events WHERE student_id = ? AND item_ref IS NOT NULL",
+                (student_id,)
+            )
+            rows = cur.fetchall()
+            return [r["item_ref"] if isinstance(r, dict) else r[0] for r in rows if r]
+
+    @staticmethod
     def log_study_session(student_id: str, session: StudySessionCreate) -> int:
         session_date = session.session_date or datetime.now().strftime("%Y-%m-%d")
         with get_db_cursor() as cur:

@@ -71,9 +71,10 @@ class SemesterMaxCreditsRule(Rule):
     def check(self, plan: Dict[str, Any], ctx: Dict[str, Any]) -> List[RuleResult]:
         results = []
         semesters = plan.get("semesters", [])
+        from backend.rules.params import get_overload_cgpa_threshold, get_overload_credit_cap, get_standard_credit_cap
         cgpa = float(ctx.get("cgpa", 8.0))
-        overload_eligible = cgpa >= 8.5
-        max_limit = 24.0 if overload_eligible else 22.0
+        overload_eligible = cgpa >= get_overload_cgpa_threshold()
+        max_limit = get_overload_credit_cap() if overload_eligible else get_standard_credit_cap()
         clause = "ORD-4.3.0" if overload_eligible else "ORD-4.2.2"
 
         for sem in semesters:

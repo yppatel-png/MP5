@@ -524,5 +524,195 @@
     "provenance": "team_authored",
     "date_verified": "2026-11-06",
     "last_verified": "2026-11-06"
+  },
+  {
+    "resource_id": "mit_1806_linear_algebra",
+    "title": "Linear Algebra (Gilbert Strang)",
+    "provider": "MIT OpenCourseWare",
+    "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://ocw.mit.edu/terms/",
+    "license_verified": true,
+    "status": "source_recorded",
+    "format": "Video Lectures & Problem Sets",
+    "difficulty": "intermediate",
+    "est_minutes": 2100,
+    "credit_eligible": true,
+    "skill_ids": [
+      "probability_statistics",
+      "discrete_mathematics"
+    ],
+    "source": "MIT OCW Mathematics Portal",
+    "provenance": "team_authored",
+    "date_verified": "2026-11-06",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "resource_id": "nptel_comp_arch",
+    "title": "Computer Architecture and Organization",
+    "provider": "NPTEL",
+    "url": "https://nptel.ac.in/courses/106105163",
+    "license": "CC BY-NC-SA 4.0 (NPTEL Open Access Terms)",
+    "license_url": "https://nptel.ac.in/",
+    "license_verified": true,
+    "status": "source_recorded",
+    "format": "Video Lectures & Notes",
+    "difficulty": "intermediate",
+    "est_minutes": 1800,
+    "credit_eligible": true,
+    "skill_ids": [
+      "computer_architecture"
+    ],
+    "source": "NPTEL IIT Kharagpur Course Portal",
+    "provenance": "team_authored",
+    "date_verified": "2026-11-06",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "resource_id": "mit_6004_computation_structures",
+    "title": "Computation Structures",
+    "provider": "MIT OpenCourseWare",
+    "url": "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://ocw.mit.edu/terms/",
+    "license_verified": true,
+    "status": "source_recorded",
+    "format": "Course Notes & Lab Assignments",
+    "difficulty": "intermediate",
+    "est_minutes": 1500,
+    "credit_eligible": false,
+    "skill_ids": [
+      "computer_architecture"
+    ],
+    "source": "MIT OCW EECS Portal",
+    "provenance": "team_authored",
+    "date_verified": "2026-11-06",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "resource_id": "nptel_computer_networks",
+    "title": "Data Communication and Computer Networks",
+    "provider": "NPTEL",
+    "url": "https://nptel.ac.in/courses/106105081",
+    "license": "CC BY-NC-SA 4.0 (NPTEL Open Access Terms)",
+    "license_url": "https://nptel.ac.in/",
+    "license_verified": true,
+    "status": "source_recorded",
+    "format": "Video Lectures",
+    "difficulty": "intermediate",
+    "est_minutes": 2400,
+    "credit_eligible": true,
+    "skill_ids": [
+      "computer_networks"
+    ],
+    "source": "NPTEL IIT Kharagpur Course Portal",
+    "provenance": "team_authored",
+    "date_verified": "2026-11-06",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "resource_id": "mit_602_digital_comm_networks",
+    "title": "Digital Communication Systems",
+    "provider": "MIT OpenCourseWare",
+    "url": "https://ocw.mit.edu/courses/6-02-digital-communication-systems-fall-2012/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://ocw.mit.edu/terms/",
+    "license_verified": true,
+    "status": "source_recorded",
+    "format": "Lecture Notes & Python Labs",
+    "difficulty": "intermediate",
+    "est_minutes": 1800,
+    "credit_eligible": false,
+    "skill_ids": [
+      "computer_networks"
+    ],
+    "source": "MIT OCW EECS Portal",
+    "provenance": "team_authored",
+    "date_verified": "2026-11-06",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "resource_id": "nptel_software_eng",
+    "title": "Software Engineering",
+    "provider": "NPTEL",
+    "url": "https://nptel.ac.in/courses/106105182",
+    "license": "CC BY-NC-SA 4.0 (NPTEL Open Access Terms)",
+    "license_url": "https://nptel.ac.in/",
+    "license_verified": true,
+    "status": "source_recorded",
+    "format": "Video Lectures & Slides",
+    "difficulty": "intermediate",
+    "est_minutes": 1800,
+    "credit_eligible": true,
+    "skill_ids": [
+      "software_engineering"
+    ],
+    "source": "NPTEL IIT Kharagpur Course Portal",
+    "provenance": "team_authored",
+    "date_verified": "2026-11-06",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "resource_id": "mit_18404j_theory_computation",
+    "title": "Theory of Computation",
+    "provider": "MIT OpenCourseWare",
+    "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://ocw.mit.edu/terms/",
+    "license_verified": true,
+    "status": "source_recorded",
+    "format": "Video Lectures & Problem Sets",
+    "difficulty": "advanced",
+    "est_minutes": 1800,
+    "credit_eligible": false,
+    "skill_ids": [
+      "theory_computation"
+    ],
+    "source": "MIT OCW Mathematics Portal",
+    "provenance": "team_authored",
+    "date_verified": "2026-11-06",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "resource_id": "berkeley_cs188_ai",
+    "title": "Introduction to Artificial Intelligence",
+    "provider": "UC Berkeley Open Courseware",
+    "url": "https://inst.eecs.berkeley.edu/~cs188/",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://inst.eecs.berkeley.edu/~cs188/",
+    "license_verified": true,
+    "status": "source_recorded",
+    "format": "Lecture Slides & Pacman Projects",
+    "difficulty": "intermediate",
+    "est_minutes": 1800,
+    "credit_eligible": false,
+    "skill_ids": [
+      "artificial_intelligence"
+    ],
+    "source": "UC Berkeley EECS Open Course Materials",
+    "provenance": "team_authored",
+    "date_verified": "2026-11-06",
+    "last_verified": "2026-11-06"
+  },
+  {
+    "resource_id": "mit_6s081_operating_systems",
+    "title": "Operating System Engineering (xv6)",
+    "provider": "MIT OpenCourseWare",
+    "url": "https://pdos.csail.mit.edu/6.828/2021/",
+    "license": "MIT Open Course License",
+    "license_url": "https://pdos.csail.mit.edu/6.828/",
+    "license_verified": true,
+    "status": "source_recorded",
+    "format": "Lecture Notes & xv6 Kernel Labs",
+    "difficulty": "advanced",
+    "est_minutes": 2400,
+    "credit_eligible": false,
+    "skill_ids": [
+      "operating_systems"
+    ],
+    "source": "MIT PDOS Systems Group Portal",
+    "provenance": "team_authored",
+    "date_verified": "2026-11-06",
+    "last_verified": "2026-11-06"
   }
 ]

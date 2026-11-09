@@ -31,6 +31,8 @@ from backend.api.plans import (
 from backend.retrieval.indexer import retriever
 from backend.db.seed_profile import get_seed_dir
 
+from backend.rules.params import get_standard_credit_cap
+
 logger = logging.getLogger("learning_buddy.buddy.tools")
 SEED_DIR = get_seed_dir()
 
@@ -39,7 +41,7 @@ def get_plan(student_id: str) -> Dict[str, Any]:
     """Retrieves current multi-semester plan with credit breakdown and headroom."""
     plan_data = get_active_plan(student_id)
     plan = plan_data.get("plan", {})
-    credit_cap = float(plan.get("credit_cap", 24.0))
+    credit_cap = float(plan.get("credit_cap") or get_standard_credit_cap())
 
     semesters_summary = []
     for s in plan.get("semesters", []):
@@ -106,7 +108,7 @@ def list_eligible(
 
     plan_data = get_active_plan(student_id)
     plan = plan_data.get("plan", {})
-    credit_cap = float(plan.get("credit_cap", 24.0))
+    credit_cap = float(plan.get("credit_cap") or get_standard_credit_cap())
 
     target_sem = next((s for s in plan.get("semesters", []) if s["semester_number"] == semester), None)
     current_credits = float(target_sem["total_credits"]) if target_sem else 0.0
@@ -271,7 +273,7 @@ def check_add(student_id: str, semester: int, course_code: str) -> Dict[str, Any
 
     plan_data = get_active_plan(student_id)
     plan = plan_data.get("plan", {})
-    credit_cap = float(plan.get("credit_cap", 24.0))
+    credit_cap = float(plan.get("credit_cap") or get_standard_credit_cap())
 
     sem_obj = next((s for s in plan.get("semesters", []) if s["semester_number"] == semester), None)
     if not sem_obj:
@@ -427,6 +429,35 @@ def explain_course(course_code: str, student_id: Optional[str] = None) -> Dict[s
 
     reqs = independent_validator.prereq_map.get(code, [])
 
+    reason = None
+    if student_id:
+        try:
+            from backend.db.database import get_db_cursor
+            with get_db_cursor() as cur:
+                cur.execute(
+                    "SELECT plan_json FROM plan_versions WHERE student_id = ? ORDER BY version_number DESC LIMIT 1",
+                    (student_id,)
+                )
+                row = cur.fetchone()
+            if row:
+                p_data = json.loads(row["plan_json"])
+                for sem in p_data.get("semesters", []):
+                    for course_entry in sem.get("courses", []):
+                        if course_entry.get("code") == code:
+                            reason = course_entry.get("reason")
+                            break
+                    if reason:
+                        break
+        except Exception:
+            pass
+
+    if not reason:
+        c_type = c.get("course_type", "elective")
+        if c_type in ["core", "programme_core"]:
+            reason = f"Required Programme Core requirement per Courses of Study p.{c.get('source_page', 21)}."
+        else:
+            reason = f"Recommended elective ({float(c.get('credits', 3.0))} cr) aligned with academic objectives."
+
     return {
         "found": True,
         "course_code": code,
@@ -434,6 +465,7 @@ def explain_course(course_code: str, student_id: Optional[str] = None) -> Dict[s
         "credits": float(c.get("credits", 3.0) or 0.0),
         "course_type": c.get("course_type", "elective"),
         "prerequisites": reqs,
+        "reason": reason,
         "syllabus": c.get("syllabus", "Standard IIT Bhilai departmental syllabus."),
         "source_citation": citation,
         "source_page": page
@@ -510,15 +542,16 @@ def what_if(student_id: str, scenario: str) -> Dict[str, Any]:
             "recommendation": "Review recommended textbook readings and complete practice drills before midterms."
         }
     elif "35" in scen_lower or "overload" in scen_lower:
+        std_cap = get_standard_credit_cap()
         return {
             "scenario": "Requesting 35 credits in a single semester",
             "allowed": False,
-            "reason": "IIT Bhilai academic ordinance strictly caps regular semester workload at 24.0 credits.",
-            "alternative": "Spread the courses across upcoming regular and summer semesters (maximum 24.0 credits per semester)."
+            "reason": f"Working assumption of {std_cap:.1f} credits per semester (pending official ordinance).",
+            "alternative": f"Spread the courses across upcoming regular and summer semesters (working assumption of {std_cap:.1f} credits per semester)."
         }
     else:
         return {
             "scenario": scenario,
-            "evaluation": f"Evaluated against IIT Bhilai B.Tech CSE ordinance for {profile.name if profile else 'student'}.",
+            "evaluation": f"Evaluated against academic planning rules (working assumption pending official ordinance) for {profile.name if profile else 'student'}.",
             "status": "ready"
         }

@@ -6,46 +6,64 @@ import json
 import os
 import sys
 
-MEMORY_LIMIT_BYTES = 512 * 1024 * 1024
+MEMORY_LIMIT_BYTES = 256 * 1024 * 1024
 
 
 class SecurityVisitor(ast.NodeVisitor):
-    FORBIDDEN_MODULES = {
-        "os", "sys", "subprocess", "socket", "shutil", "pathlib", "importlib",
-        "requests", "urllib", "http", "socketserver", "pty", "posix", "_posixsubprocess",
-        "ctypes", "winreg", "msvcrt", "builtins", "signal", "threading", "multiprocessing"
+    """
+    Strict allow-list AST security scanner.
+    Rejects any construct not explicitly approved for introductory coding exercises.
+    Guarantees no access to dunder attributes, forbidden calls, or dangerous modules.
+    """
+    ALLOWED_NODE_TYPES = {
+        # Modules & definitions
+        ast.Module, ast.Interactive, ast.Expression,
+        ast.FunctionDef, ast.Return,
+        ast.arguments, ast.arg, ast.keyword,
+        # Control flow & statements
+        ast.Assign, ast.AugAssign, ast.AnnAssign,
+        ast.For, ast.While, ast.If, ast.Pass, ast.Break, ast.Continue,
+        ast.Expr,
+        # Expressions & data structures
+        ast.BoolOp, ast.BinOp, ast.UnaryOp, ast.Lambda, ast.IfExp,
+        ast.Dict, ast.Set, ast.List, ast.Tuple,
+        ast.ListComp, ast.SetComp, ast.DictComp, ast.GeneratorExp,
+        ast.comprehension,
+        ast.Compare, ast.Call, ast.Constant,
+        ast.FormattedValue, ast.JoinedStr,
+        ast.Attribute, ast.Subscript, ast.Slice, ast.Starred,
+        ast.Name, ast.Load, ast.Store, ast.Del,
+        # Operators
+        ast.Add, ast.Sub, ast.Mult, ast.Div, ast.FloorDiv, ast.Mod, ast.Pow,
+        ast.LShift, ast.RShift, ast.BitOr, ast.BitXor, ast.BitAnd, ast.MatMult,
+        ast.And, ast.Or, ast.Not, ast.Invert, ast.UAdd, ast.USub,
+        ast.Eq, ast.NotEq, ast.Lt, ast.LtE, ast.Gt, ast.GtE, ast.Is, ast.IsNot, ast.In, ast.NotIn,
     }
+
     FORBIDDEN_CALLS = {
         "open", "eval", "exec", "__import__", "compile", "globals", "locals",
-        "getattr", "setattr", "delattr", "hasattr", "breakpoint", "memoryview"
-    }
-    FORBIDDEN_ATTRS = {
-        "__class__", "__subclasses__", "__bases__", "__globals__", "__code__",
-        "__builtins__", "__mro__", "__dict__", "__closure__", "__func__"
+        "getattr", "setattr", "delattr", "hasattr", "breakpoint", "memoryview",
+        "input", "help", "copyright", "credits", "license", "exit", "quit"
     }
 
-    def visit_Import(self, node):
-        for alias in node.names:
-            base_mod = alias.name.split('.')[0]
-            if base_mod in self.FORBIDDEN_MODULES:
-                raise ValueError(f"Forbidden construct: module import '{alias.name}' is prohibited.")
+    def generic_visit(self, node):
+        if type(node) not in self.ALLOWED_NODE_TYPES:
+            raise ValueError(f"Forbidden construct: AST node '{type(node).__name__}' is prohibited in safe sandbox.")
+        super().generic_visit(node)
+
+    def visit_Attribute(self, node):
+        if node.attr.startswith("__"):
+            raise ValueError(f"Forbidden construct: dunder attribute '{node.attr}' access is prohibited.")
         self.generic_visit(node)
 
-    def visit_ImportFrom(self, node):
-        if node.module:
-            base_mod = node.module.split('.')[0]
-            if base_mod in self.FORBIDDEN_MODULES:
-                raise ValueError(f"Forbidden construct: module import '{node.module}' is prohibited.")
+    def visit_Name(self, node):
+        if node.id.startswith("__"):
+            raise ValueError(f"Forbidden construct: dunder identifier '{node.id}' is prohibited.")
         self.generic_visit(node)
 
     def visit_Call(self, node):
         if isinstance(node.func, ast.Name) and node.func.id in self.FORBIDDEN_CALLS:
-            raise ValueError(f"Forbidden construct: call '{node.func.id}' is prohibited.")
-        self.generic_visit(node)
-
-    def visit_Attribute(self, node):
-        if node.attr in self.FORBIDDEN_ATTRS:
-            raise ValueError(f"Forbidden construct: attribute '{node.attr}' access is prohibited.")
+            raise ValueError(f"Forbidden construct: function call '{node.func.id}' is prohibited.")
         self.generic_visit(node)
 
 
@@ -53,22 +71,7 @@ def grade_code(exercise, code_str):
     if not code_str or not code_str.strip():
         return {"score": 0.0, "is_correct": False, "feedback": "No code provided."}
 
-    # 1. Text token fast check
-    forbidden = [
-        "import os", "import sys", "import subprocess", "import socket",
-        "open(", "eval(", "exec(", "__import__",
-    ]
-    for token in forbidden:
-        if token in code_str:
-            return {
-                "score": 0.0,
-                "is_correct": False,
-                "feedback": f"Security restriction: Forbidden construct '{token}' detected.",
-                "passed_tests": 0,
-                "total_tests": 1,
-            }
-
-    # 2. AST-level static security scan
+    # AST-level static security scan (Allow-list architecture without brittle substring checks)
     try:
         parsed_ast = ast.parse(code_str)
         SecurityVisitor().visit(parsed_ast)
@@ -184,15 +187,18 @@ def grade_code(exercise, code_str):
 
 
 def main() -> int:
-    payload = json.loads(sys.stdin.read())
     try:
         import resource
-
         resource.setrlimit(resource.RLIMIT_AS, (MEMORY_LIMIT_BYTES, MEMORY_LIMIT_BYTES))
         resource.setrlimit(resource.RLIMIT_CPU, (2, 3))
-    except ImportError:
+        if hasattr(resource, "RLIMIT_NPROC"):
+            resource.setrlimit(resource.RLIMIT_NPROC, (1, 1))
+        if hasattr(resource, "RLIMIT_NOFILE"):
+            resource.setrlimit(resource.RLIMIT_NOFILE, (32, 32))
+    except (ImportError, AttributeError, ValueError, OSError):
         pass
 
+    payload = json.loads(sys.stdin.read())
     with open(os.devnull, "w", encoding="utf-8") as sink, contextlib.redirect_stdout(sink):
         result = grade_code(payload["exercise"], payload["code"])
     sys.stdout.write(json.dumps(result))
